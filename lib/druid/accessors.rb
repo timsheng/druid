@@ -33,6 +33,23 @@ module Druid
         driver.link(identifier)
       end
     end
+    #
+    # adds three methods to the page object - one to set text in a text field,
+    # another to retrieve text from a text field and another to return the text
+    # field element.
+    #
+    # Example:  text_field(:first_name, {:id => "first_name"})
+    # will generate the 'first_name', 'first_name=' and 'first_name_text_field methods.
+    #
+    # @param  the name used for the generated methods
+    # @param identifier how we find a text_field.  The valid values are:
+    #   :class
+    #   :css
+    #   :id
+    #   :index
+    #   :name
+    #   :tag_name
+    #   :xpath
 
     def text_field(name, identifier)
       define_method(name) do
