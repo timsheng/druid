@@ -9,7 +9,6 @@ Feature: Links
     When I select the link labeled "Google Search"
     Then the page should contain the text "Google"
 
-  @debug
   Scenario Outline: Locating links on the Page
     When I locate the link by "<locate_by>"
     Then I should be able to select the link
@@ -24,7 +23,6 @@ Feature: Links
     | text      |
     | xpath     |
 
-  @dev
   Scenario: Retrieve a Link
     When I retrieve a link element
     Then I should know it exists
