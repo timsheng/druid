@@ -1,1 +1,2 @@
-watir: DRIVER=WATIR --no-source --color --format pretty 
+watir: DRIVER=WATIR --no-source --color --format pretty
+default: DRIVER=WATIR --no-source --color --format pretty 
