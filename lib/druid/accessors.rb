@@ -75,11 +75,11 @@ module Druid
     #
     # @param the name used for the generated methods
     # @param identifier how we find a checkbox.  The valid values are:
-    #   :class => Watir and Selenium
-    #   :id => Watir and Selenium
-    #   :index => Watir only
-    #   :name => Watir and Selenium
-    #   :xpath => Watir and Selenium
+    #   :class
+    #   :id
+    #   :index
+    #   :name
+    #   :xpath 
     #
     def checkbox(name, identifier)
       define_method("check_#{name}") do
@@ -97,6 +97,36 @@ module Druid
       define_method("#{name}_checkbox") do
         puts "#{name}_checkbox method generated"
         driver.checkbox(identifier)
+      end
+    end
+    #
+    # adds three methods - one to select an item in a drop-down,
+    # another to fetch the currently selected item and another
+    # to retrieve the select list element.
+    #
+    # Example:  select_list(:state, {:id => "state"})
+    # will generate the 'state', 'state=' and 'state_select_list' methods
+    #
+    # @param the name used for the generated methods
+    # @param identifier how we find a select_list.  The valid values are:
+    #   :class
+    #   :id
+    #   :index
+    #   :name
+    #   :xpath
+    #
+    def select_list(name, identifier)
+      define_method(name) do
+        puts "#{name} method generated"
+        driver.select_list(identifier).value
+      end
+      define_method("#{name}=") do |value|
+        puts "#{name}= method generated"
+        driver.select_list(identifier).select value
+      end
+      define_method("#{name}_select_list") do
+        puts "#{name}_select_list method generated"
+        driver.select_list(identifier)
       end
     end
   end
