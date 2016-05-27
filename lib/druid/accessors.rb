@@ -79,7 +79,7 @@ module Druid
     #   :id
     #   :index
     #   :name
-    #   :xpath 
+    #   :xpath
     #
     def checkbox(name, identifier)
       define_method("check_#{name}") do
@@ -127,6 +127,37 @@ module Druid
       define_method("#{name}_select_list") do
         puts "#{name}_select_list method generated"
         driver.select_list(identifier)
+      end
+    end
+    #
+    # adds three methods - one to select
+    # another to return if a radio button is selected, and
+    # another method to return a radio_button element
+    #
+    # Example:  radio_button(:north, {:id => "north"})
+    # will generate 'select_north'
+    # 'north_selected?' and 'north_radio_button' methods
+    #
+    # @param the name used for the generated methods
+    # @param identifier how we find a checkbox.  The valid values are:
+    #   :class => Watir and Selenium
+    #   :id => Watir and Selenium
+    #   :index => Watir only
+    #   :name => Watir and Selenium
+    #   :xpath => Watir and Selenium
+    #
+    def radio_button(name, identifier)
+      define_method("select_#{name}") do
+        puts "select_#{name} method generated"
+        driver.radio(identifier).set
+      end
+      define_method("#{name}_selected?") do
+        puts "#{name}_selected method generated"
+        driver.radio(identifier).set?
+      end
+      define_method("#{name}_radio_button") do
+        puts "#{name}_radio_button method generated"
+        driver.radio(identifier)
       end
     end
   end

@@ -29,4 +29,12 @@ class Page
   select_list(:select_list_name, :name => "sel_list_name")
   select_list(:select_list_xpath, :xpath => "//select")
 
+  radio_button(:milk_id, :id => 'milk_id')
+  radio_button(:butter_id, :id => 'butter_id')
+  radio_button(:milk_name, :name => 'milk_name')
+  radio_button(:milk_class, :class => 'milk_class')
+  radio_button(:milk_index, :index => 0)
+  radio_button(:milk_xpath, :xpath => "//input[@type='radio']")
+
+
 end
