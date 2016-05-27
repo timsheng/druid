@@ -23,4 +23,10 @@ class Page
   checkbox(:cb_index, :index => 0)
   checkbox(:cb_xpath, :xpath => "//input[@type='checkbox']")
 
+  select_list(:select_list_id, :id => "sel_list_id")
+  select_list(:select_list_class, :class => "sel_list_class")
+  select_list(:select_list_index, :index => 0)
+  select_list(:select_list_name, :name => "sel_list_name")
+  select_list(:select_list_xpath, :xpath => "//select")
+
 end
