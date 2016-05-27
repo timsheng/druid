@@ -50,7 +50,6 @@ module Druid
     #   :name
     #   :tag_name
     #   :xpath
-
     def text_field(name, identifier)
       define_method(name) do
         puts "#{name} method generated"
@@ -63,6 +62,41 @@ module Druid
       define_method("#{name}_text_field") do
         puts "#{name}_element method generated"
         driver.text_field(identifier)
+      end
+    end
+    #
+    # adds four methods - one to check, another to uncheck, another
+    # to return the state of a checkbox, and a final method to return
+    # a checkbox  element.
+    #
+    # Example: checkbox(:active, {:name => "is_active"})
+    # will generate the 'check_active', 'uncheck_active',
+    # 'active_checked?' and 'active_checkbox' methods.
+    #
+    # @param the name used for the generated methods
+    # @param identifier how we find a checkbox.  The valid values are:
+    #   :class => Watir and Selenium
+    #   :id => Watir and Selenium
+    #   :index => Watir only
+    #   :name => Watir and Selenium
+    #   :xpath => Watir and Selenium
+    #
+    def checkbox(name, identifier)
+      define_method("check_#{name}") do
+        puts "check_#{name} method generated"
+        driver.checkbox(identifier).set
+      end
+      define_method("uncheck_#{name}") do
+        puts "uncheck_#{name} method generated"
+        driver.checkbox(identifier).clear
+      end
+      define_method("#{name}_checked?") do
+        puts "#{name}_checked? method generated"
+        driver.checkbox(identifier).set?
+      end
+      define_method("#{name}_checkbox") do
+        puts "#{name}_checkbox method generated"
+        driver.checkbox(identifier)
       end
     end
   end
