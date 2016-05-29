@@ -22,7 +22,6 @@ Feature: Button
     | index     |
     | text      |
 
-  @dev
   Scenario: Retrieve a button element
     When I retrieve a button element
     Then I should know it exists
