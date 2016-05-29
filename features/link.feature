@@ -7,7 +7,7 @@ Feature: Links
 
   Scenario: Selecting a link
     When I select the link labeled "Google Search"
-    Then the page should contain the text "Google"
+    Then the page should contain the text "Success"
 
   Scenario Outline: Locating links on the Page
     When I locate the link by "<locate_by>"

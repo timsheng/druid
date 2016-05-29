@@ -4,10 +4,10 @@
   </head>
   <body>
     <h2>Static Elements Page</h2>
-
+    
 
     <h3>Text Field</h3>
-    <input id="text_field_id" name="text_field_name" class="text_field_class"
+    <input id="text_field_id" name="text_field_name" class="text_field_class" 
            size="40" type="text" />
 
     <h3>Select List</h3>
@@ -16,17 +16,37 @@
       <option value="option2">Test 2</option>
     </select>
 
-    <h3>Button</h3>
-    <button id="test_button" onclick="javascript:window.location='http://www.google.com'">Click Me!!</button>
 
     <h3>Link</h3>
-    <a href="http://www.google.com" id="link_id" name="link_name" class="link_class" >Google Search</a>
-
+    <a href="success.html" id="link_id" name="link_name" class="link_class" >Google Search</a>
+    
     <h3>Check Boxes</h3>
     <input id="cb_id" name="cb_name" class="cb_class" type="checkbox" value="1" />
-
+    
     <h3>Radio Buttons</h3>
     <input type="radio" id="milk_id" name="milk_name" class="milk_class" value="Milk"> Milk <br />
     <input type="radio" id="butter_id" name="butter_name" class="butter_class" value="Butter">Butter
+    
+    <h3>Div</h3>
+    <div id="div_id" name="div_name" class="div_class">
+      page-object rocks!
+    </div>
+    
+    <h3>Table</h3>
+    <table id='table_id' name='table_name' class='table_class' border='1'>
+      <tr>
+        <td>Data1</td><td>Data2</td>
+      </tr>
+      <tr>
+        <td>Data3</td><td id='cell_id', name='cell_name' class='cell_class'>Data4</td>
+      </tr>
+    </table>
+    
+    <h3>Button</h3>
+    <form method="get" action="success.html">
+      <input id='button_id' name='button_name' class='button_class' type="submit" value="Click Me">
+    </form>
   </body>
 </html>
+
+
