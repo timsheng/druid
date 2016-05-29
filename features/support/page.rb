@@ -52,4 +52,9 @@ class Page
   table(:table_class, :class => 'table_class')
   table(:table_index, :index => 0)
   table(:table_xpath, :xpath => '//table')
+
+  cell(:cell_id, :id => 'cell_id')
+  cell(:cell_class, :class => 'cell_class')
+  cell(:cell_index, :index => 3)
+  cell(:cell_xpath, :xpath => '//table//tr[2]//td[2]')
 end
