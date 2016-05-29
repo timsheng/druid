@@ -2,7 +2,6 @@ Feature: Check Box
   In order to interact with check boxes
   Testers will need access and interrogation ability
 
-
   Background:
     Given I am on the static elements page
 
