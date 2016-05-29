@@ -47,4 +47,9 @@ class Page
   div(:div_class, :class => 'div_class')
   div(:div_index, :index => 0)
   div(:div_xpath, :xpath => '//div')
+
+  table(:table_id, :id => "table_id")
+  table(:table_class, :class => 'table_class')
+  table(:table_index, :index => 0)
+  table(:table_xpath, :xpath => '//table')
 end
