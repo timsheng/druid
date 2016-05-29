@@ -198,10 +198,9 @@ module Druid
     #   :class
     #   :id
     #   :index
-    #   :name
     #   :xpath
     #
-    def div(name,identifier)
+    def div(name, identifier)
       define_method(name) do
         puts "#{name} method generated"
         driver.div(identifier).text
@@ -209,6 +208,26 @@ module Druid
       define_method("#{name}_div") do
         puts "#{name}_div method generated"
         driver.div(identifier)
+      end
+    end
+    #
+    # adds a method to retrieve the table element
+    #
+    # Example: table(:cart, :id => 'shopping_cart')
+    # will generate a 'cart_table' method.
+    #
+    # @param the name used for the generated methods
+    # @param identifier how we find a table.  The valid values are:
+    #   :class
+    #   :id
+    #   :index
+    #   :name
+    #   :xpath
+    #
+    def table(name, identifier)
+      define_method("#{name}_table") do
+        puts "#{name}_table method generated"
+        driver.table(identifier)
       end
     end
   end
