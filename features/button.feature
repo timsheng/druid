@@ -13,7 +13,7 @@ Feature: Button
     When I locate the button by "<locate_by>"
     Then I should be able to click the button
 
-  Scenarios:
+    Examples:
     | locate_by |
     | id        |
     | class     |
