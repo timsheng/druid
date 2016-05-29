@@ -160,6 +160,17 @@ module Druid
         driver.radio(identifier)
       end
     end
+
+    def button(name, identifier)
+      define_method(name) do
+        puts "#{name} method generated"
+        driver.button(identifier).click
+      end
+      define_method("#{name}_button") do
+        puts "#{name}_button method generated"
+        driver.button(identifier)
+      end
+    end
   end
 
 end
