@@ -2,7 +2,6 @@ Feature: Text Fields
   In order to interact with text fields
   Testers will need access and interrogation ability
 
-
   Background:
     Given I am on the static elements page
 

@@ -2,7 +2,6 @@ Feature: Select List
   In order to interact with select lists
   Testers will need access and interrogation ability
 
-
   Background:
     Given I am on the static elements page
 

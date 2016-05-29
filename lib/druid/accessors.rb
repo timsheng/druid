@@ -140,11 +140,11 @@ module Druid
     #
     # @param the name used for the generated methods
     # @param identifier how we find a checkbox.  The valid values are:
-    #   :class => Watir and Selenium
-    #   :id => Watir and Selenium
-    #   :index => Watir only
-    #   :name => Watir and Selenium
-    #   :xpath => Watir and Selenium
+    #   :class
+    #   :id
+    #   :index
+    #   :name
+    #   :xpath
     #
     def radio_button(name, identifier)
       define_method("select_#{name}") do
@@ -158,6 +158,32 @@ module Druid
       define_method("#{name}_radio_button") do
         puts "#{name}_radio_button method generated"
         driver.radio(identifier)
+      end
+    end
+    #
+    # adds two methods - one to click a button and another to
+    # return the button element.
+    #
+    # Example: button(:purchase, :id => 'purchase')
+    # will generate a 'purchase' and 'purchase_button' methods.
+    #
+    # @param the name used for the generated methods
+    # @param identifier how we find a checkbox.  The valid values are:
+    #   :class 
+    #   :id
+    #   :index
+    #   :name
+    #   :text
+    #   :xpath
+    #
+    def button(name, identifier)
+      define_method(name) do
+        puts "#{name} method generated"
+        driver.button(identifier).click
+      end
+      define_method("#{name}_button") do
+        puts "#{name}_button method generated"
+        driver.button(identifier)
       end
     end
   end

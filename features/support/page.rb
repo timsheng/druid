@@ -5,7 +5,7 @@ class Page
   link(:google_search_name, :name => "link_name")
   link(:google_search_class, :class => "link_class")
   link(:google_search_xpath, :xpath => "//a[text()='Google Search']")
-  link(:google_search_href, :href => "http://www.google.com")
+  link(:google_search_href, :href => "success.html")
   link(:google_search_text, :text => "Google Search")
   link(:google_search_index, :index => 0)
 
@@ -36,5 +36,10 @@ class Page
   radio_button(:milk_index, :index => 0)
   radio_button(:milk_xpath, :xpath => "//input[@type='radio']")
 
-
+  button(:button_id, :id => 'button_id')
+  button(:button_name, :name => 'button_name')
+  button(:button_class, :class => 'button_class')
+  button(:button_index, :index => 0)
+  button(:button_xpath, :xpath=> "//input[@type='submit']")
+  button(:button_text, :text => 'Click Me')
 end
