@@ -2,7 +2,6 @@ Feature: Div
   In order to interact with divs
   Testers will need access and interrogation ability
 
-
   Background:
     Given I am on the static elements page
 
