@@ -2,7 +2,6 @@ Feature: Table
   In order to interact with tables
   Testers will need access and interrogation ability
 
-
   Background:
     Given I am on the static elements page
 
@@ -21,7 +20,7 @@ Feature: Table
     | class     |
     | xpath     |
     | index     |
-    
+
   Scenario: Retrieve the data from a table
     When I retrieve a table element
     Then the data for row "1" should be "Data1" and "Data2"

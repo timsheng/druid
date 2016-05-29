@@ -221,13 +221,36 @@ module Druid
     #   :class
     #   :id
     #   :index
-    #   :name
     #   :xpath
     #
     def table(name, identifier)
       define_method("#{name}_table") do
         puts "#{name}_table method generated"
         driver.table(identifier)
+      end
+    end
+    #
+    # adds two methods  one to retrieve the text from a table cell
+    # and another to return the table cell element
+    #
+    # Example: cell(:total, :id => 'total_cell')
+    # will generate a 'total' and 'total_cell' methods
+    #
+    # @param the name used for the generated methods
+    # @param identifier how we find a cell.  The valid values are:
+    #   :class
+    #   :id
+    #   :index
+    #   :xpath 
+    #
+    def cell(name, identifier)
+      define_method(name) do
+        puts "#{name} method generated"
+        driver.td(identifier).text
+      end
+      define_method("#{name}_cell") do
+        puts "#{name}_cell method generated"
+        driver.td(identifier)
       end
     end
   end
