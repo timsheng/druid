@@ -139,7 +139,7 @@ module Druid
     # 'north_selected?' and 'north_radio_button' methods
     #
     # @param the name used for the generated methods
-    # @param identifier how we find a checkbox.  The valid values are:
+    # @param identifier how we find a radio_button.  The valid values are:
     #   :class
     #   :id
     #   :index
@@ -168,8 +168,8 @@ module Druid
     # will generate a 'purchase' and 'purchase_button' methods.
     #
     # @param the name used for the generated methods
-    # @param identifier how we find a checkbox.  The valid values are:
-    #   :class 
+    # @param identifier how we find a button.  The valid values are:
+    #   :class
     #   :id
     #   :index
     #   :name
@@ -184,6 +184,31 @@ module Druid
       define_method("#{name}_button") do
         puts "#{name}_button method generated"
         driver.button(identifier)
+      end
+    end
+    #
+    # adds two methods - one to retrieve the text from a div
+    # and another to return the div element
+    #
+    # Example:  div(:message, {:id => 'message'})
+    # will generate a 'message' and 'message_div' methods
+    #
+    # @param the name used for the generated methods
+    # @param identifier how we find a div.  The valid values are:
+    #   :class
+    #   :id
+    #   :index
+    #   :name
+    #   :xpath
+    #
+    def div(name,identifier)
+      define_method(name) do
+        puts "#{name} method generated"
+        driver.div(identifier).text
+      end
+      define_method("#{name}_div") do
+        puts "#{name}_div method generated"
+        driver.div(identifier)
       end
     end
   end

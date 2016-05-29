@@ -42,4 +42,9 @@ class Page
   button(:button_index, :index => 0)
   button(:button_xpath, :xpath=> "//input[@type='submit']")
   button(:button_text, :text => 'Click Me')
+
+  div(:div_id, :id => "div_id")
+  div(:div_class, :class => 'div_class')
+  div(:div_index, :index => 0)
+  div(:div_xpath, :xpath => '//div')
 end
