@@ -75,4 +75,14 @@ class Page
   form(:form_index, :index => 0)
   form(:form_xpath, :xpath => '//form')
 
+  hidden_field(:hidden_field_id, :id => "hidden_field_id")
+  hidden_field(:hidden_field_class, :class => "hidden_field_class")
+  hidden_field(:hidden_field_name, :name => "hidden_field_name")
+  hidden_field(:hidden_field_xpath, :xpath => "//input[@type='hidden']")
+  hidden_field(:hidden_field_css, :css => "input[type='hidden']")
+  hidden_field(:hidden_field_tag_name, :tag_name => "input[type='hidden']")
+  hidden_field(:hidden_field_index, :index => 0)
+  hidden_field(:hidden_field_text, :text => "")
+  hidden_field(:hidden_field_value, :value => "")
+
 end
