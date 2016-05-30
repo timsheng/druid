@@ -309,12 +309,41 @@ module Druid
     #   * :class
     #   * :id
     #   * :index
-    #   * :xpath 
+    #   * :xpath
     #
     def form(name, identifier)
       define_method("#{name}_form") do
         puts "#{name}_form method generated"
         driver.form(identifier)
+      end
+    end
+    #
+    # adds two methods to the page object - one to get the text from a hidden field
+    # and another to retrieve the hidden field element.
+    #
+    # @example
+    #   hidden_field(:user_id, :id => "user_identity")
+    #   # will generate 'user_id' and 'user_id_hidden_field' methods
+    #
+    # @param [String] the name used for the generated methods
+    # @param [Hash] identifier how we find a hidden field.  The valid keys are:
+    #   * :class
+    #   * :css
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :tag_name
+    #   * :text
+    #   * :xpath
+    #
+    def hidden_field(name, identifier)
+      define_method("#{name}_hidden_field") do
+        puts "#{name}_hidden_field method generated"
+        driver.hidden(identifier)
+      end
+      define_method(name) do
+        puts "#{name} method generated"
+        driver.hidden(identifier).value
       end
     end
   end
