@@ -1,9 +1,9 @@
 When(/^I get the text from the div$/) do
-  @div_text = @page.div_id
+  @text = @page.div_id
 end
 
 Then(/^the text should be "(.*?)"$/) do |expected_text|
-  expect(@div_text).to eql expected_text
+  expect(@text).to eql expected_text
 end
 
 When(/^I locate the div by "(.*?)"$/) do |how|
