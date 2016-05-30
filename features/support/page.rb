@@ -85,4 +85,9 @@ class Page
   hidden_field(:hidden_field_text, :text => "")
   hidden_field(:hidden_field_value, :value => "")
 
+  list_item(:li_id, :id => 'li_id')
+  list_item(:li_class, :class => 'li_class')
+  list_item(:li_index, :index => 0)
+  list_item(:li_xpath, :xpath => '//li[1]')
+
 end
