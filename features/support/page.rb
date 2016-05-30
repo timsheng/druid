@@ -62,4 +62,10 @@ class Page
   span(:span_class, :class => 'span_class')
   span(:span_index, :index => 0)
   span(:span_xpath, :xpath => '//span')
+
+  image(:image_id, :id => "image_id")
+  image(:image_name, :name => 'image_name')
+  image(:image_class, :class => 'image_class')
+  image(:image_index, :index => 0)
+  image(:image_xpath, :xpath => '//img')
 end

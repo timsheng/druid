@@ -277,6 +277,26 @@ module Druid
         driver.span(identifier)
       end
     end
+    #
+    # adds a method to retrieve the image element
+    #
+    # Example: image(:photo, :id => 'photo_id')
+    # will generate a 'photo_image' method.
+    #
+    # @param the name used for the generated methods
+    # @param identifier how we find a image.  The valid values are:
+    #   :class
+    #   :id
+    #   :index
+    #   :name
+    #   :xpath 
+    #
+    def image(name, identifier)
+      define_method("#{name}_image") do
+        puts "#{name}_image method generated"
+        driver.image(identifier)
+      end
+    end
   end
 
 end
