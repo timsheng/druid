@@ -1,4 +1,4 @@
-
+require 'druid/elements'
 #
 # Contains the class level methods that are inserted into your page class
 # when you include the PageObject module.  These methods will generate another
@@ -359,7 +359,7 @@ module Druid
     #   * :class
     #   * :id
     #   * :index
-    #   * :xpath 
+    #   * :xpath
     #
     def list_item(name, identifier)
       define_method(name) do
@@ -369,6 +369,28 @@ module Druid
       define_method("#{name}_list_item") do
         puts "#{name}_list_item method generated"
         driver.li(identifier)
+      end
+    end
+    #
+    # adds a method to retrieve the ordered list element
+    #
+    # @example
+    #   ordered_list(:top_five, :id => 'top')
+    #   # will generate a 'top_five_ordered_list' method
+    #
+    # @param [String] the name used for the generated methods
+    # @param [Hash] identifier how we find an ordered list.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #
+
+    def ordered_list(name, identifier)
+      define_method("#{name}_ordered_list") do
+        puts "#{name}_ordered_list method generated"
+        element = driver.ol(identifier)
+        Druid::Elements::OrderedList.new(element)
       end
     end
   end

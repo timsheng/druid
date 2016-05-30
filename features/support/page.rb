@@ -90,4 +90,8 @@ class Page
   list_item(:li_index, :index => 0)
   list_item(:li_xpath, :xpath => '//li[1]')
 
+  ordered_list(:ol_id, :id => 'ol_id')
+  ordered_list(:ol_class, :class => 'ol_class')
+  ordered_list(:ol_index, :index => 0)
+  ordered_list(:ol_xpath, :xpath => '//ol')
 end
