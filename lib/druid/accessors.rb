@@ -346,6 +346,31 @@ module Druid
         driver.hidden(identifier).value
       end
     end
+    #
+    # adds two methods - one to retrieve the text from a list item
+    # and another to return the list item element
+    #
+    # @example
+    #   list_item(:item_one, :id => 'one')
+    #   # will generate 'item_one' and 'item_one_list_item' methods
+    #
+    # @param [String] the name used for the generated methods
+    # @param [Hash] identifier how we find a list item.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath 
+    #
+    def list_item(name, identifier)
+      define_method(name) do
+        puts "#{name} method generated"
+        driver.li(identifier).text
+      end
+      define_method("#{name}_list_item") do
+        puts "#{name}_list_item method generated"
+        driver.li(identifier)
+      end
+    end
   end
 
 end
