@@ -289,12 +289,32 @@ module Druid
     #   :id
     #   :index
     #   :name
-    #   :xpath 
+    #   :xpath
     #
     def image(name, identifier)
       define_method("#{name}_image") do
         puts "#{name}_image method generated"
         driver.image(identifier)
+      end
+    end
+    #
+    # adds a method to retrieve the form element
+    #
+    # @example
+    #   form(:login, :id => 'login')
+    #   # will generate a 'login_form' method
+    #
+    # @param [String] the name used for the generated methods
+    # @param [Hash] identifier how we find a form.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath 
+    #
+    def form(name, identifier)
+      define_method("#{name}_form") do
+        puts "#{name}_form method generated"
+        driver.form(identifier)
       end
     end
   end

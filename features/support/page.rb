@@ -68,4 +68,11 @@ class Page
   image(:image_class, :class => 'image_class')
   image(:image_index, :index => 0)
   image(:image_xpath, :xpath => '//img')
+
+  form(:form_id, :id => 'form_id')
+  form(:form_name, :id => 'form_name')
+  form(:form_class, :class => 'form_class')
+  form(:form_index, :index => 0)
+  form(:form_xpath, :xpath => '//form')
+
 end
