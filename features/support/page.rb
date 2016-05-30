@@ -104,4 +104,9 @@ class Page
   text_area(:text_area_index, :index => 0)
   text_area(:text_area_text, :text => "")
   text_area(:text_area_value, :value => "")
+
+  unordered_list(:ul_id, :id => 'ul_id')
+  unordered_list(:ul_class, :class => 'ul_class')
+  unordered_list(:ul_index, :index => 0)
+  unordered_list(:ul_xpath, :xpath => '//ul')
 end

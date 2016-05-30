@@ -425,6 +425,27 @@ module Druid
         driver.textarea(identifier)
       end
     end
+    #
+    # adds a method to retrieve the unordered list element
+    #
+    # @example
+    #   unordered_list(:menu, :id => 'main_menu')
+    #   # will generate a 'menu_unordered_list' method
+    #
+    # @param [String] the name used for the generated methods
+    # @param [Hash] identifier how we find an unordered list.  The valid keys are:
+    #   * :class 
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #
+    def unordered_list(name, identifier)
+      define_method("#{name}_unordered_list") do
+        puts "#{name}_unordered_list method generated"
+        element = driver.ul(identifier)
+        Druid::Elements::UnOrderedList.new(element)
+      end
+    end
   end
 
 end
