@@ -94,4 +94,14 @@ class Page
   ordered_list(:ol_class, :class => 'ol_class')
   ordered_list(:ol_index, :index => 0)
   ordered_list(:ol_xpath, :xpath => '//ol')
+
+  text_area(:text_area_id, :id => "text_area_id")
+  text_area(:text_area_class, :class => "text_area_class")
+  text_area(:text_area_name, :name => "text_area_name")
+  text_area(:text_area_xpath, :xpath => "//textarea")
+  text_area(:text_area_css, :css => "textarea")
+  text_area(:text_area_tag_name, :tag_name => "textarea")
+  text_area(:text_area_index, :index => 0)
+  text_area(:text_area_text, :text => "")
+  text_area(:text_area_value, :value => "")
 end

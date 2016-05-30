@@ -385,12 +385,44 @@ module Druid
     #   * :index
     #   * :xpath
     #
-
     def ordered_list(name, identifier)
       define_method("#{name}_ordered_list") do
         puts "#{name}_ordered_list method generated"
         element = driver.ol(identifier)
         Druid::Elements::OrderedList.new(element)
+      end
+    end
+    #
+    # adds three methods to the page object - one to set text in a text area,
+    # another to retrieve text from a text area and another to return the text
+    # area element.
+    #
+    # @example
+    #   text_area(:address, :id => "address")
+    #   # will generate 'address', 'address=' and 'address_text_area methods
+    #
+    # @param  [String] the name used for the generated methods
+    # @param [Hash] identifier how we find a text area.  The valid keys are:
+    #   * :class
+    #   * :css
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :tag_name
+    #   * :xpath
+    #
+    def text_area(name, identifier)
+      define_method("#{name}=") do |value|
+        puts "#{name}= method generated"
+        driver.textarea(identifier).send_keys value
+      end
+      define_method("#{name}") do
+        puts "#{name} method generated"
+        driver.textarea(identifier).value
+      end
+      define_method("#{name}_text_area") do
+        puts "#{name}_text_area method generated"
+        driver.textarea(identifier)
       end
     end
   end
