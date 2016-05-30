@@ -57,4 +57,9 @@ class Page
   cell(:cell_class, :class => 'cell_class')
   cell(:cell_index, :index => 3)
   cell(:cell_xpath, :xpath => '//table//tr[2]//td[2]')
+
+  span(:span_id, :id => "span_id")
+  span(:span_class, :class => 'span_class')
+  span(:span_index, :index => 0)
+  span(:span_xpath, :xpath => '//span')
 end

@@ -241,7 +241,7 @@ module Druid
     #   :class
     #   :id
     #   :index
-    #   :xpath 
+    #   :xpath
     #
     def cell(name, identifier)
       define_method(name) do
@@ -251,6 +251,30 @@ module Druid
       define_method("#{name}_cell") do
         puts "#{name}_cell method generated"
         driver.td(identifier)
+      end
+    end
+    #
+    # adds two methods - one to retrieve the text from a span
+    # and another to return the span element
+    #
+    # Example:  span(:alert, {:id => 'alert'})
+    # will generate a 'alert' and 'alert_div' methods
+    #
+    # @param the name used for the generated methods
+    # @param identifier how we find a span.  The valid values are:
+    #   :class
+    #   :id
+    #   :index
+    #   :xpath
+    #
+    def span(name, identifier)
+      define_method(name) do
+        puts "#{name} method generated"
+        driver.span(identifier).text
+      end
+      define_method("#{name}_span") do
+        puts "#{name}_span method generated"
+        driver.span(identifier)
       end
     end
   end
