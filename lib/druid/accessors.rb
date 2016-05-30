@@ -1,4 +1,4 @@
-
+require 'druid/elements'
 #
 # Contains the class level methods that are inserted into your page class
 # when you include the PageObject module.  These methods will generate another
@@ -289,12 +289,161 @@ module Druid
     #   :id
     #   :index
     #   :name
-    #   :xpath 
+    #   :xpath
     #
     def image(name, identifier)
       define_method("#{name}_image") do
         puts "#{name}_image method generated"
         driver.image(identifier)
+      end
+    end
+    #
+    # adds a method to retrieve the form element
+    #
+    # @example
+    #   form(:login, :id => 'login')
+    #   # will generate a 'login_form' method
+    #
+    # @param [String] the name used for the generated methods
+    # @param [Hash] identifier how we find a form.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #
+    def form(name, identifier)
+      define_method("#{name}_form") do
+        puts "#{name}_form method generated"
+        driver.form(identifier)
+      end
+    end
+    #
+    # adds two methods to the page object - one to get the text from a hidden field
+    # and another to retrieve the hidden field element.
+    #
+    # @example
+    #   hidden_field(:user_id, :id => "user_identity")
+    #   # will generate 'user_id' and 'user_id_hidden_field' methods
+    #
+    # @param [String] the name used for the generated methods
+    # @param [Hash] identifier how we find a hidden field.  The valid keys are:
+    #   * :class
+    #   * :css
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :tag_name
+    #   * :text
+    #   * :xpath
+    #
+    def hidden_field(name, identifier)
+      define_method("#{name}_hidden_field") do
+        puts "#{name}_hidden_field method generated"
+        driver.hidden(identifier)
+      end
+      define_method(name) do
+        puts "#{name} method generated"
+        driver.hidden(identifier).value
+      end
+    end
+    #
+    # adds two methods - one to retrieve the text from a list item
+    # and another to return the list item element
+    #
+    # @example
+    #   list_item(:item_one, :id => 'one')
+    #   # will generate 'item_one' and 'item_one_list_item' methods
+    #
+    # @param [String] the name used for the generated methods
+    # @param [Hash] identifier how we find a list item.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #
+    def list_item(name, identifier)
+      define_method(name) do
+        puts "#{name} method generated"
+        driver.li(identifier).text
+      end
+      define_method("#{name}_list_item") do
+        puts "#{name}_list_item method generated"
+        driver.li(identifier)
+      end
+    end
+    #
+    # adds a method to retrieve the ordered list element
+    #
+    # @example
+    #   ordered_list(:top_five, :id => 'top')
+    #   # will generate a 'top_five_ordered_list' method
+    #
+    # @param [String] the name used for the generated methods
+    # @param [Hash] identifier how we find an ordered list.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #
+    def ordered_list(name, identifier)
+      define_method("#{name}_ordered_list") do
+        puts "#{name}_ordered_list method generated"
+        element = driver.ol(identifier)
+        Druid::Elements::OrderedList.new(element)
+      end
+    end
+    #
+    # adds three methods to the page object - one to set text in a text area,
+    # another to retrieve text from a text area and another to return the text
+    # area element.
+    #
+    # @example
+    #   text_area(:address, :id => "address")
+    #   # will generate 'address', 'address=' and 'address_text_area methods
+    #
+    # @param  [String] the name used for the generated methods
+    # @param [Hash] identifier how we find a text area.  The valid keys are:
+    #   * :class
+    #   * :css
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :tag_name
+    #   * :xpath
+    #
+    def text_area(name, identifier)
+      define_method("#{name}=") do |value|
+        puts "#{name}= method generated"
+        driver.textarea(identifier).send_keys value
+      end
+      define_method("#{name}") do
+        puts "#{name} method generated"
+        driver.textarea(identifier).value
+      end
+      define_method("#{name}_text_area") do
+        puts "#{name}_text_area method generated"
+        driver.textarea(identifier)
+      end
+    end
+    #
+    # adds a method to retrieve the unordered list element
+    #
+    # @example
+    #   unordered_list(:menu, :id => 'main_menu')
+    #   # will generate a 'menu_unordered_list' method
+    #
+    # @param [String] the name used for the generated methods
+    # @param [Hash] identifier how we find an unordered list.  The valid keys are:
+    #   * :class 
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #
+    def unordered_list(name, identifier)
+      define_method("#{name}_unordered_list") do
+        puts "#{name}_unordered_list method generated"
+        element = driver.ul(identifier)
+        Druid::Elements::UnOrderedList.new(element)
       end
     end
   end
