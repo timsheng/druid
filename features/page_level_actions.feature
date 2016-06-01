@@ -14,7 +14,7 @@ Feature: Page level actions
     Given I am on the static elements page
     Then the page should have the title "Static Elements Page"
 
-  Scenario: Going to baidu.com froma web page
+  Scenario: Going to baidu.com from a web page
     Given I am on the static elements page
     Then I am able to go to baidu.com
 
