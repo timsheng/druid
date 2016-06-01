@@ -5,7 +5,7 @@ module Druid
 
   # Construct a new druid.
   def initialize driver
-   @driver ||= driver
+    @driver ||= driver
   end
 
   def self.included(cls)
