@@ -1,2 +1,5 @@
+require 'druid/elements/element.rb'
 require 'druid/elements/ordered_list'
 require 'druid/elements/unordered_list'
+require 'druid/elements/table.rb'
+require 'druid/elements/table_row.rb'

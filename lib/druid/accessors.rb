@@ -237,7 +237,8 @@ module Druid
     def table(name, identifier)
       define_method("#{name}_table") do
         puts "#{name}_table method generated"
-        driver.table(identifier)
+        element = driver.table(identifier)
+        Druid::Elements::Table.new(element)
       end
     end
     #
