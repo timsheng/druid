@@ -1,10 +1,6 @@
 module Druid
   module Elements
-    class UnOrderedList
-      attr_accessor :element
-      def initialize(element)
-        @element = element
-      end
+    class UnOrderedList < Element
 
       def [](idx)
         if element.li(:xpath,".//li[#{idx+1}]").exist?
@@ -13,6 +9,7 @@ module Druid
           print "the sub element of ul is not li"+"\n"
         end
       end
+
     end
   end
 end
