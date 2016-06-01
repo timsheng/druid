@@ -21,7 +21,12 @@ Feature: Table
     | xpath     |
     | index     |
 
+  @dev
   Scenario: Retrieve the data from a table
     When I retrieve a table element
     Then the data for row "1" should be "Data1" and "Data2"
     And the data for row "2" should be "Data3" and "Data4"
+    And the table should have "2" rows
+    And each row should contain "Data"
+    And row "1" should have "2" columns
+    And each column should contain "Data"
