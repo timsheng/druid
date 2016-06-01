@@ -1,4 +1,5 @@
 require 'druid/accessors'
+require 'druid/page_factory'
 
 #
 # Module that when included adds functionality to a page object.  This module
