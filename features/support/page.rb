@@ -1,5 +1,6 @@
 class Page
   include Druid
+  page_url("http://www.baidu.com")
 
   link(:google_search_id, :id => "link_id")
   link(:google_search_name, :name => "link_name")

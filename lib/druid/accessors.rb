@@ -7,6 +7,17 @@ require 'druid/elements'
 module Druid
   module Accessors
     #
+    # Specify the url for the page.  A call to this method will generate a
+    # 'goto' method to take you to the page.
+    #
+    # @param [String] the url for the page.
+    #
+    def page_url(url)
+      define_method("goto") do
+        driver.goto url
+      end
+    end
+    #
     # add two methods - one to select a link and another
     # to return a link element
     #
@@ -434,7 +445,7 @@ module Druid
     #
     # @param [String] the name used for the generated methods
     # @param [Hash] identifier how we find an unordered list.  The valid keys are:
-    #   * :class 
+    #   * :class
     #   * :id
     #   * :index
     #   * :xpath
