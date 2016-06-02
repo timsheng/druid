@@ -20,6 +20,7 @@ Feature: Div
     | class     |
     | xpath     |
     | index     |
+    #| name      |
 
   Scenario: Getting the div element
     When I retrieve the div element

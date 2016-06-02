@@ -11,6 +11,7 @@ Feature: Radio Buttons
     When I select the "Butter" radio button
     Then the "Butter" radio button should be selected
 
+  @dev
   Scenario Outline: Locating radio buttons on the Page
     When I locate the radio button by "<locate_by>"
     And I select the radio button
