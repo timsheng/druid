@@ -1,6 +1,6 @@
 module Druid
   module Elements
-    class RadioButton < Element
+    class Form < Element
 
     end
   end
