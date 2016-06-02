@@ -24,7 +24,7 @@ Feature: Text Fields
     | tag_name  |
     | index     |
     | text      |
-    | value     |
+    #| value     |
 
   Scenario: Retrieve a text field
     When I retrieve a text field

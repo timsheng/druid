@@ -2,12 +2,8 @@ module Druid
   module Elements
     class Link < Element
 
-      def self.identifier_for identifier
-        identifier_for_element identifier, finders, mapping
-      end
-
       protected
-      
+
       def self.finders
          super + [:href, :text]
       end

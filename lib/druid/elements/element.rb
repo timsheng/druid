@@ -7,6 +7,10 @@ module Druid
         @element = element
       end
 
+      def self.identifier_for identifier
+        identifier_for_element identifier, finders, mapping
+      end
+
       def self.identifier_for_element identifier, find_by, find_by_mapping
         how, what = identifier.keys.first, identifier.values.first
         return how => what if find_by.include? how
