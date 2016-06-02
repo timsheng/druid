@@ -2,6 +2,10 @@ module Druid
   module Elements
     class UnOrderedList < Element
 
+      def self.finders
+        [:class, :id, :index, :xpath]
+      end
+
       def [](idx)
         if element.li(:xpath,".//li[#{idx+1}]").exist?
           element.li(:xpath,".//li[#{idx+1}]")

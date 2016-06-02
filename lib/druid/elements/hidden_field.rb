@@ -1,10 +1,11 @@
 module Druid
   module Elements
-    class Div < Element
-
+    class HiddenField < Element
+      
       def self.finders
-        [:class, :id, :index, :xpath]
+        super + [:tag_name, :text, :css]
       end
+
     end
   end
 end

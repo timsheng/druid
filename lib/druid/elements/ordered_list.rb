@@ -3,6 +3,10 @@ module Druid
     class OrderedList < Element
       attr_accessor :li_element
 
+      def self.finders
+        [:class, :id, :index, :xpath]
+      end
+
       def [](idx)
         if element.li(:xpath, ".//li[#{idx+1}]").exist?
           element.li(:xpath, ".//li[#{idx+1}]")
