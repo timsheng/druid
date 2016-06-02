@@ -137,7 +137,8 @@ module Druid
       end
       define_method("#{name}_select_list") do
         puts "#{name}_select_list method generated"
-        driver.select_list(identifier)
+        element = driver.select_list(identifier)
+        Druid::Elements::SelectList.new(element)
       end
     end
     #

@@ -17,3 +17,4 @@ end
 
 When(/^I retrieve a button element$/) do
   @element = @page.send "button_id_button".to_sym
+end

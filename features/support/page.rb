@@ -45,6 +45,7 @@ class Page
   button(:button_text, :text => 'Click Me')
 
   div(:div_id, :id => "div_id")
+  div(:div_name, :name => "div_name")
   div(:div_class, :class => 'div_class')
   div(:div_index, :index => 0)
   div(:div_xpath, :xpath => '//div')
