@@ -1,6 +1,10 @@
 module Druid
   module Elements
     class Table < Element
+
+      def self.identifier_for identifier
+        identifier_for_element identifier, finders, mapping
+      end
       #
       # Return the Druid::Elements::Table for the index provided.  Index
       # is zero based.
