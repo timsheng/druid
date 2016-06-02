@@ -17,6 +17,7 @@ Feature: Table Cell
     | class     |
     | xpath     |
     | index     |
+    #| name      |
 
   Scenario: Retrieve a cell from a table by id
     When I retrieve table cell

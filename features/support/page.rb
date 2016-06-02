@@ -9,6 +9,8 @@ class Page
   link(:google_search_href, :href => "success.html")
   link(:google_search_text, :text => "Google Search")
   link(:google_search_index, :index => 0)
+  link(:google_search_link, :link => "Google Search")
+  link(:google_search_link_text, :link_text => "Google Search")
 
   text_field(:text_field_id, :id => "text_field_id")
   text_field(:text_field_class, :class => "text_field_class")
@@ -17,6 +19,8 @@ class Page
   text_field(:text_field_css, :css => "input[type='text']")
   text_field(:text_field_tag_name, :tag_name => "input[type='text']")
   text_field(:text_field_index, :index => 0)
+  text_field(:text_field_text, :text => "")
+  text_field(:text_field_value, :value => "")
 
   checkbox(:cb_id, :id => "cb_id")
   checkbox(:cb_name, :name => 'cb_name')
@@ -29,6 +33,8 @@ class Page
   select_list(:select_list_index, :index => 0)
   select_list(:select_list_name, :name => "sel_list_name")
   select_list(:select_list_xpath, :xpath => "//select")
+  select_list(:select_list_text, :text => "Test 1")
+  select_list(:select_list_value, :value => "option1")
 
   radio_button(:milk_id, :id => 'milk_id')
   radio_button(:butter_id, :id => 'butter_id')
@@ -59,6 +65,7 @@ class Page
   cell(:cell_class, :class => 'cell_class')
   cell(:cell_index, :index => 3)
   cell(:cell_xpath, :xpath => '//table//tr[2]//td[2]')
+  cell(:cell_name, :name => 'cell_name')
 
   span(:span_id, :id => "span_id")
   span(:span_class, :class => 'span_class')

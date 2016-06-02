@@ -34,7 +34,10 @@ module Druid
     #   :name
     #   :text
     #   :xpath
+    #   :link
+    #   :link_text
     def link(name, identifier)
+      identifier = Elements::Link.identifier_for identifier
       define_method(name) do
         puts "#{name} method generated"
         driver.link(identifier).click
@@ -62,6 +65,7 @@ module Druid
     #   :tag_name
     #   :xpath
     def text_field(name, identifier)
+      identifier = Elements::TextField.identifier_for identifier
       define_method(name) do
         puts "#{name} method generated"
         driver.text_field(identifier).value
@@ -93,6 +97,7 @@ module Druid
     #   :xpath
     #
     def checkbox(name, identifier)
+      identifier = Elements::CheckBox.identifier_for identifier
       define_method("check_#{name}") do
         puts "check_#{name} method generated"
         driver.checkbox(identifier).set
@@ -127,6 +132,7 @@ module Druid
     #   :xpath
     #
     def select_list(name, identifier)
+      identifier = Elements::SelectList.identifier_for identifier
       define_method(name) do
         puts "#{name} method generated"
         driver.select_list(identifier).value
@@ -159,6 +165,7 @@ module Druid
     #   :xpath
     #
     def radio_button(name, identifier)
+      identifier = Elements::RadioButton.identifier_for identifier
       define_method("select_#{name}") do
         puts "select_#{name} method generated"
         driver.radio(identifier).set
@@ -189,6 +196,7 @@ module Druid
     #   :xpath
     #
     def button(name, identifier)
+      identifier = Elements::Button.identifier_for identifier
       define_method(name) do
         puts "#{name} method generated"
         driver.button(identifier).click
@@ -213,6 +221,7 @@ module Druid
     #   :xpath
     #
     def div(name, identifier)
+      identifier = Elements::Div.identifier_for identifier
       define_method(name) do
         puts "#{name} method generated"
         driver.div(identifier).text
@@ -236,6 +245,7 @@ module Druid
     #   :xpath
     #
     def table(name, identifier)
+      identifier = Elements::Table.identifier_for identifier
       define_method("#{name}_table") do
         puts "#{name}_table method generated"
         element = driver.table(identifier)
@@ -257,6 +267,7 @@ module Druid
     #   :xpath
     #
     def cell(name, identifier)
+      identifier = Elements::TableCell.identifier_for identifier
       define_method(name) do
         puts "#{name} method generated"
         driver.td(identifier).text
