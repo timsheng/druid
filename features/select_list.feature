@@ -26,3 +26,10 @@ Feature: Select List
     When I retrieve a select list
     Then I should know it exists
     And I should know it is visible
+
+  @dev
+  Scenario: Iterating through the options in the select list
+    When I search for the select list by "id"
+    Then option "1" should contain "Test 1"
+    And option "2" should contain "Test 2"
+    And each option should contain "Test"
