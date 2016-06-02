@@ -7,7 +7,7 @@ Then(/^the text should be "(.*?)"$/) do |expected_text|
 end
 
 When(/^I locate the div by "(.*?)"$/) do |how|
-  @div_text = @page.send "div_#{how}".to_sym
+  @text = @page.send "div_#{how}".to_sym
 end
 
 When(/^I retrieve the div element$/) do
