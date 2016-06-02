@@ -18,6 +18,6 @@ Feature: Unordered list
   Examples:
     | locate_by |
     | id        |
-  #  | class     |
-  #  | xpath     |
-  #  | index     |
+    | class     |
+    | xpath     |
+    | index     |
