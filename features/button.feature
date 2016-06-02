@@ -26,3 +26,7 @@ Feature: Button
     When I retrieve a button element
     Then I should know it exists
     And I should know it is visible
+
+  @dev
+  Scenario: Selecting a button using block
+    Then I can click the button in this element
