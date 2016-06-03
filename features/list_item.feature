@@ -18,3 +18,13 @@ Feature: List item
     | class     |
     | xpath     |
     | index     |
+
+  @multi
+  Scenario Outline: Locating list items using multiple parameters
+    When I search for the list item by "<param1>" and "<param2>"
+    Then the text should be "Item One"
+
+    Examples:
+    | param1  | param2  |
+    | class   | index   |
+    | name    | index   |

@@ -24,3 +24,13 @@ Feature: Span
     When I retrieve a span element
     Then I should know it exists
     And I should know it is visible
+
+  @multi
+  Scenario Outline: Locating span using multiple parameters
+    When I search for the span by "<param1>" and "<param2>"
+    Then the text should be "My alert"
+
+    Examples:
+    | param1  | param2  |
+    | class   | index   |
+    | name    | index   |

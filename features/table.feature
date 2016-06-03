@@ -30,3 +30,13 @@ Feature: Table
     And each row should contain "Data"
     And row "1" should have "2" columns
     And each column should contain "Data"
+
+  @multi
+  Scenario Outline: Locating table using multiple parameters
+    When I retrieve a table element bys "<param1>" and "<param2>"
+    Then the data for row "1" should be "Data1" and "Data2"
+
+    Examples:
+    | param1  | param2  |
+    | class   | index   |
+    | name    | index   |

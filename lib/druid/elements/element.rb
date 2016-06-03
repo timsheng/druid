@@ -1,5 +1,8 @@
 module Druid
   module Elements
+    #
+    # Contains functionality that is common across all elements
+    #
     class Element
       attr_accessor :element
 

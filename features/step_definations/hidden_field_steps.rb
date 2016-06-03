@@ -13,3 +13,7 @@ end
 Then(/^hidden field element should contains "(.*?)"$/) do |text|
   expect(@element.value).to eql text
 end
+
+When(/^I search for the hidden field by "(.*?)" and "(.*?)"$/) do |param1, param2|
+  @element = @page.send "hidden_field_#{param1}_#{param2}_hidden_field".to_sym
+end

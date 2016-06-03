@@ -30,3 +30,13 @@ Feature: Text Fields
     When I retrieve a text field
     Then I should know it exists
     And I should know it is visible
+
+  @multi
+  Scenario Outline: Locating a text field using multiple parameters
+    When I search for the text field by "<param1>" and "<param2>"
+    Then I should be able to type "I found it" into the field
+
+    Examples:
+    | param1  | param2  |
+    | class   | index   |
+    | name    | index   |

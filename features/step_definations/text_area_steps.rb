@@ -13,3 +13,7 @@ end
 Then(/^I should be able to type "(.*?)" into the area$/) do |text|
   @element.send_keys text
 end
+
+When(/^I search for the text area by "(.*?)" and "(.*?)"$/) do |param1, param2|
+  @element = @page.send "text_area_#{param1}_#{param2}_text_area".to_sym
+end

@@ -35,3 +35,14 @@ Feature: Select List
     Then option "1" should contain "Test 1"
     And option "2" should contain "Test 2"
     And each option should contain "Test"
+
+  @multi
+  Scenario Outline: Locating a hidden field using multiple parameters
+    When I search for the select list bys "<param1>" and "<param2>"
+    Then I should be able to select "Test 2"
+    And the value for the selected item should be "option2"
+
+    Examples:
+    | param1  | param2  |
+    | class   | index   |
+    | name    | index   |

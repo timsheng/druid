@@ -21,3 +21,13 @@ Feature: Hidden Fields
     | tag_name  |
     | index     |
     | text      |
+
+  @multi
+  Scenario Outline: Locating a hidden field using multiple parameters
+    When I search for the hidden field by "<param1>" and "<param2>"
+    Then hidden field element should contains "12345"
+
+    Examples:
+    | param1  | param2  |
+    | class   | index   |
+    | name    | index   |
