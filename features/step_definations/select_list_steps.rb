@@ -36,3 +36,7 @@ Then(/^each option should contain "(.*?)"$/) do |text|
     expect(option.text).to include text
   end
 end
+
+When(/^I search for the select list bys "(.*?)" and "(.*?)"$/) do |param1, param2|
+  @how = "#{param1}_#{param2}"
+end

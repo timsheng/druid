@@ -5,3 +5,7 @@ end
 When(/^I locate the unordered list by "(.*?)"$/) do |how|
   @list = @page.send "ul_#{how}_unordered_list".to_sym
 end
+
+When(/^I search for the unordered list by "(.*?)" and "(.*?)"$/) do |param1, param2|
+  @list = @page.send "ul_#{param1}_#{param2}_unordered_list".to_sym
+end

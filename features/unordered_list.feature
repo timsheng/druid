@@ -21,3 +21,14 @@ Feature: Unordered list
     | class     |
     | xpath     |
     | index     |
+
+  @multi
+  Scenario Outline: Locating unordered lists using multiple parameters
+    When I search for the unordered list by "<param1>" and "<param2>"
+    And I get the first item from the list
+    Then the list items text should be "Item One"
+
+    Examples:
+    | param1  | param2  |
+    | class   | index   |
+    | name    | index   |

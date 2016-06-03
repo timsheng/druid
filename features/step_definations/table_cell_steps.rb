@@ -13,3 +13,7 @@ end
 When(/^I retrieve table cell$/) do
   @element = @page.cell_id_cell
 end
+
+When(/^I retrieve a table cell element by "(.*?)" and "(.*?)"$/) do |param1, param2|
+  @cell_text = @page.send "cell_#{param1}_#{param2}".to_sym
+end
