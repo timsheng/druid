@@ -10,8 +10,27 @@ module Druid
         @element = element
       end
 
+      # def self.identifier_for identifier
+      #   identifier_for_element identifier, finders, mapping
+      # end
       def self.identifier_for identifier
-        identifier_for_element identifier, finders, mapping
+        if have_to_build_xpath(identifier)
+          how = :xpath
+          what = build_xpath_for(identifier)
+          return how => what
+        else
+          identifier_for_element identifier, finders, mapping
+        end
+      end
+
+      def self.have_to_build_xpath(identifier)
+        ['table', 'span', 'div', 'td', 'li', 'ol', 'ul'].include? identifier[:tag_name] and identifier[:name]
+      end
+
+      def self.build_xpath_for identifier
+        tag_locater = identifier.delete(:tag_name)
+        idx = identifier.delete(:index)
+        xpath = ".//#{tag_locater}[@name=\"#{identifier[:name]}\"]"
       end
 
       def self.identifier_for_element identifier, find_by, find_by_mapping

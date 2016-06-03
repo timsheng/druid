@@ -7,6 +7,7 @@ Feature: Ordered list
     When I get the first item from the ordered list
     Then the list item's text should be "Number One"
 
+  @name
   Scenario Outline: Locating ordered lists on the page
     When I locate the ordered list by "<locate_by>"
     And I get the first item from the list
@@ -20,6 +21,7 @@ Feature: Ordered list
     | class     |
     | xpath     |
     | index     |
+    | name      |
 
   @multi
   Scenario Outline: Locating ordered lists using multiple parameters

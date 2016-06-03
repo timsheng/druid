@@ -7,7 +7,7 @@ Feature: Span
     When I get the text from the span
     Then the text should be "My alert"
 
-  @dev
+  @name
   Scenario Outline: Locating spans on the page
     When I locate the span by "<locate_by>"
     Then the text should be "My alert"
@@ -18,7 +18,7 @@ Feature: Span
     | class     |
     | xpath     |
     | index     |
-    #| name      |
+    | name      |
 
   Scenario: Retrieve a Span
     When I retrieve a span element
