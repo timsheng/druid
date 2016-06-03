@@ -20,3 +20,14 @@ Feature: Image
     | name      |
     | xpath     |
     | index     |
+
+  @multi
+  Scenario Outline: Locating an image using multiple parameters
+    When I get the image element bys "<param1>" and "<param2>"
+    Then the image should be "106" pixels wide
+    And the image should be "106" pixels tall
+
+    Examples:
+    | param1  | param2  |
+    | class   | index   |
+    | name    | index   |

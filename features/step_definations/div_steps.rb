@@ -13,3 +13,7 @@ end
 When(/^I retrieve the div element$/) do
   @element = @page.div_id_div
 end
+
+When(/^I search for the div by "(.*?)" and "(.*?)"$/) do |param1, param2|
+  @text = @page.send "div_#{param1}_#{param2}".to_sym
+end
