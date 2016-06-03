@@ -32,3 +32,7 @@ Then(/^each column should contain "(.*?)"$/) do |text|
     expect(column.text).to include text
   end
 end
+
+When(/^I retrieve a table element bys "(.*?)" and "(.*?)"$/) do |param1, param2|
+  @element = @page.send "table_#{param1}_#{param2}_table".to_sym
+end

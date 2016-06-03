@@ -23,3 +23,11 @@ Then(/^each item should contain "(.*?)"$/) do |text|
     expect(item.text).to include text
   end
 end
+
+When(/^I search for the ordered list by "(.*?)" and "(.*?)"$/) do |param1, param2|
+  @list = @page.send "ol_#{param1}_#{param2}_ordered_list"
+end
+
+Then(/^the list items text should be "(.*?)"$/) do |expected_text|
+  expect(@element.text).to eql expected_text
+end

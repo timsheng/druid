@@ -17,3 +17,7 @@ end
 When(/^I retrieve a radio button$/) do
   @element = @page.milk_id_radio_button
 end
+
+When(/^I search for the radio button by "(.*?)" and "(.*?)"$/) do |param1, param2|
+  @how = "#{param1}_#{param2}"
+end

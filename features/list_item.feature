@@ -7,7 +7,7 @@ Feature: List item
     When I get the text from the list item
     Then the text should be "Item One"
 
-  @dev
+  @name
   Scenario Outline: Locating list items on the page
     When I locate the list item by "<locate_by>"
     Then the text should be "Item One"
@@ -18,3 +18,14 @@ Feature: List item
     | class     |
     | xpath     |
     | index     |
+    | name      |
+
+  @multi
+  Scenario Outline: Locating list items using multiple parameters
+    When I search for the list item by "<param1>" and "<param2>"
+    Then the text should be "Item One"
+
+    Examples:
+    | param1  | param2  |
+    | class   | index   |
+    | name    | index   |
