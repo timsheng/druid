@@ -7,6 +7,7 @@ Feature: Table Cell
     When I retrieve the data from the table cell
     Then the cell data should be 'Data4'
 
+  @name
   Scenario Outline: Locating table cells on the Page
     When I locate the table cell by "<locate_by>"
     Then the cell data should be 'Data4'
@@ -17,7 +18,7 @@ Feature: Table Cell
     | class     |
     | xpath     |
     | index     |
-    #| name      |
+    | name      |
 
   Scenario: Retrieve a cell from a table by id
     When I retrieve table cell

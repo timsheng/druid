@@ -9,6 +9,7 @@ Feature: Div
     When I get the text from the div
     Then the text should be "page-object rocks!"
 
+  @name
   Scenario Outline: Locating divs on the page
     When I locate the div by "<locate_by>"
     Then the text should be "page-object rocks!"
@@ -19,7 +20,7 @@ Feature: Div
     | class     |
     | xpath     |
     | index     |
-    #| name      |
+    | name      |
 
   Scenario: Getting the div element
     When I retrieve the div element

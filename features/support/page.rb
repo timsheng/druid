@@ -75,6 +75,7 @@ class Page
   table(:table_class, :class => 'table_class')
   table(:table_index, :index => 0)
   table(:table_xpath, :xpath => '//table')
+  table(:table_name, :name => 'table_name')
   table(:table_class_index, :class => "table_class", :index => 0)
   table(:table_name_index, :name => "table_name", :index => 0)
 
@@ -124,6 +125,7 @@ class Page
 
   list_item(:li_id, :id => 'li_id')
   list_item(:li_class, :class => 'li_class')
+  list_item(:li_name, :name => 'li_name')
   list_item(:li_index, :index => 0)
   list_item(:li_xpath, :xpath => '//li[1]')
   list_item(:li_class_index, :class => "li_class", :index => 0)
@@ -133,6 +135,7 @@ class Page
   ordered_list(:ol_class, :class => 'ol_class')
   ordered_list(:ol_index, :index => 0)
   ordered_list(:ol_xpath, :xpath => '//ol')
+  ordered_list(:ol_name, :name => 'ol_name')
   ordered_list(:ol_class_index, :class => "ol_class", :index => 0)
   ordered_list(:ol_name_index, :name => "ol_name", :index => 0)
 
@@ -152,6 +155,7 @@ class Page
   unordered_list(:ul_class, :class => 'ul_class')
   unordered_list(:ul_index, :index => 0)
   unordered_list(:ul_xpath, :xpath => '//ul')
+  unordered_list(:ul_name, :name => 'ul_name')
   unordered_list(:ul_class_index, :class => "ul_class", :index => 0)
   unordered_list(:ul_name_index, :name => "ul_name", :index => 0)
 

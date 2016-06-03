@@ -10,7 +10,7 @@ Feature: Table
     Then I should know it is visible
     Then I should know it exists
 
-  @dev
+  @name
   Scenario Outline: Locating table cells on the Page
     When I retrieve a table element by "<locate_by>"
     Then the data for row "1" should be "Data1" and "Data2"
@@ -21,6 +21,7 @@ Feature: Table
     | class     |
     | xpath     |
     | index     |
+    | name      |
 
   Scenario: Retrieve the data from a table
     When I retrieve a table element
