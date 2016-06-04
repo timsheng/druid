@@ -158,5 +158,6 @@ class Page
   unordered_list(:ul_name, :name => 'ul_name')
   unordered_list(:ul_class_index, :class => "ul_class", :index => 0)
   unordered_list(:ul_name_index, :name => "ul_name", :index => 0)
+  unordered_list(:ul_class_name, :class => "ul_class", :name => "ul_name")
 
 end

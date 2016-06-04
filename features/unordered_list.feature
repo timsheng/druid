@@ -33,3 +33,4 @@ Feature: Unordered list
     | param1  | param2  |
     | class   | index   |
     | name    | index   |
+    | class   | name    |
