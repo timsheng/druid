@@ -19,7 +19,13 @@ module Druid
           what = build_xpath_for(identifier)
           return how => what
         else
-          identifier_for_element identifier, finders, mapping
+          all_identities = {}
+          identifier.each do |key, value|
+            each = {key => value}
+            ident = identifier_for_element each, finders, mapping
+            all_identities[ident.keys.first] = ident.values.first
+          end
+          all_identities
         end
       end
 
@@ -28,9 +34,52 @@ module Druid
       end
 
       def self.build_xpath_for identifier
-        tag_locater = identifier.delete(:tag_name)
+        tag_locator = identifier.delete(:tag_name)
         idx = identifier.delete(:index)
-        xpath = ".//#{tag_locater}[@name=\"#{identifier[:name]}\"]"
+        identifier.delete(:tag_name)
+        xpath = ".//#{tag_locator}"
+        xpath << "[#{attribute_expression(identifier)}]" unless identifier.empty?
+        xpath << "[#{idx+1}]" if idx
+        xpath
+      end
+
+      def self.attribute_expression(identifier)
+        identifier.map do |key, value|
+          if value.kind_of?(Array)
+            "(" + value.map { |v| equal_pair(key, v) }.join(" or ") + ")"
+          else
+            equal_pair(key, value)
+          end
+        end.join(" and ")
+      end
+
+      def self.equal_pair(key, value)
+        if key == :label
+          "@id=//label[normalize-space()=#{xpath_string(value)}]/@for"
+        else
+          "#{lhs_for(key)}=#{xpath_string(value)}"
+        end
+      end
+
+      def self.lhs_for(key)
+        case key
+        when :text, 'text'
+          'normalize-space()'
+        when :href
+          'normalize-space(@href)'
+        else
+          "@#{key.to_s.gsub("_", "-")}"
+        end
+      end
+
+      def self.xpath_string(value)
+        if value.include? "'"
+          parts = value.split("'", -1).map { |part| "'#{part}'" }
+          string = parts.join(%{,"'",})
+          "concat(#{string})"
+        else
+          "'#{value}'"
+        end
       end
 
       def self.identifier_for_element identifier, find_by, find_by_mapping
