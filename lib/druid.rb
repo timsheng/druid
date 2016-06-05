@@ -30,34 +30,49 @@ require 'druid/page_factory'
 # @see Druid::Accessors to see what class level methods are added to this module at runtime.
 #
 module Druid
+  # @return [Watir::Browser] the drvier passed to the constructor
   attr_reader :driver
-
+  #
   # Construct a new druid.
+  #
+  # @param [Watir::Browser] the driver to use
+  #
   def initialize(driver, visit=false)
    @driver ||= driver
    goto if visit && respond_to?(:goto)
   end
 
+  # @private
   def self.included(cls)
     cls.extend Druid::Accessors
   end
 
-  # Navigate to the provided url
+  #
+  # navigate to the provided url
+  #
+  # @param [String] the full url to navigate to
+  #
   def navigate_to url
     driver.goto url
   end
 
+  #
   # Returns the text of the current page
+  #
   def text
     driver.text
   end
 
-  # Return the html of the current page
+  #
+  # Returns the html of the current page
+  #
   def html
     driver.html
   end
 
-  # Return the title of the current page
+  #
+  # Returns the title of the current page
+  #
   def title
     driver.title
   end

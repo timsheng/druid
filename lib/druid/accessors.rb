@@ -219,6 +219,7 @@ module Druid
     #   :id
     #   :index
     #   :xpath
+    #   :name
     #
     def div(name, identifier)
       identifier = add_tagname_if_needed identifier, "div"
@@ -244,6 +245,7 @@ module Druid
     #   :id
     #   :index
     #   :xpath
+    #   :name
     #
     def table(name, identifier)
       identifier = add_tagname_if_needed identifier, "table"
@@ -267,6 +269,7 @@ module Druid
     #   :id
     #   :index
     #   :xpath
+    #   :name
     #
     def cell(name, identifier)
       identifier = add_tagname_if_needed identifier, "td"
@@ -293,6 +296,7 @@ module Druid
     #   :id
     #   :index
     #   :xpath
+    #   :name
     #
     def span(name, identifier)
       identifier = add_tagname_if_needed identifier, "span"
@@ -340,6 +344,7 @@ module Druid
     #   * :id
     #   * :index
     #   * :xpath
+    #   * :name
     #
     def form(name, identifier)
       identifier = Elements::Form.identifier_for identifier
@@ -392,6 +397,7 @@ module Druid
     #   * :id
     #   * :index
     #   * :xpath
+    #   * :name
     #
     def list_item(name, identifier)
       identifier = add_tagname_if_needed identifier, "li"
@@ -418,6 +424,7 @@ module Druid
     #   * :id
     #   * :index
     #   * :xpath
+    #   * :name
     #
     def ordered_list(name, identifier)
       identifier = add_tagname_if_needed identifier, "ol"
@@ -475,6 +482,7 @@ module Druid
     #   * :id
     #   * :index
     #   * :xpath
+    #   * :name
     #
     def unordered_list(name, identifier)
       identifier = add_tagname_if_needed identifier, "ul"
@@ -485,6 +493,8 @@ module Druid
         Druid::Elements::UnOrderedList.new(element)
       end
     end
+
+    private
 
     def add_tagname_if_needed identifier, tag
       return identifier if identifier.length < 2 and not identifier[:name]
