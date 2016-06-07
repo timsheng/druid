@@ -17,3 +17,13 @@ Feature: Form
     | class     |
     | xpath     |
     | index     |
+
+  @multi
+  Scenario Outline: Locating table using multiple parameters
+      When I locate the form using "<param1>" and "<param2>"
+      Then I should be able to submit the form
+
+      Examples:
+      | param1  | param2  |
+      | class   | index   |
+      | name    | index   |

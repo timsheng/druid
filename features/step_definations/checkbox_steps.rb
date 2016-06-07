@@ -25,3 +25,7 @@ end
 When(/^I retrieve a check box element$/) do
   @element = @page.cb_id_checkbox
 end
+
+When(/^I search for the check box by "(.*?)" and "(.*?)"$/) do |param1, param2|
+  @how = "#{param1}_#{param2}"
+end

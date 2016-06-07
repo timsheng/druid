@@ -17,3 +17,7 @@ end
 When(/^I retrieve a text field$/) do
   @element = @page.text_field_id_text_field
 end
+
+When(/^I search for the text field by "(.*?)" and "(.*?)"$/) do |param1, param2|
+  @how = "#{param1}_#{param2}"
+end
