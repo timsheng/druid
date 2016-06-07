@@ -7,6 +7,7 @@ Feature: Span
     When I get the text from the span
     Then the text should be "My alert"
 
+  @name
   Scenario Outline: Locating spans on the page
     When I locate the span by "<locate_by>"
     Then the text should be "My alert"
@@ -17,8 +18,19 @@ Feature: Span
     | class     |
     | xpath     |
     | index     |
+    | name      |
 
   Scenario: Retrieve a Span
     When I retrieve a span element
     Then I should know it exists
     And I should know it is visible
+
+  @multi
+  Scenario Outline: Locating span using multiple parameters
+    When I search for the span by "<param1>" and "<param2>"
+    Then the text should be "My alert"
+
+    Examples:
+    | param1  | param2  |
+    | class   | index   |
+    | name    | index   |

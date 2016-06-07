@@ -23,3 +23,7 @@ end
 Then(/^I should know it is visible$/) do
   expect(@element.visible?).to be true
 end
+
+When(/^I select a link labeled "(.*?)" and index "(.*?)"$/) do |label, index|
+  @page.send "#{label.downcase}#{index}".to_sym
+end

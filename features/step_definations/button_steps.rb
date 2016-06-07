@@ -18,3 +18,7 @@ end
 When(/^I retrieve a button element$/) do
   @element = @page.send "button_id_button".to_sym
 end
+
+When(/^I search for the button by "(.*?)" and "(.*?)"$/) do |param1, param2|
+  @how = "#{param1}_#{param2}"
+end

@@ -7,6 +7,17 @@ require 'druid/elements'
 module Druid
   module Accessors
     #
+    # Specify the url for the page.  A call to this method will generate a
+    # 'goto' method to take you to the page.
+    #
+    # @param [String] the url for the page.
+    #
+    def page_url(url)
+      define_method("goto") do
+        driver.goto url
+      end
+    end
+    #
     # add two methods - one to select a link and another
     # to return a link element
     #
@@ -23,7 +34,10 @@ module Druid
     #   :name
     #   :text
     #   :xpath
+    #   :link
+    #   :link_text
     def link(name, identifier)
+      identifier = Elements::Link.identifier_for identifier
       define_method(name) do
         puts "#{name} method generated"
         driver.link(identifier).click
@@ -51,6 +65,7 @@ module Druid
     #   :tag_name
     #   :xpath
     def text_field(name, identifier)
+      identifier = Elements::TextField.identifier_for identifier
       define_method(name) do
         puts "#{name} method generated"
         driver.text_field(identifier).value
@@ -82,6 +97,7 @@ module Druid
     #   :xpath
     #
     def checkbox(name, identifier)
+      identifier = Elements::CheckBox.identifier_for identifier
       define_method("check_#{name}") do
         puts "check_#{name} method generated"
         driver.checkbox(identifier).set
@@ -116,6 +132,7 @@ module Druid
     #   :xpath
     #
     def select_list(name, identifier)
+      identifier = Elements::SelectList.identifier_for identifier
       define_method(name) do
         puts "#{name} method generated"
         driver.select_list(identifier).value
@@ -126,7 +143,8 @@ module Druid
       end
       define_method("#{name}_select_list") do
         puts "#{name}_select_list method generated"
-        driver.select_list(identifier)
+        element = driver.select_list(identifier)
+        Druid::Elements::SelectList.new(element)
       end
     end
     #
@@ -147,6 +165,7 @@ module Druid
     #   :xpath
     #
     def radio_button(name, identifier)
+      identifier = Elements::RadioButton.identifier_for identifier
       define_method("select_#{name}") do
         puts "select_#{name} method generated"
         driver.radio(identifier).set
@@ -177,6 +196,7 @@ module Druid
     #   :xpath
     #
     def button(name, identifier)
+      identifier = Elements::Button.identifier_for identifier
       define_method(name) do
         puts "#{name} method generated"
         driver.button(identifier).click
@@ -199,8 +219,11 @@ module Druid
     #   :id
     #   :index
     #   :xpath
+    #   :name
     #
     def div(name, identifier)
+      identifier = add_tagname_if_needed identifier, "div"
+      identifier = Elements::Div.identifier_for identifier
       define_method(name) do
         puts "#{name} method generated"
         driver.div(identifier).text
@@ -222,11 +245,15 @@ module Druid
     #   :id
     #   :index
     #   :xpath
+    #   :name
     #
     def table(name, identifier)
+      identifier = add_tagname_if_needed identifier, "table"
+      identifier = Elements::Table.identifier_for identifier
       define_method("#{name}_table") do
         puts "#{name}_table method generated"
-        driver.table(identifier)
+        element = driver.table(identifier)
+        Druid::Elements::Table.new(element)
       end
     end
     #
@@ -242,8 +269,11 @@ module Druid
     #   :id
     #   :index
     #   :xpath
+    #   :name
     #
     def cell(name, identifier)
+      identifier = add_tagname_if_needed identifier, "td"
+      identifier = Elements::TableCell.identifier_for identifier
       define_method(name) do
         puts "#{name} method generated"
         driver.td(identifier).text
@@ -266,8 +296,11 @@ module Druid
     #   :id
     #   :index
     #   :xpath
+    #   :name
     #
     def span(name, identifier)
+      identifier = add_tagname_if_needed identifier, "span"
+      identifier = Elements::Span.identifier_for identifier
       define_method(name) do
         puts "#{name} method generated"
         driver.span(identifier).text
@@ -292,6 +325,7 @@ module Druid
     #   :xpath
     #
     def image(name, identifier)
+      identifier = Elements::Image.identifier_for identifier
       define_method("#{name}_image") do
         puts "#{name}_image method generated"
         driver.image(identifier)
@@ -310,8 +344,10 @@ module Druid
     #   * :id
     #   * :index
     #   * :xpath
+    #   * :name
     #
     def form(name, identifier)
+      identifier = Elements::Form.identifier_for identifier
       define_method("#{name}_form") do
         puts "#{name}_form method generated"
         driver.form(identifier)
@@ -337,6 +373,7 @@ module Druid
     #   * :xpath
     #
     def hidden_field(name, identifier)
+      identifier = Elements::HiddenField.identifier_for identifier
       define_method("#{name}_hidden_field") do
         puts "#{name}_hidden_field method generated"
         driver.hidden(identifier)
@@ -360,8 +397,11 @@ module Druid
     #   * :id
     #   * :index
     #   * :xpath
+    #   * :name
     #
     def list_item(name, identifier)
+      identifier = add_tagname_if_needed identifier, "li"
+      identifier = Elements::ListItem.identifier_for identifier
       define_method(name) do
         puts "#{name} method generated"
         driver.li(identifier).text
@@ -384,8 +424,11 @@ module Druid
     #   * :id
     #   * :index
     #   * :xpath
+    #   * :name
     #
     def ordered_list(name, identifier)
+      identifier = add_tagname_if_needed identifier, "ol"
+      identifier = Elements::OrderedList.identifier_for identifier
       define_method("#{name}_ordered_list") do
         puts "#{name}_ordered_list method generated"
         element = driver.ol(identifier)
@@ -412,6 +455,7 @@ module Druid
     #   * :xpath
     #
     def text_area(name, identifier)
+      identifier = Elements::TextArea.identifier_for identifier
       define_method("#{name}=") do |value|
         puts "#{name}= method generated"
         driver.textarea(identifier).send_keys value
@@ -434,17 +478,28 @@ module Druid
     #
     # @param [String] the name used for the generated methods
     # @param [Hash] identifier how we find an unordered list.  The valid keys are:
-    #   * :class 
+    #   * :class
     #   * :id
     #   * :index
     #   * :xpath
+    #   * :name
     #
     def unordered_list(name, identifier)
+      identifier = add_tagname_if_needed identifier, "ul"
+      identifier = Elements::UnOrderedList.identifier_for identifier
       define_method("#{name}_unordered_list") do
         puts "#{name}_unordered_list method generated"
         element = driver.ul(identifier)
         Druid::Elements::UnOrderedList.new(element)
       end
+    end
+
+    private
+
+    def add_tagname_if_needed identifier, tag
+      return identifier if identifier.length < 2 and not identifier[:name]
+      identifier[:tag_name] = tag if identifier[:name]
+      identifier
     end
   end
 

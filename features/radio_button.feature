@@ -11,6 +11,7 @@ Feature: Radio Buttons
     When I select the "Butter" radio button
     Then the "Butter" radio button should be selected
 
+  @dev
   Scenario Outline: Locating radio buttons on the Page
     When I locate the radio button by "<locate_by>"
     And I select the radio button
@@ -28,3 +29,14 @@ Feature: Radio Buttons
     When I retrieve a radio button
     Then I should know it exists
     And I should know it is visible
+
+  @multi
+  Scenario Outline: Locating radio buttons using multiple parameters
+    When I search for the radio button by "<param1>" and "<param2>"
+    And I select the radio button
+    Then the "Milk" radio button should be selected
+
+    Examples:
+    | param1  | param2  |
+    | class   | index   |
+    | name    | index   |

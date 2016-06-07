@@ -22,8 +22,18 @@ Feature: Links
     | name      |
     | text      |
     | xpath     |
+    | link      |
+    | link_text |
 
   Scenario: Retrieve a Link
     When I retrieve a link element
     Then I should know it exists
     And I should know it is visible
+
+  @multi
+  Scenario: Support for multiple parameters
+    When I select a link labeled "Hello" and index "0"
+    Then the page should contain the text "Success"
+    Given I am on the static elements page
+    When I select a link labeled "Hello" and index "1"
+    Then the page should contain the text "Success"

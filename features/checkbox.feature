@@ -27,3 +27,13 @@ Feature: Check Box
     When I retrieve a check box element
     Then I should know it exists
     And I should know it is visible
+
+  @multi
+  Scenario Outline: Locating check boxes using multiple paramters
+    When I search for the check box by "<param1>" and "<param2>"
+    Then I should be able to check the check box
+
+    Examples:
+    | param1  | param2  |
+    | class   | index   |
+    | name    | index   |
