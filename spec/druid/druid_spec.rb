@@ -32,6 +32,12 @@ describe Druid do
         druid = TestDruid.new(driver)
         expect(druid.text).to eql "driver text"
       end
+
+      it "should be able to navigate to a page" do
+        expect(driver).to receive(:goto).with("www.baidu.com")
+        druid = TestDruid.new(driver)
+        druid.navigate_to("www.baidu.com")
+      end
     end
   end
 
