@@ -18,11 +18,11 @@ module Druid
       end
     end
     #
-    # add two methods - one to select a link and another
-    # to return a link element
+    # add three methods - one to select a link and another
+    # to return a link element, and another one to select a link and not wait for the corresponding action to complete
     #
     # Example: link(:add_to_cart, :text => "Add to Cart")
-    # will generate the 'add_to_cart' and 'add_to_cart_link'
+    # will generate the 'add_to_cart' and 'add_to_cart_link', 'add_to_cart_no_wait'
     # methods.
     #
     # @param the name used for the generated methods
@@ -45,6 +45,10 @@ module Druid
       define_method("#{name}_link") do
         puts "#{name}_link method generated"
         driver.link(identifier)
+      end
+      define_method("#{name}_no_wait") do
+        puts "#{name}_no_wait method generated"
+        driver.link(identifier).click_no_wait
       end
     end
     #
