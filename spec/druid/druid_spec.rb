@@ -5,13 +5,12 @@ class TestDruid
 end
 
 describe Druid do
+  let(:driver) { mock_driver }
 
   context "when created with a watir-webdriver browser" do
     it "should include the Druid module" do
-      @browser = Watir::Browser.new :ff
-      druid = TestDruid.new(@browser)
+      druid = TestDruid.new(driver)
       expect(druid).to be_kind_of Druid
-      @browser.close
     end
   end
 
@@ -25,7 +24,6 @@ describe Druid do
 
   describe "page level functionality" do
     context "when using PageObject" do
-      let(:driver) { mock_driver }
 
       it "should display the page text" do
         expect(driver).to receive(:text).and_return("driver text")
