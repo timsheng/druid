@@ -6,7 +6,7 @@ class TestDruid
   link(:google_search, :text => 'Google Search')
 end
 
-describe "link" do
+describe "link accessors" do
   let(:driver) { mock_driver }
   let(:druid) { TestDruid.new(driver) }
 
