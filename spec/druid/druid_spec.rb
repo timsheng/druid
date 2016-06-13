@@ -30,6 +30,11 @@ describe Druid do
         expect(druid.text).to eql "driver text"
       end
 
+      it "should display the html of the page" do
+        expect(driver).to receive(:html).and_return("<html>Some Sample HTML</html>")
+        expect(druid.html).to eql "<html>Some Sample HTML</html>"
+      end
+
       it "should be able to navigate to a page" do
         expect(driver).to receive(:goto).with("www.baidu.com")
         druid.navigate_to("www.baidu.com")
