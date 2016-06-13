@@ -15,6 +15,14 @@ describe Druid do
     end
   end
 
+  context "when created with an object we do not understand" do
+    it "should throw an error" do
+      expect {
+        TestDruid.new("blah")
+      }.to raise_error 'expect Watir::Browser'
+    end
+  end
+
 
 
 end

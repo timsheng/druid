@@ -38,8 +38,12 @@ module Druid
   # @param [Watir::Browser] the driver to use
   #
   def initialize(driver, visit=false)
-   @driver ||= driver
-   goto if visit && respond_to?(:goto)
+    if driver.kind_of? Watir::Browser
+      @driver ||= driver
+      goto if visit && respond_to?(:goto)
+    else
+      raise ArgumentError, "expect Watir::Browser"
+    end
   end
 
   # @private
