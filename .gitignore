@@ -1,2 +1,5 @@
 Gemfile.lock
 coverage
+druid*.gem
+*.html
+.idea/
