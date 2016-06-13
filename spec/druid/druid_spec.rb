@@ -35,6 +35,11 @@ describe Druid do
         expect(druid.html).to eql "<html>Some Sample HTML</html>"
       end
 
+      it "should display the title of the page" do
+        expect(driver).to receive(:title).and_return("I am the title of a page")
+        expect(druid.title).to eql "I am the title of a page"
+      end
+
       it "should be able to navigate to a page" do
         expect(driver).to receive(:goto).with("www.baidu.com")
         druid.navigate_to("www.baidu.com")
