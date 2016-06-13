@@ -1,4 +1,5 @@
 # druid
+[![Build Status](https://travis-ci.org/timsheng/druid.png)](https://travis-ci.org/timsheng)
 
  A simple gem that assists testers in creating flexible page objects for testing browser based applications
 
