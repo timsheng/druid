@@ -6,7 +6,7 @@ class TestDruid
   text_field(:first_name, :id => 'first_name')
 end
 
-describe "text_field" do
+describe "text_field accessors" do
   let(:driver) { mock_driver}
   let(:druid) { TestDruid.new(driver)}
 
