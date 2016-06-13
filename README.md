@@ -1,7 +1,17 @@
 # druid
 [![Build Status](https://travis-ci.org/timsheng/druid.png)](https://travis-ci.org/timsheng)
 
- A simple gem that assists testers in creating flexible page objects for testing browser based applications
+A simple gem that assists testers in creating flexible page objects for testing browser based applications
+
+You define a new page object by including the PageObject module:
+
+class MyPageObject
+  include Druid
+end
+Including this module adds an initialize method that takes a Watir::Browser object. You create your object like this:
+
+browser = Watir::Browser.new :firefox
+my_page_object = MyPageObject.new(browser)
 
 # Note on Patches/Pull Requests
 
