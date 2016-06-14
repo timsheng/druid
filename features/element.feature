@@ -113,7 +113,6 @@ Feature: Elements
     And I should know the attribute "readonly" is false
     And I should be able to click it
 
-  @dev
   Scenario: Hidden Field element methods
     When I retrieve the hidden field element
     Then I should know it exists
@@ -123,3 +122,14 @@ Feature: Elements
     And I should know it is equal to itself
     And I should know its' tag name is "input"
     And I should know the attribute "readonly" is false
+
+  @dev
+  Scenario: Form element methods
+    When I locate the form
+    Then I should know it exists
+    And I should know it is visible
+    And I should know its' text includes ""
+    And I should know it is equal to itself
+    And I should know its' tag name is "form"
+    And I should know the attribute "readonly" is false
+    And I should know its' value is ""
