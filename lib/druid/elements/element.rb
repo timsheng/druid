@@ -97,6 +97,11 @@ module Druid
         {}
       end
 
+      #
+      # Get the text for the element
+      #
+      # @return [String]
+      #
       def text
         element.text
       end
@@ -109,15 +114,38 @@ module Druid
         element.visible?
       end
 
+      #
+      # Get the value of this element
+      #
+      # @return [String]
+      #
       def value
         element.value
       end
 
+      #
+      # compare this element to another to determine if they are equal
+      # @return [Boolean]
+      #
+      def ==(other)
+        element == other
+      end
+
+      #
+      # Get the tag name of this element
+      #
+      # @return [String]
+      #
       def tag_name
         element.tag_name
       end
 
-      def attribute_value(attribute_name)
+      #
+      # Get the value of the given attribute of the element
+      # @param [String]
+      # @return [String, nil]
+      #
+      def attribute(attribute_name)
         element.attribute_value attribute_name
       end
 
