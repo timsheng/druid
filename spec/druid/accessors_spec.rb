@@ -10,6 +10,7 @@ class TestDruid
   button(:click_me, :id => 'button_submit')
   radio_button(:first, :id => 'first_choice')
   div(:message, :id => 'message_id')
+  table(:cart, :id => 'cart_id')
 end
 
 describe Druid::Accessors do
@@ -44,7 +45,7 @@ describe Druid::Accessors do
 
       it "should retreive a check box element" do
         expect(driver).to receive(:checkbox)
-        druid.active_checkbox
+        expect(druid.active_checkbox).to be_instance_of Druid::Elements::CheckBox
       end
     end
   end
@@ -72,7 +73,7 @@ describe Druid::Accessors do
 
       it "should retreive a link element" do
         expect(driver).to receive(:link)
-        druid.google_search_link
+        expect(druid.google_search_link).to be_instance_of Druid::Elements::Link
       end
     end
   end
@@ -97,6 +98,11 @@ describe Druid::Accessors do
         expect(driver).to receive(:select_list).and_return driver
         expect(driver).to receive(:select).with('OH')
         druid.state = 'OH'
+      end
+
+      it "should retreive a select list element" do
+        expect(driver).to receive(:select_list)
+        expect(druid.state_select_list).to be_instance_of Druid::Elements::SelectList
       end
     end
   end
@@ -124,7 +130,7 @@ describe Druid::Accessors do
 
       it "should retreive text field element" do
         expect(driver).to receive(:text_field)
-        druid.first_name_text_field
+        expect(druid.first_name_text_field).to be_instance_of Druid::Elements::TextField
       end
     end
   end
@@ -145,7 +151,7 @@ describe Druid::Accessors do
 
       it "should retreive a button element" do
         expect(driver).to receive(:button)
-        druid.click_me_button
+        expect(druid.click_me_button).to be_instance_of Druid::Elements::Button
       end
     end
   end
@@ -178,7 +184,7 @@ describe Druid::Accessors do
 
       it "should retreive a radio button element" do
         expect(driver).to receive(:radio)
-        druid.first_radio_button
+        expect(druid.first_radio_button).to be_instance_of Druid::Elements::RadioButton
       end
     end
   end
@@ -199,7 +205,22 @@ describe Druid::Accessors do
 
       it "should retreive a div element" do
         expect(driver).to receive(:div)
-        druid.message_div
+        expect(druid.message_div).to be_instance_of Druid::Elements::Div
+      end
+    end
+  end
+
+  describe "table accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to :cart_table
+      end
+    end
+
+    context "implementation" do
+      it "should retrieve the table element from the page" do
+        expect(driver).to receive(:table)
+        expect(druid.cart_table).to be_instance_of Druid::Elements::Table
       end
     end
   end
