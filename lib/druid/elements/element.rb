@@ -149,6 +149,9 @@ module Druid
         element.attribute_value attribute_name
       end
 
+      #
+      # Click this element
+      #
       def click
         element.click
       end

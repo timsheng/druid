@@ -49,5 +49,10 @@ describe Druid::Elements::Element do
       expect(we).to receive(:attribute_value).with('class').and_return('tim')
       expect(element.attribute('class')).to eql 'tim'
     end
+
+    it "should be clickable" do
+      expect(we).to receive(:click)
+      element.click
+    end
   end
 end
