@@ -367,7 +367,8 @@ module Druid
       identifier = Elements::Form.identifier_for identifier
       define_method("#{name}_form") do
         puts "#{name}_form method generated"
-        driver.form(identifier)
+        element = driver.form(identifier)
+        Druid::Elements::Form.new(element)
       end
     end
     #

@@ -15,6 +15,7 @@ class TestDruid
   span(:alert, :id => 'alert_id')
   image(:logo, :id => 'logo')
   hidden_field(:social_security_number, :id => 'ssn')
+  form(:login, :id => 'login')
 end
 
 describe Druid::Accessors do
@@ -303,6 +304,21 @@ describe Druid::Accessors do
       it "should retrieve a hidden field element" do
         expect(driver).to receive(:hidden)
         expect(druid.social_security_number_hidden_field).to be_instance_of Druid::Elements::HiddenField
+      end
+    end
+  end
+
+  describe "form accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to :login_form
+      end
+    end
+
+    context "implementation" do
+      it "should retrieve the form element from the page" do
+        expect(driver).to receive(:form)
+        expect(druid.login_form).to be_instance_of Druid::Elements::Form
       end
     end
   end
