@@ -27,3 +27,7 @@ end
 Then(/^I should know its' text includes "(.*?)"$/) do |text|
   expect(@element.text).to include text
 end
+
+Then(/^I should know it is not visible$/) do
+  expect(@element).not_to be_visible
+end

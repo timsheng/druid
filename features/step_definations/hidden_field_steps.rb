@@ -1,5 +1,5 @@
 When(/^I retrieve the hidden field element$/) do
-  @page.hidden_field_id_hidden_field
+  @element = @page.hidden_field_id_hidden_field
 end
 
 Then(/^I should see the hidden field contains "(.*?)"$/) do |text|

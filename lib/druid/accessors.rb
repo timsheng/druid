@@ -393,7 +393,8 @@ module Druid
       identifier = Elements::HiddenField.identifier_for identifier
       define_method("#{name}_hidden_field") do
         puts "#{name}_hidden_field method generated"
-        driver.hidden(identifier)
+        element = driver.hidden(identifier)
+        Druid::Elements::HiddenField.new(element)
       end
       define_method(name) do
         puts "#{name} method generated"
