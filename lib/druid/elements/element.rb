@@ -128,7 +128,7 @@ module Druid
       # @return [Boolean]
       #
       def ==(other)
-        element == other
+        element == other.element
       end
 
       #

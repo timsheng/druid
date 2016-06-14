@@ -322,7 +322,8 @@ module Druid
       end
       define_method("#{name}_span") do
         puts "#{name}_span method generated"
-        driver.span(identifier)
+        element = driver.span(identifier)
+        Druid::Elements::Span.new(element)
       end
     end
     #

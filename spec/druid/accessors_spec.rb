@@ -12,6 +12,7 @@ class TestDruid
   div(:message, :id => 'message_id')
   table(:cart, :id => 'cart_id')
   cell(:total, :id => 'total')
+  span(:alert, :id => 'alert_id')
 end
 
 describe Druid::Accessors do
@@ -243,6 +244,27 @@ describe Druid::Accessors do
       it "should retrieve the cell element from the page" do
         expect(driver).to receive(:td)
         expect(druid.total_cell).to be_instance_of Druid::Elements::TableCell
+      end
+    end
+  end
+
+  describe "span accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to :alert
+        expect(druid).to respond_to :alert_span
+      end
+    end
+
+    context "implementation" do
+      it "should retrieve the text from a span" do
+        expect(driver).to receive_message_chain(:span, :text).and_return('Alert')
+        expect(druid.alert).to eql 'Alert'
+      end
+
+      it "should retrieve the span element from the page" do
+        expect(driver).to receive(:span)
+        expect(druid.alert_span).to be_instance_of Druid::Elements::Span
       end
     end
   end
