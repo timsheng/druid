@@ -485,7 +485,8 @@ module Druid
       end
       define_method("#{name}_text_area") do
         puts "#{name}_text_area method generated"
-        driver.textarea(identifier)
+        element = driver.textarea(identifier)
+        Druid::Elements::TextArea.new(element)
       end
     end
     #
