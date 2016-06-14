@@ -11,7 +11,7 @@ Then(/^I should know its' tag name is "(.*?)"$/) do |tagname|
 end
 
 Then(/^I should know the attribute "(.*?)" is false$/) do |attr_name|
-  @attr = @element.attribute_value(attr_name)
+  @attr = @element.attribute(attr_name)
   # expect(@attr.is_a? NilClass).to be true
   expect(@attr).to be_nil
 end
