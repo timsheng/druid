@@ -7,6 +7,7 @@ class TestDruid
   text_field(:first_name, :id => 'first_name')
   select_list(:state, :id => 'state')
   checkbox(:active, :id => 'is_active_id')
+  button(:click_me, :id => 'button_submit')
 end
 
 describe Druid::Accessors do
@@ -37,6 +38,11 @@ describe Druid::Accessors do
       it "should know if a check box element is selected" do
         expect(driver).to receive_message_chain(:checkbox, :set?).and_return(true)
         expect(druid.active_checked?).to be true
+      end
+
+      it "should retreive a check box element" do
+        expect(driver).to receive(:checkbox)
+        druid.active_checkbox
       end
     end
   end
@@ -117,6 +123,27 @@ describe Druid::Accessors do
       it "should retreive text field element" do
         expect(driver).to receive(:text_field)
         druid.first_name_text_field
+      end
+    end
+  end
+
+  describe "button accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to :click_me
+        expect(druid).to respond_to :click_me_button
+      end
+    end
+
+    context "implementation" do
+      it "should select a button" do
+        expect(driver).to receive_message_chain(:button, :click)
+        druid.click_me
+      end
+
+      it "should retreive a button element" do
+        expect(driver).to receive(:button)
+        druid.click_me_button
       end
     end
   end
