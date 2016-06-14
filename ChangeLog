@@ -1,0 +1,73 @@
+=== 2016-06-04
+* Enhancements
+  * Support for using multiple identifiers when locating the following element:
+    * Link
+    * TextField
+    * HiddenField
+    * TextArea
+    * SelectList
+    * CheckBox
+    * RadioButton
+    * Button
+    * Div
+    * Span
+    * Table
+    * TableCell
+    * Image
+    * Form
+    * ListItem
+    * UnorderedList
+    * OrderedList
+
+  * Support name for identification across all elements in Watir
+  * Added [] method to SelectList to index Options
+  * Added options method to Select
+
+=== 2016-06-2
+* Enhancements
+  * Added rows method to Table to return number of rows
+  * Added [] method to Table to index table row element
+  * Added columns method to TableRow to return the number of columns
+  * Added [] method to TableRow to index table cell element
+  * Added each method to Table to iterate over the TableRows
+  * Added each method to TableRow to iterate over TableCells
+  * Added items method to UnorderedList to return number of ListItems
+  * Added items method to OrderedList to return number of ListItems
+  * Added each method to UnorderedList to iterate over the ListItems
+  * Added each method to OrderedList to iterate over the ListItems
+  * Created PageFactory module to add factory methods to your step definitions
+
+
+=== 2016-05-31
+* Enhancements
+  * Added support for the following elements
+    * hidden field
+    * form
+    * list item
+    * unordered list
+    * ordered list
+    * text area
+
+=== 2016-05-30
+* Enhancements
+  * Added support for the following elements
+    * div
+    * button
+    * table
+    * table row
+    * table cell
+    * span
+    * image
+
+=== 2016-05-22
+* Enhancements
+  * Support for the following elements
+    * check box
+    * link
+    * radio button
+    * select list
+    * text field
+  * Support for the following page level functions
+    * text
+    * html
+    * title

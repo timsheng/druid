@@ -44,7 +44,8 @@ module Druid
       end
       define_method("#{name}_link") do
         puts "#{name}_link method generated"
-        driver.link(identifier)
+        element = driver.link(identifier)
+        Druid::Elements::Link.new(element)
       end
       define_method("#{name}_no_wait") do
         puts "#{name}_no_wait method generated"
@@ -80,7 +81,8 @@ module Druid
       end
       define_method("#{name}_text_field") do
         puts "#{name}_element method generated"
-        driver.text_field(identifier)
+        element = driver.text_field(identifier)
+        Druid::Elements::TextField.new(element)
       end
     end
     #
@@ -116,7 +118,8 @@ module Druid
       end
       define_method("#{name}_checkbox") do
         puts "#{name}_checkbox method generated"
-        driver.checkbox(identifier)
+        element = driver.checkbox(identifier)
+        Druid::Elements::CheckBox.new(element)
       end
     end
     #
@@ -174,13 +177,18 @@ module Druid
         puts "select_#{name} method generated"
         driver.radio(identifier).set
       end
+      define_method("clear_#{name}") do
+        puts "clear_#{name} method generated"
+        driver.radio(identifier).clear
+      end
       define_method("#{name}_selected?") do
         puts "#{name}_selected method generated"
         driver.radio(identifier).set?
       end
       define_method("#{name}_radio_button") do
         puts "#{name}_radio_button method generated"
-        driver.radio(identifier)
+        element = driver.radio(identifier)
+        Druid::Elements::RadioButton.new(element)
       end
     end
     #
@@ -207,7 +215,8 @@ module Druid
       end
       define_method("#{name}_button") do
         puts "#{name}_button method generated"
-        driver.button(identifier)
+        element = driver.button(identifier)
+        Druid::Elements::Button.new(element)
       end
     end
     #
@@ -234,7 +243,8 @@ module Druid
       end
       define_method("#{name}_div") do
         puts "#{name}_div method generated"
-        driver.div(identifier)
+        element = driver.div(identifier)
+        Druid::Elements::Div.new(element)
       end
     end
     #
