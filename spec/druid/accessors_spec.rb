@@ -9,6 +9,7 @@ class TestDruid
   checkbox(:active, :id => 'is_active_id')
   button(:click_me, :id => 'button_submit')
   radio_button(:first, :id => 'first_choice')
+  div(:message, :id => 'message_id')
 end
 
 describe Druid::Accessors do
@@ -178,6 +179,27 @@ describe Druid::Accessors do
       it "should retreive a radio button element" do
         expect(driver).to receive(:radio)
         druid.first_radio_button
+      end
+    end
+  end
+
+  describe "div accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to :message
+        expect(druid).to respond_to :message_div
+      end
+    end
+
+    context "implementation" do
+      it "should retreive the text from a div" do
+        expect(driver).to receive_message_chain(:div, :text).and_return("Message from div")
+        expect(druid.message).to eql "Message from div"
+      end
+
+      it "should retreive a div element" do
+        expect(driver).to receive(:div)
+        druid.message_div
       end
     end
   end
