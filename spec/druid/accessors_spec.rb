@@ -13,6 +13,7 @@ class TestDruid
   table(:cart, :id => 'cart_id')
   cell(:total, :id => 'total')
   span(:alert, :id => 'alert_id')
+  image(:logo, :id => 'logo')
 end
 
 describe Druid::Accessors do
@@ -265,6 +266,21 @@ describe Druid::Accessors do
       it "should retrieve the span element from the page" do
         expect(driver).to receive(:span)
         expect(druid.alert_span).to be_instance_of Druid::Elements::Span
+      end
+    end
+  end
+
+  describe "image accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to :logo_image
+      end
+    end
+
+    context "implementation" do
+      it "should retrieve the image element from the page" do
+        expect(driver).to receive(:image)
+        expect(druid.logo_image).to be_instance_of Druid::Elements::Image
       end
     end
   end
