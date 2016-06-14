@@ -112,3 +112,14 @@ Feature: Elements
     And I should know its' tag name is "img"
     And I should know the attribute "readonly" is false
     And I should be able to click it
+
+  @dev
+  Scenario: Hidden Field element methods
+    When I retrieve the hidden field element
+    Then I should know it exists
+    And I should know it is not visible
+    And I should know its' text includes ""
+    And I should know its' value is "12345"
+    And I should know it is equal to itself
+    And I should know its' tag name is "input"
+    And I should know the attribute "readonly" is false

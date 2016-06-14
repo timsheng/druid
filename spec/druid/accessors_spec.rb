@@ -14,6 +14,7 @@ class TestDruid
   cell(:total, :id => 'total')
   span(:alert, :id => 'alert_id')
   image(:logo, :id => 'logo')
+  hidden_field(:social_security_number, :id => 'ssn')
 end
 
 describe Druid::Accessors do
@@ -281,6 +282,27 @@ describe Druid::Accessors do
       it "should retrieve the image element from the page" do
         expect(driver).to receive(:image)
         expect(druid.logo_image).to be_instance_of Druid::Elements::Image
+      end
+    end
+  end
+
+  describe "hidden field accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to :social_security_number
+        expect(druid).to respond_to :social_security_number_hidden_field
+      end
+    end
+
+    context "implementation" do
+      it "should get the text from a hidden field" do
+        expect(driver).to receive_message_chain(:hidden, :value).and_return('value')
+        expect(druid.social_security_number).to eql 'value'
+      end
+
+      it "should retrieve a hidden field element" do
+        expect(driver).to receive(:hidden)
+        expect(druid.social_security_number_hidden_field).to be_instance_of Druid::Elements::HiddenField
       end
     end
   end
