@@ -16,6 +16,7 @@ class TestDruid
   image(:logo, :id => 'logo')
   hidden_field(:social_security_number, :id => 'ssn')
   form(:login, :id => 'login')
+  text_area(:address, :id => 'address')
 end
 
 describe Druid::Accessors do
@@ -319,6 +320,33 @@ describe Druid::Accessors do
       it "should retrieve the form element from the page" do
         expect(driver).to receive(:form)
         expect(druid.login_form).to be_instance_of Druid::Elements::Form
+      end
+    end
+  end
+
+  describe "text area accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to :address
+        expect(druid).to respond_to :address=
+        expect(druid).to respond_to :address_text_area
+      end
+    end
+
+    context "implementation" do
+      it "should set some text on the text area" do
+        expect(driver).to receive_message_chain(:textarea, :send_keys).with('123 main street')
+        druid.address='123 main street'
+      end
+
+      it "should get the text from the text area" do
+        expect(driver).to receive_message_chain(:textarea, :value).and_return('123 main street')
+        expect(druid.address).to eql '123 main street'
+      end
+
+      it "should retrieve a text area element" do
+        expect(driver).to receive(:textarea)
+        expect(druid.address_text_area).to be_instance_of Druid::Elements::TextArea
       end
     end
   end
