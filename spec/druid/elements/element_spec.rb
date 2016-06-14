@@ -24,5 +24,10 @@ describe Druid::Elements::Element do
       expect(driver).to receive(:exist?).and_return(false)
       expect(element.exist?).to be false
     end
+
+    it "should be able to return the text contained in the element" do
+      expect(driver).to receive(:text).and_return("my text")
+      expect(element.text).to eql "my text"
+    end
   end
 end

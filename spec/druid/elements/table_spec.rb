@@ -10,4 +10,13 @@ describe Druid::Elements::Table do
       end
     end
   end
+
+  describe "interface" do
+    let(:element) { double('element')}
+    let(:table) { Druid::Elements::Table.new(element)}
+    it "should return a table row" do
+      expect(element).to receive(:[]).with(1)
+      expect(table[1]).to be_instance_of Druid::Elements::TableRow
+    end
+  end
 end
