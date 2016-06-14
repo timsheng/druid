@@ -294,7 +294,8 @@ module Druid
       end
       define_method("#{name}_cell") do
         puts "#{name}_cell method generated"
-        driver.td(identifier)
+        element = driver.td(identifier)
+        Druid::Elements::TableCell.new(element)
       end
     end
     #

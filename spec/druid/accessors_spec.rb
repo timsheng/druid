@@ -11,6 +11,7 @@ class TestDruid
   radio_button(:first, :id => 'first_choice')
   div(:message, :id => 'message_id')
   table(:cart, :id => 'cart_id')
+  cell(:total, :id => 'total')
 end
 
 describe Druid::Accessors do
@@ -221,6 +222,27 @@ describe Druid::Accessors do
       it "should retrieve the table element from the page" do
         expect(driver).to receive(:table)
         expect(druid.cart_table).to be_instance_of Druid::Elements::Table
+      end
+    end
+  end
+
+  describe "table cell accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to :total
+        expect(druid).to respond_to :total_cell
+      end
+    end
+
+    context "implementation" do
+      it "should retrieve the text from the cell" do
+        expect(driver).to receive_message_chain(:td, :text).and_return("10.00")
+        expect(druid.total).to eql "10.00"
+      end
+
+      it "should retrieve the cell element from the page" do
+        expect(driver).to receive(:td)
+        expect(druid.total_cell).to be_instance_of Druid::Elements::TableCell
       end
     end
   end
