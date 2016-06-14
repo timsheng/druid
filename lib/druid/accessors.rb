@@ -344,7 +344,8 @@ module Druid
       identifier = Elements::Image.identifier_for identifier
       define_method("#{name}_image") do
         puts "#{name}_image method generated"
-        driver.image(identifier)
+        element = driver.image(identifier)
+        Druid::Elements::Image.new(element)
       end
     end
     #
