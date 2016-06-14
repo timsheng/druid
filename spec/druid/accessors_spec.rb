@@ -8,6 +8,7 @@ class TestDruid
   select_list(:state, :id => 'state')
   checkbox(:active, :id => 'is_active_id')
   button(:click_me, :id => 'button_submit')
+  radio_button(:first, :id => 'first_choice')
 end
 
 describe Druid::Accessors do
@@ -144,6 +145,39 @@ describe Druid::Accessors do
       it "should retreive a button element" do
         expect(driver).to receive(:button)
         druid.click_me_button
+      end
+    end
+  end
+
+  describe "radio accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to :first_radio_button
+        expect(druid).to respond_to :select_first
+        expect(druid).to respond_to :first_selected?
+        expect(druid).to respond_to :clear_first
+      end
+    end
+
+    context "implementation" do
+      it "should select a radio button" do
+        expect(driver).to receive_message_chain(:radio, :set)
+        druid.select_first
+      end
+
+      it "should clear a radio button" do
+        expect(driver).to receive_message_chain(:radio, :clear)
+        druid.clear_first
+      end
+
+      it "should determine if a radio is selected" do
+        expect(driver).to receive_message_chain(:radio, :set?).and_return(true)
+        expect(druid.first_selected?).to be true
+      end
+
+      it "should retreive a radio button element" do
+        expect(driver).to receive(:radio)
+        druid.first_radio_button
       end
     end
   end

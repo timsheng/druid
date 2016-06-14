@@ -174,6 +174,10 @@ module Druid
         puts "select_#{name} method generated"
         driver.radio(identifier).set
       end
+      define_method("clear_#{name}") do
+        puts "clear_#{name} method generated"
+        driver.radio(identifier).clear
+      end
       define_method("#{name}_selected?") do
         puts "#{name}_selected method generated"
         driver.radio(identifier).set?
