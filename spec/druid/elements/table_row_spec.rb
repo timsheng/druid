@@ -18,5 +18,10 @@ describe Druid::Elements::TableRow do
       expect(element).to receive(:[]).with(1)
       expect(table_row[1]).to be_instance_of Druid::Elements::TableCell
     end
+
+    it "should return the number of columns" do
+      expect(element).to receive_message_chain(:cells, :size).and_return(3)
+      expect(table_row.columns).to eql 3
+    end
   end
 end
