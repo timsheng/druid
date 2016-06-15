@@ -11,6 +11,12 @@ class TestDruid
   radio_button(:first, :id => 'first_choice')
   div(:message, :id => 'message_id')
   table(:cart, :id => 'cart_id')
+  cell(:total, :id => 'total')
+  span(:alert, :id => 'alert_id')
+  image(:logo, :id => 'logo')
+  hidden_field(:social_security_number, :id => 'ssn')
+  form(:login, :id => 'login')
+  text_area(:address, :id => 'address')
 end
 
 describe Druid::Accessors do
@@ -221,6 +227,126 @@ describe Druid::Accessors do
       it "should retrieve the table element from the page" do
         expect(driver).to receive(:table)
         expect(druid.cart_table).to be_instance_of Druid::Elements::Table
+      end
+    end
+  end
+
+  describe "table cell accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to :total
+        expect(druid).to respond_to :total_cell
+      end
+    end
+
+    context "implementation" do
+      it "should retrieve the text from the cell" do
+        expect(driver).to receive_message_chain(:td, :text).and_return("10.00")
+        expect(druid.total).to eql "10.00"
+      end
+
+      it "should retrieve the cell element from the page" do
+        expect(driver).to receive(:td)
+        expect(druid.total_cell).to be_instance_of Druid::Elements::TableCell
+      end
+    end
+  end
+
+  describe "span accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to :alert
+        expect(druid).to respond_to :alert_span
+      end
+    end
+
+    context "implementation" do
+      it "should retrieve the text from a span" do
+        expect(driver).to receive_message_chain(:span, :text).and_return('Alert')
+        expect(druid.alert).to eql 'Alert'
+      end
+
+      it "should retrieve the span element from the page" do
+        expect(driver).to receive(:span)
+        expect(druid.alert_span).to be_instance_of Druid::Elements::Span
+      end
+    end
+  end
+
+  describe "image accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to :logo_image
+      end
+    end
+
+    context "implementation" do
+      it "should retrieve the image element from the page" do
+        expect(driver).to receive(:image)
+        expect(druid.logo_image).to be_instance_of Druid::Elements::Image
+      end
+    end
+  end
+
+  describe "hidden field accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to :social_security_number
+        expect(druid).to respond_to :social_security_number_hidden_field
+      end
+    end
+
+    context "implementation" do
+      it "should get the text from a hidden field" do
+        expect(driver).to receive_message_chain(:hidden, :value).and_return('value')
+        expect(druid.social_security_number).to eql 'value'
+      end
+
+      it "should retrieve a hidden field element" do
+        expect(driver).to receive(:hidden)
+        expect(druid.social_security_number_hidden_field).to be_instance_of Druid::Elements::HiddenField
+      end
+    end
+  end
+
+  describe "form accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to :login_form
+      end
+    end
+
+    context "implementation" do
+      it "should retrieve the form element from the page" do
+        expect(driver).to receive(:form)
+        expect(druid.login_form).to be_instance_of Druid::Elements::Form
+      end
+    end
+  end
+
+  describe "text area accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to :address
+        expect(druid).to respond_to :address=
+        expect(druid).to respond_to :address_text_area
+      end
+    end
+
+    context "implementation" do
+      it "should set some text on the text area" do
+        expect(driver).to receive_message_chain(:textarea, :send_keys).with('123 main street')
+        druid.address='123 main street'
+      end
+
+      it "should get the text from the text area" do
+        expect(driver).to receive_message_chain(:textarea, :value).and_return('123 main street')
+        expect(druid.address).to eql '123 main street'
+      end
+
+      it "should retrieve a text area element" do
+        expect(driver).to receive(:textarea)
+        expect(druid.address_text_area).to be_instance_of Druid::Elements::TextArea
       end
     end
   end

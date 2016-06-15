@@ -294,7 +294,8 @@ module Druid
       end
       define_method("#{name}_cell") do
         puts "#{name}_cell method generated"
-        driver.td(identifier)
+        element = driver.td(identifier)
+        Druid::Elements::TableCell.new(element)
       end
     end
     #
@@ -321,7 +322,8 @@ module Druid
       end
       define_method("#{name}_span") do
         puts "#{name}_span method generated"
-        driver.span(identifier)
+        element = driver.span(identifier)
+        Druid::Elements::Span.new(element)
       end
     end
     #
@@ -342,7 +344,8 @@ module Druid
       identifier = Elements::Image.identifier_for identifier
       define_method("#{name}_image") do
         puts "#{name}_image method generated"
-        driver.image(identifier)
+        element = driver.image(identifier)
+        Druid::Elements::Image.new(element)
       end
     end
     #
@@ -364,7 +367,8 @@ module Druid
       identifier = Elements::Form.identifier_for identifier
       define_method("#{name}_form") do
         puts "#{name}_form method generated"
-        driver.form(identifier)
+        element = driver.form(identifier)
+        Druid::Elements::Form.new(element)
       end
     end
     #
@@ -390,7 +394,8 @@ module Druid
       identifier = Elements::HiddenField.identifier_for identifier
       define_method("#{name}_hidden_field") do
         puts "#{name}_hidden_field method generated"
-        driver.hidden(identifier)
+        element = driver.hidden(identifier)
+        Druid::Elements::HiddenField.new(element)
       end
       define_method(name) do
         puts "#{name} method generated"
@@ -480,7 +485,8 @@ module Druid
       end
       define_method("#{name}_text_area") do
         puts "#{name}_text_area method generated"
-        driver.textarea(identifier)
+        element = driver.textarea(identifier)
+        Druid::Elements::TextArea.new(element)
       end
     end
     #
