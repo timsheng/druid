@@ -133,7 +133,6 @@ Feature: Elements
     And I should know the attribute "readonly" is false
     And I should know its' value is ""
 
-  @dev
   Scenario: Text Area element methods
     When I retrieve the text area
     Then I should know it exists
@@ -142,5 +141,28 @@ Feature: Elements
     And I should know its' value is ""
     And I should know it is equal to itself
     And I should know its' tag name is "textarea"
+    And I should know the attribute "readonly" is false
+    And I should be able to click it
+
+  Scenario: List item element methods
+    When I retrieve a list item element
+    Then I should know it exists
+    And I should know it is visible
+    And I should know its' text is "Item One"
+    And I should know it is equal to itself
+    And I should know its' tag name is "li"
+    And I should know the attribute "readonly" is false
+    And I should be able to click it
+
+  @dev
+  Scenario: Unordered List element methods
+    When I retrieve a unordered list element
+    Then I should know it exists
+    And I should know it is visible
+    And I should know its' text includes "Item One"
+    And I should know its' text includes "Item Two"
+    And I should know its' text includes "Item Three"
+    And I should know it is equal to itself
+    And I should know its' tag name is "ul"
     And I should know the attribute "readonly" is false
     And I should be able to click it
