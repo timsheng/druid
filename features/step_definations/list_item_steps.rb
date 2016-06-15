@@ -10,3 +10,7 @@ end
 When(/^I search for the list item by "(.*?)" and "(.*?)"$/) do |param1, param2|
   @text = @page.send "li_#{param1}_#{param2}"
 end
+
+When(/^I retrieve a list item element$/) do
+  @element = @page.li_id_list_item
+end
