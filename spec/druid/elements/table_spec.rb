@@ -13,7 +13,7 @@ describe Druid::Elements::Table do
 
   describe "interface" do
     let(:element) { double('element')}
-    let(:table) { Druid::Elements::Table.new(element)}
+    let(:table) { Druid::Elements::Table.new(element) }
 
     it "should return a table row" do
       expect(element).to receive(:[]).with(1)
@@ -25,8 +25,14 @@ describe Druid::Elements::Table do
       expect(table.rows).to eql 2
     end
 
-    # it "should iterate over the table rows" do
-    #
-    # end
+    it "should iterate over the table rows" do
+      allow(element).to receive(:[])
+      expect(table).to receive(:rows).and_return(2)
+      count = 0
+      table.each do
+        count += 1
+      end
+      expect(count).to eql 2
+    end
   end
 end
