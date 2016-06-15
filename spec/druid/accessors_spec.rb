@@ -18,6 +18,7 @@ class TestDruid
   form(:login, :id => 'login')
   text_area(:address, :id => 'address')
   list_item(:item_one, :id => 'one')
+  unordered_list(:menu, :id => 'main_menu')
 end
 
 describe Druid::Accessors do
@@ -369,6 +370,21 @@ describe Druid::Accessors do
       it "should retrieve the list item element from the page" do
         expect(driver).to receive(:li)
         expect(druid.item_one_list_item).to be_instance_of Druid::Elements::ListItem
+      end
+    end
+  end
+
+  describe "unordered list accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to :menu_unordered_list
+      end
+    end
+
+    context "implementation" do
+      it "should retrieve the element from the page" do
+        expect(driver).to receive(:ul)
+        expect(druid.menu_unordered_list).to be_instance_of Druid::Elements::UnOrderedList
       end
     end
   end
