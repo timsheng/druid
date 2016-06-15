@@ -9,3 +9,7 @@ end
 When(/^I search for the unordered list by "(.*?)" and "(.*?)"$/) do |param1, param2|
   @list = @page.send "ul_#{param1}_#{param2}_unordered_list".to_sym
 end
+
+When(/^I retrieve a unordered list element$/) do
+  @element = @page.ul_id_unordered_list
+end
