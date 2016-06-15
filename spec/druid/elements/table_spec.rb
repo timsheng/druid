@@ -24,5 +24,9 @@ describe Druid::Elements::Table do
       expect(element).to receive_message_chain(:rows, :size).and_return(2)
       expect(table.rows).to eql 2
     end
+
+    # it "should iterate over the table rows" do
+    #
+    # end
   end
 end
