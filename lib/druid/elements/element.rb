@@ -155,6 +155,14 @@ module Druid
       def click
         element.click
       end
+
+      #
+      # pass value to this element
+      #
+      def send_keys value
+        element.send_keys value
+      end
+
     end
   end
 end
