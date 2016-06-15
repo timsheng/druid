@@ -427,7 +427,8 @@ module Druid
       end
       define_method("#{name}_list_item") do
         puts "#{name}_list_item method generated"
-        driver.li(identifier)
+        element = driver.li(identifier)
+        Druid::Elements::ListItem.new(element)
       end
     end
     #
