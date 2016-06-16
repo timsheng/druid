@@ -23,5 +23,15 @@ describe Druid::Elements::TableRow do
       expect(element).to receive_message_chain(:cells, :size).and_return(3)
       expect(table_row.columns).to eql 3
     end
+
+    it "should iterate  over the table columns" do
+      expect(table_row).to receive(:columns).and_return(3)
+      allow(table_row).to receive(:[])
+      count = 0
+      table_row.each do
+        count += 1
+      end
+      expect(count).to eql 3
+    end
   end
 end

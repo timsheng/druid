@@ -19,5 +19,20 @@ describe Druid::Elements::OrderedList do
       expect(element).to receive(:li)
       expect(ol[1]).to be_instance_of Druid::Elements::ListItem
     end
+
+    it "should know how many list items it contains" do
+      expect(element).to receive_message_chain(:lis, :size).and_return(2)
+      expect(ol.items).to eql 2
+    end
+
+    it "should iterate over the list items" do
+      expect(ol).to receive(:items).and_return(2)
+      allow(ol).to receive(:[])
+      count = 0
+      ol.each do
+        count += 1
+      end
+      expect(count).to eql 2
+    end
   end
 end
