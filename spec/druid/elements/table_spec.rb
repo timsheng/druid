@@ -26,7 +26,7 @@ describe Druid::Elements::Table do
     end
 
     it "should iterate over the table rows" do
-      allow(element).to receive(:[])
+      allow(table).to receive(:[])
       expect(table).to receive(:rows).and_return(2)
       count = 0
       table.each do
