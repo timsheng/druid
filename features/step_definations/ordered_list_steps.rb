@@ -31,3 +31,7 @@ end
 Then(/^the list items text should be "(.*?)"$/) do |expected_text|
   expect(@element.text).to eql expected_text
 end
+
+When(/^I retrieve a ordered list element$/) do
+  @element = @page.ol_id_ordered_list
+end
