@@ -7,7 +7,7 @@ module Druid
       end
 
       def [](idx)
-        Druid::Elements::Option.new(element.options[idx])
+        Druid::Elements::Option.new(options[idx])
       end
 
       def options
