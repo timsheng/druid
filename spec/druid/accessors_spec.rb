@@ -3,6 +3,7 @@ require 'spec_helper'
 class TestDruid
   include Druid
 
+  page_url "http://apple.com"
   link(:google_search, :link => 'Google Search')
   text_field(:first_name, :id => 'first_name')
   select_list(:state, :id => 'state')
@@ -22,9 +23,30 @@ class TestDruid
   ordered_list(:top_five, :id => 'top')
 end
 
+class TestDruidBackUp
+  include Druid
+end
+
 describe Druid::Accessors do
   let(:driver) { mock_driver }
   let(:druid) { TestDruid.new(driver) }
+
+  describe "goto a page" do
+    it "should navigate to a page when requested" do
+      expect(driver).to receive(:goto)
+      page = TestDruid.new(driver, true)
+    end
+
+    it "should not navigate to a page when not requested" do
+      expect(driver).not_to receive(:goto)
+      page = TestDruid.new(driver)
+    end
+
+    it "should not navigate to a page when 'page_url' not specified" do
+      expect(driver).not_to receive(:goto)
+      page = TestDruidBackUp.new(driver,true)
+    end
+  end
 
   describe "check_box accessors" do
     context "when called on a page object" do
