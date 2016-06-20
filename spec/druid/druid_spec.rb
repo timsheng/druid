@@ -44,6 +44,11 @@ describe Druid do
         expect(driver).to receive(:goto).with("www.baidu.com")
         druid.navigate_to("www.baidu.com")
       end
+
+      it "should wait until a block returns true" do
+        expect(driver).to receive(:wait_until).with(5, "too long")
+        druid.wait_until(5, "too long")
+      end
     end
   end
 
