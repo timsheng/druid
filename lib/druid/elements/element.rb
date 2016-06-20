@@ -10,9 +10,7 @@ module Druid
         @element = element
       end
 
-      # def self.identifier_for identifier
-      #   identifier_for_element identifier, finders, mapping
-      # end
+      # @private
       def self.identifier_for identifier
         if have_to_build_xpath(identifier)
           how = :xpath
