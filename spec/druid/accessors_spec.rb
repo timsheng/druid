@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-class TestDruid
+class AccessorsTestDruid
   include Druid
 
   page_url "http://apple.com"
@@ -29,17 +29,17 @@ end
 
 describe Druid::Accessors do
   let(:driver) { mock_driver }
-  let(:druid) { TestDruid.new(driver) }
+  let(:druid) { AccessorsTestDruid.new(driver) }
 
   describe "goto a page" do
     it "should navigate to a page when requested" do
       expect(driver).to receive(:goto)
-      page = TestDruid.new(driver, true)
+      page = AccessorsTestDruid.new(driver, true)
     end
 
     it "should not navigate to a page when not requested" do
       expect(driver).not_to receive(:goto)
-      page = TestDruid.new(driver)
+      page = AccessorsTestDruid.new(driver)
     end
 
     it "should not navigate to a page when 'page_url' not specified" do
