@@ -29,3 +29,8 @@ Feature: Page level actions
   Scenario: Using the visit_page methods with block
     Given I can goto baidu.com using visit_page with block
     Then the page should have the title "百度" using on_page with block
+
+  @dev
+  Scenario: Waiting for something
+    Given I am on the static elements page
+    Then I should be able to wait for a block to return true

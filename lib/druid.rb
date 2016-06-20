@@ -81,4 +81,20 @@ module Druid
     driver.title
   end
 
+  #
+  # Wait until the block returns true or times out
+  #
+  # Example:
+  #   @page.wait_until(5, 'Success not found on page') do
+  #     @page.text.include? 'Success'
+  #   end
+  #
+  # @param [Numeric] the amount of time to wait for the block to return true
+  # @param [String] the message to include with the error if we exceed the timeout duration
+  # @param block the block to execute. It should return true when successful.
+  #
+  def wait_until(timeout = 30, message = nil, &block)
+    driver.wait_until(timeout, message, &block)
+  end
+
 end

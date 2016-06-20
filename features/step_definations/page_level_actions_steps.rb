@@ -46,3 +46,11 @@ Then(/^the page should have the title "(.*?)" using on_page with block$/) do |te
   #   expect(page.title).to include text
   # end
 end
+
+Then(/^I should be able to wait for a block to return true$/) do
+  @page.google_search_id
+  @page.wait_until(10, "too long to display page") do
+    sleep 11
+    @page.text.include? 'Success'
+  end
+end
