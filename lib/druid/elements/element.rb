@@ -161,6 +161,45 @@ module Druid
         element.send_keys value
       end
 
+      #
+      # Waits until the element is present
+      #
+      # @param [Integer] (default to:5) seconds to wait before timing out
+      #
+      def when_present(timeout=5)
+        element.wait_until_present(timeout)
+      end
+
+      #
+      # Waits until the element is visible
+      #
+      # @param [Interger] (default to:5) seconds to wait before timing out
+      #
+      def when_visible(timeout=5)
+        Watir::Wait.until(timeout, "Element was not visible in #{timeout} seconds") do
+          visible?
+        end
+      end
+
+      #
+      # Waits until the element is not visible
+      #
+      # @param [Integer] (default to:5) seconds to wait before timing out
+      #
+      def when_not_visible(timeout=5)
+        Watir::Wait.while(timeout, "Element still visible after #{timeout} seconds") do
+          visible?
+        end
+      end
+
+      #
+      # Waits until the block returns true
+      #
+      # @param [Integer] (default to:5) seconds to wait before timing out
+      #
+      def wait_until(timeout=5, message=nil, &block)
+        Watir::Wait.until(timeout, message, &block)
+      end
     end
   end
 end
