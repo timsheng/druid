@@ -64,5 +64,25 @@ describe Druid::Elements::Element do
       expect(we).to receive(:click)
       element.click
     end
+
+    it "should be able to block until it is present" do
+      expect(we).to receive(:wait_until_present).with(10)
+      element.when_present(10)
+    end
+
+    it "should be able to block until it is visible" do
+      expect(Watir::Wait).to receive(:until).with(10, "Element was not visible in 10 seconds")
+      element.when_visible(10)
+    end
+
+    it "should be able to block until it is not visible" do
+      expect(Watir::Wait).to receive(:while).with(10, "Element still visible after 10 seconds")
+      element.when_not_visible(10)
+    end
+
+    it "should be able to block until a user define event fires true" do
+      expect(Watir::Wait).to receive(:until).with(10, "Element blah")
+      element.wait_until(10, "Element blah") {}
+    end
   end
 end

@@ -1,3 +1,12 @@
+=== 2016-06-20
+* Enhancements
+  * Async handling
+    * Added #wait_until to page object to support for async events at page level
+    * Added the following methods to Druid::Elements::Element
+      * #when_present
+      * #when_visible
+      * #when_not_visible
+      * #wait_until
 === Version 1.0.0
 === 2016-06-04
 * Enhancements
