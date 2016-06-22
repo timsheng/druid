@@ -1,6 +1,7 @@
+
 require 'druid/accessors'
 require 'druid/page_factory'
-
+# require 'watir-webdriver/extensions/alerts'
 #
 # Module that when included adds functionality to a page object.  This module
 # will add numerous class and instance methods that you use to define and
@@ -30,6 +31,7 @@ require 'druid/page_factory'
 # @see Druid::Accessors to see what class level methods are added to this module at runtime.
 #
 module Druid
+  # include Watir::AlertHelper
   # @return [Watir::Browser] the drvier passed to the constructor
   attr_reader :driver
   #
@@ -84,7 +86,7 @@ module Druid
   #
   # Wait until the block returns true or times out
   #
-  # Example:
+  # @example
   #   @page.wait_until(5, 'Success not found on page') do
   #     @page.text.include? 'Success'
   #   end
@@ -95,6 +97,27 @@ module Druid
   #
   def wait_until(timeout = 30, message = nil, &block)
     driver.wait_until(timeout, message, &block)
+  end
+
+  #
+  # Override the normal alert popup so it does not occurr.
+  #
+  # @example
+  #   message = @page.alert do
+  #     @page.button_that_causes_alert
+  #   end
+  #
+  # @param block a block that has the call that will cause the alert to display
+  # @return [String] the message that was contained in the alert
+  #
+  def alert(&block)
+    yield
+    value = nil
+    if driver.alert.exists?
+      value = driver.alert.text
+      driver.alert.ok
+    end
+    value
   end
 
 end
