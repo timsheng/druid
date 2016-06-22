@@ -49,6 +49,15 @@ describe Druid do
         expect(driver).to receive(:wait_until).with(5, "too long")
         druid.wait_until(5, "too long")
       end
+
+      it "should retrieve the text from alert popup" do
+        allow(driver).to receive_message_chain(:alert, :exists?).and_return(true)
+        allow(driver).to receive_message_chain(:alert, :text).and_return('I am an alert')
+        expect(driver).to receive_message_chain(:alert, :ok)
+        msg = druid.alert do
+        end
+        expect(msg).to eql 'I am an alert'
+      end
     end
   end
 
