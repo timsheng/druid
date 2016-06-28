@@ -3,6 +3,7 @@
   * Handling popups
     * Added #alert to page object to override default alert popup behavior
     * Added #confirm to page object to override default confirm popup behavior
+    * Added #prompt to page object to override default prompt popup behavior
 === 2016-06-20
 * Enhancements
   * Async handling

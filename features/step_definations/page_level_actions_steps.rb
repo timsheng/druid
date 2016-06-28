@@ -71,5 +71,16 @@ When(/^I handle the confirm$/) do
 end
 
 Then(/^I should be able to get the confirm's message$/) do
-  pending # express the regexp above with the code you wish you had
+  expect(@msg).to eql "I am an confirm"
+end
+
+When(/^I handle the prompt$/) do
+  @msg = @page.prompt("Tim") do
+    @page.prompt_button
+  end
+end
+
+Then(/^I should be able to get the message and default value$/) do
+  expect(@msg[:message]).to eql "enter your name"
+  expect(@msg[:default_value]).to eql "John Doe"
 end

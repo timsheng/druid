@@ -142,4 +142,24 @@ module Druid
     value
   end
 
+  #
+  # Override the normal prompt popup so it does not occurr
+  #
+  # @example
+  #   message = @popup.prompt("Some Value") do
+  #     @page.button_that_causes_prompt
+  #   end
+  #
+  # @param [String] the value returned to the caller of the prompt
+  # @param block a block that has the call that will cause the prompt to display
+  # @return [Hash] A has containing two keys - :message contains the prompt message and
+  # :default_value contains the default value for the prompt if provided
+  #
+  def prompt(answer, &block)
+    driver.execute_script "window.prompt = function(text, value) { window.__lastWatirPrompt = { message: text, default_value: value}; return #{answer}; }"
+    yield
+    result = driver.execute_script "return window.__lastWatirPrompt"
+    result && result.dup.each_key { |k| result[k.to_sym] = result.delete(k) }
+    result
+  end
 end

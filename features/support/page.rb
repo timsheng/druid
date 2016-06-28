@@ -162,5 +162,6 @@ class Page
 
   button(:alert_button, :id => "alert_button")
   button(:confirm_button, :id => "confirm_button")
+  button(:prompt_button, :id => "prompt_button")
 
 end
