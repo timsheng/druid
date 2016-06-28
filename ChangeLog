@@ -1,7 +1,8 @@
 === 2016-06-21
 * Enhancements
   * Handling popups
-    * Added #alert to page object to override default alert behavior
+    * Added #alert to page object to override default alert popup behavior
+    * Added #confirm to page object to override default confirm popup behavior
 === 2016-06-20
 * Enhancements
   * Async handling
