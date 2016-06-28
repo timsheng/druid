@@ -67,6 +67,12 @@ describe Druid do
         end
         expect(msg).to eql 'I am an confirm'
       end
+
+      it "should override prompt popup behavior" do
+        expect(driver).to receive(:execute_script).twice
+        druid.prompt("blah") do
+        end
+      end
     end
   end
 
