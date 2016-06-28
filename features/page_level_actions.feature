@@ -34,8 +34,18 @@ Feature: Page level actions
     Given I am on the static elements page
     Then I should be able to wait for a block to return true
 
-  @dev
-  Scenario: Handling Alerts
+  Scenario: Handling alert popups
     Given I am on the static elements page
     When I handle the alert
     Then I should be able to get the alert's message
+
+  Scenario: Handling confirm popups
+    Given I am on the static elements page
+    When I handle the confirm
+    Then I should be able to get the confirm's message
+
+  @dev
+  Scenario: Handling prompt popups
+    Given I am on the static elements page
+    When I handle the prompt
+    Then I should be able to get the message and default value
