@@ -71,7 +71,7 @@ When(/^I handle the confirm$/) do
 end
 
 Then(/^I should be able to get the confirm's message$/) do
-  expect(@msg).to eql "I am an confirm"
+  expect(@msg).to eql "set the value"
 end
 
 When(/^I handle the prompt$/) do
