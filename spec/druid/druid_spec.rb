@@ -68,10 +68,14 @@ describe Druid do
         expect(msg).to eql 'I am an confirm'
       end
 
-      it "should override prompt popup behavior" do
-        expect(driver).to receive(:execute_script).twice
-        druid.prompt("blah") do
+      it "should retrieve the text from prompt popup" do
+        allow(driver).to receive_message_chain(:alert, :exists?).and_return(true)
+        allow(driver).to receive_message_chain(:alert, :text).and_return('I am an prompt')
+        allow(driver).to receive_message_chain(:alert, :set).with("blah")
+        expect(driver).to receive_message_chain(:alert, :ok)
+        msg = druid.prompt("blah") do
         end
+        expect(msg).to eql "I am an prompt"
       end
     end
   end
