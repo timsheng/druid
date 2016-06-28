@@ -81,6 +81,5 @@ When(/^I handle the prompt$/) do
 end
 
 Then(/^I should be able to get the message and default value$/) do
-  expect(@msg[:message]).to eql "enter your name"
-  expect(@msg[:default_value]).to eql "John Doe"
+  expect(@msg).to eql "enter your name"
 end
