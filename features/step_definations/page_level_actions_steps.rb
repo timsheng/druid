@@ -63,3 +63,24 @@ end
 Then(/^I should be able to get the alert's message$/) do
   expect(@msg).to eql "I am an alert"
 end
+
+When(/^I handle the confirm$/) do
+  @msg = @page.confirm(true) do
+    @page.confirm_button
+  end
+end
+
+Then(/^I should be able to get the confirm's message$/) do
+  expect(@msg).to eql "set the value"
+end
+
+When(/^I handle the prompt$/) do
+  @msg = @page.prompt("Tim") do
+    @page.prompt_button
+  end
+end
+
+Then(/^I should be able to get the message and default value$/) do
+  expect(@msg[:message]).to eql "enter your name"
+  expect(@msg[:default_value]).to eql "John Doe"
+end
