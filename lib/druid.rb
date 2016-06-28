@@ -120,4 +120,26 @@ module Druid
     value
   end
 
+  #
+  # Override the normal confirm popup so it does not occurr
+  #
+  # @example
+  #   message = @popup.confirm(true) do
+  #     @page.button_that_causes_confirm
+  #   end
+  #
+  # @param [boolean] what response you want to return back from the confirm popup
+  # @param block a block that has the call that will cause the confirm to display
+  # @return [String] the message that was prompted in the confirm
+  #
+  def confirm(response, &block)
+    yield
+    value = nil
+    if driver.alert.exists?
+      value = driver.alert.text
+      response ? driver.alert.ok : driver.alert.close
+    end
+    value
+  end
+
 end

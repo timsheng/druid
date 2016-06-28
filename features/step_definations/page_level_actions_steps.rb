@@ -63,3 +63,13 @@ end
 Then(/^I should be able to get the alert's message$/) do
   expect(@msg).to eql "I am an alert"
 end
+
+When(/^I handle the confirm$/) do
+  @msg = @page.confirm(true) do
+    @page.confirm_button
+  end
+end
+
+Then(/^I should be able to get the confirm's message$/) do
+  pending # express the regexp above with the code you wish you had
+end
