@@ -155,10 +155,18 @@ module Druid
       end
 
       #
-      # pass value to this element
+      # Send keystrokes to this element
       #
-      def send_keys value
-        element.send_keys value
+      # @param [String, Symbol, Array]
+      #
+      # Examples:
+      #
+      #  element.send_keys "foo"                    #=> value: 'foo'
+      #  element.send_keys "tet", :arrow_left, "s"  #=> value: 'test'
+      #  element.send_keys [:control, 'a'], :space  #=> value: ' '
+      #
+      def send_keys(*args)
+        element.send_keys(*args)
       end
 
       #
