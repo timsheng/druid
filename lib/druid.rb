@@ -130,7 +130,7 @@ module Druid
   #
   # @param [boolean] what response you want to return back from the confirm popup
   # @param block a block that has the call that will cause the confirm to display
-  # @return [String] the message that was prompted in the confirm
+  # @return [String] the message that was contained in the confirm
   #
   def confirm(response, &block)
     yield
@@ -150,16 +150,36 @@ module Druid
   #     @page.button_that_causes_prompt
   #   end
   #
-  # @param [String] the value returned to the caller of the prompt
+  # @param [String] the value will be setted in the prompt field
   # @param block a block that has the call that will cause the prompt to display
-  # @return [Hash] A has containing two keys - :message contains the prompt message and
-  # :default_value contains the default value for the prompt if provided
+  # @return [String] the message that was contained in the prompt
   #
   def prompt(answer, &block)
-    driver.execute_script "window.prompt = function(text, value) { window.__lastWatirPrompt = { message: text, default_value: value}; return #{answer}; }"
     yield
-    result = driver.execute_script "return window.__lastWatirPrompt"
-    result && result.dup.each_key { |k| result[k.to_sym] = result.delete(k) }
-    result
+    value = nil
+    if driver.alert.exists?
+      value = driver.alert.text
+      driver.alert.set answer
+      driver.alert.ok
+    end
+    value
+  end
+
+  #
+  # Attach to a running window. You can locate the window using either the window's title or url or index
+  #
+  # @example
+  #   page.attach_to_window(:title => "other window's title")
+  #
+  # @param [Hash] either :title or :url or index of the other window. The url does not need to
+  # be the entire url - it can just be the page name like index.html
+  #
+  def attach_to_window(identifier, &block)
+    if identifier.keys.first == :url
+      win_id = {identifier.keys.first => /#{Regexp.escape(identifier.values.first)}/}
+    else
+      win_id = {identifier.keys.first => identifier.values.first}
+    end
+    driver.window(win_id).use &block
   end
 end
