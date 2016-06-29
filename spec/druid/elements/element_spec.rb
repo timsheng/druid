@@ -89,5 +89,10 @@ describe Druid::Elements::Element do
       expect(we).to receive(:send_keys).with([:control, 'a'])
       element.send_keys([:control, 'a'])
     end
+
+    it "should clear its' contents" do
+      expect(we).to receive(:clear)
+      element.clear
+    end
   end
 end
