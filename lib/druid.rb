@@ -84,6 +84,12 @@ module Druid
   end
 
   #
+  # Refresh current page
+  #
+  def refresh
+    driver.refresh
+  end
+  #
   # Wait until the block returns true or times out
   #
   # @example

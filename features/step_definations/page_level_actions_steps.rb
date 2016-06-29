@@ -106,3 +106,7 @@ Then(/^I should be able to attach to page object using index$/) do
   @second_page = SecondPage.new(@driver)
   @second_page.attach_to_window(:index => 1)
 end
+
+Then(/^I should be able to refresh the page$/) do
+  @page.refresh
+end
