@@ -21,6 +21,7 @@ Feature: Div
     | xpath     |
     | index     |
     | name      |
+    | text      |
 
   Scenario: Getting the div element
     When I retrieve the div element
