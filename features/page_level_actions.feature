@@ -44,8 +44,22 @@ Feature: Page level actions
     When I handle the confirm
     Then I should be able to get the confirm's message
 
-  @dev
   Scenario: Handling prompt popups
     Given I am on the static elements page
     When I handle the prompt
     Then I should be able to get the message and default value
+
+  Scenario: Attach to window using title
+    Given I am on the static elements page
+    When I open a second window
+    Then I should be able to attach to page object using title
+
+  Scenario: Attach to window using url
+    Given I am on the static elements page
+    When I open a second window
+    Then I should be able to attach to page object using url
+
+  Scenario: Attach to widnow using index
+    Given I am on the static elements page
+    When I open a second window
+    Then I should be able to attach to page object using index

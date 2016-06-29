@@ -165,4 +165,6 @@ class Page
   button(:confirm_button, :id => "confirm_button")
   button(:prompt_button, :id => "prompt_button")
 
+  link(:open_window, :text => 'New Window')
+
 end
