@@ -13,5 +13,5 @@ Before do
 end
 
 After do |s|
-  @driver.close
+  @driver.quit
 end

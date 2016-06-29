@@ -81,6 +81,28 @@ When(/^I handle the prompt$/) do
 end
 
 Then(/^I should be able to get the message and default value$/) do
-  expect(@msg[:message]).to eql "enter your name"
-  expect(@msg[:default_value]).to eql "John Doe"
+  expect(@msg).to eql "enter your name"
+end
+
+When(/^I open a second window$/) do
+  @page.open_window
+end
+
+class SecondPage
+  include Druid
+end
+
+Then(/^I should be able to attach to page object using title$/) do
+  @second_page = SecondPage.new(@driver)
+  @second_page.attach_to_window(:title => "Success")
+end
+
+Then(/^I should be able to attach to page object using url$/) do
+  @second_page = SecondPage.new(@driver)
+  @second_page.attach_to_window(:url => "success.html")
+end
+
+Then(/^I should be able to attach to page object using index$/) do
+  @second_page = SecondPage.new(@driver)
+  @second_page.attach_to_window(:index => 1)
 end

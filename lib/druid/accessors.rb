@@ -233,6 +233,7 @@ module Druid
     #   :index
     #   :xpath
     #   :name
+    #   :text
     #
     def div(name, identifier)
       identifier = add_tagname_if_needed identifier, "div"
