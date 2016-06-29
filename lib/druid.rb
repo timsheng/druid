@@ -164,4 +164,22 @@ module Druid
     end
     value
   end
+
+  #
+  # Attach to a running window. You can locate the window using either the window's title or url or index
+  #
+  # @example
+  #   page.attach_to_window(:title => "other window's title")
+  #
+  # @param [Hash] either :title or :url or index of the other window. The url does not need to
+  # be the entire url - it can just be the page name like index.html
+  #
+  def attach_to_window(identifier, &block)
+    if identifier.keys.first == :url
+      win_id = {identifier.keys.first => /#{Regexp.escape(identifier.values.first)}/}
+    else
+      win_id = {identifier.keys.first => identifier.values.first}
+    end
+    driver.window(win_id).use &block
+  end
 end

@@ -77,6 +77,24 @@ describe Druid do
         end
         expect(msg).to eql "I am an prompt"
       end
+
+      it "should switch to a new window with a given title" do
+        expect(driver).to receive(:window).with(:title => "My Title").and_return(driver)
+        expect(driver).to receive(:use)
+        druid.attach_to_window(:title => "My Title")
+      end
+
+      it "should switch to a new window with a given index" do
+        expect(driver).to receive(:window).with(:index => 1).and_return(driver)
+        expect(driver).to receive(:use)
+        druid.attach_to_window(:index => 1)
+      end
+
+      it "should switch to a new window witha given url" do
+        expect(driver).to receive(:window).with(:url => /success\.html/).and_return(driver)
+        expect(driver).to receive(:use)
+        druid.attach_to_window(:url => "success.html")
+      end
     end
   end
 
