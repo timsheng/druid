@@ -170,6 +170,13 @@ module Druid
       end
 
       #
+      # clear the contents of the element
+      #
+      def clear
+        element.clear
+      end
+
+      #
       # Waits until the element is present
       #
       # @param [Integer] (default to:5) seconds to wait before timing out
