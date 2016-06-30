@@ -100,6 +100,14 @@ describe Druid do
         expect(driver).to receive(:refresh)
         druid.refresh
       end
+
+      it "should try a second time after sleeping when attach to window fails" do
+        expect(driver).to receive(:window).once.and_return(driver)
+        expect(driver).to receive(:use).once.and_throw "error"
+        expect(driver).to receive(:window).and_return(driver)
+        expect(driver).to receive(:use)
+        druid.attach_to_window(:value => 'tim')
+      end
     end
   end
 

@@ -1,3 +1,7 @@
+=== 2016-06-30
+* Enhancements
+  * Can now find a TableCell by its' text
+  * If we receive an error calling #attach_to_window, wait one second and try again
 === 2016-06-29
 * Enhancements
   * Added ability to locate div by the contained text

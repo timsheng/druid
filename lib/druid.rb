@@ -171,7 +171,9 @@ module Druid
   end
 
   #
-  # Attach to a running window. You can locate the window using either the window's title or url or index
+  # Attach to a running window. You can locate the window using either
+  # the window's title or url or index, If it failes to connect to a window it will
+  # pause for 1 second and try again.
   #
   # @example
   #   page.attach_to_window(:title => "other window's title")
@@ -185,7 +187,12 @@ module Druid
     else
       win_id = {identifier.keys.first => identifier.values.first}
     end
-    driver.window(win_id).use &block
+    begin
+      driver.window(win_id).use &block
+    rescue
+      sleep 1
+      driver.window(win_id).use &block
+    end
   end
 
   def nested_frames(frame_identifiers)
