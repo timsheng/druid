@@ -63,3 +63,8 @@ Feature: Page level actions
     Given I am on the static elements page
     When I open a second window
     Then I should be able to attach to page object using index
+
+  @dev
+  Scenario: Refreshing the page
+    Given I am on the static elements page
+    Then I should be able to refresh the page

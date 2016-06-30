@@ -166,7 +166,6 @@ Feature: Elements
     And I should know the attribute "readonly" is false
     And I should be able to click it
 
-  @dev
   Scenario: Ordered List element methods
     When I retrieve a ordered list element
     Then I should know it exists
@@ -178,3 +177,11 @@ Feature: Elements
     And I should know its' tag name is "ol"
     And I should know the attribute "readonly" is false
     And I should be able to click it
+
+  @dev
+  Scenario: Clear an element
+    Given I am on the static elements page
+    When I type "abcDEF" into the text field
+    Then the text field should contain "abcDEF"
+    When I clear the text field
+    Then the text field should contain ""

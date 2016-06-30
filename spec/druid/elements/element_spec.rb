@@ -84,5 +84,15 @@ describe Druid::Elements::Element do
       expect(Watir::Wait).to receive(:until).with(10, "Element blah")
       element.wait_until(10, "Element blah") {}
     end
+
+    it "should send keys to the element" do
+      expect(we).to receive(:send_keys).with([:control, 'a'])
+      element.send_keys([:control, 'a'])
+    end
+
+    it "should clear its' contents" do
+      expect(we).to receive(:clear)
+      element.clear
+    end
   end
 end

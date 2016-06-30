@@ -31,3 +31,7 @@ end
 Then(/^I should know it is not visible$/) do
   expect(@element).not_to be_visible
 end
+
+When(/^I clear the text field$/) do
+  @page.text_field_id_text_field.clear
+end
