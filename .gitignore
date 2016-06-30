@@ -1,2 +1,8 @@
 Gemfile.lock
+coverage
+druid*.gem
+.idea/
+pkg
+*.swp
+
 
