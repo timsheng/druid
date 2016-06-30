@@ -1,4 +1,5 @@
 require 'druid/elements'
+require 'druid/core_ext/string'
 #
 # Contains the class level methods that are inserted into your page class
 # when you include the PageObject module.  These methods will generate another
@@ -17,12 +18,30 @@ module Druid
         driver.goto url
       end
     end
+
     #
-    # add two methods - one to select a link and another
-    # to return a link element
+    # Identify an element as existing within a frame or iframe.
+    #
+    # @example
+    #  in_frame(:id => 'frame_id') do |frame|
+    #    text_field(:first_name, :id=> 'fname', :frame => frame)
+    #  end
+    #
+    # @param [Hash] identifier how we find the frame. The valid keys are:
+    #    * :id
+    #    * :index
+    #    * :name
+    # @param block that contains the calls to elements that exist inside the frame.
+    #
+    def in_frame(identifier, &block)
+      block.call([] << identifier)
+    end
+    #
+    # add three methods - one to select a link and another
+    # to return a link element, and another one to select a link and not wait for the corresponding action to complete
     #
     # Example: link(:add_to_cart, :text => "Add to Cart")
-    # will generate the 'add_to_cart' and 'add_to_cart_link'
+    # will generate the 'add_to_cart' and 'add_to_cart_link', 'add_to_cart_no_wait'
     # methods.
     #
     # @param the name used for the generated methods
@@ -37,14 +56,17 @@ module Druid
     #   :link
     #   :link_text
     def link(name, identifier)
+      frame_identifiers = identifier.delete(:frame)
       identifier = Elements::Link.identifier_for identifier
       define_method(name) do
-        puts "#{name} method generated"
-        driver.link(identifier).click
+        driver.instance_eval "#{nested_frames(frame_identifiers)}link(identifier).click"
       end
       define_method("#{name}_link") do
-        puts "#{name}_link method generated"
-        driver.link(identifier)
+        element = driver.instance_eval "#{nested_frames(frame_identifiers)}link(identifier)"
+        Druid::Elements::Link.new(element)
+      end
+      define_method("#{name}_no_wait") do
+        driver.instance_eval "#{nested_frames(frame_identifiers)}link(identifier).click_no_wait"
       end
     end
     #
@@ -65,18 +87,17 @@ module Druid
     #   :tag_name
     #   :xpath
     def text_field(name, identifier)
+      frame_identifiers = identifier.delete(:frame)
       identifier = Elements::TextField.identifier_for identifier
       define_method(name) do
-        puts "#{name} method generated"
-        driver.text_field(identifier).value
+        driver.instance_eval "#{nested_frames(frame_identifiers)}text_field(identifier).value"
       end
       define_method("#{name}=") do |value|
-        puts "#{name}= method generated"
-        driver.text_field(identifier).set value
+        driver.instance_eval "#{nested_frames(frame_identifiers)}text_field(identifier).set(value)"
       end
       define_method("#{name}_text_field") do
-        puts "#{name}_element method generated"
-        driver.text_field(identifier)
+        element = driver.instance_eval "#{nested_frames(frame_identifiers)}text_field(identifier)"
+        Druid::Elements::TextField.new(element)
       end
     end
     #
@@ -97,22 +118,21 @@ module Druid
     #   :xpath
     #
     def checkbox(name, identifier)
+      frame_identifiers = identifier.delete(:frame)
       identifier = Elements::CheckBox.identifier_for identifier
       define_method("check_#{name}") do
         puts "check_#{name} method generated"
-        driver.checkbox(identifier).set
+        driver.instance_eval "#{nested_frames(frame_identifiers)}checkbox(identifier).set"
       end
       define_method("uncheck_#{name}") do
-        puts "uncheck_#{name} method generated"
-        driver.checkbox(identifier).clear
+        driver.instance_eval "#{nested_frames(frame_identifiers)}checkbox(identifier).clear"
       end
       define_method("#{name}_checked?") do
-        puts "#{name}_checked? method generated"
-        driver.checkbox(identifier).set?
+        driver.instance_eval "checkbox(identifier).set?"
       end
       define_method("#{name}_checkbox") do
-        puts "#{name}_checkbox method generated"
-        driver.checkbox(identifier)
+        element = driver.instance_eval "checkbox(identifier)"
+        Druid::Elements::CheckBox.new(element)
       end
     end
     #
@@ -132,18 +152,16 @@ module Druid
     #   :xpath
     #
     def select_list(name, identifier)
+      frame_identifiers = identifier.delete(:frame)
       identifier = Elements::SelectList.identifier_for identifier
       define_method(name) do
-        puts "#{name} method generated"
-        driver.select_list(identifier).value
+        driver.instance_eval "#{nested_frames(frame_identifiers)}select_list(identifier).value"
       end
       define_method("#{name}=") do |value|
-        puts "#{name}= method generated"
-        driver.select_list(identifier).select value
+        driver.instance_eval "select_list(identifier).select value"
       end
       define_method("#{name}_select_list") do
-        puts "#{name}_select_list method generated"
-        element = driver.select_list(identifier)
+        element = driver.instance_eval "#{nested_frames(frame_identifiers)}select_list(identifier)"
         Druid::Elements::SelectList.new(element)
       end
     end
@@ -165,18 +183,20 @@ module Druid
     #   :xpath
     #
     def radio_button(name, identifier)
+      frame_identifiers = identifier.delete(:frame)
       identifier = Elements::RadioButton.identifier_for identifier
       define_method("select_#{name}") do
-        puts "select_#{name} method generated"
-        driver.radio(identifier).set
+        driver.instance_eval "#{nested_frames(frame_identifiers)}radio(identifier).set"
+      end
+      define_method("clear_#{name}") do
+        driver.instance_eval "#{nested_frames(frame_identifiers)}radio(identifier).clear"
       end
       define_method("#{name}_selected?") do
-        puts "#{name}_selected method generated"
-        driver.radio(identifier).set?
+        driver.instance_eval "#{nested_frames(frame_identifiers)}radio(identifier).set?"
       end
       define_method("#{name}_radio_button") do
-        puts "#{name}_radio_button method generated"
-        driver.radio(identifier)
+        element = driver.instance_eval "#{nested_frames(frame_identifiers)}radio(identifier)"
+        Druid::Elements::RadioButton.new(element)
       end
     end
     #
@@ -196,14 +216,14 @@ module Druid
     #   :xpath
     #
     def button(name, identifier)
+      frame_identifiers = identifier.delete(:frame)
       identifier = Elements::Button.identifier_for identifier
       define_method(name) do
-        puts "#{name} method generated"
-        driver.button(identifier).click
+        driver.instance_eval "#{nested_frames(frame_identifiers)}button(identifier).click"
       end
       define_method("#{name}_button") do
-        puts "#{name}_button method generated"
-        driver.button(identifier)
+        element = driver.instance_eval "#{nested_frames(frame_identifiers)}button(identifier)"
+        Druid::Elements::Button.new(element)
       end
     end
     #
@@ -219,17 +239,19 @@ module Druid
     #   :id
     #   :index
     #   :xpath
+    #   :name
+    #   :text
     #
     def div(name, identifier)
+      frame_identifiers = identifier.delete(:frame)
       identifier = add_tagname_if_needed identifier, "div"
       identifier = Elements::Div.identifier_for identifier
       define_method(name) do
-        puts "#{name} method generated"
-        driver.div(identifier).text
+        driver.instance_eval "#{nested_frames(frame_identifiers)}div(identifier).text"
       end
       define_method("#{name}_div") do
-        puts "#{name}_div method generated"
-        driver.div(identifier)
+        element = driver.instance_eval "#{nested_frames(frame_identifiers)}div(identifier)"
+        Druid::Elements::Div.new(element)
       end
     end
     #
@@ -244,13 +266,14 @@ module Druid
     #   :id
     #   :index
     #   :xpath
+    #   :name
     #
     def table(name, identifier)
+      frame_identifiers = identifier.delete(:frame)
       identifier = add_tagname_if_needed identifier, "table"
       identifier = Elements::Table.identifier_for identifier
       define_method("#{name}_table") do
-        puts "#{name}_table method generated"
-        element = driver.table(identifier)
+        element = driver.instance_eval "#{nested_frames(frame_identifiers)}table(identifier)"
         Druid::Elements::Table.new(element)
       end
     end
@@ -267,17 +290,18 @@ module Druid
     #   :id
     #   :index
     #   :xpath
+    #   :name
     #
     def cell(name, identifier)
+      frame_identifiers = identifier.delete(:frame)
       identifier = add_tagname_if_needed identifier, "td"
       identifier = Elements::TableCell.identifier_for identifier
       define_method(name) do
-        puts "#{name} method generated"
-        driver.td(identifier).text
+        driver.instance_eval "#{nested_frames(frame_identifiers)}td(identifier).text"
       end
       define_method("#{name}_cell") do
-        puts "#{name}_cell method generated"
-        driver.td(identifier)
+        element = driver.instance_eval "#{nested_frames(frame_identifiers)}td(identifier)"
+        Druid::Elements::TableCell.new(element)
       end
     end
     #
@@ -293,17 +317,18 @@ module Druid
     #   :id
     #   :index
     #   :xpath
+    #   :name
     #
     def span(name, identifier)
+      frame_identifiers = identifier.delete(:frame)
       identifier = add_tagname_if_needed identifier, "span"
       identifier = Elements::Span.identifier_for identifier
       define_method(name) do
-        puts "#{name} method generated"
-        driver.span(identifier).text
+        driver.instance_eval "#{nested_frames(frame_identifiers)}span(identifier).text"
       end
       define_method("#{name}_span") do
-        puts "#{name}_span method generated"
-        driver.span(identifier)
+        element = driver.instance_eval "#{nested_frames(frame_identifiers)}span(identifier)"
+        Druid::Elements::Span.new(element)
       end
     end
     #
@@ -321,10 +346,11 @@ module Druid
     #   :xpath
     #
     def image(name, identifier)
+      frame_identifiers = identifier.delete(:frame)
       identifier = Elements::Image.identifier_for identifier
       define_method("#{name}_image") do
-        puts "#{name}_image method generated"
-        driver.image(identifier)
+        element = driver.instance_eval "#{nested_frames(frame_identifiers)}image(identifier)"
+        Druid::Elements::Image.new(element)
       end
     end
     #
@@ -340,12 +366,14 @@ module Druid
     #   * :id
     #   * :index
     #   * :xpath
+    #   * :name
     #
     def form(name, identifier)
+      frame_identifiers = identifier.delete(:frame)
       identifier = Elements::Form.identifier_for identifier
       define_method("#{name}_form") do
-        puts "#{name}_form method generated"
-        driver.form(identifier)
+        element = driver.instance_eval "#{nested_frames(frame_identifiers)}form(identifier)"
+        Druid::Elements::Form.new(element)
       end
     end
     #
@@ -368,14 +396,14 @@ module Druid
     #   * :xpath
     #
     def hidden_field(name, identifier)
+      frame_identifiers = identifier.delete(:frame)
       identifier = Elements::HiddenField.identifier_for identifier
       define_method("#{name}_hidden_field") do
-        puts "#{name}_hidden_field method generated"
-        driver.hidden(identifier)
+        element = driver.instance_eval "#{nested_frames(frame_identifiers)}hidden(identifier)"
+        Druid::Elements::HiddenField.new(element)
       end
       define_method(name) do
-        puts "#{name} method generated"
-        driver.hidden(identifier).value
+        driver.instance_eval "#{nested_frames(frame_identifiers)}hidden(identifier).value"
       end
     end
     #
@@ -392,17 +420,18 @@ module Druid
     #   * :id
     #   * :index
     #   * :xpath
+    #   * :name
     #
     def list_item(name, identifier)
+      frame_identifiers =identifier.delete(:frame)
       identifier = add_tagname_if_needed identifier, "li"
       identifier = Elements::ListItem.identifier_for identifier
       define_method(name) do
-        puts "#{name} method generated"
-        driver.li(identifier).text
+        driver.instance_eval "#{nested_frames(frame_identifiers)}li(identifier).text"
       end
       define_method("#{name}_list_item") do
-        puts "#{name}_list_item method generated"
-        driver.li(identifier)
+        element = driver.instance_eval "#{nested_frames(frame_identifiers)}li(identifier)"
+        Druid::Elements::ListItem.new(element)
       end
     end
     #
@@ -418,13 +447,14 @@ module Druid
     #   * :id
     #   * :index
     #   * :xpath
+    #   * :name
     #
     def ordered_list(name, identifier)
+      frame_identifiers = identifier.delete(:frame)
       identifier = add_tagname_if_needed identifier, "ol"
       identifier = Elements::OrderedList.identifier_for identifier
       define_method("#{name}_ordered_list") do
-        puts "#{name}_ordered_list method generated"
-        element = driver.ol(identifier)
+        element = driver.instance_eval "#{nested_frames(frame_identifiers)}ol(identifier)"
         Druid::Elements::OrderedList.new(element)
       end
     end
@@ -448,18 +478,17 @@ module Druid
     #   * :xpath
     #
     def text_area(name, identifier)
+      frame_identifiers = identifier.delete(:frame)
       identifier = Elements::TextArea.identifier_for identifier
       define_method("#{name}=") do |value|
-        puts "#{name}= method generated"
-        driver.textarea(identifier).send_keys value
+        driver.instance_eval "#{nested_frames(frame_identifiers)}textarea(identifier).send_keys value"
       end
       define_method("#{name}") do
-        puts "#{name} method generated"
-        driver.textarea(identifier).value
+        driver.instance_eval "#{nested_frames(frame_identifiers)}textarea(identifier).value"
       end
       define_method("#{name}_text_area") do
-        puts "#{name}_text_area method generated"
-        driver.textarea(identifier)
+        element = driver.instance_eval "#{nested_frames(frame_identifiers)}textarea(identifier)"
+        Druid::Elements::TextArea.new(element)
       end
     end
     #
@@ -475,22 +504,25 @@ module Druid
     #   * :id
     #   * :index
     #   * :xpath
+    #   * :name
     #
     def unordered_list(name, identifier)
+      frame_identifiers = identifier.delete(:frame)
       identifier = add_tagname_if_needed identifier, "ul"
       identifier = Elements::UnOrderedList.identifier_for identifier
       define_method("#{name}_unordered_list") do
-        puts "#{name}_unordered_list method generated"
-        element = driver.ul(identifier)
+        element = driver.instance_eval "#{nested_frames(frame_identifiers)}ul(identifier)"
         Druid::Elements::UnOrderedList.new(element)
       end
     end
+
+    private
 
     def add_tagname_if_needed identifier, tag
       return identifier if identifier.length < 2 and not identifier[:name]
       identifier[:tag_name] = tag if identifier[:name]
       identifier
     end
-  end
 
+  end
 end

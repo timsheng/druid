@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start if ENV["COVERAGE"]
+
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '../../', 'lib'))
 
 require 'watir-webdriver'
@@ -10,5 +13,5 @@ Before do
 end
 
 After do |s|
-  @driver.close
+  @driver.quit
 end

@@ -68,6 +68,7 @@ class Page
   div(:div_class, :class => 'div_class')
   div(:div_index, :index => 0)
   div(:div_xpath, :xpath => '//div')
+  div(:div_text, :text => "page-object rocks!")
   div(:div_class_index, :class => "div_class", :index => 0)
   div(:div_name_index, :name => "div_name", :index => 0)
 
@@ -160,5 +161,11 @@ class Page
   unordered_list(:ul_class_index, :class => "ul_class", :index => 0)
   unordered_list(:ul_name_index, :name => "ul_name", :index => 0)
   unordered_list(:ul_class_name, :class => "ul_class", :name => "ul_name")
+
+  button(:alert_button, :id => "alert_button")
+  button(:confirm_button, :id => "confirm_button")
+  button(:prompt_button, :id => "prompt_button")
+
+  link(:open_window, :text => 'New Window')
 
 end

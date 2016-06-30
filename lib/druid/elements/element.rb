@@ -10,9 +10,7 @@ module Druid
         @element = element
       end
 
-      # def self.identifier_for identifier
-      #   identifier_for_element identifier, finders, mapping
-      # end
+      # @private
       def self.identifier_for identifier
         if have_to_build_xpath(identifier)
           how = :xpath
@@ -97,6 +95,11 @@ module Druid
         {}
       end
 
+      #
+      # Get the text for the element
+      #
+      # @return [String]
+      #
       def text
         element.text
       end
@@ -109,20 +112,108 @@ module Druid
         element.visible?
       end
 
+      #
+      # Get the value of this element
+      #
+      # @return [String]
+      #
       def value
         element.value
       end
 
+      #
+      # compare this element to another to determine if they are equal
+      # @return [Boolean]
+      #
+      def ==(other)
+        element == other.element
+      end
+
+      #
+      # Get the tag name of this element
+      #
+      # @return [String]
+      #
       def tag_name
         element.tag_name
       end
 
-      def attribute_value(attribute_name)
+      #
+      # Get the value of the given attribute of the element
+      # @param [String]
+      # @return [String, nil]
+      #
+      def attribute(attribute_name)
         element.attribute_value attribute_name
       end
 
+      #
+      # Click this element
+      #
       def click
         element.click
+      end
+
+      #
+      # Send keystrokes to this element
+      #
+      # @param [String, Symbol, Array]
+      #
+      # Examples:
+      #
+      #  element.send_keys "foo"                    #=> value: 'foo'
+      #  element.send_keys "tet", :arrow_left, "s"  #=> value: 'test'
+      #  element.send_keys [:control, 'a'], :space  #=> value: ' '
+      #
+      def send_keys(*args)
+        element.send_keys(*args)
+      end
+
+      #
+      # clear the contents of the element
+      #
+      def clear
+        element.clear
+      end
+
+      #
+      # Waits until the element is present
+      #
+      # @param [Integer] (default to:5) seconds to wait before timing out
+      #
+      def when_present(timeout=5)
+        element.wait_until_present(timeout)
+      end
+
+      #
+      # Waits until the element is visible
+      #
+      # @param [Interger] (default to:5) seconds to wait before timing out
+      #
+      def when_visible(timeout=5)
+        Watir::Wait.until(timeout, "Element was not visible in #{timeout} seconds") do
+          visible?
+        end
+      end
+
+      #
+      # Waits until the element is not visible
+      #
+      # @param [Integer] (default to:5) seconds to wait before timing out
+      #
+      def when_not_visible(timeout=5)
+        Watir::Wait.while(timeout, "Element still visible after #{timeout} seconds") do
+          visible?
+        end
+      end
+
+      #
+      # Waits until the block returns true
+      #
+      # @param [Integer] (default to:5) seconds to wait before timing out
+      #
+      def wait_until(timeout=5, message=nil, &block)
+        Watir::Wait.until(timeout, message, &block)
       end
     end
   end
