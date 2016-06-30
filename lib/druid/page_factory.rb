@@ -19,7 +19,7 @@ module Druid
   #   end
   #
   module PageFactory
-    attr_accessor :page
+    # attr_accessor :page
     #
     # Create and navigate to a page object.  The navigation will only work if the
     # 'page_url' method was call on the page object.
