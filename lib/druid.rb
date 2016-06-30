@@ -1,4 +1,3 @@
-
 require 'druid/accessors'
 require 'druid/page_factory'
 # require 'watir-webdriver/extensions/alerts'
@@ -187,5 +186,16 @@ module Druid
       win_id = {identifier.keys.first => identifier.values.first}
     end
     driver.window(win_id).use &block
+  end
+
+  def nested_frames(frame_identifiers)
+    return if frame_identifiers.nil?
+    frame_str = ''
+    frame_identifiers.each do |id|
+      value = id.values.first
+      frame_str += "frame(:#{id.keys.first} => #{value})." if value.to_s.is_integer
+      frame_str += "frame(:#{id.keys.first} => '#{value}')." unless value.to_s.is_integer
+    end
+    frame_str
   end
 end
