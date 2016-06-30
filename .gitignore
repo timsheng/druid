@@ -1,7 +1,6 @@
 Gemfile.lock
 coverage
 druid*.gem
-*.html
 .idea/
 pkg
 *.swp

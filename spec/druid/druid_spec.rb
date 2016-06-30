@@ -95,6 +95,11 @@ describe Druid do
         expect(driver).to receive(:use)
         druid.attach_to_window(:url => "success.html")
       end
+
+      it "should refresh the page contents" do
+        expect(driver).to receive(:refresh)
+        druid.refresh
+      end
     end
   end
 
