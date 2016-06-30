@@ -29,3 +29,42 @@ Feature: Page level actions
   Scenario: Using the visit_page methods with block
     Given I can goto baidu.com using visit_page with block
     Then the page should have the title "百度" using on_page with block
+
+  Scenario: Waiting for something
+    Given I am on the static elements page
+    Then I should be able to wait for a block to return true
+
+  Scenario: Handling alert popups
+    Given I am on the static elements page
+    When I handle the alert
+    Then I should be able to get the alert's message
+
+  Scenario: Handling confirm popups
+    Given I am on the static elements page
+    When I handle the confirm
+    Then I should be able to get the confirm's message
+
+  Scenario: Handling prompt popups
+    Given I am on the static elements page
+    When I handle the prompt
+    Then I should be able to get the message and default value
+
+  Scenario: Attach to window using title
+    Given I am on the static elements page
+    When I open a second window
+    Then I should be able to attach to page object using title
+
+  Scenario: Attach to window using url
+    Given I am on the static elements page
+    When I open a second window
+    Then I should be able to attach to page object using url
+
+  Scenario: Attach to widnow using index
+    Given I am on the static elements page
+    When I open a second window
+    Then I should be able to attach to page object using index
+
+  @dev
+  Scenario: Refreshing the page
+    Given I am on the static elements page
+    Then I should be able to refresh the page

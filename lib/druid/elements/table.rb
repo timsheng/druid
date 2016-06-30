@@ -1,7 +1,6 @@
 module Druid
   module Elements
     class Table < Element
-
       #
       # Return the Druid::Elements::Table for the index provided.  Index
       # is zero based.

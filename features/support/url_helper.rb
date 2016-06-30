@@ -12,5 +12,17 @@ module UrlHelper
     def static_elements
       "#{files}/static_elements.html"
     end
+
+    def frame_elements
+      "#{files}/frames.html"
+    end
+
+    def iframe_elements
+      "#{files}/iframes.html"
+    end
+
+    def nested_frame_elements
+      "#{files}/nested_frames.html"
+    end
   end
 end

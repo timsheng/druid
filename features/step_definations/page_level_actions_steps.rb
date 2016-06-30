@@ -46,3 +46,67 @@ Then(/^the page should have the title "(.*?)" using on_page with block$/) do |te
   #   expect(page.title).to include text
   # end
 end
+
+Then(/^I should be able to wait for a block to return true$/) do
+  @page.google_search_id
+  @page.wait_until(10, "too long to display page") do
+    @page.text.include? 'Success'
+  end
+end
+
+When(/^I handle the alert$/) do
+  @msg = @page.alert do
+    @page.alert_button
+  end
+end
+
+Then(/^I should be able to get the alert's message$/) do
+  expect(@msg).to eql "I am an alert"
+end
+
+When(/^I handle the confirm$/) do
+  @msg = @page.confirm(true) do
+    @page.confirm_button
+  end
+end
+
+Then(/^I should be able to get the confirm's message$/) do
+  expect(@msg).to eql "set the value"
+end
+
+When(/^I handle the prompt$/) do
+  @msg = @page.prompt("Tim") do
+    @page.prompt_button
+  end
+end
+
+Then(/^I should be able to get the message and default value$/) do
+  expect(@msg).to eql "enter your name"
+end
+
+When(/^I open a second window$/) do
+  @page.open_window
+end
+
+class SecondPage
+  include Druid
+end
+
+Then(/^I should be able to attach to page object using title$/) do
+  @second_page = SecondPage.new(@driver)
+  @second_page.attach_to_window(:title => "Success")
+end
+
+Then(/^I should be able to attach to page object using url$/) do
+  @second_page = SecondPage.new(@driver)
+  @second_page.attach_to_window(:url => "success.html")
+end
+
+Then(/^I should be able to attach to page object using index$/) do
+  @second_page = SecondPage.new(@driver)
+  @second_page.attach_to_window(:index => 1)
+end
+
+Then(/^I should be able to refresh the page$/) do
+  @page.refresh
+end

@@ -112,3 +112,76 @@ Feature: Elements
     And I should know its' tag name is "img"
     And I should know the attribute "readonly" is false
     And I should be able to click it
+
+  Scenario: Hidden Field element methods
+    When I retrieve the hidden field element
+    Then I should know it exists
+    And I should know it is not visible
+    And I should know its' text includes ""
+    And I should know its' value is "12345"
+    And I should know it is equal to itself
+    And I should know its' tag name is "input"
+    And I should know the attribute "readonly" is false
+
+  Scenario: Form element methods
+    When I locate the form
+    Then I should know it exists
+    And I should know it is visible
+    And I should know its' text includes ""
+    And I should know it is equal to itself
+    And I should know its' tag name is "form"
+    And I should know the attribute "readonly" is false
+    And I should know its' value is ""
+
+  Scenario: Text Area element methods
+    When I retrieve the text area
+    Then I should know it exists
+    And I should know it is visible
+    And I should know its' text includes ""
+    And I should know its' value is ""
+    And I should know it is equal to itself
+    And I should know its' tag name is "textarea"
+    And I should know the attribute "readonly" is false
+    And I should be able to click it
+
+  Scenario: List item element methods
+    When I retrieve a list item element
+    Then I should know it exists
+    And I should know it is visible
+    And I should know its' text is "Item One"
+    And I should know it is equal to itself
+    And I should know its' tag name is "li"
+    And I should know the attribute "readonly" is false
+    And I should be able to click it
+
+  Scenario: Unordered List element methods
+    When I retrieve a unordered list element
+    Then I should know it exists
+    And I should know it is visible
+    And I should know its' text includes "Item One"
+    And I should know its' text includes "Item Two"
+    And I should know its' text includes "Item Three"
+    And I should know it is equal to itself
+    And I should know its' tag name is "ul"
+    And I should know the attribute "readonly" is false
+    And I should be able to click it
+
+  Scenario: Ordered List element methods
+    When I retrieve a ordered list element
+    Then I should know it exists
+    And I should know it is visible
+    And I should know its' text includes "Number One"
+    And I should know its' text includes "Number Two"
+    And I should know its' text includes "Number Three"
+    And I should know it is equal to itself
+    And I should know its' tag name is "ol"
+    And I should know the attribute "readonly" is false
+    And I should be able to click it
+
+  @dev
+  Scenario: Clear an element
+    Given I am on the static elements page
+    When I type "abcDEF" into the text field
+    Then the text field should contain "abcDEF"
+    When I clear the text field
+    Then the text field should contain ""

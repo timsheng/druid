@@ -9,3 +9,7 @@ end
 When(/^I locate the form using "(.*?)" and "(.*?)"$/) do |param1, param2|
   @element = @page.send "form_#{param1}_#{param2}_form"
 end
+
+When(/^I locate the form$/) do
+  @element = @page.form_id_form
+end

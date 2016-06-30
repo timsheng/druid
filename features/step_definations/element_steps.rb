@@ -11,7 +11,7 @@ Then(/^I should know its' tag name is "(.*?)"$/) do |tagname|
 end
 
 Then(/^I should know the attribute "(.*?)" is false$/) do |attr_name|
-  @attr = @element.attribute_value(attr_name)
+  @attr = @element.attribute(attr_name)
   # expect(@attr.is_a? NilClass).to be true
   expect(@attr).to be_nil
 end
@@ -26,4 +26,12 @@ end
 
 Then(/^I should know its' text includes "(.*?)"$/) do |text|
   expect(@element.text).to include text
+end
+
+Then(/^I should know it is not visible$/) do
+  expect(@element).not_to be_visible
+end
+
+When(/^I clear the text field$/) do
+  @page.text_field_id_text_field.clear
 end
