@@ -34,13 +34,16 @@ module Druid
   # @return [Watir::Browser] the drvier passed to the constructor
   attr_reader :driver
   #
-  # Construct a new druid.
+  # Construct a new druid. Upon initialization of the page it will call a method named
+  # initialize_page if it exists
   #
   # @param [Watir::Browser] the driver to use
+  # @param [bool] open the page if page_url is set
   #
   def initialize(driver, visit=false)
     if driver.is_a? Watir::Browser
       @driver ||= driver
+      initialize_page if respond_to?(:initialize_page)
       goto if visit && respond_to?(:goto)
     else
       raise ArgumentError, "expect Watir::Browser"
