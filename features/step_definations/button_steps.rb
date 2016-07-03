@@ -16,7 +16,7 @@ Then(/^I should be able to click the button$/) do
 end
 
 When(/^I retrieve a button element$/) do
-  @element = @page.send "button_id_button".to_sym
+  @element = @page.send "button_id_element".to_sym
 end
 
 When(/^I search for the button by "(.*?)" and "(.*?)"$/) do |param1, param2|

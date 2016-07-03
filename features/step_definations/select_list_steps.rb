@@ -19,7 +19,7 @@ Then(/^the value for the selected item should be "(.*?)"$/) do |expected_item|
 end
 
 When(/^I retrieve a select list$/) do
-  @element = @page.select_list_id_select_list
+  @element = @page.select_list_id_element
 end
 
 When(/^I search for the select list by "(.*?)"$/) do |how|
@@ -27,7 +27,7 @@ When(/^I search for the select list by "(.*?)"$/) do |how|
 end
 
 Then(/^option "(.*?)" should contain "(.*?)"$/) do |opt_num, text|
-  @element = @page.send "select_list_#{@how}_select_list".to_sym
+  @element = @page.send "select_list_#{@how}_element".to_sym
   expect(@element[opt_num.to_i - 1].text).to eql text
 end
 

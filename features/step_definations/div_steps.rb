@@ -11,7 +11,7 @@ When(/^I locate the div by "(.*?)"$/) do |how|
 end
 
 When(/^I retrieve the div element$/) do
-  @element = @page.div_id_div
+  @element = @page.div_id_element
 end
 
 When(/^I search for the div by "(.*?)" and "(.*?)"$/) do |param1, param2|

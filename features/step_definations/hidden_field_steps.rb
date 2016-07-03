@@ -1,5 +1,5 @@
 When(/^I retrieve the hidden field element$/) do
-  @element = @page.hidden_field_id_hidden_field
+  @element = @page.hidden_field_id_element
 end
 
 Then(/^I should see the hidden field contains "(.*?)"$/) do |text|
@@ -7,7 +7,7 @@ Then(/^I should see the hidden field contains "(.*?)"$/) do |text|
 end
 
 When(/^I locate the hidden field by "(.*?)"$/) do |how|
-  @element = @page.send "hidden_field_#{how}_hidden_field".to_sym
+  @element = @page.send "hidden_field_#{how}_element".to_sym
 end
 
 Then(/^hidden field element should contains "(.*?)"$/) do |text|
@@ -15,5 +15,5 @@ Then(/^hidden field element should contains "(.*?)"$/) do |text|
 end
 
 When(/^I search for the hidden field by "(.*?)" and "(.*?)"$/) do |param1, param2|
-  @element = @page.send "hidden_field_#{param1}_#{param2}_hidden_field".to_sym
+  @element = @page.send "hidden_field_#{param1}_#{param2}_element".to_sym
 end

@@ -7,7 +7,7 @@ When(/^I locate the span by "(.*?)"$/) do |how|
 end
 
 When(/^I retrieve a span element$/) do
-  @element = @page.span_id_span
+  @element = @page.span_id_element
 end
 
 When(/^I search for the span by "(.*?)" and "(.*?)"$/) do |param1, param2|
