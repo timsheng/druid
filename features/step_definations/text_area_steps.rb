@@ -7,7 +7,7 @@ Then(/^the text area should contain "(.*?)"$/) do |text|
 end
 
 When(/^I locate the text area by "(.*?)"$/) do |how|
-  @element = @page.send "text_area_#{how}_text_area".to_sym
+  @element = @page.send "text_area_#{how}_element".to_sym
 end
 
 Then(/^I should be able to type "(.*?)" into the area$/) do |text|
@@ -15,9 +15,9 @@ Then(/^I should be able to type "(.*?)" into the area$/) do |text|
 end
 
 When(/^I search for the text area by "(.*?)" and "(.*?)"$/) do |param1, param2|
-  @element = @page.send "text_area_#{param1}_#{param2}_text_area".to_sym
+  @element = @page.send "text_area_#{param1}_#{param2}_element".to_sym
 end
 
 When(/^I retrieve the text area$/) do
-  @element = @page.text_area_id_text_area
+  @element = @page.text_area_id_element
 end

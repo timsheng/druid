@@ -33,5 +33,5 @@ Then(/^I should know it is not visible$/) do
 end
 
 When(/^I clear the text field$/) do
-  @page.text_field_id_text_field.clear
+  @page.text_field_id_element.clear
 end

@@ -54,7 +54,7 @@ describe Druid::Accessors do
         expect(druid).to respond_to :check_active
         expect(druid).to respond_to :uncheck_active
         expect(druid).to respond_to :active_checked?
-        expect(druid).to respond_to :active_checkbox
+        expect(druid).to respond_to :active_element
       end
     end
 
@@ -76,7 +76,7 @@ describe Druid::Accessors do
 
       it "should retreive a check box element" do
         expect(driver).to receive(:checkbox)
-        expect(druid.active_checkbox).to be_instance_of Druid::Elements::CheckBox
+        expect(druid.active_element).to be_instance_of Druid::Elements::CheckBox
       end
     end
   end
@@ -87,7 +87,7 @@ describe Druid::Accessors do
       it "should generate accessor methods" do
         expect(druid).to respond_to(:google_search)
         expect(druid).to respond_to(:google_search_no_wait)
-        expect(druid).to respond_to(:google_search_link)
+        expect(druid).to respond_to(:google_search_element)
       end
     end
 
@@ -104,7 +104,7 @@ describe Druid::Accessors do
 
       it "should retreive a link element" do
         expect(driver).to receive(:link)
-        expect(druid.google_search_link).to be_instance_of Druid::Elements::Link
+        expect(druid.google_search_element).to be_instance_of Druid::Elements::Link
       end
     end
   end
@@ -115,7 +115,7 @@ describe Druid::Accessors do
       it "should generate accessor methods" do
         expect(druid).to respond_to :state
         expect(druid).to respond_to :state=
-        expect(druid).to respond_to :state_select_list
+        expect(druid).to respond_to :state_element
       end
     end
 
@@ -133,7 +133,7 @@ describe Druid::Accessors do
 
       it "should retreive a select list element" do
         expect(driver).to receive(:select_list)
-        expect(druid.state_select_list).to be_instance_of Druid::Elements::SelectList
+        expect(druid.state_element).to be_instance_of Druid::Elements::SelectList
       end
     end
   end
@@ -144,7 +144,7 @@ describe Druid::Accessors do
       it "should generate accessor methods" do
         expect(druid).to respond_to(:first_name)
         expect(druid).to respond_to(:first_name=)
-        expect(druid).to respond_to(:first_name_text_field)
+        expect(druid).to respond_to(:first_name_element)
       end
     end
 
@@ -161,7 +161,7 @@ describe Druid::Accessors do
 
       it "should retreive text field element" do
         expect(driver).to receive(:text_field)
-        expect(druid.first_name_text_field).to be_instance_of Druid::Elements::TextField
+        expect(druid.first_name_element).to be_instance_of Druid::Elements::TextField
       end
     end
   end
@@ -170,7 +170,7 @@ describe Druid::Accessors do
     context "when called on a page object" do
       it "should generate accessor methods" do
         expect(druid).to respond_to :click_me
-        expect(druid).to respond_to :click_me_button
+        expect(druid).to respond_to :click_me_element
       end
     end
 
@@ -182,7 +182,7 @@ describe Druid::Accessors do
 
       it "should retreive a button element" do
         expect(driver).to receive(:button)
-        expect(druid.click_me_button).to be_instance_of Druid::Elements::Button
+        expect(druid.click_me_element).to be_instance_of Druid::Elements::Button
       end
     end
   end
@@ -190,7 +190,7 @@ describe Druid::Accessors do
   describe "radio accessors" do
     context "when called on a page object" do
       it "should generate accessor methods" do
-        expect(druid).to respond_to :first_radio_button
+        expect(druid).to respond_to :first_element
         expect(druid).to respond_to :select_first
         expect(druid).to respond_to :first_selected?
         expect(druid).to respond_to :clear_first
@@ -215,7 +215,7 @@ describe Druid::Accessors do
 
       it "should retreive a radio button element" do
         expect(driver).to receive(:radio)
-        expect(druid.first_radio_button).to be_instance_of Druid::Elements::RadioButton
+        expect(druid.first_element).to be_instance_of Druid::Elements::RadioButton
       end
     end
   end
@@ -224,7 +224,7 @@ describe Druid::Accessors do
     context "when called on a page object" do
       it "should generate accessor methods" do
         expect(druid).to respond_to :message
-        expect(druid).to respond_to :message_div
+        expect(druid).to respond_to :message_element
       end
     end
 
@@ -236,7 +236,7 @@ describe Druid::Accessors do
 
       it "should retreive a div element" do
         expect(driver).to receive(:div)
-        expect(druid.message_div).to be_instance_of Druid::Elements::Div
+        expect(druid.message_element).to be_instance_of Druid::Elements::Div
       end
     end
   end
@@ -244,14 +244,14 @@ describe Druid::Accessors do
   describe "table accessors" do
     context "when called on a page object" do
       it "should generate accessor methods" do
-        expect(druid).to respond_to :cart_table
+        expect(druid).to respond_to :cart_element
       end
     end
 
     context "implementation" do
       it "should retrieve the table element from the page" do
         expect(driver).to receive(:table)
-        expect(druid.cart_table).to be_instance_of Druid::Elements::Table
+        expect(druid.cart_element).to be_instance_of Druid::Elements::Table
       end
     end
   end
@@ -260,7 +260,7 @@ describe Druid::Accessors do
     context "when called on a page object" do
       it "should generate accessor methods" do
         expect(druid).to respond_to :total
-        expect(druid).to respond_to :total_cell
+        expect(druid).to respond_to :total_element
       end
     end
 
@@ -272,7 +272,7 @@ describe Druid::Accessors do
 
       it "should retrieve the cell element from the page" do
         expect(driver).to receive(:td)
-        expect(druid.total_cell).to be_instance_of Druid::Elements::TableCell
+        expect(druid.total_element).to be_instance_of Druid::Elements::TableCell
       end
     end
   end
@@ -281,7 +281,7 @@ describe Druid::Accessors do
     context "when called on a page object" do
       it "should generate accessor methods" do
         expect(druid).to respond_to :alert
-        expect(druid).to respond_to :alert_span
+        expect(druid).to respond_to :alert_element
       end
     end
 
@@ -293,7 +293,7 @@ describe Druid::Accessors do
 
       it "should retrieve the span element from the page" do
         expect(driver).to receive(:span)
-        expect(druid.alert_span).to be_instance_of Druid::Elements::Span
+        expect(druid.alert_element).to be_instance_of Druid::Elements::Span
       end
     end
   end
@@ -301,14 +301,14 @@ describe Druid::Accessors do
   describe "image accessors" do
     context "when called on a page object" do
       it "should generate accessor methods" do
-        expect(druid).to respond_to :logo_image
+        expect(druid).to respond_to :logo_element
       end
     end
 
     context "implementation" do
       it "should retrieve the image element from the page" do
         expect(driver).to receive(:image)
-        expect(druid.logo_image).to be_instance_of Druid::Elements::Image
+        expect(druid.logo_element).to be_instance_of Druid::Elements::Image
       end
     end
   end
@@ -317,7 +317,7 @@ describe Druid::Accessors do
     context "when called on a page object" do
       it "should generate accessor methods" do
         expect(druid).to respond_to :social_security_number
-        expect(druid).to respond_to :social_security_number_hidden_field
+        expect(druid).to respond_to :social_security_number_element
       end
     end
 
@@ -329,7 +329,7 @@ describe Druid::Accessors do
 
       it "should retrieve a hidden field element" do
         expect(driver).to receive(:hidden)
-        expect(druid.social_security_number_hidden_field).to be_instance_of Druid::Elements::HiddenField
+        expect(druid.social_security_number_element).to be_instance_of Druid::Elements::HiddenField
       end
     end
   end
@@ -337,14 +337,14 @@ describe Druid::Accessors do
   describe "form accessors" do
     context "when called on a page object" do
       it "should generate accessor methods" do
-        expect(druid).to respond_to :login_form
+        expect(druid).to respond_to :login_element
       end
     end
 
     context "implementation" do
       it "should retrieve the form element from the page" do
         expect(driver).to receive(:form)
-        expect(druid.login_form).to be_instance_of Druid::Elements::Form
+        expect(druid.login_element).to be_instance_of Druid::Elements::Form
       end
     end
   end
@@ -354,7 +354,7 @@ describe Druid::Accessors do
       it "should generate accessor methods" do
         expect(druid).to respond_to :address
         expect(druid).to respond_to :address=
-        expect(druid).to respond_to :address_text_area
+        expect(druid).to respond_to :address_element
       end
     end
 
@@ -371,7 +371,7 @@ describe Druid::Accessors do
 
       it "should retrieve a text area element" do
         expect(driver).to receive(:textarea)
-        expect(druid.address_text_area).to be_instance_of Druid::Elements::TextArea
+        expect(druid.address_element).to be_instance_of Druid::Elements::TextArea
       end
     end
   end
@@ -380,7 +380,7 @@ describe Druid::Accessors do
     context "when called on a page object" do
       it "should generate accessor methods" do
         expect(druid).to respond_to :item_one
-        expect(druid).to respond_to :item_one_list_item
+        expect(druid).to respond_to :item_one_element
       end
     end
 
@@ -392,7 +392,7 @@ describe Druid::Accessors do
 
       it "should retrieve the list item element from the page" do
         expect(driver).to receive(:li)
-        expect(druid.item_one_list_item).to be_instance_of Druid::Elements::ListItem
+        expect(druid.item_one_element).to be_instance_of Druid::Elements::ListItem
       end
     end
   end
@@ -400,14 +400,14 @@ describe Druid::Accessors do
   describe "unordered list accessors" do
     context "when called on a page object" do
       it "should generate accessor methods" do
-        expect(druid).to respond_to :menu_unordered_list
+        expect(druid).to respond_to :menu_element
       end
     end
 
     context "implementation" do
       it "should retrieve the element from the page" do
         expect(driver).to receive(:ul)
-        expect(druid.menu_unordered_list).to be_instance_of Druid::Elements::UnOrderedList
+        expect(druid.menu_element).to be_instance_of Druid::Elements::UnOrderedList
       end
     end
   end
@@ -415,14 +415,14 @@ describe Druid::Accessors do
   describe "ordered list accessors" do
     context "when called on a page object" do
       it "should generate accessor methods" do
-        expect(druid).to respond_to :top_five_ordered_list
+        expect(druid).to respond_to :top_five_element
       end
     end
 
     context "implementation" do
       it "should retrieve the element from the page" do
         expect(driver).to receive(:ol)
-        expect(druid.top_five_ordered_list).to be_instance_of Druid::Elements::OrderedList
+        expect(druid.top_five_element).to be_instance_of Druid::Elements::OrderedList
       end
     end
   end

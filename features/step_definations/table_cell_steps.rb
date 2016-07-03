@@ -11,7 +11,7 @@ When(/^I locate the table cell by "(.*?)"$/) do |how|
 end
 
 When(/^I retrieve table cell$/) do
-  @element = @page.cell_id_cell
+  @element = @page.cell_id_element
 end
 
 When(/^I retrieve a table cell element by "(.*?)" and "(.*?)"$/) do |param1, param2|

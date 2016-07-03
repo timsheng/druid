@@ -1,5 +1,5 @@
 When(/^I select the link labeled "(.*?)"$/) do |text|
-  @page.google_search_id_link
+  @page.google_search_id_element
   @page.google_search_id
 end
 
@@ -8,12 +8,12 @@ When(/^I locate the link by "(.*?)"$/) do |how|
 end
 
 Then(/^I should be able to select the link$/) do
-  @page.send "google_search_#{@how}_link".to_sym
+  @page.send "google_search_#{@how}_element".to_sym
   @page.send "google_search_#{@how}".to_sym
 end
 
 When(/^I retrieve a link element$/) do
-  @element = @page.google_search_id_link
+  @element = @page.google_search_id_element
 end
 
 Then(/^I should know it exists$/) do
