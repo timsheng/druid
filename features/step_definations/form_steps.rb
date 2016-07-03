@@ -11,5 +11,5 @@ When(/^I locate the form using "(.*?)" and "(.*?)"$/) do |param1, param2|
 end
 
 When(/^I locate the form$/) do
-  @element = @page.form_id_form
+  @element = @page.form_id_element
 end
