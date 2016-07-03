@@ -100,6 +100,28 @@ describe Druid do
         expect(driver).to receive(:refresh)
         druid.refresh
       end
+
+      it "should try a second time after sleeping when attach to window fails" do
+        expect(driver).to receive(:window).once.and_return(driver)
+        expect(driver).to receive(:use).once.and_throw "error"
+        expect(driver).to receive(:window).and_return(driver)
+        expect(driver).to receive(:use)
+        druid.attach_to_window(:value => 'tim')
+      end
+
+      it "should call intialize_page if it exists" do
+        class CallbackPage
+          include Druid
+          attr_reader :initialize_page
+
+          def initialize_page
+            @initialize_page = true
+          end
+        end
+
+        page = CallbackPage.new(driver)
+        expect(page.initialize_page).to be true
+      end
     end
   end
 

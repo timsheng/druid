@@ -15,7 +15,7 @@ Then(/^I should be able to type "(.*?)" into the field$/) do |value|
 end
 
 When(/^I retrieve a text field$/) do
-  @element = @page.text_field_id_text_field
+  @element = @page.text_field_id_element
 end
 
 When(/^I search for the text field by "(.*?)" and "(.*?)"$/) do |param1, param2|

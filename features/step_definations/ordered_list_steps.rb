@@ -1,5 +1,5 @@
 When(/^I get the first item from the ordered list$/) do
-  @element = @page.ol_id_ordered_list[0]
+  @element = @page.ol_id_element[0]
 end
 
 Then(/^the list item's text should be "(.*?)"$/) do |text|
@@ -7,7 +7,7 @@ Then(/^the list item's text should be "(.*?)"$/) do |text|
 end
 
 When(/^I locate the ordered list by "(.*?)"$/) do |how|
-  @list = @page.send "ol_#{how}_ordered_list"
+  @list = @page.send "ol_#{how}_element"
 end
 
 When(/^I get the first item from the list$/) do
@@ -25,7 +25,7 @@ Then(/^each item should contain "(.*?)"$/) do |text|
 end
 
 When(/^I search for the ordered list by "(.*?)" and "(.*?)"$/) do |param1, param2|
-  @list = @page.send "ol_#{param1}_#{param2}_ordered_list"
+  @list = @page.send "ol_#{param1}_#{param2}_element"
 end
 
 Then(/^the list items text should be "(.*?)"$/) do |expected_text|
@@ -33,5 +33,5 @@ Then(/^the list items text should be "(.*?)"$/) do |expected_text|
 end
 
 When(/^I retrieve a ordered list element$/) do
-  @element = @page.ol_id_ordered_list
+  @element = @page.ol_id_element
 end
