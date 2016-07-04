@@ -4,6 +4,13 @@ describe Druid::Elements::Element do
   let(:we) { double('we') }
   let(:element) { Druid::Elements::Element.new(we) }
 
+  context "when handling unknown requests" do
+    it "should delegate to the driver element" do
+      expect(we).to receive(:do_this)
+      element.do_this 
+    end
+  end
+
   context "when building the identifiers" do
     it "should build xpath when finding elements by name were not supported" do
       ['table', 'span', 'div', 'td', 'li', 'ol', 'ul'].each do |tag|
