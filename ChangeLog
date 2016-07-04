@@ -2,6 +2,7 @@
 * Enhancements
   * Will call callback method #initialize_page method if it exists on a page object
   * Renamed all *_<element_type> methods to *_element. Created alias for backward compatibility
+  * Delegating unknown method calls on Element to the driver element object
 
 === 2016-06-30
 * Enhancements

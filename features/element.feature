@@ -3,6 +3,7 @@ Feature: Elements
   Background:
     Given I am on the static elements page
 
+  @dev
   Scenario: Link element methods
     When I retrieve a link element
     Then I should know it exists
@@ -178,7 +179,6 @@ Feature: Elements
     And I should know the attribute "readonly" is false
     And I should be able to click it
 
-  @dev
   Scenario: Clear an element
     Given I am on the static elements page
     When I type "abcDEF" into the text field
