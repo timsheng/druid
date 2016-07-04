@@ -240,6 +240,7 @@ module Druid
     #   :xpath
     #   :name
     #   :text
+    #   :value
     #
     def div(name, identifier)
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::Div, 'div')
@@ -315,6 +316,7 @@ module Druid
     #   :index
     #   :xpath
     #   :name
+    #   :text
     #
     def span(name, identifier)
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::Span, 'span')
