@@ -1,3 +1,6 @@
+=== 2016-07-04
+* Enhancements
+  * Can now find span by :text
 === 2016-07-03
 * Enhancements
   * Will call callback method #initialize_page method if it exists on a page object
