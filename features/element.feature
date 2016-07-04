@@ -178,7 +178,6 @@ Feature: Elements
     And I should know the attribute "readonly" is false
     And I should be able to click it
 
-  @dev
   Scenario: Clear an element
     Given I am on the static elements page
     When I type "abcDEF" into the text field
