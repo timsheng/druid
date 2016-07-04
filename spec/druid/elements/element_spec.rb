@@ -7,7 +7,7 @@ describe Druid::Elements::Element do
   context "when handling unknown requests" do
     it "should delegate to the driver element" do
       expect(we).to receive(:do_this)
-      element.do_this 
+      element.do_this
     end
   end
 
@@ -100,6 +100,16 @@ describe Druid::Elements::Element do
     it "should clear its' contents" do
       expect(we).to receive(:clear)
       element.clear
+    end
+
+    it "should be double clickable" do
+      expect(we).to receive(:double_click)
+      element.double_click
+    end
+
+    it "should be right clickable" do
+      expect(we).to receive(:right_click)
+      element.right_click
     end
   end
 end
