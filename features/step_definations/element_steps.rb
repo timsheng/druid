@@ -17,8 +17,7 @@ Then(/^I should know the attribute "(.*?)" is false$/) do |attr_name|
 end
 
 Then(/^I should be able to click it$/) do
-  # @element.click
-  @element.ccc
+  @element.click
 end
 
 Then(/^I should know its' value is "(.*?)"$/) do |value|
