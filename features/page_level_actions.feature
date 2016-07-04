@@ -64,7 +64,16 @@ Feature: Page level actions
     When I open a second window
     Then I should be able to attach to page object using index
 
-  @dev
   Scenario: Refreshing the page
     Given I am on the static elements page
     Then I should be able to refresh the page
+
+  @dev
+  Scenario: Going back and forward
+    Given I am on the static elements page
+    When I select the link labeled "Google Search"
+    Then the page should contain the text "Success"
+    When I press the back button
+    Then the page should contain the text "Static Elements Page"
+    When I press the forward button
+    Then the page should contain the text "Success"

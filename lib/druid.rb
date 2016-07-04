@@ -91,6 +91,20 @@ module Druid
   def refresh
     driver.refresh
   end
+
+  #
+  # Go back to the previous page
+  #
+  def back
+    driver.back
+  end
+
+  #
+  # Go forward to the next page
+  #
+  def forward
+    driver.forward
+  end
   #
   # Wait until the block returns true or times out
   #
