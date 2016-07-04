@@ -3,7 +3,6 @@ Feature: Elements
   Background:
     Given I am on the static elements page
 
-  @dev
   Scenario: Link element methods
     When I retrieve a link element
     Then I should know it exists
