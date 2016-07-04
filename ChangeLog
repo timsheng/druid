@@ -1,6 +1,7 @@
 === 2016-07-04
 * Enhancements
   * Can now find span by :text
+  * Can now find button by :value
 === 2016-07-03
 * Enhancements
   * Will call callback method #initialize_page method if it exists on a page object

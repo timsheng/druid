@@ -3,7 +3,7 @@ module Druid
     class Button < Element
 
       def self.finders
-        super + [:text]
+        super + [:value, :text]
       end
 
     end

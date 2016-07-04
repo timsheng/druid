@@ -9,6 +9,7 @@ Feature: Button
     When I click the button
     Then I should be on the success page
 
+  @name
   Scenario Outline: Locating buttons on the page
     When I locate the button by "<locate_by>"
     Then I should be able to click the button
@@ -21,6 +22,7 @@ Feature: Button
     | xpath     |
     | index     |
     | text      |
+    | value     |
 
   Scenario: Retrieve a button element
     When I retrieve a button element
