@@ -110,3 +110,11 @@ end
 Then(/^I should be able to refresh the page$/) do
   @page.refresh
 end
+
+When(/^I press the back button$/) do
+  @page.back
+end
+
+When(/^I press the forward button$/) do
+  @page.forward
+end

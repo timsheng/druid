@@ -101,6 +101,16 @@ describe Druid do
         druid.refresh
       end
 
+      it "should know how to go back" do
+        expect(driver).to receive(:back)
+        druid.back
+      end
+
+      it "should know how to go forward" do
+        expect(driver).to receive(:forward)
+        druid.forward
+      end
+
       it "should try a second time after sleeping when attach to window fails" do
         expect(driver).to receive(:window).once.and_return(driver)
         expect(driver).to receive(:use).once.and_throw "error"
@@ -122,6 +132,7 @@ describe Druid do
         page = CallbackPage.new(driver)
         expect(page.initialize_page).to be true
       end
+
     end
   end
 
