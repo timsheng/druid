@@ -1,6 +1,9 @@
 === 2016-07-05
 * Enhancements
-  * Added #value= to TextField
+  * Added #value= to TextField and TextArea
+  * Added #select to SelectList
+  * Added #check, #uncheck, and #checked? to CheckBox
+  * Added #select, #clear, and #selected? to RadioButton
 === 2016-07-04
 * Enhancements
   * Can now find span by :text

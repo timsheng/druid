@@ -15,4 +15,13 @@ describe Druid::Elements::TextArea do
       expect(identifier.keys.first).to eql :tag_name
     end
   end
+
+  describe "interface" do
+    let(:element) { double("element") }
+    let(:text_area) { Druid::Elements::TextArea.new(element) }
+    it "should set its' value" do
+      expect(element).to receive(:set).with('test')
+      text_area.value = 'test'
+    end
+  end
 end
