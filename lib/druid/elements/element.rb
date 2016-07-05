@@ -177,6 +177,20 @@ module Druid
       end
 
       #
+      # double click this element
+      #
+      def double_click
+        element.double_click
+      end
+
+      #
+      # right click this element
+      #
+      def right_click
+        element.right_click
+      end
+
+      #
       # Waits until the element is present
       #
       # @param [Integer] (default to:5) seconds to wait before timing out

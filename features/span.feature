@@ -19,7 +19,7 @@ Feature: Span
     | xpath     |
     | index     |
     | name      |
-
+    | text      |
   Scenario: Retrieve a Span
     When I retrieve a span element
     Then I should know it exists
