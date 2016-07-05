@@ -24,5 +24,10 @@ describe Druid::Elements::SelectList do
       expect(element).to receive(:options).and_return(['val1','val2'])
       expect(select_list.options).to eql ['val1','val2']
     end
+
+    it "should select an element" do
+      expect(element).to receive(:select).with('test')
+      select_list.select('test')
+    end
   end
 end
