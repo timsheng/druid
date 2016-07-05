@@ -10,4 +10,24 @@ describe Druid::Elements::RadioButton do
       end
     end
   end
+
+  describe "interface" do
+    let(:element) { double("element") }
+    let(:radio) { Druid::Elements::RadioButton.new(element)}
+
+    it "should select" do
+      expect(element).to receive(:set)
+      radio.select
+    end
+
+    it "should clear" do
+      expect(element).to receive(:clear)
+      radio.clear
+    end
+
+    it "should know if it is selected" do
+      expect(element).to receive(:set?)
+      radio.selected?
+    end
+  end
 end

@@ -10,4 +10,24 @@ describe Druid::Elements::CheckBox do
       end
     end
   end
+
+  describe "interface" do
+    let(:element) { double 'element' }
+    let(:checkbox) { Druid::Elements::CheckBox.new(element) }
+
+    it "should check" do
+      expect(element).to receive(:set)
+      checkbox.check
+    end
+
+    it "should uncheck" do
+      expect(element).to receive(:clear)
+      checkbox.uncheck
+    end
+
+    it "should know if it is checked" do
+      expect(element).to receive(:set?)
+      checkbox.checked?
+    end
+  end
 end

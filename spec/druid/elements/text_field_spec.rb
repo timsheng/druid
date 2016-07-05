@@ -17,7 +17,7 @@ describe Druid::Elements::TextField do
 
     it "should set its' value" do
       expect(element).to receive(:set).with('test')
-      text_field.set('test')
+      text_field.value = 'test'
     end
   end
 end

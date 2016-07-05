@@ -13,6 +13,13 @@ module Druid
       def options
         element.options
       end
+
+      #
+      # Select a value from the list
+      #
+      def select(value)
+        element.select(value)
+      end
     end
   end
 end
