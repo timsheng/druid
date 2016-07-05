@@ -6,6 +6,12 @@ module Druid
         super + [:css, :tag_name, :text]
       end
 
+      #
+      # Set the value of the TextField
+      #
+      def value=(new_value)
+        element.set(new_value)
+      end
     end
   end
 end
