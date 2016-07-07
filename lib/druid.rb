@@ -1,4 +1,5 @@
 require 'druid/accessors'
+require 'druid/assist'
 require 'druid/page_factory'
 # require 'watir-webdriver/extensions/alerts'
 #
@@ -30,6 +31,7 @@ require 'druid/page_factory'
 # @see Druid::Accessors to see what class level methods are added to this module at runtime.
 #
 module Druid
+  include Assist
   # include Watir::AlertHelper
   # @return [Watir::Browser] the drvier passed to the constructor
   attr_reader :driver
