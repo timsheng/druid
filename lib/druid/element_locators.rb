@@ -122,5 +122,20 @@ module Druid
     def checkbox_element identifier
       checkbox_for identifier
     end
+
+    #
+    # Finds a radio button
+    #
+    # @param [Hash] identifier how we find a radio button. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def radio_button_element identifier
+      radio_button_for identifier
+    end
   end
 end
