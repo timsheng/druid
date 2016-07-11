@@ -37,3 +37,8 @@ Feature: Links
     Given I am on the static elements page
     When I select a link labeled "Hello" and index "1"
     Then the page should contain the text "Success"
+
+  @locator
+  Scenario: Finding a link dynamically
+    When I select a link while the script is executing
+    Then the page should contain the text "Success"

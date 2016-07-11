@@ -6,6 +6,7 @@
   * #hidden_field_element
   * #text_area_element
   * #select_list_element
+  * #link_element
 === 2016-07-05
 * Enhancements
   * Added #value= to TextField and TextArea
