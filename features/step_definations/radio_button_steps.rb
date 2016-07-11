@@ -21,3 +21,7 @@ end
 When(/^I search for the radio button by "(.*?)" and "(.*?)"$/) do |param1, param2|
   @how = "#{param1}_#{param2}"
 end
+
+When(/^I select the radio button while the script is executing$/) do
+  @page.radio_button_element(:id => "milk_id").select
+end

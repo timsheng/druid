@@ -30,3 +30,8 @@ Feature: Text Area
     | param1  | param2  |
     | class   | index   |
     | name    | index   |
+
+  @locator
+  Scenario: Finding a text area dynamically
+    When I find a text area while the script is executing
+    Then I should be able to type "I found it" into the area element

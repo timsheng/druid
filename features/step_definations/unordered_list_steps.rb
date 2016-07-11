@@ -13,3 +13,7 @@ end
 When(/^I retrieve a unordered list element$/) do
   @element = @page.ul_id_element
 end
+
+When(/^I search for the unordered list while the script is executing$/) do
+  @list = @page.unordered_list_element(:id => 'ul_id')
+end

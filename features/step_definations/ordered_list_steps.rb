@@ -35,3 +35,7 @@ end
 When(/^I retrieve a ordered list element$/) do
   @element = @page.ol_id_element
 end
+
+When(/^I search for the ordered list while the script is executing$/) do
+  @list = @page.ordered_list_element(:id => 'ol_id')
+end

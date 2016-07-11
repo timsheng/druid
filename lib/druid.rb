@@ -2,6 +2,7 @@ require 'druid/accessors'
 require 'druid/assist'
 require 'druid/page_factory'
 require 'druid/core_ext/string'
+require 'druid/element_locators'
 
 # require 'watir-webdriver/extensions/alerts'
 #
@@ -34,6 +35,7 @@ require 'druid/core_ext/string'
 #
 module Druid
   include Assist
+  include ElementLocators
   # include Watir::AlertHelper
   # @return [Watir::Browser] the drvier passed to the constructor
   attr_reader :driver

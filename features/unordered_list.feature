@@ -34,3 +34,9 @@ Feature: Unordered list
     | class   | index   |
     | name    | index   |
     | class   | name    |
+
+  @locator
+  Scenario: Finding a unordered list dynamically
+    When I search for the unordered list while the script is executing
+    And I get the first item from the list
+    Then the list items text should be "Item One"

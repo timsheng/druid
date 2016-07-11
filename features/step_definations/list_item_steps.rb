@@ -14,3 +14,7 @@ end
 When(/^I retrieve a list item element$/) do
   @element = @page.li_id_element
 end
+
+When(/^I search for the list item while the script is executing$/) do
+  @text = @page.list_item_element(:id => 'li_id').text
+end
