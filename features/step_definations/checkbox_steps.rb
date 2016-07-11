@@ -29,3 +29,7 @@ end
 When(/^I search for the check box by "(.*?)" and "(.*?)"$/) do |param1, param2|
   @how = "#{param1}_#{param2}"
 end
+
+When(/^I select the first check box while the script is executing$/) do
+  @page.checkbox_element(:id => "cb_id").check
+end

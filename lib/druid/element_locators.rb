@@ -107,5 +107,20 @@ module Druid
     def link_element identifier
       link_for identifier
     end
+
+    #
+    # Finds a check box
+    #
+    # @param [Hash] identifier how we find a check box. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def checkbox_element identifier
+      checkbox_for identifier
+    end
   end
 end

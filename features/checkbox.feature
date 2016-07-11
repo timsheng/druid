@@ -5,7 +5,7 @@ Feature: Check Box
   Background:
     Given I am on the static elements page
 
-  Scenario: Selecting an element on the checkbox
+  Scenario: Selecting a checkbox
     When I select the First check box
     Then the First check box should be selected
     When I unselect the First check box
@@ -37,3 +37,8 @@ Feature: Check Box
     | param1  | param2  |
     | class   | index   |
     | name    | index   |
+
+  @locator
+  Scenario: Finding a check box dynamically
+    When I select the first check box while the script is executing
+    Then the First check box should be selected
