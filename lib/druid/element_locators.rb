@@ -71,5 +71,22 @@ module Druid
     def text_area_element identifier
       text_area_for identifier
     end
+
+    #
+    # Finds a select list
+    #
+    # @param [Hash] identifier how we find a select list. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #   * :value
+    #   * :text
+    #
+    def select_list_element identifier
+      select_list_for identifier
+    end
   end
 end

@@ -37,7 +37,7 @@ Feature: Select List
     And each option should contain "Test"
 
   @multi
-  Scenario Outline: Locating a hidden field using multiple parameters
+  Scenario Outline: Locating a select list using multiple parameters
     When I search for the select list bys "<param1>" and "<param2>"
     Then I should be able to select "Test 2"
     And the value for the selected item should be "option2"
@@ -46,3 +46,8 @@ Feature: Select List
     | param1  | param2  |
     | class   | index   |
     | name    | index   |
+
+  @locator
+  Scenario: Finding a select list dynamically
+    When I find a select list while the script is executing
+    Then I should be able to select "Test 2" from the list

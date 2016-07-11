@@ -31,4 +31,10 @@ describe Druid::ElementLocators do
     element = page.text_area_element(:id => "blah")
     expect(element).to be_instance_of Druid::Elements::TextArea
   end
+
+  it "should find a select list element" do
+    expect(driver).to receive(:select_list).with(:id => 'blah').and_return(driver)
+    element = page.select_list_element(:id => "blah")
+    expect(element).to be_instance_of Druid::Elements::SelectList
+  end
 end
