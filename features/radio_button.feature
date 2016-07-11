@@ -40,3 +40,8 @@ Feature: Radio Buttons
     | param1  | param2  |
     | class   | index   |
     | name    | index   |
+
+  @locator
+  Scenario: Finding a radio button dynamically
+    When I select the radio button while the script is executing
+    Then the "Milk" radio button should be selected
