@@ -1,5 +1,8 @@
 require 'druid/accessors'
+require 'druid/assist'
 require 'druid/page_factory'
+require 'druid/core_ext/string'
+
 # require 'watir-webdriver/extensions/alerts'
 #
 # Module that when included adds functionality to a page object.  This module
@@ -30,6 +33,7 @@ require 'druid/page_factory'
 # @see Druid::Accessors to see what class level methods are added to this module at runtime.
 #
 module Druid
+  include Assist
   # include Watir::AlertHelper
   # @return [Watir::Browser] the drvier passed to the constructor
   attr_reader :driver
@@ -212,14 +216,4 @@ module Druid
     end
   end
 
-  def nested_frames(frame_identifiers)
-    return if frame_identifiers.nil?
-    frame_str = ''
-    frame_identifiers.each do |id|
-      value = id.values.first
-      frame_str += "frame(:#{id.keys.first} => #{value})." if value.to_s.is_integer
-      frame_str += "frame(:#{id.keys.first} => '#{value}')." unless value.to_s.is_integer
-    end
-    frame_str
-  end
 end

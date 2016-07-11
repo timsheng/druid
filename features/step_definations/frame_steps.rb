@@ -12,7 +12,7 @@ class FramePage
   in_frame(:index => 1) do |frame|
     text_field(:text_field_2_index, :name => 'recieverElement', :frame => frame)
   end
-
+  
   in_frame(:id => "frame_1") do |frame|
     text_field(:text_field_1_id, :name => 'senderElement', :frame => frame)
   end
@@ -37,6 +37,7 @@ When(/^I type "(.*?)" into the text field for frame 2 using "(.*?)"$/) do |text,
 end
 
 Then(/^I should verify "(.*?)" is in the text field for frame 2 using "(.*?)"$/) do |text, arg_type|
+  puts 111
   result = @page.send "text_field_2_#{arg_type}".to_sym
   expect(result).to eql text
 end
