@@ -17,3 +17,7 @@ end
 When(/^I search for the hidden field by "(.*?)" and "(.*?)"$/) do |param1, param2|
   @element = @page.send "hidden_field_#{param1}_#{param2}_element".to_sym
 end
+
+When(/^I find a hidden field while the script is executing$/) do
+  @element = @page.hidden_field(:id => "hidden_field_id")
+end

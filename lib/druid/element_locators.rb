@@ -36,5 +36,23 @@ module Druid
     def text_field identifier
       text_field_for identifier
     end
+
+    #
+    # Finds a hidden field
+    #
+    # @param [Hash] identifier how we find a hidden field. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :css
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :tag_name
+    #   * :text
+    #   * :xpath
+    #
+    def hidden_field identifier
+      hidden_field_for identifier
+    end
   end
 end
