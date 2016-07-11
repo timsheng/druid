@@ -103,4 +103,10 @@ describe Druid::ElementLocators do
     element = page.ordered_list_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::OrderedList
   end
+
+  it "should find an unordered list element" do
+    expect(driver).to receive(:ul).with(:id => 'blah').and_return(driver)
+    element = page.unordered_list_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::UnOrderedList
+  end
 end
