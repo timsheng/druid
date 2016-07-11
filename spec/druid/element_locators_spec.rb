@@ -43,4 +43,10 @@ describe Druid::ElementLocators do
     element = page.link_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::Link
   end
+
+  it "should find a check box element" do
+    expect(driver).to receive(:checkbox).with(:id => 'blah').and_return(driver)
+    element = page.checkbox_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::CheckBox
+  end
 end
