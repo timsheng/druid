@@ -13,3 +13,7 @@ end
 When(/^I locate the form$/) do
   @element = @page.form_id_element
 end
+
+When(/^I locate a form while the script is executing$/) do
+  @element = @page.form_element(:id => 'form_id')
+end
