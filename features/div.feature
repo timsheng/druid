@@ -37,3 +37,8 @@ Feature: Div
     | param1  | param2  |
     | class   | index   |
     | name    | index   |
+
+  @locator
+  Scenario: Finding a div dynamically
+    When I get the text from a div while the script is executing
+    Then the text should be "page-object rocks!"

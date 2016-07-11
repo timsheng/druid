@@ -137,5 +137,21 @@ module Druid
     def radio_button_element identifier
       radio_button_for identifier
     end
+
+    #
+    # Finds a div
+    #
+    # @param [Hash] identifier how we find a div. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #   * :text
+    #
+    def div_element identifier
+      div_for identifier
+    end
   end
 end
