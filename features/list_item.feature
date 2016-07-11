@@ -29,3 +29,8 @@ Feature: List item
     | param1  | param2  |
     | class   | index   |
     | name    | index   |
+
+  @locator
+  Scenario: Finding a list item dynamically
+    When I search for the list item while the script is executing
+    Then the text should be "Item One"

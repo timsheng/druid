@@ -34,3 +34,8 @@ Feature: Span
     | param1  | param2  |
     | class   | index   |
     | name    | index   |
+
+  @locator
+  Scenario: Finding a span dynamically
+    When I get the text from a span while the script is executing
+    Then the text should be "My alert"

@@ -22,3 +22,11 @@ end
 When(/^I search for the button by "(.*?)" and "(.*?)"$/) do |param1, param2|
   @how = "#{param1}_#{param2}"
 end
+
+When(/^I find a button while the script is executing$/) do
+  @button = @page.button_element(:id => 'button_id')
+end
+
+Then(/^I should be able to click the button element$/) do
+  @button.click
+end

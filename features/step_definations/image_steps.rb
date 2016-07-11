@@ -17,3 +17,7 @@ end
 When /^I get the image element bys "([^"]*)" and "([^"]*)"$/ do |param1, param2|
   @element = @page.send "image_#{param1}_#{param2}_element"
 end
+
+When(/^I get the image element while the script is executing$/) do
+  @element = @page.image_element(:id => 'image_id')
+end

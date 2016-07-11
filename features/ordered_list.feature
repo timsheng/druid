@@ -33,3 +33,9 @@ Feature: Ordered list
     | param1  | param2  |
     | class   | index   |
     | name    | index   |
+
+  @locator
+  Scenario: Finding a ordered list dynamically
+    When I search for the ordered list while the script is executing
+    And I get the first item from the list
+    Then the list items text should be "Number One"
