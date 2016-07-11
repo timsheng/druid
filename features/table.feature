@@ -41,3 +41,8 @@ Feature: Table
     | param1  | param2  |
     | class   | index   |
     | name    | index   |
+
+  @locator
+  Scenario: Finding a table dynamically
+    When I retrieve a table element while the script is executing
+    Then the data for row "1" should be "Data1" and "Data2"
