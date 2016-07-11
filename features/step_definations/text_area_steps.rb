@@ -21,3 +21,11 @@ end
 When(/^I retrieve the text area$/) do
   @element = @page.text_area_id_element
 end
+
+When(/^I find a text area while the script is executing$/) do
+  @text_area = @page.text_area_element(:id => "text_area_id")
+end
+
+Then(/^I should be able to type "(.*?)" into the area element$/) do |value|
+  @text_area.value = value
+end

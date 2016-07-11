@@ -54,5 +54,22 @@ module Druid
     def hidden_field_element identifier
       hidden_field_for identifier
     end
+
+    #
+    # Finds a text area
+    #
+    # @param [Hash] identifier how we find a text area. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :css
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :tag_name
+    #   * :xpath
+    #
+    def text_area_element identifier
+      text_area_for identifier
+    end
   end
 end
