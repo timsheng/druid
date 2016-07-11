@@ -23,7 +23,7 @@ When(/^I search for the text field by "(.*?)" and "(.*?)"$/) do |param1, param2|
 end
 
 When(/^I find a text field while the script is executing$/) do
-  @text_field = @page.text_field(:id => 'text_field_id')
+  @text_field = @page.text_field_element(:id => 'text_field_id')
 end
 
 Then(/^I should be able to type "(.*?)" into the field element$/) do |value|
