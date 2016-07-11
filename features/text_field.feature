@@ -40,3 +40,8 @@ Feature: Text Fields
     | param1  | param2  |
     | class   | index   |
     | name    | index   |
+
+  @locator
+  Scenario: Finding a text field dynamically
+    When I find a text field while the script is executing
+    Then I should be able to type "i found it" into the field element
