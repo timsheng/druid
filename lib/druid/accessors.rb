@@ -1,5 +1,4 @@
 require 'druid/elements'
-require 'druid/core_ext/string'
 #
 # Contains the class level methods that are inserted into your page class
 # when you include the PageObject module.  These methods will generate another
@@ -34,7 +33,11 @@ module Druid
     # @param block that contains the calls to elements that exist inside the frame.
     #
     def in_frame(identifier, &block)
+      # puts identifier
       block.call([] << identifier)
+      # frame = [] if frame.nil?
+      # frame << identifier
+      # block.call(frame)
     end
     #
     # add three methods - one to select a link and another
@@ -57,13 +60,13 @@ module Druid
     #   :link_text
     def link(name, identifier)
       define_method(name) do
-        click_link_for identifier
+        click_link_for identifier.clone
       end
       define_method("#{name}_element") do
-        link_for identifier
+        link_for identifier.clone
       end
       define_method("#{name}_no_wait") do
-        click_no_wait_link_for identifier
+        click_no_wait_link_for identifier.clone
       end
       alias_method "#{name}_link".to_sym, "#{name}_element".to_sym
     end
@@ -87,13 +90,13 @@ module Druid
     #   :xpath
     def text_field name, identifier
       define_method(name) do
-        text_field_value_for identifier
+        text_field_value_for identifier.clone
       end
       define_method("#{name}=") do |value|
-        text_field_value_set identifier, value
+        text_field_value_set identifier.clone, value
       end
       define_method("#{name}_element") do
-        text_field_for identifier
+        text_field_for identifier.clone
       end
       alias_method "#{name}_text_field".to_sym, "#{name}_element".to_sym
     end
@@ -116,16 +119,16 @@ module Druid
     #
     def checkbox name, identifier
       define_method("check_#{name}") do
-        check_checkbox identifier
+        check_checkbox identifier.clone
       end
       define_method("uncheck_#{name}") do
-        uncheck_checkbox identifier
+        uncheck_checkbox identifier.clone
       end
       define_method("#{name}_checked?") do
-        checkbox_checked? identifier
+        checkbox_checked? identifier.clone
       end
       define_method("#{name}_element") do
-        checkbox_for identifier
+        checkbox_for identifier.clone
       end
       alias_method "#{name}_checkbox".to_sym, "#{name}_element".to_sym
     end
@@ -147,13 +150,13 @@ module Druid
     #
     def select_list(name, identifier)
       define_method(name) do
-        select_list_value_for identifier
+        select_list_value_for identifier.clone
       end
       define_method("#{name}=") do |value|
-        select_list_value_set identifier, value
+        select_list_value_set identifier.clone, value
       end
       define_method("#{name}_element") do
-        select_list_for identifier
+        select_list_for identifier.clone
       end
       alias_method "#{name}_select_list".to_sym, "#{name}_element".to_sym
     end
@@ -176,16 +179,16 @@ module Druid
     #
     def radio_button(name, identifier)
       define_method("select_#{name}") do
-        select_radio identifier
+        select_radio identifier.clone
       end
       define_method("clear_#{name}") do
-        clear_radio identifier
+        clear_radio identifier.clone
       end
       define_method("#{name}_selected?") do
-        radio_selected? identifier
+        radio_selected? identifier.clone
       end
       define_method("#{name}_element") do
-        radio_button_for identifier
+        radio_button_for identifier.clone
       end
       alias_method "#{name}_radio_button".to_sym, "#{name}_element".to_sym
     end
@@ -207,10 +210,10 @@ module Druid
     #
     def button(name, identifier)
       define_method(name) do
-        click_button_for identifier
+        click_button_for identifier.clone
       end
       define_method("#{name}_element") do
-        button_for identifier
+        button_for identifier.clone
       end
       alias_method "#{name}_button".to_sym, "#{name}_element".to_sym
     end
@@ -233,10 +236,10 @@ module Druid
     #
     def div(name, identifier)
       define_method(name) do
-        div_text_for identifier
+        div_text_for identifier.clone
       end
       define_method("#{name}_element") do
-        div_for identifier
+        div_for identifier.clone
       end
       alias_method "#{name}_div".to_sym, "#{name}_element".to_sym
     end
@@ -256,7 +259,7 @@ module Druid
     #
     def table(name, identifier)
       define_method("#{name}_element") do
-        table_for identifier
+        table_for identifier.clone
       end
       alias_method "#{name}_table".to_sym, "#{name}_element".to_sym
     end
@@ -278,10 +281,10 @@ module Druid
     #
     def cell(name, identifier)
       define_method(name) do
-        cell_text_for identifier
+        cell_text_for identifier.clone
       end
       define_method("#{name}_element") do
-        cell_for identifier
+        cell_for identifier.clone
       end
       alias_method "#{name}_cell".to_sym, "#{name}_element".to_sym
     end
@@ -303,10 +306,10 @@ module Druid
     #
     def span(name, identifier)
       define_method(name) do
-        span_text_for identifier
+        span_text_for identifier.clone
       end
       define_method("#{name}_element") do
-        span_for identifier
+        span_for identifier.clone
       end
       alias_method "#{name}_span".to_sym, "#{name}_element".to_sym
     end
@@ -326,7 +329,7 @@ module Druid
     #
     def image(name, identifier)
       define_method("#{name}_element") do
-        image_for identifier
+        image_for identifier.clone
       end
       alias_method "#{name}_image".to_sym, "#{name}_element".to_sym
     end
@@ -347,7 +350,7 @@ module Druid
     #
     def form(name, identifier)
       define_method("#{name}_element") do
-        form_for identifier
+        form_for identifier.clone
       end
       alias_method "#{name}_form".to_sym, "#{name}_element".to_sym
     end
@@ -372,10 +375,10 @@ module Druid
     #
     def hidden_field(name, identifier)
       define_method("#{name}_element") do
-        hidden_field_for identifier
+        hidden_field_for identifier.clone
       end
       define_method(name) do
-        hidden_field_value_for identifier
+        hidden_field_value_for identifier.clone
       end
       alias_method "#{name}_hidden_field".to_sym, "#{name}_element".to_sym
     end
@@ -397,10 +400,10 @@ module Druid
     #
     def list_item(name, identifier)
       define_method(name) do
-        list_item_text_for identifier
+        list_item_text_for identifier.clone
       end
       define_method("#{name}_element") do
-        list_item_for identifier
+        list_item_for identifier.clone
       end
       alias_method "#{name}_list_item".to_sym, "#{name}_element".to_sym
     end
@@ -421,7 +424,7 @@ module Druid
     #
     def ordered_list(name, identifier)
       define_method("#{name}_element") do
-        ordered_list_for identifier
+        ordered_list_for identifier.clone
       end
       alias_method "#{name}_ordered_list".to_sym, "#{name}_element".to_sym
     end
@@ -446,13 +449,13 @@ module Druid
     #
     def text_area(name, identifier)
       define_method("#{name}=") do |value|
-        text_area_value_set identifier, value
+        text_area_value_set identifier.clone, value
       end
       define_method("#{name}") do
-        text_area_value_for identifier
+        text_area_value_for identifier.clone
       end
       define_method("#{name}_element") do
-        text_area_for identifier
+        text_area_for identifier.clone
       end
       alias_method "#{name}_text_area".to_sym, "#{name}_element".to_sym
     end
@@ -473,12 +476,10 @@ module Druid
     #
     def unordered_list(name, identifier)
       define_method("#{name}_element") do
-        unordered_list_for identifier
+        unordered_list_for identifier.clone
       end
       alias_method "#{name}_unordered_list".to_sym, "#{name}_element".to_sym
     end
-
-
 
   end
 end
