@@ -258,5 +258,20 @@ module Druid
     def ordered_list_element identifier
       ordered_list_for identifier
     end
+
+    #
+    # Finds an unordered list
+    #
+    # @param [Hash] identifier how we find an unordered list. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def unordered_list_element identifier
+      unordered_list_for identifier
+    end
   end
 end
