@@ -168,5 +168,20 @@ module Druid
     def span_element identifier
       span_for identifier
     end
+
+    #
+    # Finds a table
+    #
+    # @param [Hash] identifier how we find a table. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def table_element identifier
+      table_for identifier
+    end
   end
 end
