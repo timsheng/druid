@@ -199,5 +199,20 @@ module Druid
     def cell_element identifier
       cell_for identifier
     end
+
+    #
+    # Finds an image
+    #
+    # @param [Hash] identifier how we find an image. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def image_element identifier
+      image_for identifier
+    end
   end
 end

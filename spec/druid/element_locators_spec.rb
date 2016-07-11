@@ -79,4 +79,10 @@ describe Druid::ElementLocators do
     element = page.cell_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::TableCell
   end
+
+  it "should find an image element" do
+    expect(driver).to receive(:image).with(:id => 'blah').and_return(driver)
+    element = page.image_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::Image
+  end
 end
