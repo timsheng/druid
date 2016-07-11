@@ -240,8 +240,23 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def list_item_element(identifier)
+    def list_item_element identifier
       list_item_for identifier
+    end
+
+    #
+    # Finds an ordered list
+    #
+    # @param [Hash] identifier how we find an ordered list. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def ordered_list_element identifier
+      ordered_list_for identifier
     end
   end
 end
