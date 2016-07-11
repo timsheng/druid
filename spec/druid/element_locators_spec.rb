@@ -85,4 +85,10 @@ describe Druid::ElementLocators do
     element = page.image_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::Image
   end
+
+  it "should find a form element" do
+    expect(driver).to receive(:form).with(:id => 'blah').and_return(driver)
+    element = page.form_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::Form
+  end
 end

@@ -214,5 +214,19 @@ module Druid
     def image_element identifier
       image_for identifier
     end
+
+    #
+    # Finds a form
+    #
+    # @param [Hash] identifier how we find a form. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #
+    def form_element identifier
+      form_for identifier
+    end
   end
 end
