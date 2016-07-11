@@ -88,5 +88,24 @@ module Druid
     def select_list_element identifier
       select_list_for identifier
     end
+
+    #
+    # Finds a link
+    #
+    # @param [Hash] identifier how we find a link. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :href
+    #   * :id
+    #   * :index
+    #   * :link
+    #   * :link_text
+    #   * :name
+    #   * :xpath
+    #   * :text
+    #
+    def link_element identifier
+      link_for identifier
+    end
   end
 end
