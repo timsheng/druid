@@ -2,6 +2,7 @@
 * Enhancements
   * Added the following instance methods to Druid
   * #button
+  * #text_field
 === 2016-07-05
 * Enhancements
   * Added #value= to TextField and TextArea
