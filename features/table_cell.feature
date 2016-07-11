@@ -35,3 +35,8 @@ Feature: Table Cell
     | param1  | param2  |
     | class   | index   |
     | name    | index   |
+
+  @locator
+  Scenario: Finding a table cell dynamically
+    When I retrieve a table cell element while the script is executing
+    Then the cell data should be 'Data4'
