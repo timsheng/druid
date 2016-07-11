@@ -91,4 +91,10 @@ describe Druid::ElementLocators do
     element = page.form_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::Form
   end
+
+  it "should find a list item element" do
+    expect(driver).to receive(:li).with(:id => 'blah').and_return(driver)
+    element = page.list_item_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::ListItem
+  end
 end

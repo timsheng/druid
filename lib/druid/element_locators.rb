@@ -228,5 +228,20 @@ module Druid
     def form_element identifier
       form_for identifier
     end
+
+    #
+    # Finds a list item
+    #
+    # @param [Hash] identifier how we find a list item. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def list_item_element(identifier)
+      list_item_for identifier
+    end
   end
 end
