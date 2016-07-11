@@ -14,7 +14,7 @@ module Druid
     #   * :value
     #   * :xpath
     #
-    def button identifier
+    def button_element identifier
       button_for identifier
     end
 
@@ -33,7 +33,7 @@ module Druid
     #   * :value
     #   * :xpath
     #
-    def text_field identifier
+    def text_field_element identifier
       text_field_for identifier
     end
 
@@ -51,7 +51,7 @@ module Druid
     #   * :text
     #   * :xpath
     #
-    def hidden_field identifier
+    def hidden_field_element identifier
       hidden_field_for identifier
     end
   end

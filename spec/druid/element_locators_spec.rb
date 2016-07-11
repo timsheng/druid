@@ -10,19 +10,19 @@ describe Druid::ElementLocators do
 
   it "should find a button element" do
     expect(driver).to receive(:button).with(:id => 'blah').and_return(driver)
-    button = page.button(:id => 'blah')
+    button = page.button_element(:id => 'blah')
     expect(button).to be_instance_of Druid::Elements::Button
   end
 
   it "should find a text field element" do
     expect(driver).to receive(:text_field).with(:id => 'blah').and_return(driver)
-    text_field = page.text_field(:id => 'blah')
+    text_field = page.text_field_element(:id => 'blah')
     expect(text_field).to be_instance_of Druid::Elements::TextField
   end
 
   it "should find a hidden field element" do
     expect(driver).to receive(:hidden).with(:id => 'blah').and_return(driver)
-    element = page.hidden_field(:id => 'blah')
+    element = page.hidden_field_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::HiddenField
   end
 end
