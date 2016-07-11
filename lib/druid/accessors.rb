@@ -1,5 +1,4 @@
 require 'druid/elements'
-require 'druid/core_ext/string'
 #
 # Contains the class level methods that are inserted into your page class
 # when you include the PageObject module.  These methods will generate another
@@ -34,7 +33,11 @@ module Druid
     # @param block that contains the calls to elements that exist inside the frame.
     #
     def in_frame(identifier, &block)
+      # puts identifier
       block.call([] << identifier)
+      # frame = [] if frame.nil?
+      # frame << identifier
+      # block.call(frame)
     end
     #
     # add three methods - one to select a link and another
@@ -56,19 +59,18 @@ module Druid
     #   :link
     #   :link_text
     def link(name, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Link)
       define_method(name) do
-        driver.instance_eval "#{nested_frames(frame_identifiers)}link(identifier).click"
+        click_link_for identifier.clone
       end
       define_method("#{name}_element") do
-        element = driver.instance_eval "#{nested_frames(frame_identifiers)}link(identifier)"
-        Druid::Elements::Link.new(element)
+        link_for identifier.clone
       end
       define_method("#{name}_no_wait") do
-        driver.instance_eval "#{nested_frames(frame_identifiers)}link(identifier).click_no_wait"
+        click_no_wait_link_for identifier.clone
       end
       alias_method "#{name}_link".to_sym, "#{name}_element".to_sym
     end
+
     #
     # adds three methods to the page object - one to set text in a text field,
     # another to retrieve text from a text field and another to return the text
@@ -86,17 +88,15 @@ module Druid
     #   :name
     #   :tag_name
     #   :xpath
-    def text_field(name, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::TextField)
+    def text_field name, identifier
       define_method(name) do
-        driver.instance_eval "#{nested_frames(frame_identifiers)}text_field(identifier).value"
+        text_field_value_for identifier.clone
       end
       define_method("#{name}=") do |value|
-        driver.instance_eval "#{nested_frames(frame_identifiers)}text_field(identifier).set(value)"
+        text_field_value_set identifier.clone, value
       end
       define_method("#{name}_element") do
-        element = driver.instance_eval "#{nested_frames(frame_identifiers)}text_field(identifier)"
-        Druid::Elements::TextField.new(element)
+        text_field_for identifier.clone
       end
       alias_method "#{name}_text_field".to_sym, "#{name}_element".to_sym
     end
@@ -117,20 +117,18 @@ module Druid
     #   :name
     #   :xpath
     #
-    def checkbox(name, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::CheckBox)
+    def checkbox name, identifier
       define_method("check_#{name}") do
-        driver.instance_eval "#{nested_frames(frame_identifiers)}checkbox(identifier).set"
+        check_checkbox identifier.clone
       end
       define_method("uncheck_#{name}") do
-        driver.instance_eval "#{nested_frames(frame_identifiers)}checkbox(identifier).clear"
+        uncheck_checkbox identifier.clone
       end
       define_method("#{name}_checked?") do
-        driver.instance_eval "checkbox(identifier).set?"
+        checkbox_checked? identifier.clone
       end
       define_method("#{name}_element") do
-        element = driver.instance_eval "checkbox(identifier)"
-        Druid::Elements::CheckBox.new(element)
+        checkbox_for identifier.clone
       end
       alias_method "#{name}_checkbox".to_sym, "#{name}_element".to_sym
     end
@@ -151,16 +149,14 @@ module Druid
     #   :xpath
     #
     def select_list(name, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::SelectList)
       define_method(name) do
-        driver.instance_eval "#{nested_frames(frame_identifiers)}select_list(identifier).value"
+        select_list_value_for identifier.clone
       end
       define_method("#{name}=") do |value|
-        driver.instance_eval "select_list(identifier).select value"
+        select_list_value_set identifier.clone, value
       end
       define_method("#{name}_element") do
-        element = driver.instance_eval "#{nested_frames(frame_identifiers)}select_list(identifier)"
-        Druid::Elements::SelectList.new(element)
+        select_list_for identifier.clone
       end
       alias_method "#{name}_select_list".to_sym, "#{name}_element".to_sym
     end
@@ -182,19 +178,17 @@ module Druid
     #   :xpath
     #
     def radio_button(name, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::RadioButton)
       define_method("select_#{name}") do
-        driver.instance_eval "#{nested_frames(frame_identifiers)}radio(identifier).set"
+        select_radio identifier.clone
       end
       define_method("clear_#{name}") do
-        driver.instance_eval "#{nested_frames(frame_identifiers)}radio(identifier).clear"
+        clear_radio identifier.clone
       end
       define_method("#{name}_selected?") do
-        driver.instance_eval "#{nested_frames(frame_identifiers)}radio(identifier).set?"
+        radio_selected? identifier.clone
       end
       define_method("#{name}_element") do
-        element = driver.instance_eval "#{nested_frames(frame_identifiers)}radio(identifier)"
-        Druid::Elements::RadioButton.new(element)
+        radio_button_for identifier.clone
       end
       alias_method "#{name}_radio_button".to_sym, "#{name}_element".to_sym
     end
@@ -215,13 +209,11 @@ module Druid
     #   :xpath
     #
     def button(name, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Button)
       define_method(name) do
-        driver.instance_eval "#{nested_frames(frame_identifiers)}button(identifier).click"
+        click_button_for identifier.clone
       end
       define_method("#{name}_element") do
-        element = driver.instance_eval "#{nested_frames(frame_identifiers)}button(identifier)"
-        Druid::Elements::Button.new(element)
+        button_for identifier.clone
       end
       alias_method "#{name}_button".to_sym, "#{name}_element".to_sym
     end
@@ -243,13 +235,11 @@ module Druid
     #   :value
     #
     def div(name, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Div, 'div')
       define_method(name) do
-        driver.instance_eval "#{nested_frames(frame_identifiers)}div(identifier).text"
+        div_text_for identifier.clone
       end
       define_method("#{name}_element") do
-        element = driver.instance_eval "#{nested_frames(frame_identifiers)}div(identifier)"
-        Druid::Elements::Div.new(element)
+        div_for identifier.clone
       end
       alias_method "#{name}_div".to_sym, "#{name}_element".to_sym
     end
@@ -268,10 +258,8 @@ module Druid
     #   :name
     #
     def table(name, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Table, 'table')
       define_method("#{name}_element") do
-        element = driver.instance_eval "#{nested_frames(frame_identifiers)}table(identifier)"
-        Druid::Elements::Table.new(element)
+        table_for identifier.clone
       end
       alias_method "#{name}_table".to_sym, "#{name}_element".to_sym
     end
@@ -292,13 +280,11 @@ module Druid
     #   :text
     #
     def cell(name, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::TableCell, 'td')
       define_method(name) do
-        driver.instance_eval "#{nested_frames(frame_identifiers)}td(identifier).text"
+        cell_text_for identifier.clone
       end
       define_method("#{name}_element") do
-        element = driver.instance_eval "#{nested_frames(frame_identifiers)}td(identifier)"
-        Druid::Elements::TableCell.new(element)
+        cell_for identifier.clone
       end
       alias_method "#{name}_cell".to_sym, "#{name}_element".to_sym
     end
@@ -319,13 +305,11 @@ module Druid
     #   :text
     #
     def span(name, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Span, 'span')
       define_method(name) do
-        driver.instance_eval "#{nested_frames(frame_identifiers)}span(identifier).text"
+        span_text_for identifier.clone
       end
       define_method("#{name}_element") do
-        element = driver.instance_eval "#{nested_frames(frame_identifiers)}span(identifier)"
-        Druid::Elements::Span.new(element)
+        span_for identifier.clone
       end
       alias_method "#{name}_span".to_sym, "#{name}_element".to_sym
     end
@@ -344,10 +328,8 @@ module Druid
     #   :xpath
     #
     def image(name, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Image)
       define_method("#{name}_element") do
-        element = driver.instance_eval "#{nested_frames(frame_identifiers)}image(identifier)"
-        Druid::Elements::Image.new(element)
+        image_for identifier.clone
       end
       alias_method "#{name}_image".to_sym, "#{name}_element".to_sym
     end
@@ -367,10 +349,8 @@ module Druid
     #   * :name
     #
     def form(name, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Form)
       define_method("#{name}_element") do
-        element = driver.instance_eval "#{nested_frames(frame_identifiers)}form(identifier)"
-        Druid::Elements::Form.new(element)
+        form_for identifier.clone
       end
       alias_method "#{name}_form".to_sym, "#{name}_element".to_sym
     end
@@ -394,13 +374,11 @@ module Druid
     #   * :xpath
     #
     def hidden_field(name, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::HiddenField)
       define_method("#{name}_element") do
-        element = driver.instance_eval "#{nested_frames(frame_identifiers)}hidden(identifier)"
-        Druid::Elements::HiddenField.new(element)
+        hidden_field_for identifier.clone
       end
       define_method(name) do
-        driver.instance_eval "#{nested_frames(frame_identifiers)}hidden(identifier).value"
+        hidden_field_value_for identifier.clone
       end
       alias_method "#{name}_hidden_field".to_sym, "#{name}_element".to_sym
     end
@@ -421,13 +399,11 @@ module Druid
     #   * :name
     #
     def list_item(name, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::ListItem, 'li')
       define_method(name) do
-        driver.instance_eval "#{nested_frames(frame_identifiers)}li(identifier).text"
+        list_item_text_for identifier.clone
       end
       define_method("#{name}_element") do
-        element = driver.instance_eval "#{nested_frames(frame_identifiers)}li(identifier)"
-        Druid::Elements::ListItem.new(element)
+        list_item_for identifier.clone
       end
       alias_method "#{name}_list_item".to_sym, "#{name}_element".to_sym
     end
@@ -447,10 +423,8 @@ module Druid
     #   * :name
     #
     def ordered_list(name, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::OrderedList, 'ol')
       define_method("#{name}_element") do
-        element = driver.instance_eval "#{nested_frames(frame_identifiers)}ol(identifier)"
-        Druid::Elements::OrderedList.new(element)
+        ordered_list_for identifier.clone
       end
       alias_method "#{name}_ordered_list".to_sym, "#{name}_element".to_sym
     end
@@ -474,16 +448,14 @@ module Druid
     #   * :xpath
     #
     def text_area(name, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::TextArea)
       define_method("#{name}=") do |value|
-        driver.instance_eval "#{nested_frames(frame_identifiers)}textarea(identifier).send_keys value"
+        text_area_value_set identifier.clone, value
       end
       define_method("#{name}") do
-        driver.instance_eval "#{nested_frames(frame_identifiers)}textarea(identifier).value"
+        text_area_value_for identifier.clone
       end
       define_method("#{name}_element") do
-        element = driver.instance_eval "#{nested_frames(frame_identifiers)}textarea(identifier)"
-        Druid::Elements::TextArea.new(element)
+        text_area_for identifier.clone
       end
       alias_method "#{name}_text_area".to_sym, "#{name}_element".to_sym
     end
@@ -503,27 +475,10 @@ module Druid
     #   * :name
     #
     def unordered_list(name, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::UnOrderedList, 'ul')
       define_method("#{name}_element") do
-        element = driver.instance_eval "#{nested_frames(frame_identifiers)}ul(identifier)"
-        Druid::Elements::UnOrderedList.new(element)
+        unordered_list_for identifier.clone
       end
       alias_method "#{name}_unordered_list".to_sym, "#{name}_element".to_sym
-    end
-
-    private
-
-    def add_tagname_if_needed identifier, tag
-      return identifier if identifier.length < 2 and not identifier[:name]
-      identifier[:tag_name] = tag if identifier[:name]
-      identifier
-    end
-
-    def parse_identifiers(identifier, element, tag_name=nil)
-      frame_identifiers = identifier.delete(:frame)
-      identifier = add_tagname_if_needed identifier, tag_name if tag_name
-      identifier = element.identifier_for identifier
-      return identifier, frame_identifiers
     end
 
   end
