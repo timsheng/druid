@@ -40,3 +40,11 @@ end
 When(/^I search for the select list bys "(.*?)" and "(.*?)"$/) do |param1, param2|
   @how = "#{param1}_#{param2}"
 end
+
+When(/^I find a select list while the script is executing$/) do
+  @select_list = @page.select_list_element(:id => "sel_list_id")
+end
+
+Then(/^I should be able to select "(.*?)" from the list$/) do |value|
+  @select_list.select value
+end
