@@ -8,7 +8,6 @@ module UrlHelper
       "file://#{html}"
     end
 
-
     def static_elements
       "#{files}/static_elements.html"
     end
@@ -23,6 +22,10 @@ module UrlHelper
 
     def nested_frame_elements
       "#{files}/nested_frames.html"
+    end
+
+    def nested_elements
+      "#{files}/nested_elements.html"
     end
   end
 end
