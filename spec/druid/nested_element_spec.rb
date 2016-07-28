@@ -26,4 +26,9 @@ describe "Element with nested elements" do
     element.hidden_field_element
   end
 
+  it "should find nested text areas" do
+    expect(driver).to receive(:textarea).and_return(driver)
+    element.text_area_element
+  end
+
 end
