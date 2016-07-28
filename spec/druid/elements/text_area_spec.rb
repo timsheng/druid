@@ -17,8 +17,9 @@ describe Druid::Elements::TextArea do
   end
 
   describe "interface" do
-    let(:element) { double("element") }
-    let(:text_area) { Druid::Elements::TextArea.new(element) }
+    let(:element) { double "element" }
+    let(:driver) { double 'driver' }
+    let(:text_area) { Druid::Elements::TextArea.new(element, driver) }
     it "should set its' value" do
       expect(element).to receive(:send_keys).with('test')
       text_area.value = 'test'

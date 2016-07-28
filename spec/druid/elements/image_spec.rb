@@ -13,7 +13,8 @@ describe Druid::Elements::Image do
 
   describe "interface" do
     let(:element) { 'element' }
-    let(:image) { Druid::Elements::Image.new(element) }
+    let(:driver) { 'driver' }
+    let(:image) { Druid::Elements::Image.new(element, driver) }
 
     it "should know the image width" do
       expect(element).to receive(:width).and_return(100)

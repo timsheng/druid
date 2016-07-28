@@ -23,6 +23,62 @@ class AccessorsTestDruid
   ordered_list(:top_five, :id => 'top')
 end
 
+class BlockDruid
+  include Druid
+
+  text_field :first_name do |element|
+    "text_field"
+  end
+  hidden_field :secret do |element|
+    "hidden_field"
+  end
+  text_area :address do |element|
+    "text_area"
+  end
+  select_list :state do |element|
+    "select_list"
+  end
+  link :continue do |element|
+    "link"
+  end
+  checkbox :active do |element|
+    "checkbox"
+  end
+  radio_button :first do |element|
+    "radio_button"
+  end
+  button :click_me do |element|
+    "button"
+  end
+  div :footer do |element|
+    "div"
+  end
+  span :alert do |element|
+    "span"
+  end
+  table :cart do |element|
+    "table"
+  end
+  cell :total do |element|
+    "cell"
+  end
+  image :logo do |element|
+    "image"
+  end
+  form :login do |element|
+    "form"
+  end
+  list_item :item_one do |element|
+    "list_item"
+  end
+  unordered_list :menu do |element|
+    "unordered_list"
+  end
+  ordered_list :top_five do |element|
+    "ordered_list"
+  end
+end
+
 class TestDruidBackUp
   include Druid
 end
@@ -30,6 +86,8 @@ end
 describe Druid::Accessors do
   let(:driver) { mock_driver }
   let(:druid) { AccessorsTestDruid.new(driver) }
+  let(:block_druid) { BlockDruid.new(driver) }
+
 
   describe "goto a page" do
     it "should navigate to a page when requested" do
@@ -55,6 +113,10 @@ describe Druid::Accessors do
         expect(druid).to respond_to :uncheck_active
         expect(druid).to respond_to :active_checked?
         expect(druid).to respond_to :active_element
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.active_element).to eql "checkbox"
       end
     end
 
@@ -86,8 +148,11 @@ describe Druid::Accessors do
     context "when called on a page object" do
       it "should generate accessor methods" do
         expect(druid).to respond_to(:google_search)
-        expect(druid).to respond_to(:google_search_no_wait)
         expect(druid).to respond_to(:google_search_element)
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.continue_element).to eql "link"
       end
     end
 
@@ -95,11 +160,6 @@ describe Druid::Accessors do
       it "should select a link" do
         expect(driver).to receive_message_chain(:link, :click)
         druid.google_search
-      end
-
-      it "should select a link and not wait" do
-        expect(driver).to receive_message_chain(:link, :click_no_wait)
-        druid.google_search_no_wait
       end
 
       it "should retreive a link element" do
@@ -116,6 +176,10 @@ describe Druid::Accessors do
         expect(druid).to respond_to :state
         expect(druid).to respond_to :state=
         expect(druid).to respond_to :state_element
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.state_element).to eql "select_list"
       end
     end
 
@@ -146,6 +210,10 @@ describe Druid::Accessors do
         expect(druid).to respond_to(:first_name=)
         expect(druid).to respond_to(:first_name_element)
       end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.first_name_element).to eql "text_field"
+      end
     end
 
     context "implementation" do
@@ -172,6 +240,10 @@ describe Druid::Accessors do
         expect(druid).to respond_to :click_me
         expect(druid).to respond_to :click_me_element
       end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.click_me_element).to eql "button"
+      end
     end
 
     context "implementation" do
@@ -194,6 +266,10 @@ describe Druid::Accessors do
         expect(druid).to respond_to :select_first
         expect(druid).to respond_to :first_selected?
         expect(druid).to respond_to :clear_first
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.first_element).to eql "radio_button"
       end
     end
 
@@ -226,6 +302,10 @@ describe Druid::Accessors do
         expect(druid).to respond_to :message
         expect(druid).to respond_to :message_element
       end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.footer_element).to eql "div"
+      end
     end
 
     context "implementation" do
@@ -246,6 +326,10 @@ describe Druid::Accessors do
       it "should generate accessor methods" do
         expect(druid).to respond_to :cart_element
       end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.cart_element).to eql "table"
+      end
     end
 
     context "implementation" do
@@ -261,6 +345,10 @@ describe Druid::Accessors do
       it "should generate accessor methods" do
         expect(druid).to respond_to :total
         expect(druid).to respond_to :total_element
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.total_cell).to eql "cell"
       end
     end
 
@@ -283,6 +371,10 @@ describe Druid::Accessors do
         expect(druid).to respond_to :alert
         expect(druid).to respond_to :alert_element
       end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.alert_element).to eql "span"
+      end
     end
 
     context "implementation" do
@@ -303,6 +395,10 @@ describe Druid::Accessors do
       it "should generate accessor methods" do
         expect(druid).to respond_to :logo_element
       end
+
+      it "should call a block on the element method when present " do
+        expect(block_druid.logo_element).to eql "image"
+      end
     end
 
     context "implementation" do
@@ -318,6 +414,10 @@ describe Druid::Accessors do
       it "should generate accessor methods" do
         expect(druid).to respond_to :social_security_number
         expect(druid).to respond_to :social_security_number_element
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.secret_element).to eql "hidden_field"
       end
     end
 
@@ -339,6 +439,10 @@ describe Druid::Accessors do
       it "should generate accessor methods" do
         expect(druid).to respond_to :login_element
       end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.login_element).to eql "form"
+      end
     end
 
     context "implementation" do
@@ -355,6 +459,10 @@ describe Druid::Accessors do
         expect(druid).to respond_to :address
         expect(druid).to respond_to :address=
         expect(druid).to respond_to :address_element
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.address_element).to eql "text_area"
       end
     end
 
@@ -382,6 +490,10 @@ describe Druid::Accessors do
         expect(druid).to respond_to :item_one
         expect(druid).to respond_to :item_one_element
       end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.item_one_element).to eql "list_item"
+      end
     end
 
     context "implementation" do
@@ -402,6 +514,10 @@ describe Druid::Accessors do
       it "should generate accessor methods" do
         expect(druid).to respond_to :menu_element
       end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.menu_element).to eql "unordered_list"
+      end
     end
 
     context "implementation" do
@@ -416,6 +532,10 @@ describe Druid::Accessors do
     context "when called on a page object" do
       it "should generate accessor methods" do
         expect(druid).to respond_to :top_five_element
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.top_five_element).to eql "ordered_list"
       end
     end
 

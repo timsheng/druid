@@ -11,8 +11,9 @@ describe Druid::Elements::TableRow do
     end
   end
   describe "interface" do
-    let(:element) { double 'element'}
-    let(:table_row) { Druid::Elements::TableRow.new(element) }
+    let(:element) { double 'element' }
+    let(:driver) { double 'driver' }
+    let(:table_row) { Druid::Elements::TableRow.new(element, driver) }
 
     it "should return a table cell when indexed" do
       expect(element).to receive(:[]).with(1)

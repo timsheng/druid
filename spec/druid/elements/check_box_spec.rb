@@ -13,7 +13,8 @@ describe Druid::Elements::CheckBox do
 
   describe "interface" do
     let(:element) { double 'element' }
-    let(:checkbox) { Druid::Elements::CheckBox.new(element) }
+    let(:driver) { double 'driver' }
+    let(:checkbox) { Druid::Elements::CheckBox.new(element, driver) }
 
     it "should check" do
       expect(element).to receive(:set)
