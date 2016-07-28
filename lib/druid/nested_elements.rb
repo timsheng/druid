@@ -31,5 +31,9 @@ module Druid
     def radio_button_element(identifier={:index => 0})
       radio_button_for(identifier)
     end
+
+    def div_element(identifier={:index => 0})
+      div_for(identifier)
+    end
   end
 end

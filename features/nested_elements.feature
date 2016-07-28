@@ -34,3 +34,7 @@ Feature: Attributes on Elements
   Scenario: Finding a radio button within a div
     When I search for a radio button located in a div
     Then I should be able to select the nested radio button
+
+  Scenario: Finding a div within a div
+    When I search for a div located in a div
+    Then I should see the text "page-object rocks!" in the nested div
