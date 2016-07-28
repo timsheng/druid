@@ -46,4 +46,9 @@ describe "Element with nested elements" do
     element.radio_button_element
   end
 
+  it "should find a nested div" do
+    expect(driver).to receive(:div).and_return(driver)
+    element.div_element
+  end
+
 end

@@ -10,6 +10,7 @@ class NestedElementsPage
   select_list(:nested_select_list) { |page| page.outer_div_element.select_list_element }
   checkbox(:nested_checkbox) { |page| page.outer_div_element.checkbox_element }
   radio_button(:nested_radio_button) { |page| page.outer_div_element.radio_button_element }
+  div(:nested_div) { |page| page.outer_div_element.div_element }
 
 end
 Given(/^I am on the nested elements page$/) do
@@ -79,4 +80,12 @@ end
 
 Then(/^I should be able to select the nested radio button$/) do
   @radio_button.select
+end
+
+When(/^I search for a div located in a div$/) do
+  @div = @page.nested_div_element
+end
+
+Then(/^I should see the text "([^"]*)" in the nested div$/) do |text|
+  expect(@div.text).to include text
 end
