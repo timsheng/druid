@@ -21,4 +21,9 @@ describe "Element with nested elements" do
     element.text_field_element(:id => 'blah')
   end
 
+  it "should find nested hidden fields" do
+    expect(driver).to receive(:hidden).and_return(driver)
+    element.hidden_field_element
+  end
+
 end

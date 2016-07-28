@@ -11,5 +11,9 @@ module Druid
     def text_field_element(identifier={:index => 0})
       text_field_for(identifier)
     end
+
+    def hidden_field_element(identifier={:index => 0})
+      hidden_field_for(identifier)
+    end
   end
 end

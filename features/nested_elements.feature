@@ -11,7 +11,11 @@ Feature: Attributes on Elements
     When I search for a button located in a div
     Then I should be able to click the nested button
 
-  @debug
   Scenario: Finding a text field within a div
     When I search for a text field located in a div
     Then I should be able to type "123abc" in the nested text field
+
+  @debug
+  Scenario: Finding a hidden field within a div
+    When I search for a hidden field located in a div
+    Then I should be able to see that the nested hidden field contains "LeanDog"
