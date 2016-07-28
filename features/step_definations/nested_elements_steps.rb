@@ -6,7 +6,8 @@ class NestedElementsPage
   button(:nested_button) { |page| page.outer_div_element.button_element }
   text_field(:nested_text_field) { |page| page.outer_div_element.text_field_element }
   hidden_field(:nested_hidden_field) { |page| page.outer_div_element.hidden_field_element }
-  text_area(:nested_text_area) { |page| page.outer_div_element.text_area_element}
+  text_area(:nested_text_area) { |page| page.outer_div_element.text_area_element }
+  select_list(:nested_select_list) { |page| page.outer_div_element.select_list_element }
 
 end
 Given(/^I am on the nested elements page$/) do
@@ -52,4 +53,12 @@ end
 
 Then(/^I should be able to type "([^"]*)" in the nested text area$/) do |value|
   @text_area.value = value
+end
+
+When(/^I search for a select list located in a div$/) do
+  @select_list = @page.nested_select_list_element
+end
+
+Then(/^I should be able to select "([^"]*)" in the nested select list$/) do |value|
+  @select_list.select value
 end

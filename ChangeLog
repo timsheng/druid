@@ -6,6 +6,7 @@
     * TextField
     * HiddenField
     * TextArea
+    * SelectList
 === 2016-07-11
 * Enhancements
   * Added the following instance methods to Druid via ElementLocators

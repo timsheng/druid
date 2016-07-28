@@ -22,3 +22,7 @@ Feature: Attributes on Elements
   Scenario: Finding a text area within a div
     When I search for a text area located in a div
     Then I should be able to type "abcdefg" in the nested text area
+
+  Scenario: Finding a select list within a div
+    When I search for a select list located in a div
+    Then I should be able to select "Test 2" in the nested select list

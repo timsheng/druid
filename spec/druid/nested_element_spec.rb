@@ -31,4 +31,9 @@ describe "Element with nested elements" do
     element.text_area_element
   end
 
+  it "should find nested select list" do
+    expect(driver).to receive(:select_list).and_return(driver)
+    element.select_list_element
+  end
+
 end
