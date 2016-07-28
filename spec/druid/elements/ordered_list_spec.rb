@@ -13,7 +13,8 @@ describe Druid::Elements::OrderedList do
 
   describe "interface" do
     let(:element) { double 'element' }
-    let(:ol) { Druid::Elements::OrderedList.new(element) }
+    let(:driver) { double 'driver' }
+    let(:ol) { Druid::Elements::OrderedList.new(element, driver) }
 
     it "should return a list item when indexed" do
       expect(element).to receive(:li)

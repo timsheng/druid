@@ -58,15 +58,15 @@ module Druid
     #   :xpath
     #   :link
     #   :link_text
-    def link(name, identifier)
+    def link(name, identifier=nil, &block)
       define_method(name) do
-        click_link_for identifier.clone
+        return click_link_for identifier.clone unless block_given?
+        self.send("#{name}_element").click
       end
       define_method("#{name}_element") do
-        link_for identifier.clone
-      end
-      define_method("#{name}_no_wait") do
-        click_no_wait_link_for identifier.clone
+        return call_block(&block) if block_given?
+        link_for(identifier.clone)
+        # block ? call_block(&block) : link_for(identifier.clone)
       end
       alias_method "#{name}_link".to_sym, "#{name}_element".to_sym
     end
@@ -88,15 +88,19 @@ module Druid
     #   :name
     #   :tag_name
     #   :xpath
-    def text_field name, identifier
+    def text_field(name, identifier=nil, &block)
       define_method(name) do
-        text_field_value_for identifier.clone
+        return text_field_value_for identifier.clone unless block_given?
+        self.send("#{name}_element").value
       end
       define_method("#{name}=") do |value|
-        text_field_value_set identifier.clone, value
+        return text_field_value_set(identifier.clone, value) unless block_given?
+        self.send("#{name}_element").value = value
       end
       define_method("#{name}_element") do
-        text_field_for identifier.clone
+        return call_block(&block) if block_given?
+        text_field_for(identifier.clone)
+        # block ? call_block(&block) : text_field_for(identifier.clone)
       end
       alias_method "#{name}_text_field".to_sym, "#{name}_element".to_sym
     end
@@ -117,18 +121,23 @@ module Druid
     #   :name
     #   :xpath
     #
-    def checkbox name, identifier
+    def checkbox(name, identifier=nil, &block)
       define_method("check_#{name}") do
-        check_checkbox identifier.clone
+        return check_checkbox identifier.clone unless block_given?
+        self.send("#{name}_element").check
       end
       define_method("uncheck_#{name}") do
-        uncheck_checkbox identifier.clone
+        return uncheck_checkbox identifier.clone unless block_given?
+        self.send("#{name}_element").uncheck
       end
       define_method("#{name}_checked?") do
-        checkbox_checked? identifier.clone
+        return checkbox_checked? identifier.clone unless block_given?
+        self.send("#{name}_element").checked?
       end
       define_method("#{name}_element") do
-        checkbox_for identifier.clone
+        return call_block(&block) if block_given?
+        checkbox_for(identifier.clone)
+        # block ? call_block(&block) : checkbox_for(identifier.clone)
       end
       alias_method "#{name}_checkbox".to_sym, "#{name}_element".to_sym
     end
@@ -148,15 +157,19 @@ module Druid
     #   :name
     #   :xpath
     #
-    def select_list(name, identifier)
+    def select_list(name, identifier=nil, &block)
       define_method(name) do
-        select_list_value_for identifier.clone
+        return select_list_value_for identifier.clone unless block_given?
+        self.send("#{name}_element").value
       end
       define_method("#{name}=") do |value|
-        select_list_value_set identifier.clone, value
+        return select_list_value_set(identifier.clone, value) unless block_given?
+        self.send("#{name}_element").select(value)
       end
       define_method("#{name}_element") do
-        select_list_for identifier.clone
+        return call_block(&block) if block_given?
+        select_list_for(identifier.clone)
+        # block ? call_block(&block) : select_list_for(identifier.clone)
       end
       alias_method "#{name}_select_list".to_sym, "#{name}_element".to_sym
     end
@@ -177,18 +190,23 @@ module Druid
     #   :name
     #   :xpath
     #
-    def radio_button(name, identifier)
+    def radio_button(name, identifier=nil, &block)
       define_method("select_#{name}") do
-        select_radio identifier.clone
+        return select_radio identifier.clone unless block_given?
+        self.send("#{name}_element").select
       end
       define_method("clear_#{name}") do
-        clear_radio identifier.clone
+        return clear_radio identifier.clone unless block_given?
+        self.send("#{name}_element").clear
       end
       define_method("#{name}_selected?") do
-        radio_selected? identifier.clone
+        return radio_selected? identifier.clone unless block_given?
+        self.send("#{name}_element").selected?
       end
       define_method("#{name}_element") do
-        radio_button_for identifier.clone
+        return call_block(&block) if block_given?
+        radio_button_for(identifier.clone)
+        # block ? call_block(&block) : radio_button_for(identifier.clone)
       end
       alias_method "#{name}_radio_button".to_sym, "#{name}_element".to_sym
     end
@@ -208,12 +226,15 @@ module Druid
     #   :text
     #   :xpath
     #
-    def button(name, identifier)
+    def button(name, identifier=nil, &block)
       define_method(name) do
-        click_button_for identifier.clone
+        return click_button_for identifier.clone unless block_given?
+        self.send("#{name}_element").click
       end
       define_method("#{name}_element") do
-        button_for identifier.clone
+        return call_block(&block) if block_given?
+        button_for(identifier.clone)
+        # block ? call_block(&block) : button_for(identifier.clone)
       end
       alias_method "#{name}_button".to_sym, "#{name}_element".to_sym
     end
@@ -234,12 +255,15 @@ module Druid
     #   :text
     #   :value
     #
-    def div(name, identifier)
+    def div(name, identifier=nil, &block)
       define_method(name) do
-        div_text_for identifier.clone
+        return div_text_for identifier.clone unless block_given?
+        self.send("#{name}_element").text
       end
       define_method("#{name}_element") do
-        div_for identifier.clone
+        return call_block(&block) if block_given?
+        div_for(identifier.clone)
+        # block ? call_block(&block) : div_for(identifier.clone)
       end
       alias_method "#{name}_div".to_sym, "#{name}_element".to_sym
     end
@@ -257,9 +281,11 @@ module Druid
     #   :xpath
     #   :name
     #
-    def table(name, identifier)
+    def table(name, identifier=nil, &block)
       define_method("#{name}_element") do
-        table_for identifier.clone
+        return call_block(&block) if block_given?
+        table_for(identifier.clone)
+        # block ? call_block(&block) : table_for(identifier.clone)
       end
       alias_method "#{name}_table".to_sym, "#{name}_element".to_sym
     end
@@ -279,12 +305,15 @@ module Druid
     #   :name
     #   :text
     #
-    def cell(name, identifier)
+    def cell(name, identifier=nil, &block)
       define_method(name) do
-        cell_text_for identifier.clone
+        return cell_text_for identifier.clone unless block_given?
+        self.send("#{name}_element").text
       end
       define_method("#{name}_element") do
-        cell_for identifier.clone
+        return call_block(&block) if block_given?
+        cell_for(identifier.clone)
+        # block ? call_block(&block) : cell_for(identifier.clone)
       end
       alias_method "#{name}_cell".to_sym, "#{name}_element".to_sym
     end
@@ -304,12 +333,15 @@ module Druid
     #   :name
     #   :text
     #
-    def span(name, identifier)
+    def span(name, identifier=nil, &block)
       define_method(name) do
-        span_text_for identifier.clone
+        return span_text_for identifier.clone unless block_given?
+        self.send("#{name}_element").text
       end
       define_method("#{name}_element") do
-        span_for identifier.clone
+        return call_block(&block) if block_given?
+        span_for(identifier.clone)
+        # block ? call_block(&block) : span_for(identifier.clone)
       end
       alias_method "#{name}_span".to_sym, "#{name}_element".to_sym
     end
@@ -327,9 +359,11 @@ module Druid
     #   :name
     #   :xpath
     #
-    def image(name, identifier)
+    def image(name, identifier=nil, &block)
       define_method("#{name}_element") do
-        image_for identifier.clone
+        return call_block(&block) if block_given?
+        image_for(identifier.clone)
+        # block ? call_block(&block) : image_for(identifier.clone)
       end
       alias_method "#{name}_image".to_sym, "#{name}_element".to_sym
     end
@@ -348,9 +382,11 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def form(name, identifier)
+    def form(name, identifier=nil, &block)
       define_method("#{name}_element") do
-        form_for identifier.clone
+        return call_block(&block) if block_given?
+        form_for(identifier.clone)
+        # block ? call_block(&block) : form_for(identifier.clone)
       end
       alias_method "#{name}_form".to_sym, "#{name}_element".to_sym
     end
@@ -373,12 +409,15 @@ module Druid
     #   * :text
     #   * :xpath
     #
-    def hidden_field(name, identifier)
+    def hidden_field(name, identifier=nil, &block)
       define_method("#{name}_element") do
-        hidden_field_for identifier.clone
+        return call_block(&block) if block_given?
+        hidden_field_for(identifier.clone)
+        # block ? call_block(&block) : hidden_field_for(identifier.clone)
       end
       define_method(name) do
-        hidden_field_value_for identifier.clone
+        return hidden_field_value_for identifier.clone unless block_given?
+        self.send("#{name}_element").value
       end
       alias_method "#{name}_hidden_field".to_sym, "#{name}_element".to_sym
     end
@@ -398,12 +437,15 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def list_item(name, identifier)
+    def list_item(name, identifier=nil, &block)
       define_method(name) do
-        list_item_text_for identifier.clone
+        return list_item_text_for identifier.clone unless block_given?
+        self.send("#{name}_element").text
       end
       define_method("#{name}_element") do
-        list_item_for identifier.clone
+        return call_block(&block) if block_given?
+        list_item_for(identifier.clone)
+        # block ? call_block(&block) : list_item_for(identifier.clone)
       end
       alias_method "#{name}_list_item".to_sym, "#{name}_element".to_sym
     end
@@ -422,9 +464,11 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def ordered_list(name, identifier)
+    def ordered_list(name, identifier=nil, &block)
       define_method("#{name}_element") do
-        ordered_list_for identifier.clone
+        return call_block(&block) if block_given?
+        ordered_list_for(identifier.clone)
+        # block ? call_block(&block) : ordered_list_for(identifier.clone)
       end
       alias_method "#{name}_ordered_list".to_sym, "#{name}_element".to_sym
     end
@@ -447,15 +491,19 @@ module Druid
     #   * :tag_name
     #   * :xpath
     #
-    def text_area(name, identifier)
+    def text_area(name, identifier=nil, &block)
       define_method("#{name}=") do |value|
-        text_area_value_set identifier.clone, value
+        return text_area_value_set(identifier.clone, value) unless block_given?
+        self.send("#{name}_element").value = value
       end
       define_method("#{name}") do
-        text_area_value_for identifier.clone
+        return text_area_value_for identifier.clone unless block_given?
+        self.send("#{name}_element").value
       end
       define_method("#{name}_element") do
-        text_area_for identifier.clone
+        return call_block(&block) if block_given?
+        text_area_for(identifier.clone)
+        # block ? call_block(&block) : text_area_for(identifier.clone)
       end
       alias_method "#{name}_text_area".to_sym, "#{name}_element".to_sym
     end
@@ -474,9 +522,11 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def unordered_list(name, identifier)
+    def unordered_list(name, identifier=nil, &block)
       define_method("#{name}_element") do
-        unordered_list_for identifier.clone
+        return call_block(&block) if block_given?
+        unordered_list_for(identifier.clone)
+        # block ? call_block(&block) : unordered_list_for(identifier.clone)
       end
       alias_method "#{name}_unordered_list".to_sym, "#{name}_element".to_sym
     end

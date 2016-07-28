@@ -8,18 +8,13 @@ module Druid
     def link_for identifier
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::Link)
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}link(identifier)"
-      Elements::Link.new element
-    end
-
-    def click_no_wait_link_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Link)
-      driver.instance_eval "#{nested_frames(frame_identifiers)}link(identifier).click_no_wait"
+      Druid::Elements::Link.new element, driver
     end
 
     def text_field_for identifier
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::TextField)
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}text_field(identifier)"
-      Druid::Elements::TextField.new element
+      Druid::Elements::TextField.new element, driver
     end
 
     def text_field_value_for identifier
@@ -50,7 +45,7 @@ module Druid
     def checkbox_for identifier
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::CheckBox)
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}checkbox(identifier)"
-      Druid::Elements::CheckBox.new element
+      Druid::Elements::CheckBox.new element, driver
     end
 
     def select_list_value_set identifier, value
@@ -66,7 +61,7 @@ module Druid
     def select_list_for identifier
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::SelectList)
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}select_list(identifier)"
-      Druid::Elements::SelectList.new element
+      Druid::Elements::SelectList.new element, driver
     end
 
     def select_radio identifier
@@ -87,7 +82,7 @@ module Druid
     def radio_button_for identifier
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::RadioButton)
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}radio(identifier)"
-      Druid::Elements::RadioButton.new element
+      Druid::Elements::RadioButton.new element, driver
     end
 
     def click_button_for identifier
@@ -98,7 +93,7 @@ module Druid
     def button_for identifier
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::Button)
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}button(identifier)"
-      Druid::Elements::Button.new element
+      Druid::Elements::Button.new element, driver
     end
 
     def div_text_for identifier
@@ -109,13 +104,13 @@ module Druid
     def div_for identifier
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::Div, 'div')
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}div(identifier)"
-      Druid::Elements::Div.new element
+      Druid::Elements::Div.new element, driver
     end
 
     def table_for identifier
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::Table, 'table')
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}table(identifier)"
-      Druid::Elements::Table.new element
+      Druid::Elements::Table.new element, driver
     end
 
     def cell_text_for identifier
@@ -126,7 +121,7 @@ module Druid
     def cell_for identifier
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::TableCell, 'td')
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}td(identifier)"
-      Druid::Elements::TableCell.new element
+      Druid::Elements::TableCell.new element, driver
     end
 
     def span_text_for identifier
@@ -137,19 +132,19 @@ module Druid
     def span_for identifier
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::Span, 'span')
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}span(identifier)"
-      Druid::Elements::Span.new element
+      Druid::Elements::Span.new element, driver
     end
 
     def image_for identifier
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::Image)
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}image(identifier)"
-      Druid::Elements::Image.new element
+      Druid::Elements::Image.new element, driver
     end
 
     def form_for identifier
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::Form)
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}form(identifier)"
-      Druid::Elements::Form.new element
+      Druid::Elements::Form.new element, driver
     end
 
     def hidden_field_value_for identifier
@@ -160,7 +155,7 @@ module Druid
     def hidden_field_for identifier
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::HiddenField)
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}hidden(identifier)"
-      Druid::Elements::HiddenField.new element
+      Druid::Elements::HiddenField.new element, driver
     end
 
     def list_item_text_for identifier
@@ -171,13 +166,13 @@ module Druid
     def list_item_for identifier
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::ListItem, 'li')
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}li(identifier)"
-      Druid::Elements::ListItem.new element
+      Druid::Elements::ListItem.new element, driver
     end
 
     def ordered_list_for identifier
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::OrderedList, 'ol')
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}ol(identifier)"
-      Druid::Elements::OrderedList.new element
+      Druid::Elements::OrderedList.new element, driver
     end
 
     def text_area_value_set identifier, value
@@ -193,13 +188,13 @@ module Druid
     def text_area_for identifier
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::TextArea)
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}textarea(identifier)"
-      Druid::Elements::TextArea.new element
+      Druid::Elements::TextArea.new element, driver
     end
 
     def unordered_list_for identifier
       identifier, frame_identifiers = parse_identifiers(identifier, Elements::UnOrderedList, 'ul')
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}ul(identifier)"
-      Druid::Elements::UnOrderedList.new element
+      Druid::Elements::UnOrderedList.new element, driver
     end
 
     private

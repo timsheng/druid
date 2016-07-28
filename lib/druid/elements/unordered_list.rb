@@ -8,7 +8,7 @@ module Druid
 
       def [](idx)
         li = element.li(:xpath,".//li[#{idx+1}]")
-        Druid::Elements::ListItem.new(li)
+        Druid::Elements::ListItem.new(li, driver)
       end
 
       def items
