@@ -12,7 +12,7 @@ class FramePage
   in_frame(:index => 1) do |frame|
     text_field(:text_field_2_index, :name => 'recieverElement', :frame => frame)
   end
-  
+
   in_frame(:id => "frame_1") do |frame|
     text_field(:text_field_1_id, :name => 'senderElement', :frame => frame)
   end
@@ -56,22 +56,22 @@ Given(/^I am on the iframe elements page$/) do
   @page.navigate_to(UrlHelper.frame_elements)
 end
 
-# class NestedFramePage
-#   include Druid
-#
-#   in_frame(:id => 'two') do |frame|
-#     in_frame({:id => 'three'}, frame) do |nested_frame|
-#       link(:nested_link, :id => 'four', :frame => nested_frame)
-#     end
-#   end
-# end
-#
-# Given(/^I am on the nested frame elements page$/) do
-#   @page = NestedFramePage.new(@driver)
-#   @page.navigate_to(UrlHelper.nested_frame_elements)
-# end
-#
-# Then(/^I should be able to click the nested link$/) do
-#   @page.nested_link
-#   expect(@page.text).to include 'Success'
-# end
+class NestedFramePage
+  include Druid
+
+  in_frame(:id => 'two') do |frame|
+    in_iframe({:id => 'three'}, frame) do |nested_frame|
+      link(:nested_link, :id => 'four', :frame => nested_frame)
+    end
+  end
+end
+
+Given(/^I am on the nested frame elements page$/) do
+  @page = NestedFramePage.new(@driver)
+  @page.navigate_to(UrlHelper.nested_frame_elements)
+end
+
+Then(/^I should be able to click the link in the frame$/) do
+  @page.nested_link
+  expect(@page.text).to include 'Success'
+end
