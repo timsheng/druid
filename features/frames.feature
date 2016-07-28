@@ -32,6 +32,7 @@ Scenario: Switching between iframes
   Then I should verify "page-object" is in the text field for frame 2 using "id"
   And I should verify "page-object" is in the text field for frame 1 using "id"
 
+@debug
 Scenario: Nested frames
-  #Given I am on the nested frame elements page
-  #Then I should be able to click the nested link
+  Given I am on the nested frame elements page
+  Then I should be able to click the link in the frame
