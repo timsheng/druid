@@ -16,4 +16,9 @@ describe "Element with nested elements" do
     element.button_element(:id => 'blah')
   end
 
+  it "should find nested text fields" do
+    expect(driver).to receive(:text_field).with(:id => 'blah').and_return(driver)
+    element.text_field_element(:id => 'blah')
+  end
+
 end
