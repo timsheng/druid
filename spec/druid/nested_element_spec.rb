@@ -36,4 +36,14 @@ describe "Element with nested elements" do
     element.select_list_element
   end
 
+  it "should find a nested checkbox" do
+    expect(driver).to receive(:checkbox).and_return(driver)
+    element.checkbox_element
+  end
+
+  it "should find a nested radio button" do
+    expect(driver).to receive(:radio).and_return(driver)
+    element.radio_button_element
+  end
+
 end
