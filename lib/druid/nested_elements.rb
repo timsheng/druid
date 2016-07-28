@@ -19,5 +19,9 @@ module Druid
     def text_area_element(identifier={:index => 0})
       text_area_for(identifier)
     end
+
+    def select_list_element(identifier={:index => 0})
+      select_list_for(identifier)
+    end
   end
 end
