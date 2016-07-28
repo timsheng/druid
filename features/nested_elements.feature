@@ -15,7 +15,10 @@ Feature: Attributes on Elements
     When I search for a text field located in a div
     Then I should be able to type "123abc" in the nested text field
 
-  @debug
   Scenario: Finding a hidden field within a div
     When I search for a hidden field located in a div
     Then I should be able to see that the nested hidden field contains "LeanDog"
+
+  Scenario: Finding a text area within a div
+    When I search for a text area located in a div
+    Then I should be able to type "abcdefg" in the nested text area
