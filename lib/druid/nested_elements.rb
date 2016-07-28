@@ -23,5 +23,13 @@ module Druid
     def select_list_element(identifier={:index => 0})
       select_list_for(identifier)
     end
+
+    def checkbox_element(identifier={:index => 0})
+      checkbox_for(identifier)
+    end
+
+    def radio_button_element(identifier={:index => 0})
+      radio_button_for(identifier)
+    end
   end
 end

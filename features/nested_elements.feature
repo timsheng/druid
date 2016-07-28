@@ -26,3 +26,11 @@ Feature: Attributes on Elements
   Scenario: Finding a select list within a div
     When I search for a select list located in a div
     Then I should be able to select "Test 2" in the nested select list
+
+  Scenario: Finding a checkbox within a div
+    When I search for a checkbox located in a div
+    Then I should be able to check the nested checkbox
+
+  Scenario: Finding a radio button within a div
+    When I search for a radio button located in a div
+    Then I should be able to select the nested radio button
