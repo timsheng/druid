@@ -215,10 +215,18 @@ module Druid
     def nested_frames(frame_identifiers)
       return if frame_identifiers.nil?
       frame_str = ''
-      frame_identifiers.each do |id|
-        value = id.values.first
-        frame_str += "frame(:#{id.keys.first} => #{value})." if value.to_s.is_integer
-        frame_str += "frame(:#{id.keys.first} => '#{value}')." unless value.to_s.is_integer
+      frame_identifiers.each do |frame|
+        type = frame.keys.first
+        identifier = frame.values.first.map do |key, value|
+          if value.is_a?(Regexp)
+            ":#{key} => #{value.inspect}"
+          elsif value.to_s.is_integer
+            ":#{key} => #{value}"
+          else
+            ":#{key} => '#{value}'"
+          end
+        end.join(', ')
+        frame_str +="#{type.to_s}(#{identifier})."
       end
       frame_str
     end
