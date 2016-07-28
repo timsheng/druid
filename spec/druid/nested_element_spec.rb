@@ -11,4 +11,9 @@ describe "Element with nested elements" do
     element.link_element(:id => 'blah')
   end
 
+  it "should find nested buttons" do
+    expect(driver).to receive(:button).with(:id => 'blah').and_return(driver)
+    element.button_element(:id => 'blah')
+  end
+
 end

@@ -32,12 +32,16 @@ module Druid
     #    * :name
     # @param block that contains the calls to elements that exist inside the frame.
     #
-    def in_frame(identifier, &block)
-      # puts identifier
-      block.call([] << identifier)
-      # frame = [] if frame.nil?
-      # frame << identifier
-      # block.call(frame)
+    def in_frame(identifier, frame=nil, &block)
+      frame = [] if frame.nil?
+      frame << {frame: identifier}
+      block.call(frame)
+    end
+
+    def in_iframe(identifier, frame=nil, &block)
+      frame = [] if frame.nil?
+      frame << {iframe: identifier}
+      block.call(frame)
     end
     #
     # add three methods - one to select a link and another
