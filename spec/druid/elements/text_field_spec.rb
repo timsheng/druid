@@ -12,8 +12,9 @@ describe Druid::Elements::TextField do
   end
 
   describe "interface" do
-    let(:element) { double('element')}
-    let(:text_field) { Druid::Elements::TextField.new(element) }
+    let(:element) { double 'element' }
+    let(:driver) { double 'driver' }
+    let(:text_field) { Druid::Elements::TextField.new(element, driver) }
 
     it "should set its' value" do
       expect(element).to receive(:set).with('test')

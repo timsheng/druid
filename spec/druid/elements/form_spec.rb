@@ -13,7 +13,8 @@ describe Druid::Elements::Form do
 
   describe "interface" do
     let(:element) { double 'element' }
-    let(:form) { Druid::Elements::Form.new(element) }
+    let(:driver) { double 'driver' }
+    let(:form) { Druid::Elements::Form.new(element, driver) }
 
     it "should submit a form" do
       expect(element).to receive(:submit)

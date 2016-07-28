@@ -1,3 +1,7 @@
+=== 2016-07-12
+* Enhancements
+  * Support for locating the following elements when nested
+    * Link
 === 2016-07-11
 * Enhancements
   * Added the following instance methods to Druid via ElementLocators

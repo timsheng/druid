@@ -13,7 +13,8 @@ describe Druid::Elements::SelectList do
 
   describe "interface" do
     let(:element) { double 'element' }
-    let(:select_list) { Druid::Elements::SelectList.new(element) }
+    let(:driver) { double 'driver' }
+    let(:select_list) { Druid::Elements::SelectList.new(element, driver) }
 
     it "should return an option when indexed" do
       expect(element).to receive_message_chain(:options, :[]).with(1)

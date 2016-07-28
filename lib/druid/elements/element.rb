@@ -1,13 +1,20 @@
+require 'druid/nested_elements'
+require 'druid/assist'
 module Druid
   module Elements
     #
     # Contains functionality that is common across all elements
     #
     class Element
+      include Druid::NestedElements
+      include Druid::Assist
+      
       attr_accessor :element
+      attr_accessor :driver
 
-      def initialize(element)
+      def initialize(element, driver)
         @element = element
+        @driver = driver
       end
 
       # @private

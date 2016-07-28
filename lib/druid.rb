@@ -218,4 +218,8 @@ module Druid
     end
   end
 
+  def call_block(&block)
+    block.arity == 1 ? block.call(self) : self.instance_eval(&block)
+  end
+
 end
