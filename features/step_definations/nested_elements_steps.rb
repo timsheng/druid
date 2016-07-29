@@ -13,6 +13,7 @@ class NestedElementsPage
   div(:nested_div) { |page| page.outer_div_element.div_element }
   span(:nested_span) { |page| page.outer_div_element.span_element }
   table(:nested_table) { |page| page.outer_div_element.table_element }
+  cell(:nested_cell) { |page| page.outer_div_element.cell_element(:index => 1) }
 
 end
 Given(/^I am on the nested elements page$/) do
@@ -108,4 +109,12 @@ Then(/^the data for row "([^"]*)" of the nested table should be "([^"]*)" and "(
   table_row = @table[row.to_i - 1]
   expect(table_row[0].text).to eql col1
   expect(table_row[1].text).to eql col2
+end
+
+When(/^I search the second table cell located in a table in a div$/) do
+  @cell = @page.nested_cell_element
+end
+
+Then(/^the nested table cell should contain "([^"]*)"$/) do |text|
+  expect(@cell.text).to eql text
 end
