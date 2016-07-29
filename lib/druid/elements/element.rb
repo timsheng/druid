@@ -8,13 +8,13 @@ module Druid
     class Element
       include Druid::NestedElements
       include Druid::Assist
-      
+
       attr_accessor :element
       attr_accessor :driver
 
-      def initialize(element, driver)
+      def initialize(element)
         @element = element
-        @driver = driver
+        @driver = @element
       end
 
       # @private

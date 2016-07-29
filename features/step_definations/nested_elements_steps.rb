@@ -87,5 +87,5 @@ When(/^I search for a div located in a div$/) do
 end
 
 Then(/^I should see the text "([^"]*)" in the nested div$/) do |text|
-  expect(@div.text).to include text
+  expect(@div.text).to eql text
 end
