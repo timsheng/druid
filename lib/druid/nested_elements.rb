@@ -63,5 +63,9 @@ module Druid
     def unordered_list_element(identifier={:index => 0})
       unordered_list_for(identifier)
     end
+
+    def list_item_element(identifier={:index => 0})
+      list_item_for(identifier)
+    end
   end
 end

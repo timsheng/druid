@@ -86,4 +86,9 @@ describe "Element with nested elements" do
     element.unordered_list_element
   end
 
+  it "should find a list item" do
+    expect(we).to receive(:li).and_return(we)
+    element.list_item_element
+  end
+
 end
