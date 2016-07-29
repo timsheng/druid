@@ -2,9 +2,15 @@ class NestedElementsPage
   include Druid
 
   div(:outer_div, :id => 'div_id')
-  link(:nested_link) { |page| page.outer_div_element.link_element(:index => 0) }
-  button(:nested_button) { |page| page.outer_div_element.button_element(:index => 0) }
-  text_field(:nested_text_field) { |page| page.outer_div_element.text_field_element(:index => 0) }
+  link(:nested_link) { |page| page.outer_div_element.link_element }
+  button(:nested_button) { |page| page.outer_div_element.button_element }
+  text_field(:nested_text_field) { |page| page.outer_div_element.text_field_element }
+  hidden_field(:nested_hidden_field) { |page| page.outer_div_element.hidden_field_element }
+  text_area(:nested_text_area) { |page| page.outer_div_element.text_area_element }
+  select_list(:nested_select_list) { |page| page.outer_div_element.select_list_element }
+  checkbox(:nested_checkbox) { |page| page.outer_div_element.checkbox_element }
+  radio_button(:nested_radio_button) { |page| page.outer_div_element.radio_button_element }
+  div(:nested_div) { |page| page.outer_div_element.div_element }
 
 end
 Given(/^I am on the nested elements page$/) do
@@ -34,4 +40,52 @@ end
 
 Then(/^I should be able to type "([^"]*)" in the nested text field$/) do |value|
   @text_field.value = value
+end
+
+When(/^I search for a hidden field located in a div$/) do
+  @hidden_field = @page.nested_hidden_field_element
+end
+
+Then(/^I should be able to see that the nested hidden field contains "([^"]*)"$/) do |value|
+  expect(@hidden_field.value).to eql value
+end
+
+When(/^I search for a text area located in a div$/) do
+  @text_area = @page.nested_text_area_element
+end
+
+Then(/^I should be able to type "([^"]*)" in the nested text area$/) do |value|
+  @text_area.value = value
+end
+
+When(/^I search for a select list located in a div$/) do
+  @select_list = @page.nested_select_list_element
+end
+
+Then(/^I should be able to select "([^"]*)" in the nested select list$/) do |value|
+  @select_list.select value
+end
+
+When(/^I search for a checkbox located in a div$/) do
+  @checkbox = @page.nested_checkbox_element
+end
+
+Then(/^I should be able to check the nested checkbox$/) do
+  @checkbox.check
+end
+
+When(/^I search for a radio button located in a div$/) do
+  @radio_button = @page.nested_radio_button_element
+end
+
+Then(/^I should be able to select the nested radio button$/) do
+  @radio_button.select
+end
+
+When(/^I search for a div located in a div$/) do
+  @div = @page.nested_div_element
+end
+
+Then(/^I should see the text "([^"]*)" in the nested div$/) do |text|
+  expect(@div.text).to include text
 end

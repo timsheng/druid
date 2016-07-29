@@ -11,7 +11,30 @@ Feature: Attributes on Elements
     When I search for a button located in a div
     Then I should be able to click the nested button
 
-  @debug
   Scenario: Finding a text field within a div
     When I search for a text field located in a div
     Then I should be able to type "123abc" in the nested text field
+
+  Scenario: Finding a hidden field within a div
+    When I search for a hidden field located in a div
+    Then I should be able to see that the nested hidden field contains "LeanDog"
+
+  Scenario: Finding a text area within a div
+    When I search for a text area located in a div
+    Then I should be able to type "abcdefg" in the nested text area
+
+  Scenario: Finding a select list within a div
+    When I search for a select list located in a div
+    Then I should be able to select "Test 2" in the nested select list
+
+  Scenario: Finding a checkbox within a div
+    When I search for a checkbox located in a div
+    Then I should be able to check the nested checkbox
+
+  Scenario: Finding a radio button within a div
+    When I search for a radio button located in a div
+    Then I should be able to select the nested radio button
+
+  Scenario: Finding a div within a div
+    When I search for a div located in a div
+    Then I should see the text "page-object rocks!" in the nested div
