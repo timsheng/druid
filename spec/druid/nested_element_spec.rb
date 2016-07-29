@@ -66,4 +66,9 @@ describe "Element with nested elements" do
     element.cell_element
   end
 
+  it "should find a nested image" do
+    expect(we).to receive(:image).and_return(we)
+    element.image_element
+  end
+
 end

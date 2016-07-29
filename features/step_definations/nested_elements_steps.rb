@@ -14,7 +14,7 @@ class NestedElementsPage
   span(:nested_span) { |page| page.outer_div_element.span_element }
   table(:nested_table) { |page| page.outer_div_element.table_element }
   cell(:nested_cell) { |page| page.outer_div_element.cell_element(:index => 1) }
-
+  image(:nested_image) { |page| page.outer_div_element.image_element }
 end
 Given(/^I am on the nested elements page$/) do
   @page = NestedElementsPage.new(@driver)
@@ -117,4 +117,16 @@ end
 
 Then(/^the nested table cell should contain "([^"]*)"$/) do |text|
   expect(@cell.text).to eql text
+end
+
+When(/^I search for an image located in a div$/) do
+  @image = @page.nested_image_element
+end
+
+Then(/^the nested image should be "([^"]*)" pixels wide$/) do |width|
+  expect(@image.width).to eql width.to_i
+end
+
+Then(/^the nested image should be "([^"]*)" pixels tall$/) do |height|
+  expect(@image.height).to eql height.to_i
 end
