@@ -9,7 +9,7 @@ module Druid
       #
       def [](idx)
         table_row = element[idx]
-        Druid::Elements::TableRow.new(table_row, driver)
+        Druid::Elements::TableRow.new(table_row)
       end
       #
       # Returns the number of rows in the table.

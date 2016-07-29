@@ -3,7 +3,7 @@ module Druid
     class TableRow < Element
       def [](idx)
         table_cell = element[idx]
-        Druid::Elements::TableCell.new(table_cell, driver)
+        Druid::Elements::TableCell.new(table_cell)
       end
       #
       # Returns the number of rows in the table.
