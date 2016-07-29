@@ -51,5 +51,9 @@ module Druid
     def image_element(identifier={:index => 0})
       image_for(identifier)
     end
+
+    def form_element(identifier={:index => 0})
+      form_for(identifier)
+    end
   end
 end
