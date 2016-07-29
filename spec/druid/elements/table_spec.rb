@@ -13,8 +13,7 @@ describe Druid::Elements::Table do
 
   describe "interface" do
     let(:element) { double('element')}
-    let(:driver) { double 'driver' }
-    let(:table) { Druid::Elements::Table.new(element, driver) }
+    let(:table) { Druid::Elements::Table.new(element) }
 
     it "should return a table row" do
       expect(element).to receive(:[]).with(1)

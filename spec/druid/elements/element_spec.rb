@@ -2,8 +2,7 @@ require 'druid/elements'
 
 describe Druid::Elements::Element do
   let(:we) { double('we') }
-  let(:driver) { double('driver') }
-  let(:element) { Druid::Elements::Element.new(we, driver) }
+  let(:element) { Druid::Elements::Element.new(we) }
 
   context "when handling unknown requests" do
     it "should delegate to the driver element" do

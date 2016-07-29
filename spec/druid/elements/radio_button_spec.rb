@@ -14,7 +14,7 @@ describe Druid::Elements::RadioButton do
   describe "interface" do
     let(:element) { double("element") }
     let(:driver) { double("driver") }
-    let(:radio) { Druid::Elements::RadioButton.new(element, driver)}
+    let(:radio) { Druid::Elements::RadioButton.new(element)}
 
     it "should select" do
       expect(element).to receive(:set)

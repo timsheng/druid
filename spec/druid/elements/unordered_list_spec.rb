@@ -13,8 +13,7 @@ describe Druid::Elements::UnOrderedList do
 
   describe "interface" do
     let(:element) { double 'element' }
-    let(:driver) { double 'driver' }
-    let(:ul) { Druid::Elements::UnOrderedList.new(element, driver) }
+    let(:ul) { Druid::Elements::UnOrderedList.new(element) }
 
     it "should return a list item when indexed" do
       expect(element).to receive(:li)
