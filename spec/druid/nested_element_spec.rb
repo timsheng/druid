@@ -71,4 +71,9 @@ describe "Element with nested elements" do
     element.image_element
   end
 
+  it "should find a nested form" do
+    expect(we).to receive(:form).and_return(we)
+    element.form_element
+  end
+
 end

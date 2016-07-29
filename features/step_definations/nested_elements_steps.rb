@@ -15,6 +15,8 @@ class NestedElementsPage
   table(:nested_table) { |page| page.outer_div_element.table_element }
   cell(:nested_cell) { |page| page.outer_div_element.cell_element(:index => 1) }
   image(:nested_image) { |page| page.outer_div_element.image_element }
+  form(:nested_form) { |page| page.outer_div_element.form_element }
+
 end
 Given(/^I am on the nested elements page$/) do
   @page = NestedElementsPage.new(@driver)
@@ -129,4 +131,12 @@ end
 
 Then(/^the nested image should be "([^"]*)" pixels tall$/) do |height|
   expect(@image.height).to eql height.to_i
+end
+
+When(/^I search for a form located in a div$/) do
+  @form = @page.nested_form_element
+end
+
+Then(/^I should be able to submit the nested form$/) do
+  @form.submit
 end

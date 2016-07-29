@@ -1,4 +1,4 @@
-=== 2016-07-28
+=== 2016-07-29
 * Enhancements
   * Support for locating the following elements when nested
     * Link
@@ -14,6 +14,7 @@
     * Table
     * TableCell
     * Image
+    * Form
 === 2016-07-11
 * Enhancements
   * Added the following instance methods to Druid via ElementLocators
