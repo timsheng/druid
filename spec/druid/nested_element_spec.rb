@@ -21,4 +21,34 @@ describe "Element with nested elements" do
     element.text_field_element(:id => 'blah')
   end
 
+  it "should find nested hidden fields" do
+    expect(driver).to receive(:hidden).and_return(driver)
+    element.hidden_field_element
+  end
+
+  it "should find nested text areas" do
+    expect(driver).to receive(:textarea).and_return(driver)
+    element.text_area_element
+  end
+
+  it "should find nested select list" do
+    expect(driver).to receive(:select_list).and_return(driver)
+    element.select_list_element
+  end
+
+  it "should find a nested checkbox" do
+    expect(driver).to receive(:checkbox).and_return(driver)
+    element.checkbox_element
+  end
+
+  it "should find a nested radio button" do
+    expect(driver).to receive(:radio).and_return(driver)
+    element.radio_button_element
+  end
+
+  it "should find a nested div" do
+    expect(driver).to receive(:div).and_return(driver)
+    element.div_element
+  end
+
 end
