@@ -61,4 +61,9 @@ describe "Element with nested elements" do
     element.table_element
   end
 
+  it "should find a nested cell" do
+    expect(we).to receive(:td).and_return(we)
+    element.cell_element
+  end
+
 end

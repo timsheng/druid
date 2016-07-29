@@ -43,5 +43,9 @@ module Druid
     def table_element(identifier={:index => 0})
       table_for(identifier)
     end
+
+    def cell_element(identifier={:index => 0})
+      cell_for(identifier)
+    end
   end
 end
