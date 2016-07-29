@@ -11,6 +11,7 @@ class NestedElementsPage
   checkbox(:nested_checkbox) { |page| page.outer_div_element.checkbox_element }
   radio_button(:nested_radio_button) { |page| page.outer_div_element.radio_button_element }
   div(:nested_div) { |page| page.outer_div_element.div_element }
+  span(:nested_span) { |page| page.outer_div_element.span_element }
 
 end
 Given(/^I am on the nested elements page$/) do
@@ -88,4 +89,12 @@ end
 
 Then(/^I should see the text "([^"]*)" in the nested div$/) do |text|
   expect(@div.text).to eql text
+end
+
+When(/^I search for a span located in a div$/) do
+  @span = @page.nested_span_element
+end
+
+Then(/^I should see the text "([^"]*)" in the nested span$/) do |text|
+  expect(@span.text).to eql text
 end

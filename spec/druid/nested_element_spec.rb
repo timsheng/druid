@@ -5,8 +5,6 @@ describe "Element with nested elements" do
   let(:we) { double 'we'}
   let(:element) { Druid::Elements::Element.new(we) }
   let(:driver) { driver = element}
-  # let(:driver) { double 'driver' }
-  # let(:element) { Druid::Elements::Element.new(driver)}
 
   it "should find nested links" do
     expect(we).to receive(:link).with(:id => 'blah').and_return(driver)
@@ -51,6 +49,11 @@ describe "Element with nested elements" do
   it "should find a nested div" do
     expect(we).to receive(:div).and_return(driver)
     element.div_element
+  end
+
+  it "should find a nested span" do
+    expect(we).to receive(:span).and_return(driver)
+    element.span_element
   end
 
 end
