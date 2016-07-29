@@ -39,5 +39,9 @@ module Druid
     def span_element(identifier={:index => 0})
       span_for(identifier)
     end
+
+    def table_element(identifier={:index => 0})
+      table_for(identifier)
+    end
   end
 end

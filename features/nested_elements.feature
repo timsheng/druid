@@ -42,3 +42,7 @@ Feature: Attributes on Elements
   Scenario: Finding a span within a div
     When I search for a span located in a div
     Then I should see the text "My alert" in the nested span
+
+  Scenario: Finding a table within a div
+    When I search for a table located in a div
+    Then the data for row "1" of the nested table should be "Data1" and "Data2"
