@@ -38,3 +38,36 @@ Feature: Attributes on Elements
   Scenario: Finding a div within a div
     When I search for a div located in a div
     Then I should see the text "page-object rocks!" in the nested div
+
+  Scenario: Finding a span within a div
+    When I search for a span located in a div
+    Then I should see the text "My alert" in the nested span
+
+  Scenario: Finding a table within a div
+    When I search for a table located in a div
+    Then the data for row "1" of the nested table should be "Data1" and "Data2"
+
+  Scenario: Finding a table cell within a div
+    When I search the second table cell located in a table in a div
+    Then the nested table cell should contain "Data2"
+
+  Scenario: Finding an image within a div
+    When I search for an image located in a div
+    Then the nested image should be "106" pixels wide
+    And the nested image should be "106" pixels tall
+
+  Scenario: Finding a form within a div
+    When I search for a form located in a div
+    Then I should be able to submit the nested form
+
+  Scenario: Finding an ordered list within a div
+    When I search for an ordered list located in a div
+    Then the first nested list items text should be "Number One"
+
+  Scenario: Finding an unordered list within a div
+    When I search for an unordered list located in a div
+    Then the first nested list items text should be "Item One"
+
+  Scenario: Finding a list item nested in an ordered list within a div
+    When I search for a list item nested in a ordered list in a div
+    Then I should see the nested list items text should be "Number One"
