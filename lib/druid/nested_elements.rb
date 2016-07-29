@@ -47,5 +47,9 @@ module Druid
     def cell_element(identifier={:index => 0})
       cell_for(identifier)
     end
+
+    def image_element(identifier={:index => 0})
+      image_for(identifier)
+    end
   end
 end
