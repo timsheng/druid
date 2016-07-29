@@ -59,3 +59,11 @@ Feature: Attributes on Elements
   Scenario: Finding a form within a div
     When I search for a form located in a div
     Then I should be able to submit the nested form
+
+  Scenario: Finding an ordered list within a div
+    When I search for an ordered list located in a div
+    Then the first nested list items text should be "Number One"
+
+  Scenario: Finding an unordered list within a div
+    When I search for an unordered list located in a div
+    Then the first nested list items text should be "Item One"

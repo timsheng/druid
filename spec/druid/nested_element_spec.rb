@@ -76,4 +76,14 @@ describe "Element with nested elements" do
     element.form_element
   end
 
+  it "should find a nested ordered list" do
+    expect(we).to receive(:ol).and_return(we)
+    element.ordered_list_element
+  end
+
+  it "should find a nested unordered list" do
+    expect(we).to receive(:ul).and_return(we)
+    element.unordered_list_element
+  end
+
 end

@@ -55,5 +55,13 @@ module Druid
     def form_element(identifier={:index => 0})
       form_for(identifier)
     end
+
+    def ordered_list_element(identifier={:index => 0})
+      ordered_list_for(identifier)
+    end
+
+    def unordered_list_element(identifier={:index => 0})
+      unordered_list_for(identifier)
+    end
   end
 end
