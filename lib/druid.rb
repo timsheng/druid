@@ -218,6 +218,19 @@ module Druid
     end
   end
 
+  def modal_dialog(&block)
+    script =
+    %Q{
+      window.showModalDialog = function(sURL, vArguments, sFeatures) {
+        window.dialogArguments = vArguments;
+        modalWin = window.open(sURL, 'modal', sFeatures);
+        return modalWin;
+      }
+    }
+    driver.execute_script script
+    yield
+  end
+
   def call_block(&block)
     block.arity == 1 ? block.call(self) : self.instance_eval(&block)
   end

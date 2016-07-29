@@ -133,6 +133,11 @@ describe Druid do
         expect(page.initialize_page).to be true
       end
 
+      it "should convert a modal popup to a window" do
+        expect(driver).to receive(:execute_script)
+        druid.modal_dialog {}
+      end
+
     end
   end
 
