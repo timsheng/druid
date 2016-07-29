@@ -11,6 +11,14 @@ class NestedElementsPage
   checkbox(:nested_checkbox) { |page| page.outer_div_element.checkbox_element }
   radio_button(:nested_radio_button) { |page| page.outer_div_element.radio_button_element }
   div(:nested_div) { |page| page.outer_div_element.div_element }
+  span(:nested_span) { |page| page.outer_div_element.span_element }
+  table(:nested_table) { |page| page.outer_div_element.table_element }
+  cell(:nested_cell) { |page| page.outer_div_element.cell_element(:index => 1) }
+  image(:nested_image) { |page| page.outer_div_element.image_element }
+  form(:nested_form) { |page| page.outer_div_element.form_element }
+  ordered_list(:nested_ordered_list) { |page| page.outer_div_element.ordered_list_element }
+  unordered_list(:nested_unordered_list) { |page| page.outer_div_element.unordered_list_element }
+  list_item(:nested_list_item) { |page| page.nested_ordered_list_element.list_item_element }
 
 end
 Given(/^I am on the nested elements page$/) do
@@ -88,4 +96,70 @@ end
 
 Then(/^I should see the text "([^"]*)" in the nested div$/) do |text|
   expect(@div.text).to eql text
+end
+
+When(/^I search for a span located in a div$/) do
+  @span = @page.nested_span_element
+end
+
+Then(/^I should see the text "([^"]*)" in the nested span$/) do |text|
+  expect(@span.text).to eql text
+end
+
+When(/^I search for a table located in a div$/) do
+  @table = @page.nested_table_element
+end
+
+Then(/^the data for row "([^"]*)" of the nested table should be "([^"]*)" and "([^"]*)"$/) do |row, col1, col2|
+  table_row = @table[row.to_i - 1]
+  expect(table_row[0].text).to eql col1
+  expect(table_row[1].text).to eql col2
+end
+
+When(/^I search the second table cell located in a table in a div$/) do
+  @cell = @page.nested_cell_element
+end
+
+Then(/^the nested table cell should contain "([^"]*)"$/) do |text|
+  expect(@cell.text).to eql text
+end
+
+When(/^I search for an image located in a div$/) do
+  @image = @page.nested_image_element
+end
+
+Then(/^the nested image should be "([^"]*)" pixels wide$/) do |width|
+  expect(@image.width).to eql width.to_i
+end
+
+Then(/^the nested image should be "([^"]*)" pixels tall$/) do |height|
+  expect(@image.height).to eql height.to_i
+end
+
+When(/^I search for a form located in a div$/) do
+  @form = @page.nested_form_element
+end
+
+Then(/^I should be able to submit the nested form$/) do
+  @form.submit
+end
+
+When(/^I search for an ordered list located in a div$/) do
+  @list = @page.nested_ordered_list_element
+end
+
+Then(/^the first nested list items text should be "([^"]*)"$/) do |text|
+  expect(@list[0].text).to eql text
+end
+
+When(/^I search for an unordered list located in a div$/) do
+  @list = @page.nested_unordered_list_element
+end
+
+When(/^I search for a list item nested in a ordered list in a div$/) do
+  @li = @page.nested_list_item_element
+end
+
+Then(/^I should see the nested list items text should be "([^"]*)"$/) do |text|
+  expect(@li.text).to eql text
 end

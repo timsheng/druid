@@ -1,4 +1,4 @@
-=== 2016-07-28
+=== 2016-07-29
 * Enhancements
   * Support for locating the following elements when nested
     * Link
@@ -10,6 +10,14 @@
     * CheckBox
     * RadioButton
     * Div
+    * Span
+    * Table
+    * TableCell
+    * Image
+    * Form
+    * OrderedList
+    * UnOrderedList
+    * ListItem
 === 2016-07-11
 * Enhancements
   * Added the following instance methods to Druid via ElementLocators

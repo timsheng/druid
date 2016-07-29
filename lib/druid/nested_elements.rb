@@ -35,5 +35,37 @@ module Druid
     def div_element(identifier={:index => 0})
       div_for(identifier)
     end
+
+    def span_element(identifier={:index => 0})
+      span_for(identifier)
+    end
+
+    def table_element(identifier={:index => 0})
+      table_for(identifier)
+    end
+
+    def cell_element(identifier={:index => 0})
+      cell_for(identifier)
+    end
+
+    def image_element(identifier={:index => 0})
+      image_for(identifier)
+    end
+
+    def form_element(identifier={:index => 0})
+      form_for(identifier)
+    end
+
+    def ordered_list_element(identifier={:index => 0})
+      ordered_list_for(identifier)
+    end
+
+    def unordered_list_element(identifier={:index => 0})
+      unordered_list_for(identifier)
+    end
+
+    def list_item_element(identifier={:index => 0})
+      list_item_for(identifier)
+    end
   end
 end
