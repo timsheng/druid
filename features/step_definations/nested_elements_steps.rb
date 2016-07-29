@@ -12,6 +12,7 @@ class NestedElementsPage
   radio_button(:nested_radio_button) { |page| page.outer_div_element.radio_button_element }
   div(:nested_div) { |page| page.outer_div_element.div_element }
   span(:nested_span) { |page| page.outer_div_element.span_element }
+  table(:nested_table) { |page| page.outer_div_element.table_element }
 
 end
 Given(/^I am on the nested elements page$/) do
@@ -97,4 +98,14 @@ end
 
 Then(/^I should see the text "([^"]*)" in the nested span$/) do |text|
   expect(@span.text).to eql text
+end
+
+When(/^I search for a table located in a div$/) do
+  @table = @page.nested_table_element
+end
+
+Then(/^the data for row "([^"]*)" of the nested table should be "([^"]*)" and "([^"]*)"$/) do |row, col1, col2|
+  table_row = @table[row.to_i - 1]
+  expect(table_row[0].text).to eql col1
+  expect(table_row[1].text).to eql col2
 end
