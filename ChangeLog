@@ -1,3 +1,6 @@
+=== 2016-08-01
+* Enhancements
+  * Added #clear method for TextArea
 === 2016-07-31
 * Enhancements
   * Added support for Heading element
