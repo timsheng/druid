@@ -25,6 +25,7 @@
     * OrderedList
     * UnOrderedList
     * ListItem
+  * Added #modal_dialog to Druid to override the default modal dialog behavior
 === 2016-07-11
 * Enhancements
   * Added the following instance methods to Druid via ElementLocators
