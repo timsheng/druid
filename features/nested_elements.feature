@@ -79,3 +79,7 @@ Feature: Nested Elements
   Scenario: Finding a h2 within a div
     When I search for a h2 located list in a div
     Then I should see the nested h2s text should be "h2's are cool"
+
+  Scenario: Finding a h3 within a div
+    When I search for a h3 located list in a div
+    Then I should see the nested h3s text should be "h3's are cool"

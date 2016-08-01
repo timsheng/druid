@@ -35,7 +35,7 @@ module Druid
       end
 
       def self.have_to_build_xpath(identifier)
-        ['table', 'span', 'div', 'td', 'li', 'ol', 'ul', 'h1', 'h2'].include? identifier[:tag_name] and identifier[:name]
+        ['table', 'span', 'div', 'td', 'li', 'ol', 'ul', 'h1', 'h2', 'h3'].include? identifier[:tag_name] and identifier[:name]
       end
 
       def self.build_xpath_for identifier
