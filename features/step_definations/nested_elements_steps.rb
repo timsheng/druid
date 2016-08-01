@@ -20,7 +20,7 @@ class NestedElementsPage
   unordered_list(:nested_unordered_list) { |page| page.outer_div_element.unordered_list_element }
   list_item(:nested_list_item) { |page| page.nested_ordered_list_element.list_item_element }
   h1(:nested_h1) { |page| page.outer_div_element.h1_element}
-
+  h2(:nested_h2) { |page| page.outer_div_element.h2_element}
 end
 Given(/^I am on the nested elements page$/) do
   @page = NestedElementsPage.new(@driver)
@@ -171,4 +171,12 @@ end
 
 Then(/^I should see the nested h1s text should be "([^"]*)"$/) do |text|
   expect(@h1.text).to eql text
+end
+
+When(/^I search for a h2 located list in a div$/) do
+  @h2 = @page.nested_h2_element
+end
+
+Then(/^I should see the nested h2s text should be "([^"]*)"$/) do |text|
+  expect(@h2.text).to eql text
 end

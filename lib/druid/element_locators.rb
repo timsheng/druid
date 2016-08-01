@@ -288,5 +288,20 @@ module Druid
     def h1_element identifier
       h1_for identifier
     end
+
+    #
+    # Finds a h2
+    #
+    # @param [Hash] identifier how we find a h2. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def h2_element identifier
+      h2_for identifier
+    end
   end
 end
