@@ -219,6 +219,16 @@ module Druid
       Druid::Elements::Heading.new element
     end
 
+    def h3_text_for identifier
+      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h3')
+      element = driver.instance_eval "#{nested_frames(frame_identifiers)}h3(identifier).text"
+    end
+
+    def h3_for identifier
+      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h3')
+      element = driver.instance_eval "#{nested_frames(frame_identifiers)}h3(identifier)"
+      Druid::Elements::Heading.new element
+    end
     private
 
     def add_tagname_if_needed identifier, tag

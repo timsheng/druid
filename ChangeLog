@@ -5,6 +5,7 @@
   * Element#when_visible now returns the element object
   * Element#when_not_visible now returns the element object
   * Added all of the h2 locators
+  * Added all of the h3 locators
 === 2016-07-31
 * Enhancements
   * Added support for Heading element
