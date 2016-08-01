@@ -25,3 +25,7 @@ end
 When(/^I locate a h3 while the script is executing$/) do
   @text = @page.h3_element(:id => 'h3_id').text
 end
+
+When(/^I locate a h4 while the script is executing$/) do
+  @text = @page.h4_element(:id => 'h4_id').text
+end

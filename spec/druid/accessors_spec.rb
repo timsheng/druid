@@ -24,6 +24,8 @@ class AccessorsTestDruid
   h1(:heading1, :id => 'main_heading')
   h2(:heading2, :id => 'main_heading')
   h3(:heading3, :id => 'main_heading')
+  h4(:heading4, :id => 'main_heading')
+
 end
 
 class BlockDruid
@@ -88,6 +90,9 @@ class BlockDruid
   end
   h3 :heading3 do |element|
     "h3"
+  end
+  h4 :heading4 do |element|
+    "h4"
   end
 end
 
@@ -633,6 +638,32 @@ describe Druid::Accessors do
       it "should retrieve the element from the page" do
         expect(driver).to receive(:h3).and_return(driver)
         expect(druid.heading3_element).to be_instance_of Druid::Elements::Heading
+      end
+    end
+  end
+
+  describe "h4 accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to(:heading4)
+        expect(druid).to respond_to(:heading4_element)
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.heading4_element).to eql "h4"
+      end
+    end
+
+    context "implementation" do
+      it "should retrieve the text from the h4" do
+        expect(driver).to receive(:h4).and_return(driver)
+        expect(driver).to receive(:text).and_return("value")
+        expect(druid.heading4).to eql "value"
+      end
+
+      it "should retrieve the element from the page" do
+        expect(driver).to receive(:h4).and_return(driver)
+        expect(druid.heading4_element).to be_instance_of Druid::Elements::Heading
       end
     end
   end
