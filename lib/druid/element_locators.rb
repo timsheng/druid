@@ -273,5 +273,20 @@ module Druid
     def unordered_list_element identifier
       unordered_list_for identifier
     end
+
+    #
+    # Finds a h1
+    #
+    # @param [Hash] identifier how we find a h1. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def h1_element identifier
+      h1_for identifier
+    end
   end
 end
