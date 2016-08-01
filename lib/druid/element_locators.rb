@@ -318,5 +318,20 @@ module Druid
     def h3_element identifier
       h3_for identifier
     end
+
+    #
+    # Finds a h4
+    #
+    # @param [Hash] identifier how we find a h4. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def h4_element identifier
+      h4_for identifier
+    end
   end
 end
