@@ -1,6 +1,9 @@
 === 2016-08-01
 * Enhancements
   * Added #clear method for TextArea
+  * Element#when_present now returns the element object
+  * Element#when_visible now returns the element object
+  * Element#when_not_visible now returns the element object
 === 2016-07-31
 * Enhancements
   * Added support for Heading element

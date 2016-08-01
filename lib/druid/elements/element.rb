@@ -204,6 +204,7 @@ module Druid
       #
       def when_present(timeout=5)
         element.wait_until_present(timeout)
+        self
       end
 
       #
@@ -215,6 +216,7 @@ module Druid
         Watir::Wait.until(timeout, "Element was not visible in #{timeout} seconds") do
           visible?
         end
+        self
       end
 
       #
@@ -226,6 +228,7 @@ module Druid
         Watir::Wait.while(timeout, "Element still visible after #{timeout} seconds") do
           visible?
         end
+        self
       end
 
       #

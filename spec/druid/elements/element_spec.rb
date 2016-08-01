@@ -77,14 +77,29 @@ describe Druid::Elements::Element do
       element.when_present(10)
     end
 
+    it "should return the element when it is present" do
+      expect(we).to receive(:wait_until_present).with(10)
+      expect(element.when_present(10)).to eq element
+    end
+
     it "should be able to block until it is visible" do
       expect(Watir::Wait).to receive(:until).with(10, "Element was not visible in 10 seconds")
       element.when_visible(10)
     end
 
+    it "should return the element when it is visible" do
+      expect(Watir::Wait).to receive(:until).with(10, "Element was not visible in 10 seconds")
+      expect(element.when_visible(10)).to eq element
+    end
+
     it "should be able to block until it is not visible" do
       expect(Watir::Wait).to receive(:while).with(10, "Element still visible after 10 seconds")
       element.when_not_visible(10)
+    end
+
+    it "should return the element when it is not visible" do
+      expect(Watir::Wait).to receive(:while).with(10, "Element still visible after 10 seconds")
+      expect(element.when_not_visible(10)).to eq element
     end
 
     it "should be able to block until a user define event fires true" do
