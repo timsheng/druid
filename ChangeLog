@@ -1,3 +1,7 @@
+=== 2016-07-31
+* Enhancements
+  * Added support for Heading element
+  * Added all of the h1 locators
 === 2016-07-29
 * Enhancements
   * Support for locating the following elements when nested

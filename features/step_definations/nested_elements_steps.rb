@@ -19,6 +19,7 @@ class NestedElementsPage
   ordered_list(:nested_ordered_list) { |page| page.outer_div_element.ordered_list_element }
   unordered_list(:nested_unordered_list) { |page| page.outer_div_element.unordered_list_element }
   list_item(:nested_list_item) { |page| page.nested_ordered_list_element.list_item_element }
+  h1(:nested_h1) { |page| page.outer_div_element.h1_element}
 
 end
 Given(/^I am on the nested elements page$/) do
@@ -162,4 +163,12 @@ end
 
 Then(/^I should see the nested list items text should be "([^"]*)"$/) do |text|
   expect(@li.text).to eql text
+end
+
+When(/^I search for a h1 located list in a div$/) do
+  @h1 = @page.nested_h1_element
+end
+
+Then(/^I should see the nested h1s text should be "([^"]*)"$/) do |text|
+  expect(@h1.text).to eql text
 end
