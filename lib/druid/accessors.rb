@@ -563,5 +563,34 @@ module Druid
       end
       alias_method "#{name}_h1".to_sym, "#{name}_element".to_sym
     end
+
+    #
+    # adds a method to retrieve the text of a h2 and a h2 element
+    #
+    # @example
+    #   h2(:title, :id => 'title')
+    #   # will generate a 'title' and 'title_element' method
+    #
+    # @param [String] the name used for the generated methods
+    # @param [Hash] identifier how we find a H2.  You can use a multiple paramaters
+    #   by combining of any of the following except xpath.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    # @param optional block to be invoked when element method is called
+    #
+    def h2(name, identifier=nil, &block)
+      define_method(name) do
+        return h2_text_for identifier.clone unless block_given?
+        self.send("#{name}_element").text
+      end
+      define_method("#{name}_element") do
+        return call_block(&block) if block_given?
+        h2_for(identifier.clone)
+      end
+      alias_method "#{name}_h2".to_sym, "#{name}_element".to_sym
+    end
   end
 end

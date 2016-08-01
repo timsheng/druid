@@ -115,4 +115,10 @@ describe Druid::ElementLocators do
     element = page.h1_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::Heading
   end
+
+  it "should find a h2 element" do
+    expect(driver).to receive(:h2).with(:id => 'blah').and_return(driver)
+    element = page.h2_element(:id => 'blah')
+    expect(element.to be_instance_of Druid::Elements::Heading)
+  end
 end
