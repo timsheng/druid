@@ -197,6 +197,18 @@ module Druid
       Druid::Elements::UnOrderedList.new element
     end
 
+    def h1_text_for identifier
+      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h1')
+      element = driver.instance_eval "#{nested_frames(frame_identifiers)}h1(identifier).text"
+    end
+
+    def h1_for identifier
+      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h1')
+      element = driver.instance_eval "#{nested_frames(frame_identifiers)}h1(identifier)"
+      Druid::Elements::Heading.new element
+    end
+
+
     private
 
     def add_tagname_if_needed identifier, tag

@@ -67,5 +67,9 @@ module Druid
     def list_item_element(identifier={:index => 0})
       list_item_for(identifier)
     end
+
+    def h1_element(identifier={:index => 0})
+      h1_for(identifier)
+    end
   end
 end

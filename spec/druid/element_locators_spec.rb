@@ -109,4 +109,10 @@ describe Druid::ElementLocators do
     element = page.unordered_list_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::UnOrderedList
   end
+
+  it "should find a h1 element" do
+    expect(driver).to receive(:h1).with(:id => 'blah').and_return(driver)
+    element = page.h1_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::Heading
+  end
 end
