@@ -22,6 +22,8 @@ class AccessorsTestDruid
   unordered_list(:menu, :id => 'main_menu')
   ordered_list(:top_five, :id => 'top')
   h1(:heading1, :id => 'main_heading')
+  h2(:heading2, :id => 'main_heading')
+  h3(:heading3, :id => 'main_heading')
 end
 
 class BlockDruid
@@ -80,6 +82,12 @@ class BlockDruid
   end
   h1 :heading1 do |element|
     "h1"
+  end
+  h2 :heading2 do |element|
+    "h2"
+  end
+  h3 :heading3 do |element|
+    "h3"
   end
 end
 
@@ -573,6 +581,58 @@ describe Druid::Accessors do
       it "should retrieve the element from the page" do
         expect(driver).to receive(:h1).and_return(driver)
         expect(druid.heading1_element).to be_instance_of Druid::Elements::Heading
+      end
+    end
+  end
+
+  describe "h2 accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to(:heading2)
+        expect(druid).to respond_to(:heading2_element)
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.heading2_element).to eql "h2"
+      end
+    end
+
+    context "implementation" do
+      it "should retrieve the text from the h2" do
+        expect(driver).to receive(:h2).and_return(driver)
+        expect(driver).to receive(:text).and_return("value")
+        expect(druid.heading2).to eql "value"
+      end
+
+      it "should retrieve the element from the page" do
+        expect(driver).to receive(:h2).and_return(driver)
+        expect(druid.heading2_element).to be_instance_of Druid::Elements::Heading
+      end
+    end
+  end
+
+  describe "h3 accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to(:heading3)
+        expect(druid).to respond_to(:heading3_element)
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.heading3_element).to eql "h3"
+      end
+    end
+
+    context "implementation" do
+      it "should retrieve the text from the h3" do
+        expect(driver).to receive(:h3).and_return(driver)
+        expect(driver).to receive(:text).and_return("value")
+        expect(druid.heading3).to eql "value"
+      end
+
+      it "should retrieve the element from the page" do
+        expect(driver).to receive(:h3).and_return(driver)
+        expect(druid.heading3_element).to be_instance_of Druid::Elements::Heading
       end
     end
   end

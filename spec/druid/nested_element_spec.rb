@@ -96,4 +96,14 @@ describe "Element with nested elements" do
     element.h1_element
   end
 
+  it "should find a nested h2" do
+    expect(we).to receive(:h2).and_return(we)
+    element.h2_element
+  end
+
+  it "should find a nested h3" do
+    expect(we).to receive(:h3).and_return(we)
+    element.h3_element
+  end
+
 end

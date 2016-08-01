@@ -6,14 +6,22 @@ Then(/^I should see "([^"]*)"$/) do |text|
   expect(@heading).to eql text
 end
 
-When(/^I search for the heading1 by "([^"]*)"$/) do |type|
-  @heading = @page.send "h1_#{type}"
+When(/^I search for the heading(\d+) by "([^"]*)"$/) do |head_type, type|
+  @heading = @page.send "h#{head_type}_#{type}"
 end
 
-When(/^I locate the h1 using "([^"]*)" and "([^"]*)"$/) do |param1, param2|
-  @text = @page.send "h1_#{param1}_#{param2}".to_sym
+When(/^I locate the h(\d+) using "([^"]*)" and "([^"]*)"$/) do |head_type, param1, param2|
+  @text = @page.send "h#{head_type}_#{param1}_#{param2}".to_sym
 end
 
 When(/^I locate a h1 while the script is executing$/) do
   @text = @page.h1_element(:id => 'h1_id').text
+end
+
+When(/^I locate a h2 while the script is executing$/) do
+  @text = @page.h2_element(:id => 'h2_id').text
+end
+
+When(/^I locate a h3 while the script is executing$/) do
+  @text = @page.h3_element(:id => 'h3_id').text
 end
