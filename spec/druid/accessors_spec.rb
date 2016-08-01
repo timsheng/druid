@@ -21,6 +21,7 @@ class AccessorsTestDruid
   list_item(:item_one, :id => 'one')
   unordered_list(:menu, :id => 'main_menu')
   ordered_list(:top_five, :id => 'top')
+  h1(:heading1, :id => 'main_heading')
 end
 
 class BlockDruid
@@ -76,6 +77,9 @@ class BlockDruid
   end
   ordered_list :top_five do |element|
     "ordered_list"
+  end
+  h1 :heading1 do |element|
+    "h1"
   end
 end
 
@@ -543,6 +547,32 @@ describe Druid::Accessors do
       it "should retrieve the element from the page" do
         expect(driver).to receive(:ol)
         expect(druid.top_five_element).to be_instance_of Druid::Elements::OrderedList
+      end
+    end
+  end
+
+  describe "h1 accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to :heading1
+        expect(druid).to respond_to :heading1_element
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.heading1_element).to eql "h1"
+      end
+    end
+
+    context "implementation" do
+      it "should retrieve the text from the h1" do
+        expect(driver).to receive(:h1).and_return(driver)
+        expect(driver).to receive(:text).and_return("value")
+        expect(druid.heading1).to eql "value"
+      end
+
+      it "should retrieve the element from the page" do
+        expect(driver).to receive(:h1).and_return(driver)
+        expect(druid.heading1_element).to be_instance_of Druid::Elements::Heading
       end
     end
   end

@@ -35,3 +35,7 @@ end
 When(/^I clear the text field$/) do
   @page.text_field_id_element.clear
 end
+
+When(/^I retrieve a heading element$/) do
+  @element = @page.h1_id_element
+end
