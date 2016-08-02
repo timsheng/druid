@@ -3,6 +3,12 @@ Feature: Elements
   Background:
     Given I am on the static elements page
 
+  Scenario: Elements enbaled?
+    When I click an enabled button
+    Then it should know it is enabled
+    When I check a disabled button
+    Then it should know it is not enabled
+    
   Scenario: Link element methods
     When I retrieve a link element
     Then I should know it exists
