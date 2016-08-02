@@ -193,6 +193,7 @@ module Druid
     #   :index
     #   :name
     #   :xpath
+    #   :value
     #
     def radio_button(name, identifier=nil, &block)
       define_method("select_#{name}") do
