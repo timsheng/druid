@@ -145,4 +145,10 @@ describe Druid::ElementLocators do
     element = page.h6_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::Heading
   end
+
+  it "should find a paragraph element" do
+    expect(driver).to receive(:p).with(:id => 'blah').and_return(driver)
+    element = page.paragraph_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::Paragraph
+  end
 end

@@ -27,6 +27,7 @@ class AccessorsTestDruid
   h4(:heading4, :id => 'main_heading')
   h5(:heading5, :id => 'main_heading')
   h6(:heading6, :id => 'main_heading')
+  paragraph(:first_para, :id => 'first')
 end
 
 class BlockDruid
@@ -100,6 +101,9 @@ class BlockDruid
   end
   h6 :heading6 do |element|
     "h6"
+  end
+  paragraph :first_para do |element|
+    "p"
   end
 end
 
@@ -723,6 +727,32 @@ describe Druid::Accessors do
       it "should retrieve the element from the page" do
         expect(driver).to receive(:h6).and_return(driver)
         expect(druid.heading6_element).to be_instance_of Druid::Elements::Heading
+      end
+    end
+  end
+
+  describe "paragraph accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to(:first_para)
+        expect(druid).to respond_to(:first_para_element)
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.first_para_element).to eql "p"
+      end
+    end
+
+    context "implementation" do
+      it "should retrieve the text from the p" do
+        expect(driver).to receive(:p).and_return(driver)
+        expect(driver).to receive(:text).and_return("value")
+        expect(druid.first_para).to eql "value"
+      end
+
+      it "should retrieve the element from the page" do
+        expect(driver).to receive(:p).and_return(driver)
+        expect(druid.first_para_element).to be_instance_of Druid::Elements::Paragraph
       end
     end
   end

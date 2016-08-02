@@ -121,4 +121,8 @@ describe "Element with nested elements" do
     element.h6_element
   end
 
+  it "should find a nested paragraph" do
+    expect(we).to receive(:p).and_return(we)
+    element.paragraph_element
+  end
 end
