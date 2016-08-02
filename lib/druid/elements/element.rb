@@ -162,6 +162,17 @@ module Druid
       end
 
       #
+      # get the value of the given CSS property
+      #
+      def style(property)
+        element.style property
+      end
+
+      def inspect
+        element.inspect
+      end
+
+      #
       # Send keystrokes to this element
       #
       # @param [String, Symbol, Array]

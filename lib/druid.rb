@@ -71,6 +71,13 @@ module Druid
   end
 
   #
+  # get the current page url
+  #
+  def current_url
+    driver.url
+  end
+
+  #
   # Returns the text of the current page
   #
   def text
@@ -240,6 +247,20 @@ module Druid
     }
     driver.execute_script script
     yield if block_given?
+  end
+
+  #
+  # Clear the cookies from the browser
+  #
+  def clear_cookies
+    driver.clear_cookies
+  end
+
+  #
+  # Save the current screenshot to the provided path. File is saved as a png file.
+
+  def save_screenshot(file_name)
+    driver.screenshot.save(file_name)
   end
 
   def call_block(&block)
