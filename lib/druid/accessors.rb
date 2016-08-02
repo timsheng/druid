@@ -37,7 +37,20 @@ module Druid
       frame << {frame: identifier}
       block.call(frame)
     end
-
+    #
+    # Identify an element as existing within a frame or iframe.
+    #
+    # @example
+    #  in_iframe(:id => 'frame_id') do |frame|
+    #    text_field(:first_name, :id=> 'fname', :frame => frame)
+    #  end
+    #
+    # @param [Hash] identifier how we find the frame. The valid keys are:
+    #    * :id
+    #    * :index
+    #    * :name
+    # @param block that contains the calls to elements that exist inside the frame.
+    #
     def in_iframe(identifier, frame=nil, &block)
       frame = [] if frame.nil?
       frame << {iframe: identifier}

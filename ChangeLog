@@ -11,6 +11,8 @@
   * Added #save_screenshot to Druid
   * Changed PageFactory so it also sets and instance variable @current_page to the newly created page
   * now can find radio buttons by value
+  * Added instance level in_frame, in_iframe method
+  * Support for nesting all *_element instance methods inside in_frame call
 === 2016-08-01
 * Enhancements
   * Added #clear method for TextArea

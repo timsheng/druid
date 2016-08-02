@@ -74,3 +74,15 @@ Then(/^I should be able to click the link in the frame$/) do
   @page.nested_link
   expect(@page.text).to include 'Success'
 end
+
+When(/^I type "([^"]*)" into the text field from frame 1 identified dynamically$/) do |value|
+  @page.in_frame(:id => 'frame_1') do |frame|
+    @page.text_field_element(:name => 'senderElement', :frame => frame).set(value)
+  end
+end
+
+Then(/^I should verify "([^"]*)" in the text field for frame 1 identified dynamically$/) do |value|
+  @page.in_frame(:id => 'frame_1') do |frame|
+    expect(@page.text_field_element(:name => 'senderElement', :frame => frame).value).to eql value
+  end
+end
