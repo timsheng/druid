@@ -64,6 +64,16 @@ class Page
   button(:button_class_index, :class => "button_class", :index => 0)
   button(:button_name_index, :name => "button_name", :index => 0)
 
+
+  button(:btn_id, :id => 'btn_id')
+  button(:btn_name, :name => 'btn_name')
+  button(:btn_class, :class => 'btn_class')
+  button(:btn_index, :index => 0)
+  button(:btn_text, :text => 'Click Me Too')
+  button(:btn_value, :value => 'Click Me Too')
+  button(:btn_class_index, :class => "btn_class", :index => 0)
+  button(:btn_name_index, :name => "btn_name", :index => 0)
+  
   div(:div_id, :id => "div_id")
   div(:div_name, :name => "div_name")
   div(:div_class, :class => 'div_class')
