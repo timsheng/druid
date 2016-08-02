@@ -30,3 +30,7 @@ end
 Then(/^I should be able to click the button element$/) do
   @button.click
 end
+
+Then(/^I should be able to click the real button$/) do
+  @page.send "btn_#{@how}".to_sym
+end

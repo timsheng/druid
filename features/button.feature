@@ -24,6 +24,18 @@ Feature: Button
     | text      |
     | value     |
 
+  Scenario Outline: Locating real buttons on the page
+    When I locate the button by "<locate_by>"
+    Then I should be able to click the real button
+
+    Examples:
+    | locate_by |
+    | id        |
+    | class     |
+    | name      |
+    | index     |
+    | value     |
+
   Scenario: Retrieve a button element
     When I retrieve a button element
     Then I should know it exists
@@ -33,6 +45,16 @@ Feature: Button
   Scenario Outline: Locating button using multiple parameters
     When I search for the button by "<param1>" and "<param2>"
     Then I should be able to click the button
+
+    Examples:
+    | param1  | param2  |
+    | class   | index   |
+    | name    | index   |
+
+  @multi
+  Scenario Outline: Locating real button using multiple parameters
+    When I search for the button by "<param1>" and "<param2>"
+    Then I should be able to click the real button
 
     Examples:
     | param1  | param2  |
