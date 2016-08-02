@@ -115,6 +115,10 @@ module Druid
         element.exist?
       end
 
+      def enabled?
+        element.enabled?
+      end
+
       def visible?
         element.visible?
       end
