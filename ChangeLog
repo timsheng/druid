@@ -13,6 +13,9 @@
   * now can find radio buttons by value
   * Added instance level in_frame, in_iframe method
   * Support for nesting all *_element instance methods inside in_frame call
+  * Support for nesting alerts inside an in_frame call
+  * Support for nesting confirms inside an in_frame call
+  * Support for nesting prompts inside an in_frame call
 === 2016-08-01
 * Enhancements
   * Added #clear method for TextArea
