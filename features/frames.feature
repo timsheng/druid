@@ -40,3 +40,18 @@ Scenario: Identifying items in frames at runtime
   Given I am on the frame elements page
   When I type "page-object" into the text field from frame 1 identified dynamically
   Then I should verify "page-object" in the text field for frame 1 identified dynamically
+
+Scenario: Handling alerts inside frames
+  Given I am on the frame elements page
+  When I trigger an alert within a frame
+  Then I should be able to get the alert's message
+
+Scenario: Handling confirms inside frames
+  Given I am on the frame elements page
+  When I trigger an confirm within a frame
+  Then I should be able to get the confirm's message
+
+Scenario: Handling prompts inside frames
+  Given I am on the frame elements page
+  When I trigger an prompt within a frame
+  Then I should be able to get the message and default value
