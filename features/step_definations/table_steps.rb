@@ -40,3 +40,13 @@ end
 When(/^I retrieve a table element while the script is executing$/) do
   @element = @page.table_element(:id => 'table_id')
 end
+
+Then(/^the data for the first row should be "([^"]*)" and "([^"]*)"$/) do |col1, col2|
+  expect(@element.first_row[0].text).to eql col1
+  expect(@element.first_row[1].text).to eql col2
+end
+
+Then(/^the data for the last row should be "([^"]*)" and "([^"]*)"$/) do |col1, col2|
+  expect(@element.last_row[0].text).to eql col1
+  expect(@element.last_row[1].text).to eql col2
+end

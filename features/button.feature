@@ -5,8 +5,20 @@ Feature: Button
   Background:
     Given I am on the static elements page
 
-  Scenario: Selecting a button
+  Scenario: Clicking a button (type=submit)
     When I click the button
+    Then I should be on the success page
+
+  Scenario: Clicking a button (type=image)
+    When I click the button with type image
+    Then I should be on the success page
+
+  Scenario: Clicking an image button by src
+    When I click the image button using src
+    Then I should be on the success page
+
+  Scenario: Clicking an image button by alt
+    When I click the image button using alt
     Then I should be on the success page
 
   @name
