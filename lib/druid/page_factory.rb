@@ -40,9 +40,9 @@ module Druid
     # @return [PageObject] the newly created page object
     #
     def on_page(page_class, visit=false, &block)
-      page = page_class.new(@driver, visit)
-      yield page if block_given?
-      page
+      @current_page = page_class.new(@driver, visit)
+      yield @current_page if block_given?
+      @current_page
     end
     # def visit_page(page_class, &block)
     #   page = page_class.new(@driver, true)
