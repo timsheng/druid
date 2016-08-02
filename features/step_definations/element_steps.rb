@@ -39,3 +39,19 @@ end
 When(/^I retrieve a heading element$/) do
   @element = @page.h1_id_element
 end
+
+When(/^I click an enabled button$/) do
+  @element = @page.button_id_element
+end
+
+Then(/^it should know it is enabled$/) do
+  expect(@element.enabled?).to be true
+end
+
+When(/^I check a disabled button$/) do
+  @element = @page.disabled_button_element
+end
+
+Then(/^it should know it is not enabled$/) do
+  expect(@element.enabled?).not_to be true
+end

@@ -65,6 +65,11 @@ class Page
   button(:button_class_index, :class => "button_class", :index => 0)
   button(:button_name_index, :name => "button_name", :index => 0)
 
+  button(:button_image_id, :id => 'button_image_id')
+  button(:button_image_src, :src => 'images/submit.gif')
+  button(:button_image_alt, :alt => 'Submit')
+
+  button(:disabled_button, :value => 'Disabled')
 
   button(:btn_id, :id => 'btn_id')
   button(:btn_name, :name => 'btn_name')
