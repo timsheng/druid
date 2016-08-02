@@ -9,6 +9,7 @@
   * Added #inspect to Element
   * Added #clear_cookies to Druid
   * Added #save_screenshot to Druid
+  * Changed PageFactory so it also sets and instance variable @current_page to the newly created page
 === 2016-08-01
 * Enhancements
   * Added #clear method for TextArea

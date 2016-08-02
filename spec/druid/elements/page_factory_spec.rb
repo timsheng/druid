@@ -24,10 +24,17 @@ describe Druid::PageFactory do
       expect(page).to be_instance_of FactoryTestDruid
     end
   end
+
   it "should create a new page object and execute a block" do
     expect(@world.driver).not_to receive(:goto)
     @world.on_page FactoryTestDruid do |page|
       expect(page).to be_instance_of FactoryTestDruid
     end
+  end
+
+  it "should set an instance variable that can be used outside of the block" do
+    page = @world.on_page FactoryTestDruid
+    current_page = @world.instance_variable_get "@current_page"
+    expect(current_page).to eq page
   end
 end
