@@ -240,6 +240,28 @@ module Druid
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}h4(identifier)"
       Druid::Elements::Heading.new element
     end
+
+    def h5_text_for identifier
+      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h5')
+      element = driver.instance_eval "#{nested_frames(frame_identifiers)}h5(identifier).text"
+    end
+
+    def h5_for identifier
+      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h5')
+      element = driver.instance_eval "#{nested_frames(frame_identifiers)}h5(identifier)"
+      Druid::Elements::Heading.new element
+    end
+
+    def h6_text_for identifier
+      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h6')
+      element = driver.instance_eval "#{nested_frames(frame_identifiers)}h6(identifier).text"
+    end
+
+    def h6_for identifier
+      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h6')
+      element = driver.instance_eval "#{nested_frames(frame_identifiers)}h6(identifier)"
+      Druid::Elements::Heading.new element
+    end
     private
 
     def add_tagname_if_needed identifier, tag
