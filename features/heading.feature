@@ -12,6 +12,11 @@ Feature: Headings
      Then I should see "h3's are cool"
      When I get the text for the "h4" element
      Then I should see "h4's are cool"
+     When I get the text for the "h5" element
+     Then I should see "h5's are cool"
+     When I get the text for the "h6" element
+     Then I should see "h6's are cool"
+
 
    Scenario Outline: Locating h1s on the Page
      When I search for the heading1 by "<search_by>"
@@ -122,3 +127,38 @@ Feature: Headings
    Scenario: Finding a h4 dynamically
      When I locate a h4 while the script is executing
      Then the text should be "h4's are cool"
+
+   Scenario Outline: Locating h5s on the Page
+     When I search for the heading5 by "<search_by>"
+     Then I should see "h5's are cool"
+
+     Examples:
+     | search_by |
+     | id        |
+     | class     |
+     | name      |
+     | xpath     |
+     | index     |
+
+   @locator
+   Scenario: Finding a h5 dynamically
+     When I locate a h5 while the script is executing
+     Then the text should be "h5's are cool"
+
+
+   Scenario Outline: Locating h6s on the Page
+     When I search for the heading6 by "<search_by>"
+     Then I should see "h6's are cool"
+
+     Examples:
+     | search_by |
+     | id        |
+     | class     |
+     | name      |
+     | xpath     |
+     | index     |
+
+   @locator
+   Scenario: Finding a h6 dynamically
+     When I locate a h6 while the script is executing
+     Then the text should be "h6's are cool"
