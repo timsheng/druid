@@ -32,7 +32,11 @@ Scenario: Switching between iframes
   Then I should verify "page-object" is in the text field for frame 2 using "id"
   And I should verify "page-object" is in the text field for frame 1 using "id"
 
-@debug
 Scenario: Nested frames
   Given I am on the nested frame elements page
   Then I should be able to click the link in the frame
+
+Scenario: Identifying items in frames at runtime
+  Given I am on the frame elements page
+  When I type "page-object" into the text field from frame 1 identified dynamically
+  Then I should verify "page-object" in the text field for frame 1 identified dynamically

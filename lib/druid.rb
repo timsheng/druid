@@ -206,7 +206,7 @@ module Druid
   # pause for 1 second and try again.
   #
   # @example
-  #   page.attach_to_window(:title => "other window's title")
+  #   @page.attach_to_window(:title => "other window's title")
   #
   # @param [Hash] either :title or :url or index of the other window. The url does not need to
   # be the entire url - it can just be the page name like index.html
@@ -261,6 +261,50 @@ module Druid
 
   def save_screenshot(file_name)
     driver.screenshot.save(file_name)
+  end
+
+  #
+  # Identify an element as existing within a frame or iframe. A frame parameter is
+  # passed to the block and must be passed to the other calls to Druid.
+  # You can nest calls to in_frame by passing the frame to the next level.
+  #
+  # @example
+  #  @page.in_frame(:id => 'frame_id') do |frame|
+  #    @page.text_field_element(:id=> 'fname', :frame => frame)
+  #  end
+  #
+  # @param [Hash] identifier how we find the frame. The valid keys are:
+  #    * :id
+  #    * :index
+  #    * :name
+  # @param block that contains the calls to elements that exist inside the frame.
+  #
+  def in_frame(identifier, frame=nil, &block)
+    frame = [] if frame.nil?
+    frame << {frame: identifier}
+    block.call(frame)
+  end
+
+  #
+  # Identify an element as existing within a frame or iframe. A frame parameter is
+  # passed to the block and must be passed to the other calls to Druid.
+  # You can nest calls to in_frame by passing the frame to the next level.
+  #
+  # @example
+  #  @page.in_iframe(:id => 'frame_id') do |frame|
+  #    @page.text_field_element(:id=> 'fname', :frame => frame)
+  #  end
+  #
+  # @param [Hash] identifier how we find the frame. The valid keys are:
+  #    * :id
+  #    * :index
+  #    * :name
+  # @param block that contains the calls to elements that exist inside the frame.
+  #
+  def in_iframe(identifier, frame=nil, &block)
+    frame = [] if frame.nil?
+    frame << {iframe: identifier}
+    block.call(frame)
   end
 
   def call_block(&block)
