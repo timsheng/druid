@@ -126,5 +126,15 @@ describe Druid::Elements::Element do
       expect(we).to receive(:right_click)
       element.right_click
     end
+
+    it "should get element's style" do
+      expect(we).to receive(:style).with('class').and_return('tim')
+      expect(element.style('class')).to eql "tim"
+    end
+
+    it "should inspect element" do
+      expect(we).to receive(:inspect)
+      element.inspect
+    end
   end
 end

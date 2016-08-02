@@ -4,6 +4,11 @@
   * Added all of the h6 locators
   * Added all of the paragraph locators
   * Added the Paragraph class
+  * Added #current_url to Druid
+  * Added #style to Element
+  * Added #inspect to Element
+  * Added #clear_cookies to Druid
+  * Added #save_screenshot to Druid
 === 2016-08-01
 * Enhancements
   * Added #clear method for TextArea

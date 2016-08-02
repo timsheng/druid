@@ -45,6 +45,11 @@ describe Druid do
         druid.navigate_to("www.baidu.com")
       end
 
+      it "should know it's current url" do
+        expect(driver).to receive(:url).and_return("www.baidu.com")
+        expect(druid.current_url).to eql "www.baidu.com"
+      end
+
       it "should wait until a block returns true" do
         expect(driver).to receive(:wait_until).with(5, "too long")
         druid.wait_until(5, "too long")
@@ -136,6 +141,16 @@ describe Druid do
       it "should convert a modal popup to a window" do
         expect(driver).to receive(:execute_script)
         druid.modal_dialog {}
+      end
+
+      it "should know how to clear all of the cookies from the browser" do
+        expect(driver).to receive(:clear_cookies)
+        druid.clear_cookies
+      end
+
+      it "should be able to save a screenshot" do
+        expect(driver).to receive_message_chain(:screenshot,:save)
+        druid.save_screenshot('tim.png')
       end
 
     end
