@@ -146,12 +146,14 @@ module Druid
   # @return [String] the message that was contained in the alert
   #
   def alert(&block)
+    # switch_to_frame(frame)
     yield
     value = nil
     if driver.alert.exists?
       value = driver.alert.text
       driver.alert.ok
     end
+    # switch_to_default_content(frame)
     value
   end
 
@@ -306,6 +308,16 @@ module Druid
     frame << {iframe: identifier}
     block.call(frame)
   end
+
+  # def switch_to_frame(frame_identifiers)
+  #   unless frame_identifiers.nil?
+  #     frame_identifiers.each do |frame|
+  #       frame_id = frame.values.first
+  #       value = frame_id.values.first
+  #       driver.wd.switch_to.frame(value)
+  #     end
+  #   end
+  # end
 
   def call_block(&block)
     block.arity == 1 ? block.call(self) : self.instance_eval(&block)

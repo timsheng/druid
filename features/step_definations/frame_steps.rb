@@ -77,12 +77,36 @@ end
 
 When(/^I type "([^"]*)" into the text field from frame 1 identified dynamically$/) do |value|
   @page.in_frame(:id => 'frame_1') do |frame|
-    @page.text_field_element(:name => 'senderElement', :frame => frame).set(value)
+    @page.text_field_element(:name => 'senderElement', :frame => frame).value = value
   end
 end
 
 Then(/^I should verify "([^"]*)" in the text field for frame 1 identified dynamically$/) do |value|
   @page.in_frame(:id => 'frame_1') do |frame|
     expect(@page.text_field_element(:name => 'senderElement', :frame => frame).value).to eql value
+  end
+end
+
+When(/^I trigger an alert within a frame$/) do
+  @page.in_frame(:id => 'frame_3') do |frame|
+    @msg = @page.alert do
+      @page.button_element(:id => 'alert_button', :frame => frame).click
+    end
+  end
+end
+
+When(/^I trigger an confirm within a frame$/) do
+  @page.in_frame(:id => 'frame_3') do |frame|
+    @msg = @page.confirm(true) do
+      @page.button_element(:id => 'confirm_button', :frame => frame).click
+    end
+  end
+end
+
+When(/^I trigger an prompt within a frame$/) do
+  @page.in_frame(:id => 'frame_3') do |frame|
+    @msg = @page.prompt("Tim") do
+      @page.button_element(:id => 'prompt_button', :frame => frame).click
+    end
   end
 end
