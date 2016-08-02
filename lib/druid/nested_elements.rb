@@ -79,5 +79,9 @@ module Druid
     def h3_element(identifier={:index => 0})
       h3_for(identifier)
     end
+
+    def h4_element(identifier={:index => 0})
+      h4_for(identifier)
+    end
   end
 end
