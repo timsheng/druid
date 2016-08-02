@@ -2,6 +2,8 @@
 * Enhancements
   * Added all of the h5 locators
   * Added all of the h6 locators
+  * Added all of the paragraph locators
+  * Added the Paragraph class
 === 2016-08-01
 * Enhancements
   * Added #clear method for TextArea

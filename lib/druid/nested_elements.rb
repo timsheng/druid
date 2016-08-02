@@ -91,5 +91,10 @@ module Druid
     def h6_element(identifier={:index => 0})
       h6_for(identifier)
     end
+
+    def paragraph_element(identifier={:index => 0})
+      paragraph_for(identifier)
+    end
+
   end
 end

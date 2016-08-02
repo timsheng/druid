@@ -95,3 +95,7 @@ Feature: Nested Elements
   Scenario: Finding a h6 within a div
     When I search for a h6 located in a div
     Then I should see the nested h6s text should be "h6's are cool"
+
+  Scenario: Finding a paragraph within a div
+    When I search for a paragraph located in a div
+    Then I should see the nested paragraphs text should be "This is a paragraph."
