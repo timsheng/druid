@@ -67,6 +67,7 @@ class Page
 
   button(:button_image_id, :id => 'button_image_id')
   button(:button_image_src, :src => 'images/submit.gif')
+  button(:button_image_alt, :alt => 'Submit')
 
   button(:btn_id, :id => 'btn_id')
   button(:btn_name, :name => 'btn_name')

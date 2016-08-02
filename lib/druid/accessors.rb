@@ -243,6 +243,8 @@ module Druid
     #   :name
     #   :text
     #   :xpath
+    #   :src
+    #   :alt
     #
     def button(name, identifier=nil, &block)
       define_method(name) do

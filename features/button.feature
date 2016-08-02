@@ -17,6 +17,10 @@ Feature: Button
     When I click the image button using src
     Then I should be on the success page
 
+  Scenario: Clicking an image button by alt
+    When I click the image button using alt
+    Then I should be on the success page
+
   @name
   Scenario Outline: Locating buttons on the page
     When I locate the button by "<locate_by>"
