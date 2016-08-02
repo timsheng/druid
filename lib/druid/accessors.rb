@@ -708,5 +708,17 @@ module Druid
       end
       alias_method "#{name}_h6".to_sym, "#{name}_element".to_sym
     end
+
+    def paragraph(name, identifier=nil, &block)
+      define_method(name) do
+        return paragraph_text_for identifier.clone unless block_given?
+        self.send("#{name}_element").text
+      end
+      define_method("#{name}_element") do
+        return call_block(&block) if block_given?
+        paragraph_for(identifier.clone)
+      end
+      alias_method "#{name}_paragraph".to_sym, "#{name}_element".to_sym
+    end
   end
 end

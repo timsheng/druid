@@ -19,12 +19,13 @@ class NestedElementsPage
   ordered_list(:nested_ordered_list) { |page| page.outer_div_element.ordered_list_element }
   unordered_list(:nested_unordered_list) { |page| page.outer_div_element.unordered_list_element }
   list_item(:nested_list_item) { |page| page.nested_ordered_list_element.list_item_element }
-  h1(:nested_h1) { |page| page.outer_div_element.h1_element}
-  h2(:nested_h2) { |page| page.outer_div_element.h2_element}
-  h3(:nested_h3) { |page| page.outer_div_element.h3_element}
-  h4(:nested_h4) { |page| page.outer_div_element.h4_element}
-  h5(:nested_h5) { |page| page.outer_div_element.h5_element}
-  h6(:nested_h6) { |page| page.outer_div_element.h6_element}
+  h1(:nested_h1) { |page| page.outer_div_element.h1_element }
+  h2(:nested_h2) { |page| page.outer_div_element.h2_element }
+  h3(:nested_h3) { |page| page.outer_div_element.h3_element }
+  h4(:nested_h4) { |page| page.outer_div_element.h4_element }
+  h5(:nested_h5) { |page| page.outer_div_element.h5_element }
+  h6(:nested_h6) { |page| page.outer_div_element.h6_element }
+  paragraph(:nested_paragraph) { |page| page.outer_div_element.paragraph_element }
 
 end
 Given(/^I am on the nested elements page$/) do
@@ -176,4 +177,12 @@ end
 
 Then(/^I should see the nested h(\d+)s text should be "([^"]*)"$/) do |head_type, text|
   expect(@header.text).to eql text
+end
+
+When(/^I search for a paragraph located in a div$/) do
+  @para = @page.nested_paragraph_element
+end
+
+Then(/^I should see the nested paragraphs text should be "([^"]*)"$/) do |text|
+  expect(@para.text).to eql text
 end

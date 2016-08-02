@@ -363,5 +363,20 @@ module Druid
     def h6_element identifier
       h6_for identifier
     end
+
+    #
+    # Finds a paragraph
+    #
+    # @param [Hash] identifier how we find a paragraph. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def paragraph_element identifier
+      paragraph_for identifier
+    end
   end
 end
