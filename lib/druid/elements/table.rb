@@ -24,6 +24,24 @@ module Druid
         end
       end
 
+      #
+      # return the first row
+      #
+      # @return Druid::Elements::TableRow
+      #
+      def first_row
+        self[0]
+      end
+
+      #
+      # return the last row
+      #
+      # @return Druid::Elements::TableRow
+      #
+      def last_row
+        self[-1]
+      end
+
     end
   end
 end

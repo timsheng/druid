@@ -26,13 +26,23 @@ describe Druid::Elements::Table do
     end
 
     it "should iterate over the table rows" do
-      allow(table).to receive(:[])
+      allow(element).to receive(:[])
       expect(table).to receive(:rows).and_return(2)
       count = 0
       table.each do
         count += 1
       end
       expect(count).to eql 2
+    end
+
+    it "should return the first row" do
+      expect(element).to receive(:[]).with(0).and_return(element)
+      expect(table.first_row).to be_instance_of Druid::Elements::TableRow
+    end
+
+    it "should return the last row" do
+      expect(element).to receive(:[]).with(-1).and_return(element)
+      expect(table.last_row).to be_instance_of Druid::Elements::TableRow
     end
   end
 end

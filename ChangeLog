@@ -2,6 +2,7 @@
 * Enhancements
   * Added ability to find image buttons by src
   * Added ability to find image buttons by alt
+  * Added first_row and last_row methods to table
 === 2016-08-02
 * Enhancements
   * Added all of the h5 locators
