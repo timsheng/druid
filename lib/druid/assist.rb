@@ -375,7 +375,7 @@ module Druid
     end
 
     def switch_to_default_content(frame_identifiers)
-      driver.switch_to.default_content unless frame_identifiers.nil?
+      driver.wd.switch_to.default_content unless frame_identifiers.nil?
     end
   end
 end
