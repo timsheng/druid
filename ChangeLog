@@ -1,3 +1,7 @@
+=== 2016-08-02
+* Enhancements
+  * Added all of the h5 locators
+  * Added all of the h6 locators
 === 2016-08-01
 * Enhancements
   * Added #clear method for TextArea
