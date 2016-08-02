@@ -193,6 +193,7 @@ module Druid
     #   :index
     #   :name
     #   :xpath
+    #   :value
     #
     def radio_button(name, identifier=nil, &block)
       define_method("select_#{name}") do
@@ -709,6 +710,23 @@ module Druid
       alias_method "#{name}_h6".to_sym, "#{name}_element".to_sym
     end
 
+    #
+    # adds a method to retrieve the text of a paragraph and a paragraph element
+    #
+    # @example
+    #   paragraph(:title, :id => 'title')
+    #   # will generate a 'title' and 'title_element' method
+    #
+    # @param [String] the name used for the generated methods
+    # @param [Hash] identifier how we find a paragraph.  You can use a multiple paramaters
+    #   by combining of any of the following except xpath.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    # @param optional block to be invoked when element method is called
+    #
     def paragraph(name, identifier=nil, &block)
       define_method(name) do
         return paragraph_text_for identifier.clone unless block_given?
