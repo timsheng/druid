@@ -133,4 +133,16 @@ describe Druid::ElementLocators do
     element = page.h4_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::Heading
   end
+
+  it "should find a h5 element" do
+    expect(driver).to receive(:h5).with(:id => 'blah').and_return(driver)
+    element = page.h5_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::Heading
+  end
+
+  it "should find a h6 element" do
+    expect(driver).to receive(:h6).with(:id => 'blah').and_return(driver)
+    element = page.h6_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::Heading
+  end
 end
