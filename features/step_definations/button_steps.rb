@@ -34,3 +34,11 @@ end
 Then(/^I should be able to click the real button$/) do
   @page.send "btn_#{@how}".to_sym
 end
+
+When(/^I click the button with type image$/) do
+  @page.button_image_id
+end
+
+When(/^I click the image button using src$/) do
+  @page.button_image_src
+end

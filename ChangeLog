@@ -1,3 +1,6 @@
+=== 2016-08-03
+* Enhancements
+  * Added ability to find image buttons by src
 === 2016-08-02
 * Enhancements
   * Added all of the h5 locators
