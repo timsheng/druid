@@ -151,4 +151,10 @@ describe Druid::ElementLocators do
     element = page.paragraph_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::Paragraph
   end
+
+  it "should find a file field element" do
+    expect(driver).to receive(:file_field).with(:id => 'blah').and_return(driver)
+    element = page.file_field_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::FileField
+  end
 end

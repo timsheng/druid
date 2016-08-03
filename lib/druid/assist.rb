@@ -340,6 +340,19 @@ module Druid
       switch_to_default_content(frame_identifiers)
       Elements::Paragraph.new element
     end
+
+    def file_field_value_set identifier, value
+      identifier, frame_identifiers = parse_identifiers(identifier, Elements::FileField)
+      driver.instance_eval "#{nested_frames(frame_identifiers)}file_field(identifier).set(value)"
+      switch_to_default_content(frame_identifiers)
+    end
+
+    def file_field_for identifier
+      identifier, frame_identifiers = parse_identifiers(identifier, Elements::FileField)
+      element = driver.instance_eval "#{nested_frames(frame_identifiers)}file_field(identifier)"
+      switch_to_default_content(frame_identifiers)
+      Elements::FileField.new element
+    end
     private
 
     def add_tagname_if_needed identifier, tag

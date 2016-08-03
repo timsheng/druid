@@ -753,5 +753,35 @@ module Druid
       end
       alias_method "#{name}_paragraph".to_sym, "#{name}_element".to_sym
     end
+
+    #
+    # adds a method to set the file for a file field and to retrieve
+    # the file field element
+    #
+    # @example
+    #   file_field(:the_file, :id => 'file_to_upload')
+    #   # will generate a 'the_file=' and 'the_file_element' method
+    #
+    # @param [String] the name used for the generated methods
+    # @param [Hash] identifier how we find a file_field.  You can use a multiple paramaters
+    #   by combining of any of the following except xpath.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :title
+    #   * :xpath
+    # @param optional block to be invoked when element method is called
+    #
+    def file_field(name, identifier=nil, &block)
+      define_method("#{name}=") do |value|
+        return file_field_value_set(identifier.clone, value) unless block_given?
+        self.send("#{name}_element").value = value
+      end
+      define_method("#{name}_element") do
+        return call_block(&block) if block_given?
+        file_field_for(identifier.clone)
+      end
+    end
   end
 end

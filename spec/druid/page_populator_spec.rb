@@ -8,6 +8,7 @@ class DruidPagePopulator
   select_list(:sl, :id => 'id')
   checkbox(:cb, :id => 'id')
   radio_button(:rb, :id => 'id')
+  file_field(:ff, :id => 'id')
 end
 
 describe Druid::PagePopulator do
@@ -32,6 +33,11 @@ describe Druid::PagePopulator do
   it "should set a value in a select list" do
     expect(druid).to receive(:sa=).with('value')
     druid.populate_page_with('sa' => 'value')
+  end
+
+  it "should set a value in a file field" do
+    expect(druid).to receive(:ff=).with('value')
+    druid.populate_page_with('ff' => 'value')    
   end
 
   it "should check a checkbox to true is specified" do
