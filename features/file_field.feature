@@ -28,3 +28,8 @@ Feature: File Field
     | param1  | param2  |
     | class   | index   |
     | name    | index   |
+
+  @locator
+  Scenario: Finding a file field dynamically
+    When I locate a file field while the script is executing
+    Then The file field should exist

@@ -6,6 +6,7 @@
   * Added new module PagePopulator with single method populate_page_with
   * Added deprecation warning to the method_missing method on Element.
   * Added all of the file_field locators
+  * Added full support for file_field element
 === 2016-08-02
 * Enhancements
   * Added all of the h5 locators

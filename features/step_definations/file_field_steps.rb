@@ -17,3 +17,11 @@ end
 When(/^I search for the file field by "([^"]*)" and "([^"]*)"$/) do |param1, param2|
   @how = "#{param1}_#{param2}"
 end
+
+When(/^I locate a file field while the script is executing$/) do
+  @element = @page.file_field_element(:id => 'file_field_id')
+end
+
+Then(/^The file field should exist$/) do
+  expect(@element.exist?).to be true
+end
