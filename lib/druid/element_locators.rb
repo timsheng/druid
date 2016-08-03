@@ -378,5 +378,21 @@ module Druid
     def paragraph_element identifier
       paragraph_for identifier
     end
+
+    #
+    # Finds a file field
+    #
+    # @param [Hash] identifier how we find a file field. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #   * :title
+    #
+    def file_field_element identifier
+      file_field_for identifier
+    end
   end
 end

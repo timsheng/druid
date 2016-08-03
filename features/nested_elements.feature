@@ -99,3 +99,7 @@ Feature: Nested Elements
   Scenario: Finding a paragraph within a div
     When I search for a paragraph located in a div
     Then I should see the nested paragraphs text should be "This is a paragraph."
+
+  Scenario: Finding a file field within a div
+    When I search for a file field located in a div
+    Then I should be able to retrieve the nested file field
