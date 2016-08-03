@@ -28,6 +28,7 @@ class AccessorsTestDruid
   h5(:heading5, :id => 'main_heading')
   h6(:heading6, :id => 'main_heading')
   paragraph(:first_para, :id => 'first')
+  file_field(:upload_me, :id => 'the_file')
 end
 
 class BlockDruid
@@ -104,6 +105,9 @@ class BlockDruid
   end
   paragraph :first_para do |element|
     "p"
+  end
+  file_field :a_file do |element|
+    "file_field"
   end
 end
 
@@ -753,6 +757,32 @@ describe Druid::Accessors do
       it "should retrieve the element from the page" do
         expect(driver).to receive(:p).and_return(driver)
         expect(druid.first_para_element).to be_instance_of Druid::Elements::Paragraph
+      end
+    end
+  end
+
+  describe "file_field accessors" do
+    context "when called on a page object" do
+      it "should geneate accessor methods" do
+        expect(druid).to respond_to(:upload_me=)
+        expect(druid).to respond_to(:upload_me_element)
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.a_file_element).to eql "file_field"
+      end
+    end
+
+    context "implementation" do
+      it "should set the file name" do
+        expect(driver).to receive(:file_field).and_return(driver)
+        expect(driver).to receive(:set).with('some_file')
+        druid.upload_me = 'some_file'
+      end
+
+      it "should retrieve a file field element" do
+        expect(driver).to receive(:file_field).and_return(driver)
+        expect(druid.upload_me_element).to be_instance_of Druid::Elements::FileField
       end
     end
   end
