@@ -241,4 +241,13 @@ class Page
   paragraph(:p_xpath, :xpath => '//p')
   paragraph(:p_class_index, :class => 'p_class', :index => 0)
   paragraph(:p_name_index, :name => 'p_name', :index => 0)
+
+  file_field(:file_field_id, :id => 'file_field_id')
+  file_field(:file_field_name, :name => 'file_field_name')
+  file_field(:file_field_class, :class => 'file_field_class')
+  file_field(:file_field_index, :index => 0)
+  file_field(:file_field_title, :title => 'file_field_title')
+  file_field(:file_field_xpath, :xpath => "//input[@type='file']")
+  file_field(:file_field_class_index, :class => 'file_field_class', :index => 0)
+  file_field(:file_field_name_index, :name => 'file_field_name', :index => 0)
 end

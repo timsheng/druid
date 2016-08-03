@@ -26,7 +26,7 @@ class NestedElementsPage
   h5(:nested_h5) { |page| page.outer_div_element.h5_element }
   h6(:nested_h6) { |page| page.outer_div_element.h6_element }
   paragraph(:nested_paragraph) { |page| page.outer_div_element.paragraph_element }
-
+  file_field(:nested_file_field) { |page| page.outer_div_element.file_field_element }
 end
 Given(/^I am on the nested elements page$/) do
   @page = NestedElementsPage.new(@driver)
@@ -185,4 +185,12 @@ end
 
 Then(/^I should see the nested paragraphs text should be "([^"]*)"$/) do |text|
   expect(@para.text).to eql text
+end
+
+When(/^I search for a file field located in a div$/) do
+  @ff = @page.nested_file_field_element
+end
+
+Then(/^I should be able to retrieve the nested file field$/) do
+  expect(@ff.exist?).to be true
 end

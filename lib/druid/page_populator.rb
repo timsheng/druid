@@ -2,7 +2,7 @@ module Druid
   module PagePopulator
     #
     # This method will populate all matched page TextFields,
-    # TextAreas, SelectLists, Checkboxes, and Radio Buttons from the
+    # TextAreas, SelectLists, FileFields, Checkboxes, and Radio Buttons from the
     # Hash passed as an argument.  The way it find an element is by
     # matching the Hash key to the name you provided when declaring
     # the element on your page.
@@ -25,7 +25,7 @@ module Druid
     #
     # @param [Hash] the data to use to populate this page.  The key
     # can be either a string or a symbol.  The value must be a string
-    # for TextField, TextArea, and SelectList and must be true or
+    # for TextField, TextArea, SelectList and FileField must be true or
     # false for a Checkbox or RadioButton.
     #
     def populate_page_with(data)

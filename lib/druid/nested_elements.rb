@@ -96,5 +96,8 @@ module Druid
       paragraph_for(identifier)
     end
 
+    def file_field_element(identifier={:index =>0})
+      file_field_for(identifier)
+    end
   end
 end
