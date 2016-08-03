@@ -258,6 +258,12 @@ module Druid
       # @private
       # delegate calls to driver element
       def method_missing(m, *args, &block)
+        puts "*** DEPRECATION WARNING"
+        puts "*** You are calling a method named #{m}."
+        puts "*** This method does not exist in druid so it is being passed to the driver."
+        puts "*** This feature will be removed in the near future."
+        puts "*** Please change your code to call the correct druid method."
+        puts "*** If you are using functionality that does not exist in druid please request it be added."
         unless element.respond_to?(m)
           raise NoMethodError, "undefined method `#{m}` for #{element.inspect}:#{element.class}"
         end
