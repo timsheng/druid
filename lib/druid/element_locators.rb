@@ -227,6 +227,7 @@ module Druid
     #   * :id
     #   * :index
     #   * :xpath
+    #   * :action
     #
     def form_element identifier
       form_for identifier

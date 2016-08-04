@@ -404,6 +404,7 @@ module Druid
     #   * :index
     #   * :xpath
     #   * :name
+    #   * :action
     #
     def form(name, identifier=nil, &block)
       define_method("#{name}_element") do
