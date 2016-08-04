@@ -212,6 +212,7 @@ module Druid
     #   * :index
     #   * :name
     #   * :xpath
+    #   * :alt
     #
     def image_element identifier
       image_for identifier
