@@ -105,6 +105,8 @@ module Druid
     #   :name
     #   :tag_name
     #   :xpath
+    #   :text
+    #   :title
     def text_field(name, identifier=nil, &block)
       define_method(name) do
         return text_field_value_for identifier.clone unless block_given?
@@ -378,6 +380,8 @@ module Druid
     #   :index
     #   :name
     #   :xpath
+    #   :alt
+    #   :src
     #
     def image(name, identifier=nil, &block)
       define_method("#{name}_element") do
@@ -401,6 +405,7 @@ module Druid
     #   * :index
     #   * :xpath
     #   * :name
+    #   * :action
     #
     def form(name, identifier=nil, &block)
       define_method("#{name}_element") do

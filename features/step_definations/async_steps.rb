@@ -29,3 +29,35 @@ Then(/^I should be able to wait until a block returns true$/) do
     @element.visible?
   end
 end
+
+class AsyncPage
+  include Druid
+
+  button(:target, :value => 'Target')
+  button(:hide, :value => 'Hide Button')
+  button(:unhide, :value => 'Unhide Button')
+end
+
+Given(/^I am on the async elements page$/) do
+  @page = AsyncPage.new(@driver)
+  @page.navigate_to(UrlHelper.async)
+end
+
+When(/^I make the button invisible$/) do
+  @page.hide
+  sleep 2
+end
+
+Then(/^I should be able to click it when it becomes visible$/) do
+  @page.unhide
+  @page.target_element.when_visible do
+    @page.target
+  end
+end
+
+Then(/^I should be able to wait until the button becomes invisible$/) do
+  @page.hide
+  @page.target_element.when_not_visible do
+    expect(@page.target_element.attribute("block")).to eql "none"
+  end
+end
