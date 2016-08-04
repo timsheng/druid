@@ -380,6 +380,7 @@ module Druid
     #   :index
     #   :name
     #   :xpath
+    #   :alt
     #
     def image(name, identifier=nil, &block)
       define_method("#{name}_element") do

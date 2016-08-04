@@ -20,6 +20,7 @@ Feature: Image
     | name      |
     | xpath     |
     | index     |
+    | alt       |
 
   @multi
   Scenario Outline: Locating an image using multiple parameters
