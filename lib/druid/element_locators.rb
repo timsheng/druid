@@ -13,6 +13,8 @@ module Druid
     #   * :text
     #   * :value
     #   * :xpath
+    #   * :src
+    #   * :alt
     #
     def button_element identifier
       button_for identifier
@@ -30,8 +32,8 @@ module Druid
     #   * :name
     #   * :tag_name
     #   * :text
-    #   * :value
     #   * :xpath
+    #   * :title
     #
     def text_field_element identifier
       text_field_for identifier

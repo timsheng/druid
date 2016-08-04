@@ -1,3 +1,6 @@
+=== 2016-08-04
+* Enhancements
+  * Added ability to find TextField by :title
 === 2016-08-03
 * Enhancements
   * Added ability to find image buttons by src

@@ -3,7 +3,7 @@ module Druid
     class TextField < Element
 
       def self.finders
-        super + [:css, :tag_name, :text]
+        super + [:css, :tag_name, :text, :title]
       end
 
       #

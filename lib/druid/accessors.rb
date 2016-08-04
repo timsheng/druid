@@ -105,6 +105,8 @@ module Druid
     #   :name
     #   :tag_name
     #   :xpath
+    #   :text
+    #   :title
     def text_field(name, identifier=nil, &block)
       define_method(name) do
         return text_field_value_for identifier.clone unless block_given?
