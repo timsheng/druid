@@ -2,6 +2,7 @@
 * Enhancements
   * Added ability to find TextField by :title
   * Added ability to find Image by :alt
+  * Added ability to find Form by :action
 === 2016-08-03
 * Enhancements
   * Added ability to find image buttons by src

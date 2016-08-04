@@ -17,6 +17,7 @@ Feature: Form
     | class     |
     | xpath     |
     | index     |
+    | action    |
 
   @multi
   Scenario Outline: Locating table using multiple parameters
