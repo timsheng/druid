@@ -3,9 +3,9 @@ module Druid
     class Image < Element
 
       def self.finders
-        super + [:alt]
+        super + [:alt, :src]
       end
-      
+
       def width
         element.width
       end
