@@ -24,6 +24,7 @@ class Page
   text_field(:text_field_index, :index => 0)
   text_field(:text_field_text, :text => "")
   text_field(:text_field_value, :value => "")
+  text_field(:text_field_title, :title => "text_field_title")
   text_field(:text_field_class_index, :class => "text_field_class", :index => 0)
   text_field(:text_field_name_index, :name => "text_field_name", :index => 0)
 
@@ -120,6 +121,8 @@ class Page
   image(:image_class, :class => 'image_class')
   image(:image_index, :index => 0)
   image(:image_xpath, :xpath => '//img')
+  image(:image_alt, :alt => 'image_alt')
+  image(:image_src, :src => 'images/circle.png')
   image(:image_class_index, :class => "image_class", :index => 0)
   image(:image_name_index, :name => "image_name", :index => 0)
 
@@ -128,6 +131,7 @@ class Page
   form(:form_class, :class => 'form_class')
   form(:form_index, :index => 0)
   form(:form_xpath, :xpath => '//form')
+  form(:form_action, :action => 'success.html')
   form(:form_class_index, :class => "form_class", :index => 0)
   form(:form_name_index, :name => "form_name", :index => 0)
 
