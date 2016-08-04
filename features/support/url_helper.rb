@@ -31,5 +31,9 @@ module UrlHelper
     def modal
       "#{files}/modal.html"
     end
+
+    def async
+      "#{files}/async.html"
+    end
   end
 end
