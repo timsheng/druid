@@ -7,7 +7,7 @@ module Druid
       end
 
       def self.finders
-        super + [:tag_name, :text]
+        super + [:tag_name, :text, :value]
       end
 
       def self.mapping
