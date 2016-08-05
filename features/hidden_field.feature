@@ -21,6 +21,7 @@ Feature: Hidden Fields
     | tag_name  |
     | index     |
     | text      |
+    | value     |
 
   @multi
   Scenario Outline: Locating a hidden field using multiple parameters
