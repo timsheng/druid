@@ -8,7 +8,7 @@ Feature: Elements
     Then it should know it is enabled
     When I check a disabled button
     Then it should know it is not enabled
-    
+
   Scenario: Link element methods
     When I retrieve a link element
     Then I should know it exists
@@ -199,3 +199,7 @@ Feature: Elements
     And I should know its' tag name is "h1"
     And I should know the attribute "readonly" is false
     And I should be able to click it
+
+  Scenario: Firing an event
+    When I set the focus to the test text_field using the onfocus event
+    Then I should see the onfocus text "changed by onfocus event"
