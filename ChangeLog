@@ -1,3 +1,6 @@
+=== 2016-08-05
+* Enhancements
+  * Added ability to find Checkbox by :value
 === 2016-08-04
 * Enhancements
   * Added ability to find TextField by :title
