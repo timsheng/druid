@@ -32,6 +32,7 @@ class Page
   checkbox(:cb_name, :name => 'cb_name')
   checkbox(:cb_class, :class => 'cb_class')
   checkbox(:cb_index, :index => 0)
+  checkbox(:cb_value, :value => '1')
   checkbox(:cb_xpath, :xpath => "//input[@type='checkbox']")
   checkbox(:cb_class_index, :class => "cb_class", :index => 0)
   checkbox(:cb_name_index, :name => "cb_name", :index => 0)
