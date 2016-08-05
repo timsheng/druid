@@ -213,6 +213,13 @@ module Druid
       end
 
       #
+      # Fire the provided event on the current element
+      #
+      def fire_event(event_name)
+        element.fire_event(event_name)
+      end
+
+      #
       # Waits until the element is present
       #
       # @param [Integer] (default to:5) seconds to wait before timing out
