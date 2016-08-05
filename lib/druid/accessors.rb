@@ -139,6 +139,7 @@ module Druid
     #   :index
     #   :name
     #   :xpath
+    #   :value
     #
     def checkbox(name, identifier=nil, &block)
       define_method("check_#{name}") do
@@ -433,6 +434,7 @@ module Druid
     #   * :tag_name
     #   * :text
     #   * :xpath
+    #   * :value
     #
     def hidden_field(name, identifier=nil, &block)
       define_method("#{name}_element") do

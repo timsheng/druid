@@ -136,5 +136,10 @@ describe Druid::Elements::Element do
       expect(we).to receive(:inspect)
       element.inspect
     end
+
+    it "should be able to fire event" do
+      expect(we).to receive(:fire_event).with('onclick')
+      element.fire_event('onclick')      
+    end
   end
 end

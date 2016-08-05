@@ -52,6 +52,7 @@ module Druid
     #   * :tag_name
     #   * :text
     #   * :xpath
+    #   * :value
     #
     def hidden_field_element identifier
       hidden_field_for identifier
@@ -120,6 +121,7 @@ module Druid
     #   * :index
     #   * :name
     #   * :xpath
+    #   * :value
     #
     def checkbox_element identifier
       checkbox_for identifier

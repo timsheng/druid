@@ -55,3 +55,11 @@ end
 Then(/^it should know it is not enabled$/) do
   expect(@element.enabled?).not_to be true
 end
+
+When(/^I set the focus to the test text_field using the onfocus event$/) do
+  @page.text_field_element(:id => 'onfocus_text_field').fire_event('onfocus')
+end
+
+Then(/^I should see the onfocus text "([^"]*)"$/) do |text|
+  expect(@page.div_element(:id => 'onfocus_test').text).to eql text
+end
