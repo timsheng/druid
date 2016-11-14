@@ -33,5 +33,9 @@ describe Druid::Elements::TableRow do
       end
       expect(count).to eql 3
     end
+
+    it "should register with tag_name :tr" do
+      expect(Druid::Elements.element_class_for(:tr)).to be Druid::Elements::TableRow
+    end
   end
 end

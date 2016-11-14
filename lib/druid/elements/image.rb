@@ -14,5 +14,7 @@ module Druid
         element.height
       end
     end
+
+    Druid::Elements.tag_to_class[:img] = Druid::Elements::Image
   end
 end

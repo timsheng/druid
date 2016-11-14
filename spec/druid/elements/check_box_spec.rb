@@ -29,5 +29,10 @@ describe Druid::Elements::CheckBox do
       expect(element).to receive(:set?)
       checkbox.checked?
     end
+
+    it "should register with type :checkbox" do
+      expect(Druid::Elements.element_class_for(:input, :checkbox)).to be Druid::Elements::CheckBox
+    end
+
   end
 end

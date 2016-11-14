@@ -30,5 +30,9 @@ describe Druid::Elements::RadioButton do
       expect(element).to receive(:set?)
       radio.selected?
     end
+
+    it "should register as type :radio" do
+      expect(Druid::Elements.element_class_for(:input, :radio)).to be Druid::Elements::RadioButton
+    end
   end
 end

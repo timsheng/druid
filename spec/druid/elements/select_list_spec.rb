@@ -29,5 +29,9 @@ describe Druid::Elements::SelectList do
       expect(element).to receive(:select).with('test')
       select_list.select('test')
     end
+
+    it "should register with tag_name :select" do
+      expect(Druid::Elements.element_class_for(:select)).to be Druid::Elements::SelectList
+    end
   end
 end

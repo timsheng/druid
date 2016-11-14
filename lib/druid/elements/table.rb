@@ -43,5 +43,7 @@ module Druid
       end
 
     end
+
+    Druid::Elements.tag_to_class[:table] = Druid::Elements::Table
   end
 end
