@@ -64,6 +64,12 @@ Then(/^I should see the onfocus text "([^"]*)"$/) do |text|
   expect(@page.div_element(:id => 'onfocus_test').text).to eql text
 end
 
+When(/^I set the focus on the test text_field$/) do
+  @page.text_field_element(:id => 'text_field_id').click
+  #  Focuses element. Note that Firefox queues focus events until the window actually has focus.
+  @page.text_field_element(:id => 'onfocus_text_field').focus
+end
+
 When(/^I find the child link element$/) do
   @element = @page.child_element
 end
