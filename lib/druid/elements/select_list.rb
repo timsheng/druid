@@ -21,5 +21,7 @@ module Druid
         element.select(value)
       end
     end
+
+    Druid::Elements.tag_to_class[:select] = Druid::Elements::SelectList
   end
 end

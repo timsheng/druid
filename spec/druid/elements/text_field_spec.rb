@@ -19,5 +19,13 @@ describe Druid::Elements::TextField do
       expect(element).to receive(:set).with('test')
       text_field.value = 'test'
     end
+
+    it "should register with type :text" do
+      expect(Druid::Elements.element_class_for(:input, :text)).to be Druid::Elements::TextField
+    end
+
+    it "should register with type :password" do
+      expect(Druid::Elements.element_class_for(:input, :password)).to be Druid::Elements::TextField
+    end
   end
 end

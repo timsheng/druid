@@ -24,5 +24,9 @@ describe Druid::Elements::Image do
       expect(element).to receive(:height).and_return(120)
       expect(image.height).to eql 120
     end
+
+    it "should register with tag_name :img" do
+      expect(Druid::Elements.element_class_for(:img)).to be Druid::Elements::Image
+    end
   end
 end

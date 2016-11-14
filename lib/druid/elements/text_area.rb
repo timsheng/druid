@@ -18,5 +18,8 @@ module Druid
       end
 
     end
+
+    Druid::Elements.tag_to_class[:textarea] = Druid::Elements::TextArea
+
   end
 end

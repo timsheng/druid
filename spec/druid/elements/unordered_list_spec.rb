@@ -34,5 +34,9 @@ describe Druid::Elements::UnOrderedList do
       end
       expect(count).to eql 3
     end
+
+    it "should register with tag_name :ul" do
+      expect(Druid::Elements.element_class_for(:ul)).to be Druid::Elements::UnOrderedList
+    end
   end
 end

@@ -9,7 +9,7 @@ module Druid
 
       def [](idx)
         li = element.li(:xpath, ".//li[#{idx+1}]")
-        Druid::Elements::ListItem.new(li)  
+        Druid::Elements::ListItem.new(li)
       end
 
       def items
@@ -23,5 +23,7 @@ module Druid
       end
 
     end
+
+    Druid::Elements.tag_to_class[:ol] = Druid::Elements::OrderedList
   end
 end

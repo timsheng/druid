@@ -23,5 +23,9 @@ describe Druid::Elements::TextArea do
       expect(element).to receive(:send_keys).with('test')
       text_area.value = 'test'
     end
+
+    it "should register with tag_name :textarea" do
+      expect(Druid::Elements.element_class_for(:textarea)).to be Druid::Elements::TextArea
+    end
   end
 end
