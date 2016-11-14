@@ -27,5 +27,7 @@ module Druid
         element.set?
       end
     end
+
+    Druid::Elements.type_to_class[:checkbox] = Druid::Elements::CheckBox
   end
 end

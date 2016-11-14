@@ -63,3 +63,15 @@ end
 Then(/^I should see the onfocus text "([^"]*)"$/) do |text|
   expect(@page.div_element(:id => 'onfocus_test').text).to eql text
 end
+
+When(/^I find the child link element$/) do
+  @element = @page.child_element
+end
+
+When(/^ask for the parent element$/) do
+  @parent = @element.parent
+end
+
+Then(/^I should have a div parent$/) do
+  expect(@parent).to be_instance_of Druid::Elements::Div
+end

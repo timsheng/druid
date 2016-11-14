@@ -255,4 +255,6 @@ class Page
   file_field(:file_field_xpath, :xpath => "//input[@type='file']")
   file_field(:file_field_class_index, :class => 'file_field_class', :index => 0)
   file_field(:file_field_name_index, :name => 'file_field_name', :index => 0)
+
+  link(:child, :id => 'child')
 end

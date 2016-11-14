@@ -44,5 +44,9 @@ describe Druid::Elements::Table do
       expect(element).to receive(:[]).with(-1).and_return(element)
       expect(table.last_row).to be_instance_of Druid::Elements::TableRow
     end
+
+    it "should register with tag_name :table" do
+      expect(Druid::Elements.element_class_for(:table)).to be Druid::Elements::Table
+    end
   end
 end

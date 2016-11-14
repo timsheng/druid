@@ -19,5 +19,8 @@ module Druid
       end
 
     end
+
+    Druid::Elements.tag_to_class[:tr] = Druid::Elements::TableRow
+
   end
 end

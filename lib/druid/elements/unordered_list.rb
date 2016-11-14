@@ -21,5 +21,8 @@ module Druid
         end
       end
     end
+
+    Druid::Elements.tag_to_class[:ul] = Druid::Elements::UnOrderedList
+
   end
 end

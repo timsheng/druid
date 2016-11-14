@@ -220,6 +220,15 @@ module Druid
       end
 
       #
+      # Returns parent element of current element.
+      def parent
+        parent = element.parent
+        type = element.type if parent.tag_name.to_sym == :input
+        cls = Druid::Elements.element_class_for(parent.tag_name, type)
+        cls.new(parent)
+      end
+
+      #
       # Waits until the element is present
       #
       # @param [Integer] (default to:5) seconds to wait before timing out
