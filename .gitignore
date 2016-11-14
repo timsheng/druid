@@ -4,3 +4,4 @@ druid*.gem
 .idea/
 pkg
 *.swp
+.DS_Store

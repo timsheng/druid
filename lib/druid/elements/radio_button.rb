@@ -26,5 +26,7 @@ module Druid
         element.set?
       end
     end
+
+    Druid::Elements.type_to_class[:radio] = Druid::Elements::RadioButton
   end
 end

@@ -34,5 +34,9 @@ describe Druid::Elements::OrderedList do
       end
       expect(count).to eql 2
     end
+
+    it "should register as tag_name :ol" do
+      expect(Druid::Elements.element_class_for(:ol)).to be Druid::Elements::OrderedList
+    end
   end
 end

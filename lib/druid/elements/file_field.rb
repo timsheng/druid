@@ -12,5 +12,7 @@ module Druid
         element.set(new_value)
       end
     end
+
+    Druid::Elements.type_to_class[:file] = Druid::Elements::FileField
   end
 end

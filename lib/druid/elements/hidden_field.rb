@@ -15,5 +15,7 @@ module Druid
       end
 
     end
+
+    Druid::Elements.type_to_class[:hidden] = Druid::Elements::HiddenField
   end
 end

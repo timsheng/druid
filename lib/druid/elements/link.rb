@@ -12,5 +12,7 @@ module Druid
          super.merge({:link => :text, :link_text => :text})
       end
     end
+
+    Druid::Elements.tag_to_class[:a] = Druid::Elements::Link
   end
 end
