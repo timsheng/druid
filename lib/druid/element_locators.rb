@@ -17,7 +17,26 @@ module Druid
     #   * :alt
     #
     def button_element identifier
-      button_for identifier
+      button_for identifier.clone
+    end
+
+    #
+    # Finds all buttons that match the provided identifier
+    #
+    # @param [Hash] identifier how we find a button.  You can use a multiple paramaters
+    #  by combining of any of the following except xpath.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :text
+    #   * :value
+    #   * :xpath
+    #   * :src
+    #   * :alt
+    #
+    def button_elements identifier
+      buttons_for identifier.clone
     end
 
     #
@@ -36,7 +55,7 @@ module Druid
     #   * :title
     #
     def text_field_element identifier
-      text_field_for identifier
+      text_field_for identifier.clone
     end
 
     #
@@ -55,7 +74,7 @@ module Druid
     #   * :value
     #
     def hidden_field_element identifier
-      hidden_field_for identifier
+      hidden_field_for identifier.clone
     end
 
     #
@@ -72,7 +91,7 @@ module Druid
     #   * :xpath
     #
     def text_area_element identifier
-      text_area_for identifier
+      text_area_for identifier.clone
     end
 
     #
@@ -89,7 +108,7 @@ module Druid
     #   * :text
     #
     def select_list_element identifier
-      select_list_for identifier
+      select_list_for identifier.clone
     end
 
     #
@@ -108,7 +127,7 @@ module Druid
     #   * :text
     #
     def link_element identifier
-      link_for identifier
+      link_for identifier.clone
     end
 
     #
@@ -124,7 +143,7 @@ module Druid
     #   * :value
     #
     def checkbox_element identifier
-      checkbox_for identifier
+      checkbox_for identifier.clone
     end
 
     #
@@ -139,7 +158,7 @@ module Druid
     #   * :xpath
     #
     def radio_button_element identifier
-      radio_button_for identifier
+      radio_button_for identifier.clone
     end
 
     #
@@ -155,7 +174,7 @@ module Druid
     #   * :text
     #
     def div_element identifier
-      div_for identifier
+      div_for identifier.clone
     end
 
     #
@@ -170,7 +189,7 @@ module Druid
     #   * :xpath
     #
     def span_element identifier
-      span_for identifier
+      span_for identifier.clone
     end
 
     #
@@ -185,7 +204,7 @@ module Druid
     #   * :xpath
     #
     def table_element identifier
-      table_for identifier
+      table_for identifier.clone
     end
 
     #
@@ -201,7 +220,7 @@ module Druid
     #   * :text
     #
     def cell_element identifier
-      cell_for identifier
+      cell_for identifier.clone
     end
 
     #
@@ -218,7 +237,7 @@ module Druid
     #   * :src
     #
     def image_element identifier
-      image_for identifier
+      image_for identifier.clone
     end
 
     #
@@ -233,7 +252,7 @@ module Druid
     #   * :action
     #
     def form_element identifier
-      form_for identifier
+      form_for identifier.clone
     end
 
     #
@@ -248,7 +267,7 @@ module Druid
     #   * :name
     #
     def list_item_element identifier
-      list_item_for identifier
+      list_item_for identifier.clone
     end
 
     #
@@ -263,7 +282,7 @@ module Druid
     #   * :name
     #
     def ordered_list_element identifier
-      ordered_list_for identifier
+      ordered_list_for identifier.clone
     end
 
     #
@@ -278,7 +297,7 @@ module Druid
     #   * :name
     #
     def unordered_list_element identifier
-      unordered_list_for identifier
+      unordered_list_for identifier.clone
     end
 
     #
@@ -293,7 +312,7 @@ module Druid
     #   * :name
     #
     def h1_element identifier
-      h1_for identifier
+      h1_for identifier.clone
     end
 
     #
@@ -308,7 +327,7 @@ module Druid
     #   * :name
     #
     def h2_element identifier
-      h2_for identifier
+      h2_for identifier.clone
     end
 
     #
@@ -323,7 +342,7 @@ module Druid
     #   * :name
     #
     def h3_element identifier
-      h3_for identifier
+      h3_for identifier.clone
     end
 
     #
@@ -338,7 +357,7 @@ module Druid
     #   * :name
     #
     def h4_element identifier
-      h4_for identifier
+      h4_for identifier.clone
     end
 
     #
@@ -353,7 +372,7 @@ module Druid
     #   * :name
     #
     def h5_element identifier
-      h5_for identifier
+      h5_for identifier.clone
     end
 
     #
@@ -368,7 +387,7 @@ module Druid
     #   * :name
     #
     def h6_element identifier
-      h6_for identifier
+      h6_for identifier.clone
     end
 
     #
@@ -383,7 +402,7 @@ module Druid
     #   * :name
     #
     def paragraph_element identifier
-      paragraph_for identifier
+      paragraph_for identifier.clone
     end
 
     #
@@ -399,7 +418,7 @@ module Druid
     #   * :title
     #
     def file_field_element identifier
-      file_field_for identifier
+      file_field_for identifier.clone
     end
   end
 end
