@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name = "druid-ts"
   s.platform = Gem::Platform::RUBY
   s.version = Druid::VERSION
-  s.date = '2016-06-07'
+  s.date = '2016-11-15'
   s.authors = ["Tim Sheng"]
   s.email = ["278570038@qq.com"]
   s.homepage = "http://github.com/timsheng/druid"
@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.executables = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f)}
   s.require_paths = ["lib"]
 
-  s.add_dependency "watir-webdriver", "0.9", ">= 0.9.1"
+  s.add_dependency "watir-webdriver", ">= 0.9.1"
   s.add_development_dependency "rspec", ">= 3.4.0"
   s.add_development_dependency "cucumber", ">= 1.3.20"
 end
