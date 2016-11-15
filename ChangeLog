@@ -1,6 +1,8 @@
+******1.1.0******
 === 2016-11-14
 * Enhancements
   * Added ability to find a parent of an Element
+  * Added #focus method to Element
 === 2016-08-05
 * Enhancements
   * Added ability to find Checkbox by :value
