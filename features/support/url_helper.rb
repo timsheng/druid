@@ -35,5 +35,9 @@ module UrlHelper
     def async
       "#{files}/async.html"
     end
+
+    def multi
+      "#{files}/multi_elements.html"
+    end
   end
 end

@@ -1,3 +1,6 @@
+=== 2016-11-15
+* Enhancements
+  * Added #button_elements to find all buttons on a page that match locators
 ******1.1.0******
 === 2016-11-14
 * Enhancements
