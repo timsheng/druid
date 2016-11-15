@@ -1,11 +1,12 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
+require "druid/version"
 
 Gem::Specification.new do |s|
   s.name = "druid-ts"
   s.platform = Gem::Platform::RUBY
-  s.version = '0.0.1'
-  s.date = '2016-06-07'
+  s.version = Druid::VERSION
+  s.date = '2016-11-15'
   s.authors = ["Tim Sheng"]
   s.email = ["278570038@qq.com"]
   s.homepage = "http://github.com/timsheng/druid"

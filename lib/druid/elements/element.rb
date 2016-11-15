@@ -219,6 +219,10 @@ module Druid
         element.fire_event(event_name)
       end
 
+      def focus
+        element.focus
+      end
+
       #
       # Returns parent element of current element.
       def parent

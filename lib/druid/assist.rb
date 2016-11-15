@@ -1,359 +1,228 @@
 module Druid
   module Assist
     def click_link_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Link)
-      driver.instance_eval "#{nested_frames(frame_identifiers)}link(identifier).click"
-      switch_to_default_content(frame_identifiers)
+      process_call("link(identifier).click if identifier", Elements::Link, identifier)
     end
 
     def link_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Link)
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}link(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::Link.new element
+      find_element("link(identifier)", Elements::Link, identifier)
     end
 
     def text_field_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::TextField)
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}text_field(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::TextField.new element
+      find_element("text_field(identifier)", Elements::TextField, identifier)
     end
 
     def text_field_value_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::TextField)
-      value = driver.instance_eval "#{nested_frames(frame_identifiers)}text_field(identifier).value"
-      switch_to_default_content(frame_identifiers)
-      value
+      process_call("text_field(identifier).value", Elements::TextField, identifier)
     end
 
     def text_field_value_set identifier, value
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::TextField)
-      driver.instance_eval "#{nested_frames(frame_identifiers)}text_field(identifier).set(value)"
-      switch_to_default_content(frame_identifiers)
+      process_call("text_field(identifier).set(value)", Elements::TextField, identifier, value)
     end
 
     def check_checkbox identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::CheckBox)
-      driver.instance_eval "#{nested_frames(frame_identifiers)}checkbox(identifier).set"
-      switch_to_default_content(frame_identifiers)
+      process_call("checkbox(identifier).set", Elements::CheckBox, identifier)
     end
 
     def uncheck_checkbox identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::CheckBox)
-      driver.instance_eval "#{nested_frames(frame_identifiers)}checkbox(identifier).clear"
-      switch_to_default_content(frame_identifiers)
+      process_call("checkbox(identifier).clear", Elements::CheckBox, identifier)
     end
 
     def checkbox_checked? identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::CheckBox)
-      result = driver.instance_eval "#{nested_frames(frame_identifiers)}checkbox(identifier).set?"
-      switch_to_default_content(frame_identifiers)
-      result
+      process_call("checkbox(identifier).set?", Elements::CheckBox, identifier)
     end
 
     def checkbox_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::CheckBox)
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}checkbox(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::CheckBox.new element
+      find_element("checkbox(identifier)", Elements::CheckBox, identifier)
     end
 
     def select_list_value_set identifier, value
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::SelectList)
-      driver.instance_eval "#{nested_frames(frame_identifiers)}select_list(identifier).select value"
-      switch_to_default_content(frame_identifiers)
+      process_call("select_list(identifier).select(value)", Elements::SelectList, identifier, value)
     end
 
     def select_list_value_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::SelectList)
-      value = driver.instance_eval "#{nested_frames(frame_identifiers)}select_list(identifier).value"
-      switch_to_default_content(frame_identifiers)
-      value
+      process_call("select_list(identifier).value", Elements::SelectList, identifier)
     end
 
     def select_list_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::SelectList)
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}select_list(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::SelectList.new element
+      find_element("select_list(identifier)", Elements::SelectList, identifier)
     end
 
     def select_radio identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::RadioButton)
-      driver.instance_eval "#{nested_frames(frame_identifiers)}radio(identifier).set"
-      switch_to_default_content(frame_identifiers)
+      process_call("radio(identifier).set", Elements::RadioButton, identifier)
     end
 
     def clear_radio identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::RadioButton)
-      driver.instance_eval "#{nested_frames(frame_identifiers)}radio(identifier).clear"
-      switch_to_default_content(frame_identifiers)
+      process_call("radio(identifier).clear", Elements::RadioButton, identifier)
     end
 
     def radio_selected? identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::RadioButton)
-      result = driver.instance_eval "#{nested_frames(frame_identifiers)}radio(identifier).set?"
-      switch_to_default_content(frame_identifiers)
-      result
+      process_call("radio(identifier).set?", Elements::RadioButton, identifier)
     end
 
     def radio_button_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::RadioButton)
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}radio(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::RadioButton.new element
+      find_element("radio(identifier)", Elements::RadioButton, identifier)
+
     end
 
     def click_button_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Button)
-      driver.instance_eval "#{nested_frames(frame_identifiers)}button(identifier).click"
-      switch_to_default_content(frame_identifiers)
+      process_call("button(identifier).click", Elements::Button, identifier)
     end
 
     def button_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Button)
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}button(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::Button.new element
+      find_element("button(identifier)", Elements::Button, identifier)
     end
 
     def div_text_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Div, 'div')
-      text = driver.instance_eval "#{nested_frames(frame_identifiers)}div(identifier).text"
-      switch_to_default_content(frame_identifiers)
-      text
+      process_call("div(identifier).text", Elements::Div, identifier, nil, 'div')
     end
 
     def div_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Div, 'div')
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}div(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::Div.new element
+      find_element("div(identifier)", Elements::Div, identifier, 'div')
     end
 
     def table_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Table, 'table')
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}table(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::Table.new element
+      find_element("table(identifier)", Elements::Table, identifier, 'table')
     end
 
     def cell_text_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::TableCell, 'td')
-      text = driver.instance_eval "#{nested_frames(frame_identifiers)}td(identifier).text"
-      switch_to_default_content(frame_identifiers)
-      text
+      process_call("td(identifier).text", Elements::TableCell, identifier, nil, 'td')
     end
 
     def cell_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::TableCell, 'td')
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}td(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::TableCell.new element
+      find_element("td(identifier)", Elements::TableCell, identifier, 'td')
     end
 
     def span_text_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Span, 'span')
-      text = driver.instance_eval "#{nested_frames(frame_identifiers)}span(identifier).text"
-      switch_to_default_content(frame_identifiers)
-      text
+      process_call("span(identifier).text", Elements::Span, identifier, nil, 'span')
     end
 
     def span_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Span, 'span')
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}span(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::Span.new element
+      find_element("span(identifier)", Elements::Span, identifier, 'span')
     end
 
     def image_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Image)
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}image(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::Image.new element
+      find_element("image(identifier)", Elements::Image, identifier)
     end
 
     def form_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Form)
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}form(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::Form.new element
+      find_element("form(identifier)", Elements::Form, identifier)
     end
 
     def hidden_field_value_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::HiddenField)
-      value = driver.instance_eval "#{nested_frames(frame_identifiers)}hidden(identifier).value"
-      switch_to_default_content(frame_identifiers)
-      value
+      process_call("hidden(identifier).value", Elements::HiddenField, identifier)
     end
 
     def hidden_field_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::HiddenField)
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}hidden(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::HiddenField.new element
+      find_element("hidden(identifier)", Elements::HiddenField, identifier)
     end
 
     def list_item_text_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::ListItem, 'li')
-      text = driver.instance_eval "#{nested_frames(frame_identifiers)}li(identifier).text"
-      switch_to_default_content(frame_identifiers)
-      text
+      process_call("li(identifier).text", Elements::ListItem, identifier, nil, 'li')
     end
 
     def list_item_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::ListItem, 'li')
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}li(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::ListItem.new element
+      find_element("li(identifier)", Elements::ListItem, identifier, 'li')
     end
 
     def ordered_list_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::OrderedList, 'ol')
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}ol(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::OrderedList.new element
+      find_element("ol(identifier)", Elements::OrderedList, identifier, 'ol')
     end
 
     def text_area_value_set identifier, value
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::TextArea)
-      driver.instance_eval "#{nested_frames(frame_identifiers)}textarea(identifier).send_keys value"
-      switch_to_default_content(frame_identifiers)
+      process_call("textarea(identifier).send_keys(value)", Elements::TextArea, identifier, value)
     end
 
     def text_area_value_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::TextArea)
-      value = driver.instance_eval "#{nested_frames(frame_identifiers)}textarea(identifier).value"
-      switch_to_default_content(frame_identifiers)
-      value
+      process_call("textarea(identifier).value", Elements::TextArea, identifier)
     end
 
     def text_area_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::TextArea)
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}textarea(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::TextArea.new element
+      find_element("textarea(identifier)", Elements::TextArea, identifier)
     end
 
     def unordered_list_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::UnOrderedList, 'ul')
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}ul(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::UnOrderedList.new element
+      find_element("ul(identifier)", Elements::UnOrderedList, identifier, 'ul')
     end
 
     def h1_text_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h1')
-      text = driver.instance_eval "#{nested_frames(frame_identifiers)}h1(identifier).text"
-      switch_to_default_content(frame_identifiers)
-      text
+      process_call("h1(identifier).text", Elements::Heading, identifier, nil, 'h1')
     end
 
     def h1_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h1')
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}h1(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::Heading.new element
+      find_element("h1(identifier)", Elements::Heading, identifier, 'h1')
     end
 
     def h2_text_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h2')
-      text = driver.instance_eval "#{nested_frames(frame_identifiers)}h2(identifier).text"
-      switch_to_default_content(frame_identifiers)
-      text
+      process_call("h2(identifier).text", Elements::Heading, identifier, nil, 'h2')
     end
 
     def h2_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h2')
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}h2(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::Heading.new element
+      find_element("h2(identifier)", Elements::Heading, identifier, 'h2')
     end
 
     def h3_text_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h3')
-      text = driver.instance_eval "#{nested_frames(frame_identifiers)}h3(identifier).text"
-      switch_to_default_content(frame_identifiers)
-      text
+      process_call("h3(identifier).text", Elements::Heading, identifier, nil, 'h3')
     end
 
     def h3_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h3')
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}h3(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::Heading.new element
+      find_element("h3(identifier)", Elements::Heading, identifier, 'h3')
     end
 
     def h4_text_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h4')
-      text = driver.instance_eval "#{nested_frames(frame_identifiers)}h4(identifier).text"
-      switch_to_default_content(frame_identifiers)
-      text
+      process_call("h4(identifier).text", Elements::Heading, identifier, nil, 'h4')
     end
 
     def h4_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h4')
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}h4(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::Heading.new element
+      find_element("h4(identifier)", Elements::Heading, identifier, 'h4')
     end
 
     def h5_text_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h5')
-      text = driver.instance_eval "#{nested_frames(frame_identifiers)}h5(identifier).text"
-      switch_to_default_content(frame_identifiers)
-      text
+      process_call("h5(identifier).text", Elements::Heading, identifier, nil, 'h5')
     end
 
     def h5_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h5')
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}h5(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::Heading.new element
+      find_element("h5(identifier)", Elements::Heading, identifier, 'h5')
     end
 
     def h6_text_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h6')
-      text = driver.instance_eval "#{nested_frames(frame_identifiers)}h6(identifier).text"
-      switch_to_default_content(frame_identifiers)
-      text
+      process_call("h6(identifier).text", Elements::Heading, identifier, nil, 'h6')
     end
 
     def h6_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Heading, 'h6')
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}h6(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::Heading.new element
+      find_element("h6(identifier)", Elements::Heading, identifier, 'h6')
     end
 
     def paragraph_text_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Paragraph, 'p')
-      text = driver.instance_eval "#{nested_frames(frame_identifiers)}p(identifier).text"
-      switch_to_default_content(frame_identifiers)
-      text
+      process_call("p(identifier).text", Elements::Paragraph, identifier, nil, 'p')
     end
 
     def paragraph_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Paragraph, 'p')
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}p(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::Paragraph.new element
+      find_element("p(identifier)", Elements::Paragraph, identifier, 'p')
     end
 
     def file_field_value_set identifier, value
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::FileField)
-      driver.instance_eval "#{nested_frames(frame_identifiers)}file_field(identifier).set(value)"
-      switch_to_default_content(frame_identifiers)
+      process_call("file_field(identifier).set(value)", Elements::FileField, identifier, value)
     end
 
     def file_field_for identifier
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::FileField)
-      element = driver.instance_eval "#{nested_frames(frame_identifiers)}file_field(identifier)"
-      switch_to_default_content(frame_identifiers)
-      Elements::FileField.new element
+      find_element("file_field(identifier)", Elements::FileField, identifier)
     end
     private
+
+    def find_element(the_call, type, identifier, tag_name=nil)
+      identifier, frame_identifiers = parse_identifiers(identifier, type, tag_name)
+      element = driver.instance_eval "#{nested_frames(frame_identifiers)}#{the_call}"
+      switch_to_default_content(frame_identifiers)
+      type.new(element)
+    end
+
+    def process_call(the_call, type, identifier, value=nil, tag_name=nil)
+      identifier, frame_identifiers = parse_identifiers(identifier, type, tag_name)
+      value = driver.instance_eval "#{nested_frames(frame_identifiers)}#{the_call}"
+      switch_to_default_content(frame_identifiers)
+      value
+    end
 
     def add_tagname_if_needed identifier, tag
       return identifier if identifier.length < 2 and not identifier[:name]

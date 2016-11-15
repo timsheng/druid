@@ -139,7 +139,12 @@ describe Druid::Elements::Element do
 
     it "should be able to fire event" do
       expect(we).to receive(:fire_event).with('onclick')
-      element.fire_event('onclick')      
+      element.fire_event('onclick')
+    end
+
+    it "should be able to focus element" do
+      expect(we).to receive(:focus)
+      element.focus
     end
   end
 end
