@@ -1,6 +1,9 @@
 === 2016-11-15
 * Enhancements
   * Added #button_elements to find all buttons on a page that match locators
+  * Added #navigation_method to Accessors to gather method name to use with navigation
+  * Added #navigate_to method to PageFactory to navigate to a page through previous pages
+  * Added routes to PageFactory to collect routes through the site
 ******1.1.0******
 === 2016-11-14
 * Enhancements
