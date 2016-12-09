@@ -12,6 +12,10 @@ module Druid
       find_element("text_field(identifier)", Elements::TextField, identifier)
     end
 
+    def text_fields_for(identifier)
+      find_elements("text_fields(identifier)", Elements::TextField, identifier)
+    end
+
     def text_field_value_for identifier
       process_call("text_field(identifier).value", Elements::TextField, identifier)
     end
@@ -77,10 +81,7 @@ module Druid
     # retrieve an array of button elements
     #
     def buttons_for(identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Button)
-      elements = driver.instance_eval "#{nested_frames(frame_identifiers)}buttons(identifier)"
-      switch_to_default_content(frame_identifiers)
-      elements.map { |element| Elements::Button.new(element) }
+      find_elements("buttons(identifier)", Elements::Button, identifier)
     end
 
     def div_text_for identifier
@@ -218,7 +219,15 @@ module Druid
     def file_field_for identifier
       find_element("file_field(identifier)", Elements::FileField, identifier)
     end
+
     private
+
+    def find_elements(the_call, type, identifier)
+      identifier, frame_identifiers = parse_identifiers(identifier, type)
+      elements = driver.instance_eval "#{nested_frames(frame_identifiers)}#{the_call}"
+      switch_to_default_content(frame_identifiers)
+      elements.map { |element| type.new(element) }
+    end
 
     def find_element(the_call, type, identifier, tag_name=nil)
       identifier, frame_identifiers = parse_identifiers(identifier, type, tag_name)

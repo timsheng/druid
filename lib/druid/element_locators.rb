@@ -59,6 +59,26 @@ module Druid
     end
 
     #
+    # Finds all text fields that match the provided identifier
+    #
+    # @param [Hash] identifier how we find a text field. You can use a multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #
+    #   * :class
+    #   * :css
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :tag_name
+    #   * :text
+    #   * :xpath
+    #   * :title
+    #
+    def text_field_elements(identifier)
+      text_fields_for identifier.clone
+    end
+
+    #
     # Finds a hidden field
     #
     # @param [Hash] identifier how we find a hidden field. You can use a multiple parameters

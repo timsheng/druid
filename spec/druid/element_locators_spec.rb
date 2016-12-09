@@ -26,6 +26,12 @@ describe Druid::ElementLocators do
     expect(text_field).to be_instance_of Druid::Elements::TextField
   end
 
+  it "should find all text field elemnts" do
+    expect(driver).to receive(:text_fields).with(:id => 'blah').and_return([driver])
+    elements = page.text_field_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::TextField
+  end
+
   it "should find a hidden field element" do
     expect(driver).to receive(:hidden).with(:id => 'blah').and_return(driver)
     element = page.hidden_field_element(:id => 'blah')
