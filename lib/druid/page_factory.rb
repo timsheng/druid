@@ -78,15 +78,43 @@ module Druid
     # @return [PageObject] the page you are navigating to
     #
     def navigate_to(page_cls, how = {:using => :default}, &block)
+      path = path_for how
+      navigate_through_pages(path[0..path.index(page_cls)-1])
+      on_page(page_cls, &block)
+    end
+
+    #
+    # Same as navigate_to except it will start at the @current_page
+    # instead the beginning of the path.
+    #
+    # @param [Druid] a class that has included the Druid
+    # module and which has the navigation_method defined
+    # @param [Hash] a hash that contains an element with the key
+    # :using. This will be used to lookup the route. It has a default value of :default.
+    # @param [block] an optional block to be called
+    # @return [Druid] the page you are navigating to
+    #
+    def continue_navigation_to(page_cls, how = {:using => :default}, &block)
+      path = path_for how
+      navigate_through_pages(path[path.index(@current_page.class)+1..path.index(page_cls)-1])
+      on_page(page_cls, &block)
+    end
+
+    private
+
+    def path_for(how)
       path = Druid::PageFactory.page_object_routes[how[:using]]
       fail("PageFactory route :#{how[:using].to_s} not found") unless path
-      path[0..path.index(page_cls)-1].each do |cls|
+      path
+    end
+
+    def navigate_through_pages(pages)
+      pages.each do |cls|
         page = on_page(cls)
         method = cls.page_object_navigation_method
         fail("Navigation method not specified on #{cls}.  Please call the ") unless page.respond_to? method
         page.send method
       end
-      on_page(page_cls, &block)
     end
 
 
