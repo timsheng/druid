@@ -4,31 +4,26 @@ require 'druid/page_factory'
 class FactoryTestDruid
   include Druid
   page_url "http://google.com"
-  navigation_method :a_method
 end
 
 class AnotherPage
   include Druid
-  navigation_method :b_method
 end
 
 class YetAnotherPage
   include Druid
-  navigation_method :c_method
 end
 
 class TestWorld
   include Druid::PageFactory
 
   attr_accessor :driver
+  attr_accessor :current_page
 end
 
 
 describe Druid::PageFactory do
-  # before(:each) do
-  #   @world = TestWorld.new
-  #   @world.driver = mock_driver
-  # end
+
   let(:world) { TestWorld.new }
   let(:driver) do
     world.driver = mock_driver
@@ -67,7 +62,7 @@ describe Druid::PageFactory do
   end
 
   it "should navigate to a page calling the default methods" do
-    pages = [FactoryTestDruid, AnotherPage]
+    pages = [[FactoryTestDruid, :a_method], [AnotherPage,:b_method]]
     Druid::PageFactory.routes = {:default => pages}
     fake_page = double('a_page')
     expect(FactoryTestDruid).to receive(:new).with(driver,false).and_return(fake_page)
@@ -81,7 +76,7 @@ describe Druid::PageFactory do
   end
 
   it "should fail when no default method specified" do
-    Druid::PageFactory.routes = {:default => [FactoryTestDruid, AnotherPage]}
+    Druid::PageFactory.routes = {:default => [[FactoryTestDruid, :a_method], [AnotherPage, :b_method]]}
     fake_page = double('a_page')
     expect(FactoryTestDruid).to receive(:new).and_return(fake_page)
     expect(fake_page).to receive(:respond_to?).with(:a_method).and_return(false)
@@ -89,9 +84,10 @@ describe Druid::PageFactory do
   end
 
   it "should know how to continue routing from a location" do
-    Druid::PageFactory.routes = {:default => [FactoryTestDruid, AnotherPage, YetAnotherPage]}
+    Druid::PageFactory.routes = {
+      :default => [[FactoryTestDruid, :a_method], [AnotherPage, :b_method], [YetAnotherPage, :c_method]]
+    }
     fake_page = double('a_page')
-    expect(FactoryTestDruid).not_to receive(:new)
     expect(AnotherPage).to receive(:new).with(driver,false).and_return(fake_page)
     expect(fake_page).to receive(:respond_to?).with(:b_method).and_return(true)
     expect(fake_page).to receive(:b_method)
