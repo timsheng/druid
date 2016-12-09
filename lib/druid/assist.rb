@@ -73,6 +73,16 @@ module Druid
       find_element("button(identifier)", Elements::Button, identifier)
     end
 
+    #
+    # retrieve an array of button elements
+    #
+    def buttons_for(identifier)
+      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Button)
+      elements = driver.instance_eval "#{nested_frames(frame_identifiers)}buttons(identifier)"
+      switch_to_default_content(frame_identifiers)
+      elements.map { |element| Elements::Button.new(element) }
+    end
+
     def div_text_for identifier
       process_call("div(identifier).text", Elements::Div, identifier, nil, 'div')
     end
