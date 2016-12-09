@@ -87,4 +87,16 @@ describe Druid::PageFactory do
     expect(fake_page).to receive(:respond_to?).with(:a_method).and_return(false)
     expect{world.navigate_to(AnotherPage)}.to raise_error
   end
+
+  it "should know how to continue routing from a location" do
+    Druid::PageFactory.routes = {:default => [FactoryTestDruid, AnotherPage, YetAnotherPage]}
+    fake_page = double('a_page')
+    expect(FactoryTestDruid).not_to receive(:new)
+    expect(AnotherPage).to receive(:new).with(driver,false).and_return(fake_page)
+    expect(fake_page).to receive(:respond_to?).with(:b_method).and_return(true)
+    expect(fake_page).to receive(:b_method)
+    expect(fake_page).to receive(:class).and_return(FactoryTestDruid)
+    world.instance_variable_set :@current_page, fake_page
+    expect(world.continue_navigation_to(YetAnotherPage).class).to eql YetAnotherPage
+  end
 end
