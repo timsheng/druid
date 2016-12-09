@@ -4,7 +4,6 @@ class AccessorsTestDruid
   include Druid
 
   page_url "http://apple.com"
-  navigation_method :a_method
   link(:google_search, :link => 'Google Search')
   text_field(:first_name, :id => 'first_name')
   select_list(:state, :id => 'state')
@@ -173,12 +172,6 @@ describe Druid::Accessors do
         expect(driver).to receive(:checkbox)
         expect(druid.active_element).to be_instance_of Druid::Elements::CheckBox
       end
-    end
-  end
-
-  describe "navigation method" do
-    it "should save the navigation method" do
-      expect(AccessorsTestDruid.page_object_navigation_method).to be :a_method
     end
   end
 
