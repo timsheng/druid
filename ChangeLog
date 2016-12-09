@@ -1,6 +1,7 @@
 === 2016-11-15
 * Enhancements
-  * Added #button_elements to find all buttons on a page that match locators
+  * Added #button_elements to ElementLocators
+  * Added #text_field_elements to ElementLocators
   * Added #navigate_to method to PageFactory to navigate to a page through previous pages
   * Added routes to PageFactory to collect routes through the site
   * Added #continue_navigation_to method to PageFactory which begins at @current_page
