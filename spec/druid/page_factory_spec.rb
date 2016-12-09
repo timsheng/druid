@@ -95,7 +95,8 @@ describe Druid::PageFactory do
     expect(AnotherPage).to receive(:new).with(driver,false).and_return(fake_page)
     expect(fake_page).to receive(:respond_to?).with(:b_method).and_return(true)
     expect(fake_page).to receive(:b_method)
-    world.instance_variable_set :@current_page, FactoryTestDruid
+    expect(fake_page).to receive(:class).and_return(FactoryTestDruid)
+    world.instance_variable_set :@current_page, fake_page
     expect(world.continue_navigation_to(YetAnotherPage).class).to eql YetAnotherPage
   end
 end
