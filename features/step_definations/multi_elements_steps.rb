@@ -102,3 +102,15 @@ end
 Then(/^the value of radio button (\d+) should be "([^"]*)"$/) do |radio_button_num, value|
   expect(@elements[radio_button_num.to_i - 1].value).to eql value
 end
+
+When(/^I select the divs with class "([^"]*)"$/) do |class_name|
+  @elements = @page.div_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) divs$/) do |num_divs|
+  expect(@elements.size).to eql num_divs.to_i
+end
+
+Then(/^the text of div (\d+) should be "([^"]*)"$/) do |div_num, text|
+  expect(@elements[div_num.to_i - 1].text).to eql text
+end

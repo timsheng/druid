@@ -121,6 +121,13 @@ module Druid
       find_element("div(identifier)", Elements::Div, identifier, 'div')
     end
 
+    #
+    # retrieve an array of div elements
+    #
+    def divs_for identifier
+      find_elements("divs(identifier)", Elements::Div, identifier, 'div')
+    end
+
     def table_for identifier
       find_element("table(identifier)", Elements::Table, identifier, 'table')
     end
@@ -260,8 +267,8 @@ module Druid
 
     private
 
-    def find_elements(the_call, type, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, type)
+    def find_elements(the_call, type, identifier, tag_name=nil)
+      identifier, frame_identifiers = parse_identifiers(identifier, type, tag_name)
       elements = driver.instance_eval "#{nested_frames(frame_identifiers)}#{the_call}"
       switch_to_default_content(frame_identifiers)
       elements.map { |element| type.new(element) }

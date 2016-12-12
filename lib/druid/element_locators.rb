@@ -302,6 +302,22 @@ module Druid
     end
 
     #
+    # Finds all divs that match the provided identifier
+    #
+    # @param [Hash] identifier how we find a div. You can use a multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #   * :text
+    #
+    def div_elements identifier
+      divs_for identifier
+    end
+
+    #
     # Finds a span
     #
     # @param [Hash] identifier how we find a span. You can use a multiple parameters
