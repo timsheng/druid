@@ -62,6 +62,12 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::SelectList
   end
 
+  it "should find all select list elements" do
+    expect(driver).to receive(:select_lists).with(:id => 'blah').and_return([driver])
+    elements = page.select_list_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::SelectList
+  end
+
   it "should find a link element" do
     expect(driver).to receive(:link).with(:id => 'blah').and_return(driver)
     element = page.link_element(:id => 'blah')

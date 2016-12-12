@@ -169,6 +169,23 @@ module Druid
     end
 
     #
+    # Finds all select lists for the provided identifier
+    #
+    # @param [Hash] identifier how we find a select list. You can use a multiple paramaters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #   * :value
+    #   * :text
+    #
+    def select_list_elements identifier
+      select_lists_for identifier.clone
+    end
+
+    #
     # Finds a link
     #
     # @param [Hash] identifier how we find a link. You can use a multiple parameters

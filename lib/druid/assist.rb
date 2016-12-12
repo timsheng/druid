@@ -55,6 +55,13 @@ module Druid
       find_element("select_list(identifier)", Elements::SelectList, identifier)
     end
 
+    #
+    # retrieve an array of select_list elements
+    #
+    def select_lists_for identifier
+      find_elements("select_lists(identifier)", Elements::SelectList, identifier)
+    end
+
     def select_radio identifier
       process_call("radio(identifier).set", Elements::RadioButton, identifier)
     end
