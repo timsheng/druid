@@ -205,6 +205,25 @@ module Druid
     end
 
     #
+    # Finds all links for the provided identifier
+    #
+    # @param [Hash] identifier how we find a link. You can use a multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :href
+    #   * :id
+    #   * :index
+    #   * :link
+    #   * :link_text
+    #   * :name
+    #   * :xpath
+    #   * :text
+    #
+    def link_elements identifier
+      links_for identifier.clone
+    end
+
+    #
     # Finds a check box
     #
     # @param [Hash] identifier how we find a check box. You can use a multiple parameters

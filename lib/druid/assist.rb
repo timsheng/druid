@@ -8,6 +8,13 @@ module Druid
       find_element("link(identifier)", Elements::Link, identifier)
     end
 
+    #
+    # retrieve all link elements
+    #
+    def links_for identifier
+      find_elements("links(identifier)", Elements::Link, identifier)
+    end
+
     def text_field_for identifier
       find_element("text_field(identifier)", Elements::TextField, identifier)
     end
