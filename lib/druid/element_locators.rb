@@ -135,6 +135,23 @@ module Druid
     end
 
     #
+    # Finds all text areas for the provided identifier
+    #
+    # @param [Hash] identifier how we find a text area. You can use a multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :css
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :tag_name
+    #   * :xpath
+    #
+    def text_area_elements identifier
+      text_areas_for identifier.clone
+    end
+
+    #
     # Finds a select list
     #
     # @param [Hash] identifier how we find a select list. You can use a multiple parameters
