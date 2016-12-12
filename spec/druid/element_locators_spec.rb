@@ -86,6 +86,12 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::CheckBox
   end
 
+  it "should find all check box elements" do
+    expect(driver).to receive(:checkboxes).with(:id => 'blah').and_return([driver])
+    elements = page.checkbox_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::CheckBox
+  end
+
   it "should find a radio button element" do
     expect(driver).to receive(:radio).with(:id => 'blah').and_return(driver)
     element = page.radio_button_element(:id => 'blah')

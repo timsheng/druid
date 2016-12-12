@@ -240,6 +240,22 @@ module Druid
     end
 
     #
+    # Finds all checkbox elements for the provided identifier
+    #
+    # @param [Hash] identifier how we find a checkbox. You can use a multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #   * :value
+    #
+    def checkbox_elements identifier
+      checkboxes_for identifier.clone
+    end
+
+    #
     # Finds a radio button
     #
     # @param [Hash] identifier how we find a radio button. You can use a multiple parameters

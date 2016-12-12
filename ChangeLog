@@ -4,6 +4,7 @@
   * Added #text_area_elements to ElementLocators
   * Added #select_list_elements to ElementLocators
   * Added #link_elements to ElementLocators
+  * Added #checkbox_elements to ElementLocators
 === 2016-11-15
 * Enhancements
   * Added #button_elements to ElementLocators
