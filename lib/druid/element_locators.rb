@@ -271,6 +271,21 @@ module Druid
     end
 
     #
+    # Finds all radio button elements that match the provided identifier
+    #
+    # @param [Hash] identifier how we find a radio button. You can use a multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def radio_button_elements identifier
+      radio_buttons_for identifier.clone
+    end
+
+    #
     # Finds a div
     #
     # @param [Hash] identifier how we find a div. You can use a multiple parameters

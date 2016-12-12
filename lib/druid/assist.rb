@@ -50,6 +50,9 @@ module Druid
       find_element("checkbox(identifier)", Elements::CheckBox, identifier)
     end
 
+    #
+    # retrieve an array of checkbox elements
+
     def checkboxes_for identifier
       find_elements("checkboxes(identifier)", Elements::CheckBox, identifier)
     end
@@ -87,7 +90,12 @@ module Druid
 
     def radio_button_for identifier
       find_element("radio(identifier)", Elements::RadioButton, identifier)
+    end
 
+    #
+    # retrieve an array of radio button elements
+    def radio_buttons_for identifier
+      find_elements("radios(identifier)", Elements::RadioButton, identifier)
     end
 
     def click_button_for identifier
