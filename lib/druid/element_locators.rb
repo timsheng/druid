@@ -333,6 +333,21 @@ module Druid
     end
 
     #
+    # Finds all span elements that match the provided identifier
+    #
+    # @param [Hash] identifier how we find a span. You can use multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def span_elements identifier
+      spans_for identifier.clone
+    end
+
+    #
     # Finds a table
     #
     # @param [Hash] identifier how we find a table. You can use a multiple parameters

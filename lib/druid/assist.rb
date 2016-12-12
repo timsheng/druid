@@ -148,6 +148,13 @@ module Druid
       find_element("span(identifier)", Elements::Span, identifier, 'span')
     end
 
+    #
+    # retrieve an array of span elements
+    #
+    def spans_for identifier
+      find_elements("spans(identifier)", Elements::Span, identifier, 'span')
+    end
+
     def image_for identifier
       find_element("image(identifier)", Elements::Image, identifier)
     end
