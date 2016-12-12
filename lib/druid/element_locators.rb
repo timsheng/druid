@@ -98,6 +98,26 @@ module Druid
     end
 
     #
+    # Finds all hidden fields that match the identifier
+    #
+    # @param [Hash] identifier how we find a hidden field. You can use a multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #
+    #   * :class
+    #   * :css
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :tag_name
+    #   * :text
+    #   * :xpath
+    #   * :value
+    #
+    def hidden_field_elements identifier
+      hidden_fields_for identifier.clone
+    end
+
+    #
     # Finds a text area
     #
     # @param [Hash] identifier how we find a text area. You can use a multiple parameters
