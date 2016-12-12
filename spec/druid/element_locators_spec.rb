@@ -111,6 +111,14 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::Div
   end
 
+  it "should find all div elements" do
+    expect(driver).to receive(:divs).with(:id => 'blah').and_return([driver])
+    elements = page.div_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Div
+  end
+
+
+
   it "should find a span element" do
     expect(driver).to receive(:span).with(:id => 'blah').and_return(driver)
     element = page.span_element(:id => 'blah')

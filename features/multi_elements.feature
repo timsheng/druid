@@ -59,3 +59,10 @@ Feature: Multi Elements
      And the value of radio button 1 should be "radio 1"
      And the value of radio button 2 should be "radio 2"
      And the value of radio button 3 should be "radio 3"
+
+   Scenario: Selecting divs
+     When I select the divs with class "div"
+     Then I should have 3 divs
+     And the text of div 1 should be "Div 1"
+     And the text of div 2 should be "Div 2"
+     And the text of div 3 should be "Div 3"
