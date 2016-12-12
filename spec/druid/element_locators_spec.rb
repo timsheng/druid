@@ -98,6 +98,13 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::RadioButton
   end
 
+  it "should find all radio button elements" do
+    expect(driver).to receive(:radios).with(:id => 'blah').and_return([driver])
+    elements = page.radio_button_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::RadioButton
+  end
+
+
   it "should find a div element" do
     expect(driver).to receive(:div).with(:id => 'blah').and_return(driver)
     element = page.div_element(:id => 'blah')
