@@ -66,3 +66,15 @@ end
 Then(/^the value of select list (\d+) should be "([^"]*)"$/) do |select_list_num, value|
   expect(@elements[select_list_num.to_i - 1].value).to eql value
 end
+
+When(/^I select the link with class "([^"]*)"$/) do |class_name|
+  @elements = @page.link_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) links$/) do |num_links|
+  expect(@elements.size).to eql num_links.to_i
+end
+
+Then(/^the text of link (\d+) should be "([^"]*)"$/) do |link_num, text|
+  expect(@elements[link_num.to_i - 1].text).to eql text
+end
