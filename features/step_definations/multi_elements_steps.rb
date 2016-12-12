@@ -78,3 +78,15 @@ end
 Then(/^the text of link (\d+) should be "([^"]*)"$/) do |link_num, text|
   expect(@elements[link_num.to_i - 1].text).to eql text
 end
+
+When(/^I select the check boxes with class "([^"]*)"$/) do |class_name|
+  @elements = @page.checkbox_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) checkboxes$/) do |num_checkboxes|
+  expect(@elements.size).to eql num_checkboxes.to_i
+end
+
+Then(/^the value of checkbox (\d+) should be "([^"]*)"$/) do |checkbox_num, value|
+  expect(@elements[checkbox_num.to_i - 1].value).to eql value
+end

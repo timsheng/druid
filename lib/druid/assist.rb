@@ -50,6 +50,10 @@ module Druid
       find_element("checkbox(identifier)", Elements::CheckBox, identifier)
     end
 
+    def checkboxes_for identifier
+      find_elements("checkboxes(identifier)", Elements::CheckBox, identifier)
+    end
+
     def select_list_value_set identifier, value
       process_call("select_list(identifier).select(value)", Elements::SelectList, identifier, value)
     end
