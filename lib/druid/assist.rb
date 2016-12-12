@@ -12,6 +12,9 @@ module Druid
       find_element("text_field(identifier)", Elements::TextField, identifier)
     end
 
+    #
+    # retrieve an array of hidden field elements
+    #
     def text_fields_for(identifier)
       find_elements("text_fields(identifier)", Elements::TextField, identifier)
     end
@@ -126,6 +129,10 @@ module Druid
 
     def hidden_field_for identifier
       find_element("hidden(identifier)", Elements::HiddenField, identifier)
+    end
+
+    def hidden_fields_for identifier
+      find_elements("hiddens(identifier)", Elements::HiddenField, identifier)
     end
 
     def list_item_text_for identifier

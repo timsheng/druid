@@ -38,6 +38,12 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::HiddenField
   end
 
+  it "should find all hidden field elements" do
+    expect(driver).to receive(:hiddens).with(:id => 'blah').and_return([driver])
+    elements = page.hidden_field_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::HiddenField
+  end
+
   it "should find a text area element" do
     expect(driver).to receive(:textarea).with(:id => 'blah').and_return(driver)
     element = page.text_area_element(:id => "blah")
