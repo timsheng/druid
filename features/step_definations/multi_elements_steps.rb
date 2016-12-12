@@ -42,3 +42,15 @@ end
 Then(/^the value of hidden field (\d+) should be "([^"]*)"$/) do |hidden_field_num, value|
   expect(@elements[hidden_field_num.to_i - 1].value).to eql value
 end
+
+When(/^I select the text area with class "([^"]*)"$/) do |class_name|
+  @elements = @page.text_area_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) text areas$/) do |num_text_areas|
+  expect(@elements.size).to eql num_text_areas.to_i
+end
+
+Then(/^the value of text area (\d+) should be "([^"]*)"$/) do |text_area_num, value|
+  expect(@elements[text_area_num.to_i - 1].value).to eql value
+end

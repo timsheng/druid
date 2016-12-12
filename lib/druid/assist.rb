@@ -158,6 +158,11 @@ module Druid
     def text_area_for identifier
       find_element("textarea(identifier)", Elements::TextArea, identifier)
     end
+    #
+    # retrieve an array of textarea elements
+    def text_areas_for identifier
+      find_elements("textareas(identifier)", Elements::TextArea, identifier)
+    end
 
     def unordered_list_for identifier
       find_element("ul(identifier)", Elements::UnOrderedList, identifier, 'ul')
