@@ -135,10 +135,22 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::Table
   end
 
+  it "should find all table elements" do
+    expect(driver).to receive(:tables).with(:id => 'blah').and_return([driver])
+    elements = page.table_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Table
+  end
+
   it "should find a table cell element" do
     expect(driver).to receive(:td).with(:id => 'blah').and_return(driver)
     element = page.cell_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::TableCell
+  end
+
+  it "should find all table cells" do
+    expect(driver).to receive(:tds).with(:id => 'blah').and_return([driver])
+    elements = page.cell_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::TableCell
   end
 
   it "should find an image element" do
@@ -147,10 +159,22 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::Image
   end
 
+  it "should find all image elements" do
+    expect(driver).to receive(:images).with(:id => 'blah').and_return([driver])
+    elements = page.image_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Image
+  end
+
   it "should find a form element" do
     expect(driver).to receive(:form).with(:id => 'blah').and_return(driver)
     element = page.form_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::Form
+  end
+
+  it "should find all form elements" do
+    expect(driver).to receive(:forms).with(:id => 'blah').and_return([driver])
+    elements = page.form_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Form
   end
 
   it "should find a list item element" do
@@ -159,11 +183,24 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::ListItem
   end
 
+  it "should find all list item elements" do
+    expect(driver).to receive(:lis).with(:id => 'blah').and_return([driver])
+    elements = page.list_item_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::ListItem
+  end
+
   it "should find an ordered list element" do
     expect(driver).to receive(:ol).with(:id => 'blah').and_return(driver)
     element = page.ordered_list_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::OrderedList
   end
+
+  it "should find all ordered list elements" do
+    expect(driver).to receive(:ols).with(:id => 'blah').and_return([driver])
+    elements = page.ordered_list_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::OrderedList
+  end
+
 
   it "should find an unordered list element" do
     expect(driver).to receive(:ul).with(:id => 'blah').and_return(driver)
@@ -171,10 +208,23 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::UnOrderedList
   end
 
+  it "should find all unordered list elements" do
+    expect(driver).to receive(:uls).with(:id => 'blah').and_return([driver])
+    elements = page.unordered_list_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::UnOrderedList
+  end
+
+
   it "should find a h1 element" do
     expect(driver).to receive(:h1).with(:id => 'blah').and_return(driver)
     element = page.h1_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::Heading
+  end
+
+  it "should find all h1 elements" do
+    expect(driver).to receive(:h1s).with(:id => 'blah').and_return([driver])
+    elements = page.h1_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Heading
   end
 
   it "should find a h2 element" do
@@ -183,10 +233,22 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::Heading
   end
 
+  it "should find all h2 elements" do
+    expect(driver).to receive(:h2s).with(:id => 'blah').and_return([driver])
+    elements = page.h2_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Heading
+  end
+
   it "should find a h3 element" do
     expect(driver).to receive(:h3).with(:id => 'blah').and_return(driver)
     element = page.h3_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::Heading
+  end
+
+  it "should find all h3 elements" do
+    expect(driver).to receive(:h3s).with(:id => 'blah').and_return([driver])
+    elements = page.h3_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Heading
   end
 
   it "should find a h4 element" do
@@ -195,10 +257,22 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::Heading
   end
 
+  it "should find all h4 elements" do
+    expect(driver).to receive(:h4s).with(:id => 'blah').and_return([driver])
+    elements = page.h4_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Heading
+  end
+
   it "should find a h5 element" do
     expect(driver).to receive(:h5).with(:id => 'blah').and_return(driver)
     element = page.h5_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::Heading
+  end
+
+  it "should find all h5 elements" do
+    expect(driver).to receive(:h5s).with(:id => 'blah').and_return([driver])
+    elements = page.h5_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Heading
   end
 
   it "should find a h6 element" do
@@ -207,10 +281,22 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::Heading
   end
 
+  it "should find all h6 elements" do
+    expect(driver).to receive(:h6s).with(:id => 'blah').and_return([driver])
+    elements = page.h6_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Heading
+  end
+
   it "should find a paragraph element" do
     expect(driver).to receive(:p).with(:id => 'blah').and_return(driver)
     element = page.paragraph_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::Paragraph
+  end
+
+  it "should find all paragraph elements" do
+    expect(driver).to receive(:ps).with(:id => 'blah').and_return([driver])
+    elements = page.paragraph_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Paragraph
   end
 
   it "should find a file field element" do

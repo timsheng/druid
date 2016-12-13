@@ -73,3 +73,101 @@ Feature: Multi Elements
      And the text of span 1 should be "Span 1"
      And the text of span 2 should be "Span 2"
      And the text of span 3 should be "Span 3"
+
+   Scenario: Selecting tables
+     When I select the tables with class "table"
+     Then I should have 3 tables
+     And the first row first column for table 1 should have "Data 1"
+     And the first row first column for table 2 should have "Data 4"
+     And the first row first column for table 3 should have "Data 7"
+
+   Scenario: Selecting cells
+     When I select the cells with class "td"
+     Then I should have 3 cells
+     And the text for cell 1 should be "Data 1"
+     And the text for cell 2 should be "Data 2"
+     And the text for cell 3 should be "Data 3"
+
+   Scenario: Selecting images
+     When I select the images with class "image"
+     Then I should have 3 images
+     And the alt for image 1 should be "image 1"
+     And the alt for image 2 should be "image 2"
+     And the alt for image 3 should be "image 3"
+
+   Scenario: Selecting forms
+     When I select the forms with class "form"
+     Then I should have 3 forms
+     And the action for form 1 should be "form1"
+     And the action for form 2 should be "form2"
+     And the action for form 3 should be "form3"
+
+   Scenario: Selecting list items
+     When I select the list items with class "li"
+     Then I should have 3 list items
+     And the text for list item 1 should be "Item One"
+     And the text for list item 2 should be "Item Two"
+     And the text for list item 3 should be "Item Three"
+
+   Scenario: Selecting unordered lists
+     When I select the unordered lists with class "ul"
+     Then I should have 3 unordered lists
+     And the text for the first item in unordered list 1 should be "Item One"
+     And the text for the first item in unordered list 2 should be "Item Four"
+     And the text for the first item in unordered list 3 should be "Item Five"
+
+   Scenario: Selecting ordered lists
+     When I select the ordered lists with class "ol"
+     Then I should have 3 ordered lists
+     And the text for the first item in ordered list 1 should be "Number One"
+     And the text for the first item in ordered list 2 should be "Number Two"
+     And the text for the first item in ordered list 3 should be "Number Three"
+
+   Scenario: Selecting h1s
+     When I select the h1s with class "h1"
+     Then I should have 3 h1s
+     And the text for h1 1 should be "H1 One"
+     And the text for h1 2 should be "H1 Two"
+     And the text for h1 3 should be "H1 Three"
+
+   Scenario: Selecting h2s
+     When I select the h2s with class "h2"
+     Then I should have 3 h2s
+     And the text for h2 1 should be "H2 One"
+     And the text for h2 2 should be "H2 Two"
+     And the text for h2 3 should be "H2 Three"
+
+   Scenario: Selecting h3s
+     When I select the h3s with class "h3"
+     Then I should have 3 h3s
+     And the text for h3 1 should be "H3 One"
+     And the text for h3 2 should be "H3 Two"
+     And the text for h3 3 should be "H3 Three"
+
+   Scenario: Selecting h4s
+     When I select the h4s with class "h4"
+     Then I should have 3 h4s
+     And the text for h4 1 should be "H4 One"
+     And the text for h4 2 should be "H4 Two"
+     And the text for h4 3 should be "H4 Three"
+
+   Scenario: Selecting h5s
+     When I select the h5s with class "h5"
+     Then I should have 3 h5s
+     And the text for h5 1 should be "H5 One"
+     And the text for h5 2 should be "H5 Two"
+     And the text for h5 3 should be "H5 Three"
+
+   Scenario: Selecting h6s
+     When I select the h6s with class "h6"
+     Then I should have 3 h6s
+     And the text for h6 1 should be "H6 One"
+     And the text for h6 2 should be "H6 Two"
+     And the text for h6 3 should be "H6 Three"
+
+   Scenario: Selecting paragraphs
+     When I select the paragraphs with class "p"
+     Then I should have 3 paragraphs
+     And the text for paragraph 1 should be "Paragraph One"
+     And the text for paragraph 2 should be "Paragraph Two"
+     And the text for paragraph 3 should be "Paragraph Three"

@@ -126,3 +126,171 @@ end
 Then(/^the text of span (\d+) should be "([^"]*)"$/) do |span_num, text|
   expect(@elements[span_num.to_i - 1].text).to eql text
 end
+
+When(/^I select the tables with class "([^"]*)"$/) do |class_name|
+  @elements = @page.table_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) tables$/) do |num_tables|
+  expect(@elements.size).to eql num_tables.to_i
+end
+
+Then(/^the first row first column for table (\d+) should have "([^"]*)"$/) do |table_num, text|
+  expect(@elements[table_num.to_i - 1][0][0].text).to eql text
+end
+
+When(/^I select the cells with class "([^"]*)"$/) do |class_name|
+  @elements = @page.cell_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) cells$/) do |num_cells|
+  expect(@elements.size).to eql num_cells.to_i
+end
+
+Then(/^the text for cell (\d+) should be "([^"]*)"$/) do |cell_num, text|
+  expect(@elements[cell_num.to_i - 1].text).to eql text
+end
+
+When(/^I select the images with class "([^"]*)"$/) do |class_name|
+  @elements = @page.image_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) images$/) do |num_images|
+  expect(@elements.size).to eql num_images.to_i
+end
+
+Then(/^the alt for image (\d+) should be "([^"]*)"$/) do |image_num , alt|
+  expect(@elements[image_num.to_i - 1].attribute(:alt)).to eql alt
+end
+
+When(/^I select the forms with class "([^"]*)"$/) do |class_name|
+  @elements = @page.form_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) forms$/) do |num_forms|
+  expect(@elements.size).to eql num_forms.to_i
+end
+
+Then(/^the action for form (\d+) should be "([^"]*)"$/) do |form_num, action|
+  expect(@elements[form_num.to_i - 1].attribute(:action)).to match action
+end
+
+When(/^I select the list items with class "([^"]*)"$/) do |class_name|
+  @elements = @page.list_item_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) list items$/) do |num_list_items|
+  expect(@elements.size).to eql num_list_items.to_i
+end
+
+Then(/^the text for list item (\d+) should be "([^"]*)"$/) do |list_item_num, text|
+  expect(@elements[list_item_num.to_i - 1].text).to eql text
+end
+
+When(/^I select the unordered lists with class "([^"]*)"$/) do |class_name|
+  @elements = @page.unordered_list_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) unordered lists$/) do |num_unordered_list|
+  expect(@elements.size).to eql num_unordered_list.to_i
+end
+
+Then(/^the text for the first item in unordered list (\d+) should be "([^"]*)"$/) do |ul_num, text|
+  expect(@elements[ul_num.to_i - 1][0].text).to eql text
+end
+
+When(/^I select the ordered lists with class "([^"]*)"$/) do |class_name|
+  @elements = @page.ordered_list_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) ordered lists$/) do |num_ol|
+  expect(@elements.size).to eql num_ol.to_i
+end
+
+Then(/^the text for the first item in ordered list (\d+) should be "([^"]*)"$/) do |ol_num, text|
+  expect(@elements[ol_num.to_i - 1][0].text).to eql text
+end
+
+When(/^I select the h1s with class "([^"]*)"$/) do |class_name|
+  @elements = @page.h1_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) h1s$/) do |num_h1s|
+  expect(@elements.size).to eql num_h1s.to_i
+end
+
+Then(/^the text for h1 (\d+) should be "([^"]*)"$/) do |h1_num, text|
+  expect(@elements[h1_num.to_i - 1].text).to eql text
+end
+
+When(/^I select the h2s with class "([^"]*)"$/) do |class_name|
+  @elements = @page.h2_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) h2s$/) do |num_h2s|
+  expect(@elements.size).to eql num_h2s.to_i
+end
+
+Then(/^the text for h2 (\d+) should be "([^"]*)"$/) do |h2_num, text|
+  expect(@elements[h2_num.to_i - 1].text).to eql text
+end
+
+When(/^I select the h3s with class "([^"]*)"$/) do |class_name|
+  @elements = @page.h3_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) h3s$/) do |num_h3s|
+  expect(@elements.size).to eql num_h3s.to_i
+end
+
+Then(/^the text for h3 (\d+) should be "([^"]*)"$/) do |h3_num, text|
+  expect(@elements[h3_num.to_i - 1].text).to eql text
+end
+
+When(/^I select the h4s with class "([^"]*)"$/) do |class_name|
+  @elements = @page.h4_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) h4s$/) do |num_h4s|
+  expect(@elements.size).to eql num_h4s.to_i
+end
+
+Then(/^the text for h4 (\d+) should be "([^"]*)"$/) do |h4_num, text|
+  expect(@elements[h4_num.to_i - 1].text).to eql text
+end
+
+When(/^I select the h5s with class "([^"]*)"$/) do |class_name|
+  @elements = @page.h5_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) h5s$/) do |num_h5s|
+  expect(@elements.size).to eql num_h5s.to_i
+end
+
+Then(/^the text for h5 (\d+) should be "([^"]*)"$/) do |h5_num, text|
+  expect(@elements[h5_num.to_i - 1].text).to eql text
+end
+
+When(/^I select the h6s with class "([^"]*)"$/) do |class_name|
+  @elements = @page.h6_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) h6s$/) do |num_h6s|
+  expect(@elements.size).to eql num_h6s.to_i
+end
+
+Then(/^the text for h6 (\d+) should be "([^"]*)"$/) do |h6_num, text|
+  expect(@elements[h6_num.to_i - 1].text).to eql text
+end
+
+When(/^I select the paragraphs with class "([^"]*)"$/) do |class_name|
+  @elements = @page.paragraph_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) paragraphs$/) do |num_paragraphs|
+  expect(@elements.size).to eql num_paragraphs.to_i
+end
+
+Then(/^the text for paragraph (\d+) should be "([^"]*)"$/) do |paragraph_num, text|
+  expect(@elements[paragraph_num.to_i - 1].text).to eql text
+end
