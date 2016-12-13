@@ -221,10 +221,22 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::Heading
   end
 
+  it "should find all h1 elements" do
+    expect(driver).to receive(:h1s).with(:id => 'blah').and_return([driver])
+    elements = page.h1_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Heading
+  end
+
   it "should find a h2 element" do
     expect(driver).to receive(:h2).with(:id => 'blah').and_return(driver)
     element = page.h2_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::Heading
+  end
+
+  it "should find all h2 elements" do
+    expect(driver).to receive(:h2s).with(:id => 'blah').and_return([driver])
+    elements = page.h2_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Heading
   end
 
   it "should find a h3 element" do
@@ -233,10 +245,22 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::Heading
   end
 
+  it "should find all h3 elements" do
+    expect(driver).to receive(:h3s).with(:id => 'blah').and_return([driver])
+    elements = page.h3_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Heading
+  end
+
   it "should find a h4 element" do
     expect(driver).to receive(:h4).with(:id => 'blah').and_return(driver)
     element = page.h4_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::Heading
+  end
+
+  it "should find all h4 elements" do
+    expect(driver).to receive(:h4s).with(:id => 'blah').and_return([driver])
+    elements = page.h4_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Heading
   end
 
   it "should find a h5 element" do
@@ -245,10 +269,22 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::Heading
   end
 
+  it "should find all h5 elements" do
+    expect(driver).to receive(:h5s).with(:id => 'blah').and_return([driver])
+    elements = page.h5_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Heading
+  end
+
   it "should find a h6 element" do
     expect(driver).to receive(:h6).with(:id => 'blah').and_return(driver)
     element = page.h6_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::Heading
+  end
+
+  it "should find all h6 elements" do
+    expect(driver).to receive(:h6s).with(:id => 'blah').and_return([driver])
+    elements = page.h6_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Heading
   end
 
   it "should find a paragraph element" do

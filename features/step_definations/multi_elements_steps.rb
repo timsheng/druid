@@ -210,3 +210,75 @@ end
 Then(/^the text for the first item in ordered list (\d+) should be "([^"]*)"$/) do |ol_num, text|
   expect(@elements[ol_num.to_i - 1][0].text).to eql text
 end
+
+When(/^I select the h1s with class "([^"]*)"$/) do |class_name|
+  @elements = @page.h1_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) h1s$/) do |num_h1s|
+  expect(@elements.size).to eql num_h1s.to_i
+end
+
+Then(/^the text for h1 (\d+) should be "([^"]*)"$/) do |h1_num, text|
+  expect(@elements[h1_num.to_i - 1].text).to eql text
+end
+
+When(/^I select the h2s with class "([^"]*)"$/) do |class_name|
+  @elements = @page.h2_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) h2s$/) do |num_h2s|
+  expect(@elements.size).to eql num_h2s.to_i
+end
+
+Then(/^the text for h2 (\d+) should be "([^"]*)"$/) do |h2_num, text|
+  expect(@elements[h2_num.to_i - 1].text).to eql text
+end
+
+When(/^I select the h3s with class "([^"]*)"$/) do |class_name|
+  @elements = @page.h3_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) h3s$/) do |num_h3s|
+  expect(@elements.size).to eql num_h3s.to_i
+end
+
+Then(/^the text for h3 (\d+) should be "([^"]*)"$/) do |h3_num, text|
+  expect(@elements[h3_num.to_i - 1].text).to eql text
+end
+
+When(/^I select the h4s with class "([^"]*)"$/) do |class_name|
+  @elements = @page.h4_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) h4s$/) do |num_h4s|
+  expect(@elements.size).to eql num_h4s.to_i
+end
+
+Then(/^the text for h4 (\d+) should be "([^"]*)"$/) do |h4_num, text|
+  expect(@elements[h4_num.to_i - 1].text).to eql text
+end
+
+When(/^I select the h5s with class "([^"]*)"$/) do |class_name|
+  @elements = @page.h5_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) h5s$/) do |num_h5s|
+  expect(@elements.size).to eql num_h5s.to_i
+end
+
+Then(/^the text for h5 (\d+) should be "([^"]*)"$/) do |h5_num, text|
+  expect(@elements[h5_num.to_i - 1].text).to eql text
+end
+
+When(/^I select the h6s with class "([^"]*)"$/) do |class_name|
+  @elements = @page.h6_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) h6s$/) do |num_h6s|
+  expect(@elements.size).to eql num_h6s.to_i
+end
+
+Then(/^the text for h6 (\d+) should be "([^"]*)"$/) do |h6_num, text|
+  expect(@elements[h6_num.to_i - 1].text).to eql text
+end
