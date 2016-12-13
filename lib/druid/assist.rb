@@ -132,12 +132,26 @@ module Druid
       find_element("table(identifier)", Elements::Table, identifier, 'table')
     end
 
+    #
+    # retrieve an array of table elements
+    #
+    def tables_for identifier
+      find_elements("tables(identifier)", Elements::Table, identifier, 'table')
+    end
+
     def cell_text_for identifier
       process_call("td(identifier).text", Elements::TableCell, identifier, nil, 'td')
     end
 
     def cell_for identifier
       find_element("td(identifier)", Elements::TableCell, identifier, 'td')
+    end
+
+    #
+    # retrieve an array of cell elements
+    #
+    def cells_for identifier
+      find_elements("tds(identifier)", Elements::TableCell, identifier, 'td')
     end
 
     def span_text_for identifier

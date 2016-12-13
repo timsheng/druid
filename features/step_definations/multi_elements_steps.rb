@@ -126,3 +126,27 @@ end
 Then(/^the text of span (\d+) should be "([^"]*)"$/) do |span_num, text|
   expect(@elements[span_num.to_i - 1].text).to eql text
 end
+
+When(/^I select the tables with class "([^"]*)"$/) do |class_name|
+  @elements = @page.table_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) tables$/) do |num_tables|
+  expect(@elements.size).to eql num_tables.to_i
+end
+
+Then(/^the first row first column for table (\d+) should have "([^"]*)"$/) do |table_num, text|
+  expect(@elements[table_num.to_i - 1][0][0].text).to eql text
+end
+
+When(/^I select the cells with class "([^"]*)"$/) do |class_name|
+  @elements = @page.cell_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) cells$/) do |num_cells|
+  expect(@elements.size).to eql num_cells.to_i
+end
+
+Then(/^the text for cell (\d+) should be "([^"]*)"$/) do |cell_num, text|
+  expect(@elements[cell_num.to_i - 1].text).to eql text
+end

@@ -72,7 +72,7 @@ describe Druid::PageFactory do
 
   it "should fail when it does not find a proper route" do
     Druid::PageFactory.routes = {:default => ['a'], :another => ['b']}
-    expect{world.navigate_to(AnotherPage, :using => :no_route)}.to raise_error(RuntimeError)
+    expect{world.navigate_to(AnotherPage, :using => :no_route)}.to raise_error 'PageFactory route :no_route not found'
   end
 
   it "should fail when no default method specified" do

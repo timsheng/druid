@@ -135,10 +135,22 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::Table
   end
 
+  it "should find all table elements" do
+    expect(driver).to receive(:tables).with(:id => 'blah').and_return([driver])
+    elements = page.table_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Table
+  end
+
   it "should find a table cell element" do
     expect(driver).to receive(:td).with(:id => 'blah').and_return(driver)
     element = page.cell_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::TableCell
+  end
+
+  it "should find all table cells" do
+    expect(driver).to receive(:tds).with(:id => 'blah').and_return([driver])
+    elements = page.cell_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::TableCell
   end
 
   it "should find an image element" do
