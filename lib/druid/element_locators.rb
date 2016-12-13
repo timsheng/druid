@@ -363,6 +363,21 @@ module Druid
     end
 
     #
+    # Finds all tables with match the provided identifier
+    #
+    # @param [Hash] identifier how we find a table. You can use a multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def table_elements identifier
+      tables_for identifier.clone
+    end
+
+    #
     # Finds a table cell
     #
     # @param [Hash] identifier how we find a table cell. You can use a multiple parameters
@@ -376,6 +391,22 @@ module Druid
     #
     def cell_element identifier
       cell_for identifier.clone
+    end
+
+    #
+    # Finds all table cell elements that match the provided identifier
+    #
+    # @param [Hash] identifier how we find a cell. You can use a multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #   * :text
+    #
+    def cell_elements identifier
+      cells_for identifier.clone
     end
 
     #
@@ -396,6 +427,23 @@ module Druid
     end
 
     #
+    # Finds all images that match the provided identifier
+    #
+    # @param [Hash] identifier how we find an image. You can use a multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #   * :alt
+    #   * :src
+    #
+    def image_elements identifier
+      images_for identifier.clone
+    end
+
+    #
     # Finds a form
     #
     # @param [Hash] identifier how we find a form. You can use a multiple parameters
@@ -408,6 +456,21 @@ module Druid
     #
     def form_element identifier
       form_for identifier.clone
+    end
+
+    #
+    # Finds all forms that match the provided identifier
+    #
+    # @param [Hash] identifier how we find a form. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :action
+    #
+    def form_elements identifier
+      forms_for identifier.clone
     end
 
     #
@@ -426,6 +489,21 @@ module Druid
     end
 
     #
+    # Finds all list items that match the identifier
+    #
+    # @param [Hash] identifier how we find a list item. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def list_item_elements identifier
+      list_items_for identifier.clone
+    end
+
+    #
     # Finds an ordered list
     #
     # @param [Hash] identifier how we find an ordered list. You can use a multiple parameters
@@ -438,6 +516,21 @@ module Druid
     #
     def ordered_list_element identifier
       ordered_list_for identifier.clone
+    end
+
+    #
+    # Finds all ordered lists that match the provided identifier
+    #
+    # @param [Hash] identifier how we find an ordered list. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def ordered_list_elements identifier
+      ordered_lists_for identifier.clone
     end
 
     #
@@ -456,6 +549,21 @@ module Druid
     end
 
     #
+    # Finds all unordered lists that match the provided identifier
+    #
+    # @param [Hash] identifier how we find an unordered list. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def unordered_list_elements identifier
+      unordered_lists_for identifier.clone
+    end
+
+    #
     # Finds a h1
     #
     # @param [Hash] identifier how we find a h1. You can use a multiple parameters
@@ -468,6 +576,22 @@ module Druid
     #
     def h1_element identifier
       h1_for identifier.clone
+    end
+
+    #
+    # Finds all h1 elements that match the provided identifier
+    #
+    #
+    # @param [Hash] identifier how we find a h1. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def h1_elements identifier
+      h1s_for identifier.clone
     end
 
     #
@@ -486,6 +610,22 @@ module Druid
     end
 
     #
+    # Finds all h2 elements that match the provided identifier
+    #
+    #
+    # @param [Hash] identifier how we find a h2. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def h2_elements identifier
+      h2s_for identifier.clone
+    end
+
+    #
     # Finds a h3
     #
     # @param [Hash] identifier how we find a h3. You can use a multiple parameters
@@ -498,6 +638,22 @@ module Druid
     #
     def h3_element identifier
       h3_for identifier.clone
+    end
+
+    #
+    # Finds all h3 elements that match the provided identifier
+    #
+    #
+    # @param [Hash] identifier how we find a h3. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def h3_elements identifier
+      h3s_for identifier.clone
     end
 
     #
@@ -516,6 +672,22 @@ module Druid
     end
 
     #
+    # Finds all h4 elements that match the provided identifier
+    #
+    #
+    # @param [Hash] identifier how we find a h4. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def h4_elements identifier
+      h4s_for identifier.clone
+    end
+
+    #
     # Finds a h5
     #
     # @param [Hash] identifier how we find a h5. You can use a multiple parameters
@@ -528,6 +700,22 @@ module Druid
     #
     def h5_element identifier
       h5_for identifier.clone
+    end
+
+    #
+    # Finds all h5 elements that match the provided identifier
+    #
+    #
+    # @param [Hash] identifier how we find a h5. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def h5_elements identifier
+      h5s_for identifier.clone
     end
 
     #
@@ -546,6 +734,22 @@ module Druid
     end
 
     #
+    # Finds all h6 elements that match the provided identifier
+    #
+    #
+    # @param [Hash] identifier how we find a h6. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def h6_elements identifier
+      h6s_for identifier.clone
+    end
+
+    #
     # Finds a paragraph
     #
     # @param [Hash] identifier how we find a paragraph. You can use a multiple parameters
@@ -558,6 +762,21 @@ module Druid
     #
     def paragraph_element identifier
       paragraph_for identifier.clone
+    end
+
+    #
+    # Finds all paragraph elements that match the provided identifier
+    #
+    # @param [Hash] identifier how we find a paragraph. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def paragraph_elements identifier
+      paragraphs_for identifier.clone
     end
 
     #

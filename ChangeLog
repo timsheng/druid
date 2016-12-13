@@ -1,17 +1,10 @@
-=== 2016-12-12
+=== 2016-12-13
 * Enhancements
-  * Added #hidden_field_elements to ElementLocators
-  * Added #text_area_elements to ElementLocators
-  * Added #select_list_elements to ElementLocators
-  * Added #link_elements to ElementLocators
-  * Added #checkbox_elements to ElementLocators
-  * Added #radio_button_elements to ElementLocators
-  * Added #div_elements to ElementLocators
-  * Added #span_elements to ElementLocators
+  * Added ?_elements to ElementLocators so you can find all elements that match an identifier
+  * Added ?_elements to NestedElements so you can find all elements nested within others
+
 === 2016-11-15
 * Enhancements
-  * Added #button_elements to ElementLocators
-  * Added #text_field_elements to ElementLocators
   * Added #navigate_to method to PageFactory to navigate to a page through previous pages
   * Added routes to PageFactory to collect routes through the site
   * Added #continue_navigation_to method to PageFactory which begins at @current_page

@@ -132,12 +132,26 @@ module Druid
       find_element("table(identifier)", Elements::Table, identifier, 'table')
     end
 
+    #
+    # retrieve an array of table elements
+    #
+    def tables_for identifier
+      find_elements("tables(identifier)", Elements::Table, identifier, 'table')
+    end
+
     def cell_text_for identifier
       process_call("td(identifier).text", Elements::TableCell, identifier, nil, 'td')
     end
 
     def cell_for identifier
       find_element("td(identifier)", Elements::TableCell, identifier, 'td')
+    end
+
+    #
+    # retrieve an array of cell elements
+    #
+    def cells_for identifier
+      find_elements("tds(identifier)", Elements::TableCell, identifier, 'td')
     end
 
     def span_text_for identifier
@@ -159,8 +173,22 @@ module Druid
       find_element("image(identifier)", Elements::Image, identifier)
     end
 
+    #
+    # retrieve an array of image elements
+    #
+    def images_for identifier
+      find_elements("images(identifier)", Elements::Image, identifier)
+    end
+
     def form_for identifier
       find_element("form(identifier)", Elements::Form, identifier)
+    end
+
+    #
+    # retrieve an array of form elements
+    #
+    def forms_for identifier
+      find_elements("forms(identifier)", Elements::Form, identifier)
     end
 
     def hidden_field_value_for identifier
@@ -171,6 +199,9 @@ module Druid
       find_element("hidden(identifier)", Elements::HiddenField, identifier)
     end
 
+    #
+    # retrieve an array of hidden_field elements
+    #
     def hidden_fields_for identifier
       find_elements("hiddens(identifier)", Elements::HiddenField, identifier)
     end
@@ -183,8 +214,22 @@ module Druid
       find_element("li(identifier)", Elements::ListItem, identifier, 'li')
     end
 
+    #
+    # retrieve an array of list_item elements
+    #
+    def list_items_for identifier
+      find_elements("lis(identifier)", Elements::ListItem, identifier, 'li')
+    end
+
     def ordered_list_for identifier
       find_element("ol(identifier)", Elements::OrderedList, identifier, 'ol')
+    end
+
+    #
+    # retrieve an array of ordered_list elements
+    #
+    def ordered_lists_for identifier
+      find_elements("ols(identifier)", Elements::OrderedList, identifier, 'ol')
     end
 
     def text_area_value_set identifier, value
@@ -208,12 +253,26 @@ module Druid
       find_element("ul(identifier)", Elements::UnOrderedList, identifier, 'ul')
     end
 
+    #
+    # retrieve an array of unordered_lists elements
+    #
+    def unordered_lists_for identifier
+      find_elements("uls(identifier)", Elements::UnOrderedList, identifier, 'ul')
+    end
+
     def h1_text_for identifier
       process_call("h1(identifier).text", Elements::Heading, identifier, nil, 'h1')
     end
 
     def h1_for identifier
       find_element("h1(identifier)", Elements::Heading, identifier, 'h1')
+    end
+
+    #
+    # retrieve an array of h1 elements
+    #
+    def h1s_for identifier
+      find_elements("h1s(identifier)", Elements::Heading, identifier, 'h1')
     end
 
     def h2_text_for identifier
@@ -224,12 +283,26 @@ module Druid
       find_element("h2(identifier)", Elements::Heading, identifier, 'h2')
     end
 
+    #
+    # retrieve an array of h2 elements
+    #
+    def h2s_for identifier
+      find_elements("h2s(identifier)", Elements::Heading, identifier, 'h2')
+    end
+
     def h3_text_for identifier
       process_call("h3(identifier).text", Elements::Heading, identifier, nil, 'h3')
     end
 
     def h3_for identifier
       find_element("h3(identifier)", Elements::Heading, identifier, 'h3')
+    end
+
+    #
+    # retrieve an array of h3 elements
+    #
+    def h3s_for identifier
+      find_elements("h3s(identifier)", Elements::Heading, identifier, 'h3')
     end
 
     def h4_text_for identifier
@@ -240,12 +313,26 @@ module Druid
       find_element("h4(identifier)", Elements::Heading, identifier, 'h4')
     end
 
+    #
+    # retrieve an array of h4 elements
+    #
+    def h4s_for identifier
+      find_elements("h4s(identifier)", Elements::Heading, identifier, 'h4')
+    end
+
     def h5_text_for identifier
       process_call("h5(identifier).text", Elements::Heading, identifier, nil, 'h5')
     end
 
     def h5_for identifier
       find_element("h5(identifier)", Elements::Heading, identifier, 'h5')
+    end
+
+    #
+    # retrieve an array of h5 elements
+    #
+    def h5s_for identifier
+      find_elements("h5s(identifier)", Elements::Heading, identifier, 'h5')
     end
 
     def h6_text_for identifier
@@ -256,12 +343,26 @@ module Druid
       find_element("h6(identifier)", Elements::Heading, identifier, 'h6')
     end
 
+    #
+    # retrieve an array of h6 elements
+    #
+    def h6s_for identifier
+      find_elements("h6s(identifier)", Elements::Heading, identifier, 'h6')
+    end
+
     def paragraph_text_for identifier
       process_call("p(identifier).text", Elements::Paragraph, identifier, nil, 'p')
     end
 
     def paragraph_for identifier
       find_element("p(identifier)", Elements::Paragraph, identifier, 'p')
+    end
+
+    #
+    # retrieve an array of paragraph Elements
+    #
+    def paragraphs_for identifier
+      find_elements("ps(identifier)", Elements::Paragraph, identifier, 'p')
     end
 
     def file_field_value_set identifier, value
