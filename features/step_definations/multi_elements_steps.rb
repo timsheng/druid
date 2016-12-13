@@ -150,3 +150,15 @@ end
 Then(/^the text for cell (\d+) should be "([^"]*)"$/) do |cell_num, text|
   expect(@elements[cell_num.to_i - 1].text).to eql text
 end
+
+When(/^I select the images with class "([^"]*)"$/) do |class_name|
+  @elements = @page.image_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) images$/) do |num_images|
+  expect(@elements.size).to eql num_images.to_i
+end
+
+Then(/^the alt for image (\d+) should be "([^"]*)"$/) do |image_num , alt|
+  expect(@elements[image_num.to_i - 1].attribute(:alt)).to eql alt
+end
