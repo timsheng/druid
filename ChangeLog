@@ -2,6 +2,7 @@
 * Enhancements
   * Added #table_elements to ElementLocators
   * Added #cell_elements to ElementLocators
+  * Added #image_elements to ElementLocators
 === 2016-12-12
 * Enhancements
   * Added #hidden_field_elements to ElementLocators

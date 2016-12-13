@@ -427,6 +427,23 @@ module Druid
     end
 
     #
+    # Finds all images that match the provided identifier
+    #
+    # @param [Hash] identifier how we find an image. You can use a multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #   * :alt
+    #   * :src
+    #
+    def image_elements identifier
+      images_for identifier.clone
+    end
+
+    #
     # Finds a form
     #
     # @param [Hash] identifier how we find a form. You can use a multiple parameters

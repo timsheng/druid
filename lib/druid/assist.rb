@@ -173,6 +173,10 @@ module Druid
       find_element("image(identifier)", Elements::Image, identifier)
     end
 
+    def images_for identifier
+      find_elements("images(identifier)", Elements::Image, identifier)
+    end
+
     def form_for identifier
       find_element("form(identifier)", Elements::Form, identifier)
     end
