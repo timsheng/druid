@@ -534,6 +534,21 @@ module Druid
     end
 
     #
+    # Finds all unordered lists that match the provided identifier
+    #
+    # @param [Hash] identifier how we find an unordered list. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def unordered_list_elements identifier
+      unordered_lists_for identifier.clone
+    end
+
+    #
     # Finds a h1
     #
     # @param [Hash] identifier how we find a h1. You can use a multiple parameters

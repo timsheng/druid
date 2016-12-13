@@ -246,6 +246,10 @@ module Druid
       find_element("ul(identifier)", Elements::UnOrderedList, identifier, 'ul')
     end
 
+    def unordered_lists_for identifier
+      find_elements("uls(identifier)", Elements::UnOrderedList, identifier, 'ul')
+    end
+
     def h1_text_for identifier
       process_call("h1(identifier).text", Elements::Heading, identifier, nil, 'h1')
     end
