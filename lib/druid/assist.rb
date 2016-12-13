@@ -181,6 +181,10 @@ module Druid
       find_element("form(identifier)", Elements::Form, identifier)
     end
 
+    def forms_for identifier
+      find_elements("forms(identifier)", Elements::Form, identifier)
+    end
+
     def hidden_field_value_for identifier
       process_call("hidden(identifier).value", Elements::HiddenField, identifier)
     end

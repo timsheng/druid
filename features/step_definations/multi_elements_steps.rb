@@ -162,3 +162,15 @@ end
 Then(/^the alt for image (\d+) should be "([^"]*)"$/) do |image_num , alt|
   expect(@elements[image_num.to_i - 1].attribute(:alt)).to eql alt
 end
+
+When(/^I select the forms with class "([^"]*)"$/) do |class_name|
+  @elements = @page.form_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) forms$/) do |num_forms|
+  expect(@elements.size).to eql num_forms.to_i
+end
+
+Then(/^the action for form (\d+) should be "([^"]*)"$/) do |form_num, action|
+  expect(@elements[form_num.to_i - 1].attribute(:action)).to match action
+end
