@@ -363,6 +363,21 @@ module Druid
     end
 
     #
+    # Finds all tables with match the provided identifier
+    #
+    # @param [Hash] identifier how we find a table. You can use a multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def table_elements identifier
+      tables_for identifier.clone
+    end
+
+    #
     # Finds a table cell
     #
     # @param [Hash] identifier how we find a table cell. You can use a multiple parameters
@@ -376,6 +391,22 @@ module Druid
     #
     def cell_element identifier
       cell_for identifier.clone
+    end
+
+    #
+    # Finds all table cell elements that match the provided identifier
+    #
+    # @param [Hash] identifier how we find a cell. You can use a multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #   * :text
+    #
+    def cell_elements identifier
+      cells_for identifier.clone
     end
 
     #
