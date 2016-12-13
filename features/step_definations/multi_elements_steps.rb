@@ -43,7 +43,7 @@ Then(/^the value of hidden field (\d+) should be "([^"]*)"$/) do |hidden_field_n
   expect(@elements[hidden_field_num.to_i - 1].value).to eql value
 end
 
-When(/^I select the text area with class "([^"]*)"$/) do |class_name|
+When(/^I select the text areas with class "([^"]*)"$/) do |class_name|
   @elements = @page.text_area_elements(:class => class_name)
 end
 
@@ -53,4 +53,76 @@ end
 
 Then(/^the value of text area (\d+) should be "([^"]*)"$/) do |text_area_num, value|
   expect(@elements[text_area_num.to_i - 1].value).to eql value
+end
+
+When(/^I select the select lists with class "([^"]*)"$/) do |class_name|
+  @elements = @page.select_list_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) select lists$/) do |num_select_lists|
+  expect(@elements.size).to eql num_select_lists.to_i
+end
+
+Then(/^the value of select list (\d+) should be "([^"]*)"$/) do |select_list_num, value|
+  expect(@elements[select_list_num.to_i - 1].value).to eql value
+end
+
+When(/^I select the link with class "([^"]*)"$/) do |class_name|
+  @elements = @page.link_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) links$/) do |num_links|
+  expect(@elements.size).to eql num_links.to_i
+end
+
+Then(/^the text of link (\d+) should be "([^"]*)"$/) do |link_num, text|
+  expect(@elements[link_num.to_i - 1].text).to eql text
+end
+
+When(/^I select the check boxes with class "([^"]*)"$/) do |class_name|
+  @elements = @page.checkbox_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) checkboxes$/) do |num_checkboxes|
+  expect(@elements.size).to eql num_checkboxes.to_i
+end
+
+Then(/^the value of checkbox (\d+) should be "([^"]*)"$/) do |checkbox_num, value|
+  expect(@elements[checkbox_num.to_i - 1].value).to eql value
+end
+
+When(/^I select the radio buttons with class "([^"]*)"$/) do |class_name|
+  @elements = @page.radio_button_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) radio buttons$/) do |num_radio_buttons|
+  expect(@elements.size).to eql num_radio_buttons.to_i
+end
+
+Then(/^the value of radio button (\d+) should be "([^"]*)"$/) do |radio_button_num, value|
+  expect(@elements[radio_button_num.to_i - 1].value).to eql value
+end
+
+When(/^I select the divs with class "([^"]*)"$/) do |class_name|
+  @elements = @page.div_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) divs$/) do |num_divs|
+  expect(@elements.size).to eql num_divs.to_i
+end
+
+Then(/^the text of div (\d+) should be "([^"]*)"$/) do |div_num, text|
+  expect(@elements[div_num.to_i - 1].text).to eql text
+end
+
+When(/^I select the spans with class "([^"]*)"$/) do |class_name|
+  @elements = @page.span_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) spans$/) do |num_spans|
+  expect(@elements.size).to eql num_spans.to_i
+end
+
+Then(/^the text of span (\d+) should be "([^"]*)"$/) do |span_num, text|
+  expect(@elements[span_num.to_i - 1].text).to eql text
 end

@@ -8,6 +8,13 @@ module Druid
       find_element("link(identifier)", Elements::Link, identifier)
     end
 
+    #
+    # retrieve all link elements
+    #
+    def links_for identifier
+      find_elements("links(identifier)", Elements::Link, identifier)
+    end
+
     def text_field_for identifier
       find_element("text_field(identifier)", Elements::TextField, identifier)
     end
@@ -43,6 +50,13 @@ module Druid
       find_element("checkbox(identifier)", Elements::CheckBox, identifier)
     end
 
+    #
+    # retrieve an array of checkbox elements
+
+    def checkboxes_for identifier
+      find_elements("checkboxes(identifier)", Elements::CheckBox, identifier)
+    end
+
     def select_list_value_set identifier, value
       process_call("select_list(identifier).select(value)", Elements::SelectList, identifier, value)
     end
@@ -53,6 +67,13 @@ module Druid
 
     def select_list_for identifier
       find_element("select_list(identifier)", Elements::SelectList, identifier)
+    end
+
+    #
+    # retrieve an array of select_list elements
+    #
+    def select_lists_for identifier
+      find_elements("select_lists(identifier)", Elements::SelectList, identifier)
     end
 
     def select_radio identifier
@@ -69,7 +90,12 @@ module Druid
 
     def radio_button_for identifier
       find_element("radio(identifier)", Elements::RadioButton, identifier)
+    end
 
+    #
+    # retrieve an array of radio button elements
+    def radio_buttons_for identifier
+      find_elements("radios(identifier)", Elements::RadioButton, identifier)
     end
 
     def click_button_for identifier
@@ -95,6 +121,13 @@ module Druid
       find_element("div(identifier)", Elements::Div, identifier, 'div')
     end
 
+    #
+    # retrieve an array of div elements
+    #
+    def divs_for identifier
+      find_elements("divs(identifier)", Elements::Div, identifier, 'div')
+    end
+
     def table_for identifier
       find_element("table(identifier)", Elements::Table, identifier, 'table')
     end
@@ -113,6 +146,13 @@ module Druid
 
     def span_for identifier
       find_element("span(identifier)", Elements::Span, identifier, 'span')
+    end
+
+    #
+    # retrieve an array of span elements
+    #
+    def spans_for identifier
+      find_elements("spans(identifier)", Elements::Span, identifier, 'span')
     end
 
     def image_for identifier
@@ -234,8 +274,8 @@ module Druid
 
     private
 
-    def find_elements(the_call, type, identifier)
-      identifier, frame_identifiers = parse_identifiers(identifier, type)
+    def find_elements(the_call, type, identifier, tag_name=nil)
+      identifier, frame_identifiers = parse_identifiers(identifier, type, tag_name)
       elements = driver.instance_eval "#{nested_frames(frame_identifiers)}#{the_call}"
       switch_to_default_content(frame_identifiers)
       elements.map { |element| type.new(element) }
