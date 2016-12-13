@@ -225,6 +225,13 @@ module Druid
       find_element("ol(identifier)", Elements::OrderedList, identifier, 'ol')
     end
 
+    #
+    # retrieve an array of ordered_list elements
+    #
+    def ordered_lists_for identifier
+      find_elements("ols(identifier)", Elements::OrderedList, identifier, 'ol')
+    end
+
     def text_area_value_set identifier, value
       process_call("textarea(identifier).send_keys(value)", Elements::TextArea, identifier, value)
     end
@@ -246,6 +253,9 @@ module Druid
       find_element("ul(identifier)", Elements::UnOrderedList, identifier, 'ul')
     end
 
+    #
+    # retrieve an array of unordered_lists elements
+    #
     def unordered_lists_for identifier
       find_elements("uls(identifier)", Elements::UnOrderedList, identifier, 'ul')
     end
