@@ -268,12 +268,26 @@ module Druid
       find_element("h1(identifier)", Elements::Heading, identifier, 'h1')
     end
 
+    #
+    # retrieve an array of h1 elements
+    #
+    def h1s_for identifier
+      find_elements("h1s(identifier)", Elements::Heading, identifier, 'h1')
+    end
+
     def h2_text_for identifier
       process_call("h2(identifier).text", Elements::Heading, identifier, nil, 'h2')
     end
 
     def h2_for identifier
       find_element("h2(identifier)", Elements::Heading, identifier, 'h2')
+    end
+
+    #
+    # retrieve an array of h2 elements
+    #
+    def h2s_for identifier
+      find_elements("h2s(identifier)", Elements::Heading, identifier, 'h2')
     end
 
     def h3_text_for identifier
@@ -284,12 +298,26 @@ module Druid
       find_element("h3(identifier)", Elements::Heading, identifier, 'h3')
     end
 
+    #
+    # retrieve an array of h3 elements
+    #
+    def h3s_for identifier
+      find_elements("h3s(identifier)", Elements::Heading, identifier, 'h3')
+    end
+
     def h4_text_for identifier
       process_call("h4(identifier).text", Elements::Heading, identifier, nil, 'h4')
     end
 
     def h4_for identifier
       find_element("h4(identifier)", Elements::Heading, identifier, 'h4')
+    end
+
+    #
+    # retrieve an array of h4 elements
+    #
+    def h4s_for identifier
+      find_elements("h4s(identifier)", Elements::Heading, identifier, 'h4')
     end
 
     def h5_text_for identifier
@@ -300,12 +328,26 @@ module Druid
       find_element("h5(identifier)", Elements::Heading, identifier, 'h5')
     end
 
+    #
+    # retrieve an array of h5 elements
+    #
+    def h5s_for identifier
+      find_elements("h5s(identifier)", Elements::Heading, identifier, 'h5')
+    end
+
     def h6_text_for identifier
       process_call("h6(identifier).text", Elements::Heading, identifier, nil, 'h6')
     end
 
     def h6_for identifier
       find_element("h6(identifier)", Elements::Heading, identifier, 'h6')
+    end
+
+    #
+    # retrieve an array of h6 elements
+    #
+    def h6s_for identifier
+      find_elements("h6s(identifier)", Elements::Heading, identifier, 'h6')
     end
 
     def paragraph_text_for identifier
