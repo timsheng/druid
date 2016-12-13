@@ -171,6 +171,12 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::Form
   end
 
+  it "should find all form elements" do
+    expect(driver).to receive(:forms).with(:id => 'blah').and_return([driver])
+    elements = page.form_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Form
+  end
+
   it "should find a list item element" do
     expect(driver).to receive(:li).with(:id => 'blah').and_return(driver)
     element = page.list_item_element(:id => 'blah')
