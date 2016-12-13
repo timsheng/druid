@@ -765,6 +765,21 @@ module Druid
     end
 
     #
+    # Finds all paragraph elements that match the provided identifier
+    #
+    # @param [Hash] identifier how we find a paragraph. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def paragraph_elements identifier
+      paragraphs_for identifier.clone
+    end
+
+    #
     # Finds a file field
     #
     # @param [Hash] identifier how we find a file field. You can use a multiple parameters

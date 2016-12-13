@@ -358,6 +358,13 @@ module Druid
       find_element("p(identifier)", Elements::Paragraph, identifier, 'p')
     end
 
+    #
+    # retrieve an array of paragraph Elements
+    #
+    def paragraphs_for identifier
+      find_elements("ps(identifier)", Elements::Paragraph, identifier, 'p')
+    end
+
     def file_field_value_set identifier, value
       process_call("file_field(identifier).set(value)", Elements::FileField, identifier, value)
     end

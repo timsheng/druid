@@ -13,6 +13,7 @@
   * Added #h4_elements to ElementLocators
   * Added #h5_elements to ElementLocators
   * Added #h6_elements to ElementLocators
+  * Added #paragraph_elements to ElementLocators
 
 === 2016-12-12
 * Enhancements
