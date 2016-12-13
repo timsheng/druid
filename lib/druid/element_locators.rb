@@ -489,6 +489,21 @@ module Druid
     end
 
     #
+    # Finds all list items that match the identifier
+    #
+    # @param [Hash] identifier how we find a list item. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def list_item_elements identifier
+      list_items_for identifier.clone
+    end
+
+    #
     # Finds an ordered list
     #
     # @param [Hash] identifier how we find an ordered list. You can use a multiple parameters

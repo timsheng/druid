@@ -174,3 +174,15 @@ end
 Then(/^the action for form (\d+) should be "([^"]*)"$/) do |form_num, action|
   expect(@elements[form_num.to_i - 1].attribute(:action)).to match action
 end
+
+When(/^I select the list items with class "([^"]*)"$/) do |class_name|
+  @elements = @page.list_item_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) list items$/) do |num_list_items|
+  expect(@elements.size).to eql num_list_items.to_i
+end
+
+Then(/^the text for list item (\d+) should be "([^"]*)"$/) do |list_item_num, text|
+  expect(@elements[list_item_num.to_i - 1].text).to eql text
+end

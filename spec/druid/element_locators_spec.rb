@@ -183,6 +183,12 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::ListItem
   end
 
+  it "should find all list item elements" do
+    expect(driver).to receive(:lis).with(:id => 'blah').and_return([driver])
+    elements = page.list_item_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::ListItem
+  end
+
   it "should find an ordered list element" do
     expect(driver).to receive(:ol).with(:id => 'blah').and_return(driver)
     element = page.ordered_list_element(:id => 'blah')

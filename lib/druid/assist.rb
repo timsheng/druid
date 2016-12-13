@@ -173,6 +173,9 @@ module Druid
       find_element("image(identifier)", Elements::Image, identifier)
     end
 
+    #
+    # retrieve an array of image elements
+    #
     def images_for identifier
       find_elements("images(identifier)", Elements::Image, identifier)
     end
@@ -181,6 +184,9 @@ module Druid
       find_element("form(identifier)", Elements::Form, identifier)
     end
 
+    #
+    # retrieve an array of form elements
+    #
     def forms_for identifier
       find_elements("forms(identifier)", Elements::Form, identifier)
     end
@@ -193,6 +199,9 @@ module Druid
       find_element("hidden(identifier)", Elements::HiddenField, identifier)
     end
 
+    #
+    # retrieve an array of hidden_field elements
+    #
     def hidden_fields_for identifier
       find_elements("hiddens(identifier)", Elements::HiddenField, identifier)
     end
@@ -203,6 +212,13 @@ module Druid
 
     def list_item_for identifier
       find_element("li(identifier)", Elements::ListItem, identifier, 'li')
+    end
+
+    #
+    # retrieve an array of list_item elements
+    #
+    def list_items_for identifier
+      find_elements("lis(identifier)", Elements::ListItem, identifier, 'li')
     end
 
     def ordered_list_for identifier
