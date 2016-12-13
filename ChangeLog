@@ -1,4 +1,4 @@
-=== Version 1.2.0 / 2016-12-13
+=== Version 1.1.1 / 2016-12-13
 * Enhancements
   * Added ?_elements to ElementLocators so you can find all elements that match an identifier
   * Added ?_elements to NestedElements so you can find all elements nested within others
