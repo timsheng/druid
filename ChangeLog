@@ -6,6 +6,7 @@
   * Added #form_elements to ElementLocators
   * Added #list_item_elements to ElementLocators
   * Added #unordered_list_elements to ElementLocators
+  * Added #ordered_list_elements to ElementLocators
 === 2016-12-12
 * Enhancements
   * Added #hidden_field_elements to ElementLocators

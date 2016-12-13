@@ -519,6 +519,21 @@ module Druid
     end
 
     #
+    # Finds all ordered lists that match the provided identifier
+    #
+    # @param [Hash] identifier how we find an ordered list. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #
+    def ordered_list_elements identifier
+      ordered_lists_for identifier.clone
+    end
+
+    #
     # Finds an unordered list
     #
     # @param [Hash] identifier how we find an unordered list. You can use a multiple parameters

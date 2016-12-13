@@ -196,5 +196,17 @@ Then(/^I should have (\d+) unordered lists$/) do |num_unordered_list|
 end
 
 Then(/^the text for the first item in unordered list (\d+) should be "([^"]*)"$/) do |ul_num, text|
-  expect(@elements[ul_num.to_i - 1].text).to eql text
+  expect(@elements[ul_num.to_i - 1][0].text).to eql text
+end
+
+When(/^I select the ordered lists with class "([^"]*)"$/) do |class_name|
+  @elements = @page.ordered_list_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) ordered lists$/) do |num_ol|
+  expect(@elements.size).to eql num_ol.to_i
+end
+
+Then(/^the text for the first item in ordered list (\d+) should be "([^"]*)"$/) do |ol_num, text|
+  expect(@elements[ol_num.to_i - 1][0].text).to eql text
 end
