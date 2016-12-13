@@ -102,9 +102,16 @@ Feature: Multi Elements
      And the action for form 2 should be "form2"
      And the action for form 3 should be "form3"
 
-   Scenario: selecting list items
+   Scenario: Selecting list items
      When I select the list items with class "li"
      Then I should have 3 list items
      And the text for list item 1 should be "Item One"
      And the text for list item 2 should be "Item Two"
      And the text for list item 3 should be "Item Three"
+
+   Scenario: Selecting unordered lists
+     When I select the unordered lists with class "ul"
+     Then I should have 3 unordered lists
+     And the text for the first item in unordered list 1 should be "Item One"
+     And the text for the first item in unordered list 2 should be "Item Four"
+     And the text for the first item in unordered list 3 should be "Item Five"

@@ -201,6 +201,13 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::UnOrderedList
   end
 
+  it "should find all unordered list elements" do
+    expect(driver).to receive(:uls).with(:id => 'blah').and_return([driver])
+    elements = page.unordered_list_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::UnOrderedList
+  end
+
+
   it "should find a h1 element" do
     expect(driver).to receive(:h1).with(:id => 'blah').and_return(driver)
     element = page.h1_element(:id => 'blah')
