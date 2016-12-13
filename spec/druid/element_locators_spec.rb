@@ -62,10 +62,22 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::SelectList
   end
 
+  it "should find all select list elements" do
+    expect(driver).to receive(:select_lists).with(:id => 'blah').and_return([driver])
+    elements = page.select_list_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::SelectList
+  end
+
   it "should find a link element" do
     expect(driver).to receive(:link).with(:id => 'blah').and_return(driver)
     element = page.link_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::Link
+  end
+
+  it "should find all link elements" do
+    expect(driver).to receive(:links).with(:id => 'blah').and_return([driver])
+    elements = page.link_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Link
   end
 
   it "should find a check box element" do
@@ -74,11 +86,24 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::CheckBox
   end
 
+  it "should find all check box elements" do
+    expect(driver).to receive(:checkboxes).with(:id => 'blah').and_return([driver])
+    elements = page.checkbox_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::CheckBox
+  end
+
   it "should find a radio button element" do
     expect(driver).to receive(:radio).with(:id => 'blah').and_return(driver)
     element = page.radio_button_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::RadioButton
   end
+
+  it "should find all radio button elements" do
+    expect(driver).to receive(:radios).with(:id => 'blah').and_return([driver])
+    elements = page.radio_button_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::RadioButton
+  end
+
 
   it "should find a div element" do
     expect(driver).to receive(:div).with(:id => 'blah').and_return(driver)
@@ -86,10 +111,22 @@ describe Druid::ElementLocators do
     expect(element).to be_instance_of Druid::Elements::Div
   end
 
+  it "should find all div elements" do
+    expect(driver).to receive(:divs).with(:id => 'blah').and_return([driver])
+    elements = page.div_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Div
+  end
+
   it "should find a span element" do
     expect(driver).to receive(:span).with(:id => 'blah').and_return(driver)
     element = page.span_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::Span
+  end
+
+  it "should find all span elements" do
+    expect(driver).to receive(:spans).with(:id => 'blah').and_return([driver])
+    elements = page.span_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Span
   end
 
   it "should find a table element" do

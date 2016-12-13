@@ -169,6 +169,23 @@ module Druid
     end
 
     #
+    # Finds all select lists for the provided identifier
+    #
+    # @param [Hash] identifier how we find a select list. You can use a multiple paramaters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #   * :value
+    #   * :text
+    #
+    def select_list_elements identifier
+      select_lists_for identifier.clone
+    end
+
+    #
     # Finds a link
     #
     # @param [Hash] identifier how we find a link. You can use a multiple parameters
@@ -188,6 +205,25 @@ module Druid
     end
 
     #
+    # Finds all links for the provided identifier
+    #
+    # @param [Hash] identifier how we find a link. You can use a multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :href
+    #   * :id
+    #   * :index
+    #   * :link
+    #   * :link_text
+    #   * :name
+    #   * :xpath
+    #   * :text
+    #
+    def link_elements identifier
+      links_for identifier.clone
+    end
+
+    #
     # Finds a check box
     #
     # @param [Hash] identifier how we find a check box. You can use a multiple parameters
@@ -204,6 +240,22 @@ module Druid
     end
 
     #
+    # Finds all checkbox elements for the provided identifier
+    #
+    # @param [Hash] identifier how we find a checkbox. You can use a multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #   * :value
+    #
+    def checkbox_elements identifier
+      checkboxes_for identifier.clone
+    end
+
+    #
     # Finds a radio button
     #
     # @param [Hash] identifier how we find a radio button. You can use a multiple parameters
@@ -216,6 +268,21 @@ module Druid
     #
     def radio_button_element identifier
       radio_button_for identifier.clone
+    end
+
+    #
+    # Finds all radio button elements that match the provided identifier
+    #
+    # @param [Hash] identifier how we find a radio button. You can use a multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def radio_button_elements identifier
+      radio_buttons_for identifier.clone
     end
 
     #
@@ -235,6 +302,22 @@ module Druid
     end
 
     #
+    # Finds all divs that match the provided identifier
+    #
+    # @param [Hash] identifier how we find a div. You can use a multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #   * :text
+    #
+    def div_elements identifier
+      divs_for identifier
+    end
+
+    #
     # Finds a span
     #
     # @param [Hash] identifier how we find a span. You can use a multiple parameters
@@ -247,6 +330,21 @@ module Druid
     #
     def span_element identifier
       span_for identifier.clone
+    end
+
+    #
+    # Finds all span elements that match the provided identifier
+    #
+    # @param [Hash] identifier how we find a span. You can use multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def span_elements identifier
+      spans_for identifier.clone
     end
 
     #
