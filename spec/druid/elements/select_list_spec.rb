@@ -13,6 +13,7 @@ describe Druid::Elements::SelectList do
 
   describe "interface" do
     let(:element) { double 'element' }
+    let(:opts) { [element, element] }
     let(:select_list) { Druid::Elements::SelectList.new(element) }
 
     it "should return an option when indexed" do
@@ -32,6 +33,12 @@ describe Druid::Elements::SelectList do
 
     it "should register with tag_name :select" do
       expect(Druid::Elements.element_class_for(:select)).to be Druid::Elements::SelectList
+    end
+
+    it "should return an array of selected options" do
+      allow(element).to receive(:selected_options).and_return(opts)
+      allow(element).to receive(:text).and_return(element)
+      expect(select_list.selected_options).to eql opts
     end
   end
 end

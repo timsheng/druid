@@ -52,3 +52,7 @@ end
 Then(/^I should see that the select list exists$/) do
   expect(@page.select_list_id?).to be true
 end
+
+Then(/^the selected option should be "([^"]*)"$/) do |text|
+  expect(@page.select_list_element(:id => 'sel_list_id').selected_options[0]).to eql text
+end

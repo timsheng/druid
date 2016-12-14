@@ -20,6 +20,13 @@ module Druid
       def select(value)
         element.select(value)
       end
+
+      #
+      # @return [Array<sTRING>] An array of strings representing the text value of the currently selected options.
+      #
+      def selected_options
+        element.selected_options.map { |e| e.text }.compact
+      end
     end
 
     Druid::Elements.tag_to_class[:select] = Druid::Elements::SelectList
