@@ -279,7 +279,7 @@ module Druid
       # delegate calls to driver element
       def method_missing(m, *args, &block)
         puts "*** DEPRECATION WARNING"
-        puts "*** You are calling a method named #{m}."
+        puts "*** You are calling a method named #{m} at #{caller[0]}."
         puts "*** This method does not exist in druid so it is being passed to the driver."
         puts "*** This feature will be removed in the near future."
         puts "*** Please change your code to call the correct druid method."
