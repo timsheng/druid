@@ -18,3 +18,7 @@ end
 When(/^I search for the list item while the script is executing$/) do
   @text = @page.list_item_element(:id => 'li_id').text
 end
+
+Then(/^I should see that the list item exists$/) do
+  expect(@page.li_id?).to be true
+end

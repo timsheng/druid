@@ -48,3 +48,7 @@ end
 Then(/^I should be able to select "(.*?)" from the list$/) do |value|
   @select_list.select value
 end
+
+Then(/^I should see that the select list exists$/) do
+  expect(@page.select_list_id?).to be true
+end

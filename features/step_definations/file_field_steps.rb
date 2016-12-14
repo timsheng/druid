@@ -25,3 +25,7 @@ end
 Then(/^The file field should exist$/) do
   expect(@element.exist?).to be true
 end
+
+Then(/^I should see that the file field element exists$/) do
+  expect(@page.file_field_id?).to be true
+end

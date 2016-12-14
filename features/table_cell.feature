@@ -39,4 +39,5 @@ Feature: Table Cell
   @locator
   Scenario: Finding a table cell dynamically
     When I retrieve a table cell element while the script is executing
-    Then the cell data should be 'Data4'
+    Then I should see that the cell exists
+    And the cell data should be 'Data4'

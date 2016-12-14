@@ -21,3 +21,7 @@ end
 When(/^I find a hidden field while the script is executing$/) do
   @element = @page.hidden_field_element(:id => "hidden_field_id")
 end
+
+Then(/^I should see that the hidden field exists$/) do
+  expect(@page.hidden_field_id?).to be true
+end

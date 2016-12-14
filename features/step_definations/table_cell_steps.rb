@@ -21,3 +21,7 @@ end
 When(/^I retrieve a table cell element while the script is executing$/) do
   @cell_text = @page.cell_element(:id => 'cell_id').text
 end
+
+Then(/^I should see that the cell exists$/) do
+  expect(@page.cell_id?).to be true
+end
