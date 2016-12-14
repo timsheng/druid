@@ -119,6 +119,12 @@ module Druid
         element.enabled?
       end
 
+      #
+      # return true if the element is not enabled
+      def disabled?
+        not enabled?
+      end
+
       def visible?
         element.visible?
       end

@@ -146,5 +146,10 @@ describe Druid::Elements::Element do
       expect(we).to receive(:focus)
       element.focus
     end
+
+    it "should know if the element is disabled" do
+      expect(we).to receive(:enabled?).and_return(false)
+      expect(element).to be_disabled
+    end
   end
 end
