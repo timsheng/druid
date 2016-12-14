@@ -17,3 +17,7 @@ end
 When(/^I get the text from a span while the script is executing$/) do
   @text = @page.span_element(:id => 'span_id').text
 end
+
+Then(/^I should see that the span exists$/) do
+  expect(@page.span_id?).to be true
+end

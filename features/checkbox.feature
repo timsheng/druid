@@ -42,4 +42,5 @@ Feature: Check Box
   @locator
   Scenario: Finding a check box dynamically
     When I select the first check box while the script is executing
-    Then the First check box should be selected
+    Then I should see that the checkbox exists
+    And the First check box should be selected

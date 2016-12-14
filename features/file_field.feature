@@ -32,4 +32,5 @@ Feature: File Field
   @locator
   Scenario: Finding a file field dynamically
     When I locate a file field while the script is executing
-    Then The file field should exist
+    Then I should see that the file field element exists
+    And The file field should exist
