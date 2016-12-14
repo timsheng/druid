@@ -81,3 +81,11 @@ end
 Then(/^I should have a div parent$/) do
   expect(@parent).to be_instance_of Druid::Elements::Div
 end
+
+Then(/^it should know that it is not disabled$/) do
+  expect(@element).not_to be_disabled
+end
+
+Then(/^it should know that it is disabled$/) do
+  expect(@element).to be_disabled
+end
