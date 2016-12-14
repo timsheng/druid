@@ -56,13 +56,15 @@ module Druid
       frame << {iframe: identifier}
       block.call(frame)
     end
+
     #
-    # add three methods - one to select a link and another
-    # to return a link element, and another one to select a link and not wait for the corresponding action to complete
+    # adds three methods - one to select a link, another
+    # to return a PageObject::Elements::Link object representing
+    # the link, and another that checks the link's existence.
     #
-    # Example: link(:add_to_cart, :text => "Add to Cart")
-    # will generate the 'add_to_cart' and 'add_to_cart_element', 'add_to_cart_no_wait'
-    # methods.
+    # @example
+    #   link(:add_to_cart, :text => "Add to Cart")
+    #   # will generate 'add_to_cart', 'add_to_cart_element', and 'add_to_cart?' methods
     #
     # @param the name used for the generated methods
     # @param identifier how we find a link. The valid values are:
@@ -93,12 +95,14 @@ module Druid
     end
 
     #
-    # adds three methods to the page object - one to set text in a text field,
-    # another to retrieve text from a text field and another to return the text
-    # field element.
+    # adds four methods to the page object - one to set text in a text field,
+    # another to retrieve text from a text field, another to return the text
+    # field element, another to check the text field's existence.
     #
-    # Example:  text_field(:first_name, {:id => "first_name"})
-    # will generate the 'first_name', 'first_name=' and 'first_name_element methods.
+    # @example
+    #   text_field(:first_name, :id => "first_name")
+    #   # will generate 'first_name', 'first_name=', 'first_name_element',
+    #   # 'first_name?' methods
     #
     # @param  the name used for the generated methods
     # @param identifier how we find a text_field.  The valid values are:
@@ -131,14 +135,17 @@ module Druid
       end
       alias_method "#{name}_text_field".to_sym, "#{name}_element".to_sym
     end
+
     #
-    # adds four methods - one to check, another to uncheck, another
-    # to return the state of a checkbox, and a final method to return
-    # a checkbox  element.
+    # adds five methods - one to check, another to uncheck, another
+    # to return the state of a checkbox, another to return
+    # a PageObject::Elements::CheckBox object representing the checkbox, and
+    # a final method to check the checkbox's existence.
     #
-    # Example: checkbox(:active, {:name => "is_active"})
-    # will generate the 'check_active', 'uncheck_active',
-    # 'active_checked?' and 'active_element' methods.
+    # @example
+    #   checkbox(:active, :name => "is_active")
+    #   # will generate 'check_active', 'uncheck_active', 'active_checked?',
+    #   # 'active_element', and 'active?' methods
     #
     # @param the name used for the generated methods
     # @param identifier how we find a checkbox.  The valid values are:
@@ -173,13 +180,16 @@ module Druid
       end
       alias_method "#{name}_checkbox".to_sym, "#{name}_element".to_sym
     end
+
     #
-    # adds three methods - one to select an item in a drop-down,
-    # another to fetch the currently selected item and another
-    # to retrieve the select list element.
+    # adds four methods - one to select an item in a drop-down,
+    # another to fetch the currently selected item, another
+    # to retrieve the select list element, and another to check the
+    # drop down's existence.
     #
-    # Example:  select_list(:state, {:id => "state"})
-    # will generate the 'state', 'state=' and 'state_element' methods
+    # @example
+    #   select_list(:state, :id => "state")
+    #   # will generate 'state', 'state=', 'state_element', 'state?' methods
     #
     # @param the name used for the generated methods
     # @param identifier how we find a select_list.  The valid values are:
@@ -209,14 +219,18 @@ module Druid
       end
       alias_method "#{name}_select_list".to_sym, "#{name}_element".to_sym
     end
+
     #
-    # adds three methods - one to select
-    # another to return if a radio button is selected, and
-    # another method to return a radio_button element
+    # adds five methods - one to select, another to clear,
+    # another to return if a radio button is selected,
+    # another method to return a PageObject::Elements::RadioButton
+    # object representing the radio button element, and another to check
+    # the radio button's existence.
     #
-    # Example:  radio_button(:north, {:id => "north"})
-    # will generate 'select_north'
-    # 'north_selected?' and 'north_element' methods
+    # @example
+    #   radio_button(:north, :id => "north")
+    #   # will generate 'select_north', 'clear_north', 'north_selected?',
+    #   # 'north_element', and 'north?' methods
     #
     # @param the name used for the generated methods
     # @param identifier how we find a radio_button.  The valid values are:
@@ -251,12 +265,14 @@ module Druid
       end
       alias_method "#{name}_radio_button".to_sym, "#{name}_element".to_sym
     end
+
     #
-    # adds two methods - one to click a button and another to
-    # return the button element.
+    # adds three methods - one to click a button, another to
+    # return the button element, and another to check the button's existence.
     #
-    # Example: button(:purchase, :id => 'purchase')
-    # will generate a 'purchase' and 'purchase_element' methods.
+    # @example
+    #   button(:purchase, :id => 'purchase')
+    #   # will generate 'purchase', 'purchase_element', and 'purchase?' methods
     #
     # @param the name used for the generated methods
     # @param identifier how we find a button.  The valid values are:
@@ -285,12 +301,14 @@ module Druid
       end
       alias_method "#{name}_button".to_sym, "#{name}_element".to_sym
     end
+
     #
-    # adds two methods - one to retrieve the text from a div
-    # and another to return the div element
+    # adds three methods - one to retrieve the text from a div,
+    # another to return the div element, and another to check the div's existence.
     #
-    # Example:  div(:message, {:id => 'message'})
-    # will generate a 'message' and 'message_element' methods
+    # @example
+    #   div(:message, :id => 'message')
+    #   # will generate 'message', 'message_element', and 'message?' methods
     #
     # @param the name used for the generated methods
     # @param identifier how we find a div.  The valid values are:
@@ -318,11 +336,14 @@ module Druid
       end
       alias_method "#{name}_div".to_sym, "#{name}_element".to_sym
     end
+
     #
-    # adds a method to retrieve the table element
+    # adds two methods - one to retrieve the table element, and another to
+    # check the table's existence.
     #
-    # Example: table(:cart, :id => 'shopping_cart')
-    # will generate a 'cart_element' method.
+    # @example
+    #   table(:cart, :id => 'shopping_cart')
+    #   # will generate a 'cart_element' and 'cart?' method
     #
     # @param the name used for the generated methods
     # @param identifier how we find a table.  The valid values are:
@@ -344,12 +365,15 @@ module Druid
       end
       alias_method "#{name}_table".to_sym, "#{name}_element".to_sym
     end
+
     #
-    # adds two methods  one to retrieve the text from a table cell
-    # and another to return the table cell element
+    # adds three methods - one to retrieve the text from a table cell,
+    # another to return the table cell element, and another to check the cell's
+    # existence.
     #
-    # Example: cell(:total, :id => 'total_cell')
-    # will generate a 'total' and 'total_element' methods
+    # @example
+    #   cell(:total, :id => 'total_cell')
+    #   # will generate 'total', 'total_element', and 'total?' methods
     #
     # @param the name used for the generated methods
     # @param identifier how we find a cell.  The valid values are:
@@ -376,12 +400,14 @@ module Druid
       end
       alias_method "#{name}_cell".to_sym, "#{name}_element".to_sym
     end
+
     #
-    # adds two methods - one to retrieve the text from a span
-    # and another to return the span element
+    # adds three methods - one to retrieve the text from a span,
+    # another to return the span element, and another to check the span's existence.
     #
-    # Example:  span(:alert, {:id => 'alert'})
-    # will generate a 'alert' and 'alert_element' methods
+    # @example
+    #   span(:alert, :id => 'alert')
+    #   # will generate 'alert', 'alert_element', and 'alert?' methods
     #
     # @param the name used for the generated methods
     # @param identifier how we find a span.  The valid values are:
@@ -408,11 +434,14 @@ module Druid
       end
       alias_method "#{name}_span".to_sym, "#{name}_element".to_sym
     end
+
     #
-    # adds a method to retrieve the image element
+    # adds two methods - one to retrieve the image element, and another to
+    # check the image's existence.
     #
-    # Example: image(:photo, :id => 'photo_id')
-    # will generate a 'photo_element' method.
+    # @example
+    #   image(:logo, :id => 'logo')
+    #   # will generate 'logo_element' and 'logo?' methods
     #
     # @param the name used for the generated methods
     # @param identifier how we find a image.  The valid values are:
@@ -436,12 +465,14 @@ module Druid
       end
       alias_method "#{name}_image".to_sym, "#{name}_element".to_sym
     end
+
     #
-    # adds a method to retrieve the form element
+    # adds two methods - one to retrieve the form element, and another to
+    # check the form's existence.
     #
     # @example
     #   form(:login, :id => 'login')
-    #   # will generate a 'login_element' method
+    #   # will generate 'login_element' and 'login?' methods
     #
     # @param [String] the name used for the generated methods
     # @param [Hash] identifier how we find a form.  The valid keys are:
@@ -464,13 +495,15 @@ module Druid
       end
       alias_method "#{name}_form".to_sym, "#{name}_element".to_sym
     end
+
     #
-    # adds two methods to the page object - one to get the text from a hidden field
-    # and another to retrieve the hidden field element.
+    # adds three methods to the page object - one to get the text from a hidden field,
+    # another to retrieve the hidden field element, and another to check the hidden
+    # field's existence.
     #
     # @example
     #   hidden_field(:user_id, :id => "user_identity")
-    #   # will generate 'user_id' and 'user_id_element' methods
+    #   # will generate 'user_id', 'user_id_element' and 'user_id?' methods
     #
     # @param [String] the name used for the generated methods
     # @param [Hash] identifier how we find a hidden field.  The valid keys are:
@@ -500,13 +533,15 @@ module Druid
       end
       alias_method "#{name}_hidden_field".to_sym, "#{name}_element".to_sym
     end
+
     #
-    # adds two methods - one to retrieve the text from a list item
-    # and another to return the list item element
+    # adds three methods - one to retrieve the text from a list item,
+    # another to return the list item element, and another to check the list item's
+    # existence.
     #
     # @example
     #   list_item(:item_one, :id => 'one')
-    #   # will generate 'item_one' and 'item_one_element' methods
+    #   # will generate 'item_one', 'item_one_element', and 'item_one?' methods
     #
     # @param [String] the name used for the generated methods
     # @param [Hash] identifier how we find a list item.  The valid keys are:
@@ -532,12 +567,14 @@ module Druid
       end
       alias_method "#{name}_list_item".to_sym, "#{name}_element".to_sym
     end
+
     #
-    # adds a method to retrieve the ordered list element
+    # adds two methods - one to retrieve the ordered list element, and another to
+    # test it's existence.
     #
     # @example
     #   ordered_list(:top_five, :id => 'top')
-    #   # will generate a 'top_five_element' method
+    #   # will generate 'top_five_element' and 'top_five?' methods
     #
     # @param [String] the name used for the generated methods
     # @param [Hash] identifier how we find an ordered list.  The valid keys are:
@@ -559,14 +596,16 @@ module Druid
       end
       alias_method "#{name}_ordered_list".to_sym, "#{name}_element".to_sym
     end
+
     #
-    # adds three methods to the page object - one to set text in a text area,
-    # another to retrieve text from a text area and another to return the text
-    # area element.
+    # adds four methods to the page object - one to set text in a text area,
+    # another to retrieve text from a text area, another to return the text
+    # area element, and another to check the text area's existence.
     #
     # @example
     #   text_area(:address, :id => "address")
-    #   # will generate 'address', 'address=' and 'address_element' methods
+    #   # will generate 'address', 'address=', 'address_element',
+    #   # 'address?' methods
     #
     # @param  [String] the name used for the generated methods
     # @param [Hash] identifier how we find a text area.  The valid keys are:
@@ -598,12 +637,14 @@ module Druid
       end
       alias_method "#{name}_text_area".to_sym, "#{name}_element".to_sym
     end
+
     #
-    # adds a method to retrieve the unordered list element
+    # adds two methods - one to retrieve the unordered list element, and another to
+    # check it's existence.
     #
     # @example
     #   unordered_list(:menu, :id => 'main_menu')
-    #   # will generate a 'menu_element' method
+    #   # will generate 'menu_element' and 'menu?' methods
     #
     # @param [String] the name used for the generated methods
     # @param [Hash] identifier how we find an unordered list.  The valid keys are:
@@ -627,11 +668,12 @@ module Druid
     end
 
     #
-    # adds a method to retrieve the text of a h1 and a h1 element
+    # adds three methods - one to retrieve the text of a h1 element, another to
+    # retrieve a h1 element, and another to check for it's existence.
     #
     # @example
     #   h1(:title, :id => 'title')
-    #   # will generate a 'title' and 'title_element' method
+    #   # will generate 'title', 'title_element', and 'title?' methods
     #
     # @param [String] the name used for the generated methods
     # @param [Hash] identifier how we find a H1.  You can use a multiple paramaters
@@ -660,11 +702,12 @@ module Druid
     end
 
     #
-    # adds a method to retrieve the text of a h2 and a h2 element
+    # adds three methods - one to retrieve the text of a h2 element, another
+    # to retrieve a h2 element, and another to check for it's existence.
     #
     # @example
     #   h2(:title, :id => 'title')
-    #   # will generate a 'title' and 'title_element' method
+    #   # will generate 'title', 'title_element', and 'title?' methods
     #
     # @param [String] the name used for the generated methods
     # @param [Hash] identifier how we find a H2.  You can use a multiple paramaters
@@ -693,11 +736,12 @@ module Druid
     end
 
     #
-    # adds a method to retrieve the text of a h3 and a h3 element
+    # adds three methods - one to retrieve the text of a h3 element,
+    # another to return a h3 element, and another to check for it's existence.
     #
     # @example
     #   h3(:title, :id => 'title')
-    #   # will generate a 'title' and 'title_element' method
+    #   # will generate 'title', 'title_element', and 'title?' methods
     #
     # @param [String] the name used for the generated methods
     # @param [Hash] identifier how we find a H3.  You can use a multiple paramaters
@@ -726,11 +770,12 @@ module Druid
     end
 
     #
-    # adds a method to retrieve the text of a h4 and a h4 element
+    # adds three methods - one to retrieve the text of a h4 element,
+    # another to return a h4 element, and another to check for it's existence.
     #
     # @example
     #   h4(:title, :id => 'title')
-    #   # will generate a 'title' and 'title_element' method
+    #   # will generate 'title', 'title_element', and 'title?' methods
     #
     # @param [String] the name used for the generated methods
     # @param [Hash] identifier how we find a H4.  You can use a multiple paramaters
@@ -759,11 +804,12 @@ module Druid
     end
 
     #
-    # adds a method to retrieve the text of a h5 and a h5 element
+    # adds three methods - one to retrieve the text of a h5 element,
+    # another to return a h5 element, and another to check for it's existence.
     #
     # @example
     #   h5(:title, :id => 'title')
-    #   # will generate a 'title' and 'title_element' method
+    #   # will generate 'title', 'title_element', and 'title?' methods
     #
     # @param [String] the name used for the generated methods
     # @param [Hash] identifier how we find a H5.  You can use a multiple paramaters
@@ -792,11 +838,12 @@ module Druid
     end
 
     #
-    # adds a method to retrieve the text of a h6 and a h6 element
+    # adds three methods - one to retrieve the text of a h6 element,
+    # another to return a h6 element, and another to check for it's existence.
     #
     # @example
     #   h6(:title, :id => 'title')
-    #   # will generate a 'title' and 'title_element' method
+    #   # will generate 'title', 'title_element', and 'title?' methods
     #
     # @param [String] the name used for the generated methods
     # @param [Hash] identifier how we find a H6.  You can use a multiple paramaters
@@ -825,11 +872,12 @@ module Druid
     end
 
     #
-    # adds a method to retrieve the text of a paragraph and a paragraph element
+    # adds three methods - one to retrieve the text of a paragraph, another
+    # to retrieve a paragraph element, and another to check the paragraph's existence.
     #
     # @example
     #   paragraph(:title, :id => 'title')
-    #   # will generate a 'title' and 'title_element' method
+    #   # will generate 'title', 'title_element', and 'title?' methods
     #
     # @param [String] the name used for the generated methods
     # @param [Hash] identifier how we find a paragraph.  You can use a multiple paramaters
@@ -858,12 +906,12 @@ module Druid
     end
 
     #
-    # adds a method to set the file for a file field and to retrieve
-    # the file field element
+    # adds three methods - one to set the file for a file field, another to retrieve
+    # the file field element, and another to check it's existence.
     #
     # @example
     #   file_field(:the_file, :id => 'file_to_upload')
-    #   # will generate a 'the_file=' and 'the_file_element' method
+    #   # will generate 'the_file=', 'the_file_element', and 'the_file?' methods
     #
     # @param [String] the name used for the generated methods
     # @param [Hash] identifier how we find a file_field.  You can use a multiple paramaters
