@@ -50,3 +50,7 @@ Then(/^the data for the last row should be "([^"]*)" and "([^"]*)"$/) do |col1, 
   expect(@element.last_row[0].text).to eql col1
   expect(@element.last_row[1].text).to eql col2
 end
+
+Then(/^I should see that the table exists$/) do
+  expect(@page.table_id?).to be true
+end
