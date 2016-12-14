@@ -33,3 +33,7 @@ end
 When(/^I select the first check box while the script is executing$/) do
   @page.checkbox_element(:id => "cb_id").check
 end
+
+Then(/^I should see that the checkbox exists$/) do
+  expect(@page.cb_id?).to be true
+end

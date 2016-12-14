@@ -45,4 +45,5 @@ Feature: Radio Buttons
   @locator
   Scenario: Finding a radio button dynamically
     When I select the radio button while the script is executing
-    Then the "Milk" radio button should be selected
+    Then I should see that the radio button exists
+    And the "Milk" radio button should be selected

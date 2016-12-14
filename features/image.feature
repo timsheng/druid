@@ -37,5 +37,6 @@ Feature: Image
   @locator
   Scenario: Finding an image dynamically
     When I get the image element while the script is executing
-    Then the image should be "106" pixels wide
+    Then I should see that the image exists
+    And the image should be "106" pixels wide
     And the image should be "106" pixels tall

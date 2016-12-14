@@ -46,3 +46,7 @@ end
 When(/^I click the image button using alt$/) do
   @page.button_image_alt
 end
+
+Then(/^I should see that the button exists$/) do
+  expect(@page.button_id?).to eql true
+end

@@ -36,4 +36,5 @@ Feature: Hidden Fields
   @locator
   Scenario: Finding a hidden field dynamically
     When I find a hidden field while the script is executing
-    Then hidden field element should contains "12345"
+    Then I should see that the hidden field exists
+    And hidden field element should contains "12345"
