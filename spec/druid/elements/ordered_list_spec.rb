@@ -16,8 +16,12 @@ describe Druid::Elements::OrderedList do
     let(:ol) { Druid::Elements::OrderedList.new(element) }
 
     it "should return a list item when indexed" do
-      expect(element).to receive(:li)
-      expect(ol[1]).to be_instance_of Druid::Elements::ListItem
+      allow(element).to receive(:ols).and_return(element)
+      allow(element).to receive(:find_all).and_return([element])
+      allow(element).to receive(:parent).and_return(element)
+      allow(element).to receive(:element).and_return(element)
+      allow(element).to receive(:==).and_return(true)
+      ol[1]
     end
 
     it "should know how many list items it contains" do
