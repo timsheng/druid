@@ -27,6 +27,23 @@ module Druid
       def selected_options
         element.selected_options.map { |e| e.text }.compact
       end
+
+      #
+      # Returns true if the select list has one or more options where text or label matches the given value.
+      #
+      # @param [String, Regexp] value A value
+      # @return [Boolean]
+      def include? value
+        element.include? value
+      end
+
+      #
+      # Returns true if any of the selected options' text or label match the given value.
+      # @param [String, Regexp] value A value
+      # @return [Boolean]
+      def selected? value
+        element.selected? value
+      end
     end
 
     Druid::Elements.tag_to_class[:select] = Druid::Elements::SelectList

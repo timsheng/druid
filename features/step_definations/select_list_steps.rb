@@ -56,3 +56,11 @@ end
 Then(/^the selected option should be "([^"]*)"$/) do |text|
   expect(@page.select_list_element(:id => 'sel_list_id').selected_options[0]).to eql text
 end
+
+Then(/^the select list should include "([^"]*)"$/) do |text|
+  expect(@page.select_list_id_element).to include text
+end
+
+Then(/^the select list should know that "([^"]*)" is selected$/) do |text|
+  expect(@page.select_list_id_element.selected?(text)).to be true
+end

@@ -1,3 +1,6 @@
+=== 2016-12-19
+* Enhancements
+  * Added #include? and #selected? to SelectList
 === 2016-12-14
 * Enhancements
   * Added shortcut method to check element exists

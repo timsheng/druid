@@ -40,5 +40,15 @@ describe Druid::Elements::SelectList do
       allow(element).to receive(:text).and_return(element)
       expect(select_list.selected_options).to eql opts
     end
+
+    it "should know if it includes some value" do
+      expect(element).to receive(:include?).with('blah').and_return(true)
+      select_list.include?('blah')
+    end
+
+    it "should know if an option is selected" do
+      expect(element).to receive(:selected?).with("blah").and_return(true)
+      select_list.selected?('blah')
+    end
   end
 end
