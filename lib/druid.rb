@@ -80,6 +80,20 @@ module Druid
   def self.javascript_framework=(framework)
     Druid::JavascriptFrameworkFacade.framework = framework
   end
+
+  #
+  # Add a new javascript framework to druid. The module passed
+  # in must adhere to the same prototype as the JQuery and Prototype
+  # modules.
+  #
+  # @param [Symbol] the name used to reference the framework in
+  # subsequent calls
+  # @param [Module] a module that has the necessary methods to perform
+  # the required actions.
+  #
+  def self.add_framework(key, framework)
+    Druid::JavascriptFrameworkFacade.add_framework(key, framework)
+  end
   #
   # get the current page url
   #

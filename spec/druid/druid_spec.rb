@@ -160,6 +160,16 @@ describe Druid do
         druid.wait_for_ajax
       end
 
+      it "should set the javascript framework" do
+        expect(Druid::JavascriptFrameworkFacade).to receive(:framework=)
+        Druid.javascript_framework = :foo
+      end
+
+      it "should add the javascript framework" do
+        expect(Druid::JavascriptFrameworkFacade).to receive(:add_framework)
+        Druid.add_framework(:foo, :bar)
+      end
+
     end
   end
 
