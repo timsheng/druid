@@ -7,8 +7,8 @@ module Druid
       end
 
       def [](idx)
-        li = element.li(:xpath,".//li[#{idx+1}]")
-        Druid::Elements::ListItem.new(li)
+        items = list_items.find_all { |item| item.parent == element}
+        Druid::Elements::ListItem.new(items[idx])
       end
 
       def items
@@ -19,6 +19,18 @@ module Druid
         for index in 1..self.items do
           yield self[index-1]
         end
+      end
+
+      protected
+
+      def child_xpath
+        ".//child::li"
+      end
+
+      private
+
+      def list_items
+        element.uls(:xpath => child_xpath)
       end
     end
 

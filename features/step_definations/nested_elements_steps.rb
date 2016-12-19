@@ -27,6 +27,8 @@ class NestedElementsPage
   h6(:nested_h6) { |page| page.outer_div_element.h6_element }
   paragraph(:nested_paragraph) { |page| page.outer_div_element.paragraph_element }
   file_field(:nested_file_field) { |page| page.outer_div_element.file_field_element }
+  unordered_list(:outer_list, :id => 'outer')
+  ordered_list(:ordered_outer, :id => 'ol-outer')
 end
 Given(/^I am on the nested elements page$/) do
   @page = NestedElementsPage.new(@driver)
@@ -193,4 +195,17 @@ end
 
 Then(/^I should be able to retrieve the nested file field$/) do
   expect(@ff.exist?).to be true
+end
+
+When(/^I get the outter unordered list$/) do
+  @list = @page.outer_list_element
+end
+
+When(/^I get the outter ordered list$/) do
+  @list = @page.ordered_outer_element
+end
+
+
+Then(/^I should see "([^"]*)" for list item (\d+)$/) do |text, item_num|
+  expect(@list[item_num.to_i - 1].text).to eql text
 end

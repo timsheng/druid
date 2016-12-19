@@ -2,6 +2,8 @@
 * Enhancements
   * Added #include? and #selected? to SelectList
   * Added #append to TextField
+* Fixes
+  * Fixed [] methods for OrderedList and UnOrderedList so it only gets direct children
 === 2016-12-14
 * Enhancements
   * Added shortcut method to check element exists

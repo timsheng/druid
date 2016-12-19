@@ -16,8 +16,12 @@ describe Druid::Elements::UnOrderedList do
     let(:ul) { Druid::Elements::UnOrderedList.new(element) }
 
     it "should return a list item when indexed" do
-      expect(element).to receive(:li)
-      expect(ul[1]).to be_instance_of Druid::Elements::ListItem
+      allow(element).to receive(:uls).and_return(element)
+      allow(element).to receive(:find_all).and_return([element])
+      allow(element).to receive(:parent).and_return(element)
+      allow(element).to receive(:element).and_return(element)
+      allow(element).to receive(:==).and_return(true)
+      ul[1]
     end
 
     it "should know how many items it contains" do
