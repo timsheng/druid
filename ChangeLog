@@ -3,6 +3,7 @@
   * Added #include? and #selected? to SelectList
   * Added #append to TextField
   * Added #wait_for_ajax support for the jQuery framework
+  * Added #wait_for_ajax support for the Prototype framework
 * Fixes
   * Fixed [] methods on OrderedList and UnOrderedList so it only gets direct children
   * Fixed items methods on OrderedList and UnOrderedList so it returns count of direct children
