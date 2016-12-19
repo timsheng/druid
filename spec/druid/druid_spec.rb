@@ -154,9 +154,23 @@ describe Druid do
         druid.save_screenshot('tim.png')
       end
 
+      it "should wait until there are no pending ajax requests" do
+        expect(Druid::JavascriptFrameworkFacade).to receive(:pending_requests).and_return('pending requests')
+        expect(driver).to receive(:execute_script).with('pending requests').and_return(0)
+        druid.wait_for_ajax
+      end
+
+      it "should set the javascript framework" do
+        expect(Druid::JavascriptFrameworkFacade).to receive(:framework=)
+        Druid.javascript_framework = :foo
+      end
+
+      it "should add the javascript framework" do
+        expect(Druid::JavascriptFrameworkFacade).to receive(:add_framework)
+        Druid.add_framework(:foo, :bar)
+      end
+
     end
   end
-
-
 
 end

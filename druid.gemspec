@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
   s.add_dependency "watir-webdriver", ">= 0.9.1"
   s.add_development_dependency "rspec", ">= 3.4.0"
   s.add_development_dependency "cucumber", ">= 1.3.20"
+  s.add_development_dependency "rack", ">= 1.0"
 end
