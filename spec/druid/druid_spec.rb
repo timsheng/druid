@@ -144,7 +144,8 @@ describe Druid do
       end
 
       it "should know how to clear all of the cookies from the browser" do
-        expect(driver).to receive(:clear_cookies)
+        expect(driver).to receive(:cookies).and_return(driver)
+        expect(driver).to receive(:clear)
         druid.clear_cookies
       end
 

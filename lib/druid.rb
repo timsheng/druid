@@ -257,7 +257,7 @@ module Druid
   # Clear the cookies from the browser
   #
   def clear_cookies
-    driver.clear_cookies
+    driver.cookies.clear
   end
 
   #

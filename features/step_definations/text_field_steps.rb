@@ -33,3 +33,7 @@ end
 Then(/^I should see that the text field exists$/) do
   expect(@page.text_field_id?).to be true
 end
+
+When(/^I append "([^"]*)" to the text field$/) do |text|
+  @page.text_field_id_element.append text
+end
