@@ -4,6 +4,7 @@ require 'druid/page_factory'
 require 'druid/core_ext/string'
 require 'druid/element_locators'
 require 'druid/page_populator'
+require 'druid/javascript_framework_facade'
 
 # require 'watir-webdriver/extensions/alerts'
 #
@@ -73,6 +74,13 @@ module Druid
   end
 
   #
+  # Set the javascript framework to use when determining number of
+  # ajax requests. Valid frameworks are :jquery, :prototype, and :Dojo
+  #
+  def self.javascript_framework=(framework)
+    Druid::JavascriptFrameworkFacade.framework = framework
+  end
+  #
   # get the current page url
   #
   def current_url
@@ -134,6 +142,22 @@ module Druid
   #
   def wait_until(timeout = 30, message = nil, &block)
     driver.wait_until(timeout, message, &block)
+  end
+
+  #
+  # wait until there are no pending ajax requests. This requires you to set the javascript framework in advance.
+  #
+  # @param [Numeric] the amount of time to wait for the block to return true.
+  # @param [String] the message to include with the error if we exceed the timeout duration
+  #
+  def wait_for_ajax(timeout = 30, message = nil)
+    end_time = ::Time.now + timeout
+    until ::Time.now > end_time
+      return if driver.execute_script(Druid::JavascriptFrameworkFacade.pending_requests) == 0
+      sleep 1
+    end
+    message = "Timed out waiting for ajax requests to complete" unless message
+    raise message
   end
 
   #

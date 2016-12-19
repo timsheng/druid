@@ -154,9 +154,13 @@ describe Druid do
         druid.save_screenshot('tim.png')
       end
 
+      it "should wait until there are no pending ajax requests" do
+        expect(Druid::JavascriptFrameworkFacade).to receive(:pending_requests).and_return('pending requests')
+        expect(driver).to receive(:execute_script).with('pending requests').and_return(0)
+        druid.wait_for_ajax
+      end
+
     end
   end
-
-
 
 end
