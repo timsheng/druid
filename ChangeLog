@@ -1,4 +1,4 @@
-=== 2016-12-19
+=== Version 1.1.2 /2016-12-19
 * Enhancements
   * Added #include? and #selected? to SelectList
   * Added #append to TextField
