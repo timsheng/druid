@@ -20,7 +20,7 @@ describe Druid::Elements::TextArea do
     let(:element) { double "element" }
     let(:text_area) { Druid::Elements::TextArea.new(element) }
     it "should set its' value" do
-      expect(element).to receive(:send_keys).with('test')
+      expect(element).to receive(:set).with('test')
       text_area.value = 'test'
     end
 
