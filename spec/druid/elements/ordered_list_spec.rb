@@ -25,8 +25,12 @@ describe Druid::Elements::OrderedList do
     end
 
     it "should know how many list items it contains" do
-      expect(element).to receive_message_chain(:lis, :size).and_return(2)
-      expect(ol.items).to eql 2
+      allow(element).to receive(:ols).and_return(element)
+      allow(element).to receive(:find_all).and_return([element])
+      allow(element).to receive(:parent).and_return(element)
+      allow(element).to receive(:element).and_return(element)
+      allow(element).to receive(:==).and_return(true)
+      expect(ol.items).to eql 1
     end
 
     it "should iterate over the list items" do

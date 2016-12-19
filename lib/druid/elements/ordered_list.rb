@@ -8,12 +8,11 @@ module Druid
       end
 
       def [](idx)
-        items = list_items.find_all { |item| item.parent == element }
-        Druid::Elements::ListItem.new(items[idx])
+        Druid::Elements::ListItem.new(children[idx])
       end
 
       def items
-        element.lis.size
+        children.size
       end
 
       def each
@@ -29,6 +28,10 @@ module Druid
       end
 
       private
+
+      def children
+        list_items.find_all { |item| item.parent == element }
+      end
 
       def list_items
         element.ols(:xpath => child_xpath)
