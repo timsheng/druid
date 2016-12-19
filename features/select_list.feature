@@ -56,3 +56,10 @@ Feature: Select List
   Scenario: Getting the selected option
     When I select "Test 2" from the select list
     Then the selected option should be "Test 2"
+
+  Scenario: Determining if a select list includes some options
+    Then the select list should include "Test 2"
+
+  Scenario: It should know if an option is selected
+    When I select "Test 2" from the select list
+    Then the select list should know that "Test 2" is selected
