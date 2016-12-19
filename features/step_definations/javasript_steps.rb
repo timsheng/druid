@@ -6,16 +6,16 @@ class JavascriptPage
   button(:compute, :value => 'Compute')
 end
 
-def start_server
-  @server = AjaxTestEnvironment.new
-  @server.run
-end
-
 Given(/^I am on jQuery example page$/) do
-  start_server
   Druid.javascript_framework = :jquery
   @page = JavascriptPage.new(@driver)
   @page.navigate_to "http://localhost:4567/jquery.html"
+end
+
+Given(/^I am on the Prototype example page$/) do
+  Druid.javascript_framework = :prototype
+  @page = JavascriptPage.new(@driver)
+  @page.navigate_to "http://localhost:4567/prototype.html"
 end
 
 When(/^I ask to compute "([^"]*)"$/) do |expression|
@@ -26,5 +26,4 @@ end
 Then(/^I should be able to wait for the answer "([^"]*)"$/) do |answer|
   @page.wait_for_ajax
   expect(@page.results).to eql answer
-  @server.stop
 end

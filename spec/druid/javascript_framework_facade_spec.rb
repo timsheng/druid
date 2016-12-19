@@ -22,4 +22,14 @@ describe Druid::JavascriptFrameworkFacade do
     facade.framework = :jquery
     expect(facade.pending_requests).to eql 'return jQuery.active'
   end
+
+  it "should register the Prototype script builder" do
+    facade.framework = :prototype
+    expect(facade.script_builder).to eql Druid::Javascript::Prototype
+  end
+
+  it "should return script for pending requests in Prototype" do
+    facade.framework = :prototype
+    expect(facade.pending_requests).to eql "return Ajax.activeRequestCount"
+  end
 end

@@ -1,4 +1,5 @@
 require 'druid/javascript/jquery'
+require 'druid/javascript/prototype'
 
 module Druid
   module JavascriptFrameworkFacade
@@ -25,7 +26,8 @@ module Druid
 
       def initialize_script_builder
         @builder = {
-          :jquery => Druid::Javascript::JQuery
+          :jquery => Druid::Javascript::JQuery,
+          :prototype => Druid::Javascript::Prototype
         }
       end
 

@@ -17,3 +17,10 @@ class AjaxTestEnvironment
     @example_app.kill
   end
 end
+
+@server = AjaxTestEnvironment.new
+@server.run
+
+at_exit do
+  @server.stop
+end
