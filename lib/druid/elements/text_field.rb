@@ -12,6 +12,10 @@ module Druid
       def value=(new_value)
         element.set(new_value)
       end
+
+      def append text
+        element.send_keys text
+      end
     end
 
     Druid::Elements.type_to_class[:text] = Druid::Elements::TextField

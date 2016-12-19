@@ -103,3 +103,15 @@ Feature: Nested Elements
   Scenario: Finding a file field within a div
     When I search for a file field located in a div
     Then I should be able to retrieve the nested file field
+
+  Scenario: Unordered list nested in another Unordered list
+    When I get the outter unordered list
+    Then I should see "One" for list item 1
+    And I should see "Two" for list item 2
+    And I should see "Three" for list item 3
+
+  Scenario: Ordered list nested in another Ordered list
+    When I get the outter ordered list
+    Then I should see "One" for list item 1
+    And I should see "Two" for list item 2
+    And I should see "Three" for list item 3
