@@ -3,7 +3,8 @@
   * Added #include? and #selected? to SelectList
   * Added #append to TextField
 * Fixes
-  * Fixed [] methods for OrderedList and UnOrderedList so it only gets direct children
+  * Fixed [] methods on OrderedList and UnOrderedList so it only gets direct children
+  * Fixed items methods on OrderedList and UnOrderedList so it returns count of direct children
 === 2016-12-14
 * Enhancements
   * Added shortcut method to check element exists

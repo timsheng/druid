@@ -25,8 +25,12 @@ describe Druid::Elements::UnOrderedList do
     end
 
     it "should know how many items it contains" do
-      expect(element).to receive_message_chain(:lis, :size).and_return(3)
-      expect(ul.items).to eql 3
+      allow(element).to receive(:uls).and_return(element)
+      allow(element).to receive(:find_all).and_return([element])
+      allow(element).to receive(:parent).and_return(element)
+      allow(element).to receive(:element).and_return(element)
+      allow(element).to receive(:==).and_return(true)
+      expect(ul.items).to eql 1
     end
 
     it "should know how to iterate over the items" do
