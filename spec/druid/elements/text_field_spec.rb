@@ -27,5 +27,10 @@ describe Druid::Elements::TextField do
     it "should register with type :password" do
       expect(Druid::Elements.element_class_for(:input, :password)).to be Druid::Elements::TextField
     end
+
+    it "should append text" do
+      expect(element).to receive(:send_keys).with('abc')
+      text_field.append('abc')
+    end
   end
 end
