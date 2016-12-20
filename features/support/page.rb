@@ -1,5 +1,8 @@
 class Page
   include Druid
+
+  expected_title "Static Elements Page"
+
   page_url("http://www.baidu.com")
 
   link(:google_search_id, :id => "link_id")
