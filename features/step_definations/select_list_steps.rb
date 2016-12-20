@@ -64,3 +64,8 @@ end
 Then(/^the select list should know that "([^"]*)" is selected$/) do |text|
   expect(@page.select_list_id_element.selected?(text)).to be true
 end
+
+Then(/^the value for the option should be "([^"]*)"$/) do |value|
+  @element = @page.send "select_list_#{@how}_element".to_sym
+  expect(@element.value).to eql value
+end
