@@ -122,3 +122,16 @@ end
 Then(/^the page should have the expected title$/) do
   expect(@page).to have_expected_title
 end
+
+Then(/^the page should have the expected element$/) do
+  expect(@page).to have_expected_element
+end
+
+Then(/^the page should not have the expected element$/) do
+  class FakePage
+    include Druid
+    expected_element :blah
+  end
+
+  expect(FakePage.new(@driver)).not_to have_expected_element
+end

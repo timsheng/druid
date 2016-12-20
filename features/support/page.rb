@@ -2,6 +2,7 @@ class Page
   include Druid
 
   expected_title "Static Elements Page"
+  expected_element :hello0
 
   page_url("http://www.baidu.com")
 
