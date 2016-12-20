@@ -118,3 +118,7 @@ end
 When(/^I press the forward button$/) do
   @page.forward
 end
+
+Then(/^the page should have the expected title$/) do
+  expect(@page).to have_expected_title
+end
