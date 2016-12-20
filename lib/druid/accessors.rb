@@ -183,7 +183,7 @@ module Druid
 
     #
     # adds four methods - one to select an item in a drop-down,
-    # another to fetch the currently selected item, another
+    # another to fetch the currently selected item text, another
     # to retrieve the select list element, and another to check the
     # drop down's existence.
     #
@@ -202,7 +202,7 @@ module Druid
     def select_list(name, identifier=nil, &block)
       define_method(name) do
         return select_list_value_for identifier.clone unless block_given?
-        self.send("#{name}_element").value
+        self.send("#{name}_element").options.each {|o| return o.text if o.selected?}
       end
       define_method("#{name}=") do |value|
         return select_list_value_set(identifier.clone, value) unless block_given?
