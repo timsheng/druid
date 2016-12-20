@@ -1,3 +1,7 @@
+=== 2016-12-20
+* Fixes
+  WARNING: This change breaks existing code
+  * Changed the generated getter for select_list to return the text instead of the value
 === Version 1.1.2 /2016-12-19
 * Enhancements
   * Added #include? and #selected? to SelectList

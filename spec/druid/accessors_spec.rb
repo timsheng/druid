@@ -217,7 +217,9 @@ describe Druid::Accessors do
 
     context "implementation" do
       it "should get the current item from a select list" do
-        expect(driver).to receive_message_chain(:select_list, :value).and_return('OH')
+        allow(driver).to receive(:selected?).and_return(driver)
+        allow(driver).to receive(:text).and_return('OH')
+        expect(driver).to receive_message_chain(:select_list, :options).and_return([driver])
         expect(druid.state).to eql 'OH'
       end
 
