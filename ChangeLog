@@ -4,6 +4,7 @@
   * Changed the generated getter for select_list to return the text instead of the value
 * Enhancements
   * Added #expected_title method to Druid
+  * Added #expected_element method to Druid
 === Version 1.1.2 /2016-12-19
 * Enhancements
   * Added #include? and #selected? to SelectList
