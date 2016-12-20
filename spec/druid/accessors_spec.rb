@@ -154,7 +154,8 @@ describe Druid::Accessors do
 
   describe "validating the existence of an element" do
     it "should validate an element exists" do
-      allow(druid).to receive(:google_search?).and_return(driver)
+      allow(druid).to receive(:google_search_element).and_return(driver)
+      allow(driver).to receive(:when_present).and_return(true)
       druid.has_expected_element?
     end
 
