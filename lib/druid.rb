@@ -243,6 +243,13 @@ module Druid
   end
 
   #
+  # Execute javascript on the browser
+  #
+  def execute_script(script)
+    driver.execute_script(script)
+  end
+
+  #
   # Attach to a running window. You can locate the window using either
   # the window's title or url or index, If it failes to connect to a window it will
   # pause for 1 second and try again.

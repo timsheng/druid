@@ -170,6 +170,10 @@ describe Druid do
         Druid.add_framework(:foo, :bar)
       end
 
+      it "should execute javascript on the browser" do
+        expect(driver).to receive(:execute_script).and_return("abc")
+        expect(druid.execute_script("333")).to eql "abc"
+      end
     end
   end
 

@@ -1,3 +1,6 @@
+=== 2016-12-22
+* Enhancement
+  * Added #execute_script method to Druid
 === 2016-12-20
 * Fixes
   WARNING: This change breaks existing code
