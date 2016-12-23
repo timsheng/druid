@@ -15,6 +15,7 @@ module Druid
     #   * :xpath
     #   * :src
     #   * :alt
+    #   * :css
     #
     def button_element identifier
       button_for identifier.clone
@@ -23,7 +24,7 @@ module Druid
     #
     # Finds all buttons that match the provided identifier
     #
-    # @param [Hash] identifier how we find a button.  You can use a multiple paramaters
+    # @param [Hash] identifier how we find all buttons.  You can use a multiple paramaters
     #  by combining of any of the following except xpath.  The valid keys are:
     #   * :class
     #   * :id
@@ -34,6 +35,7 @@ module Druid
     #   * :xpath
     #   * :src
     #   * :alt
+    #   * :css
     #
     def button_elements identifier
       buttons_for identifier.clone
@@ -61,7 +63,7 @@ module Druid
     #
     # Finds all text fields that match the provided identifier
     #
-    # @param [Hash] identifier how we find a text field. You can use a multiple parameters
+    # @param [Hash] identifier how we find all text fields. You can use a multiple parameters
     # by combining of any of the following except xpath. The valid keys are:
     #
     #   * :class
@@ -100,7 +102,7 @@ module Druid
     #
     # Finds all hidden fields that match the identifier
     #
-    # @param [Hash] identifier how we find a hidden field. You can use a multiple parameters
+    # @param [Hash] identifier how we find all hidden fields. You can use a multiple parameters
     # by combining of any of the following except xpath. The valid keys are:
     #
     #   * :class
@@ -137,7 +139,7 @@ module Druid
     #
     # Finds all text areas for the provided identifier
     #
-    # @param [Hash] identifier how we find a text area. You can use a multiple parameters
+    # @param [Hash] identifier how we find all text areas. You can use a multiple parameters
     # by combining of any of the following except xpath. The valid keys are:
     #   * :class
     #   * :css
@@ -171,7 +173,7 @@ module Druid
     #
     # Finds all select lists for the provided identifier
     #
-    # @param [Hash] identifier how we find a select list. You can use a multiple paramaters
+    # @param [Hash] identifier how we find all select lists. You can use a multiple paramaters
     # by combining of any of the following except xpath. The valid keys are:
     #   * :class
     #   * :id
@@ -199,6 +201,7 @@ module Druid
     #   * :name
     #   * :xpath
     #   * :text
+    #   * :css
     #
     def link_element identifier
       link_for identifier.clone
@@ -207,7 +210,7 @@ module Druid
     #
     # Finds all links for the provided identifier
     #
-    # @param [Hash] identifier how we find a link. You can use a multiple parameters
+    # @param [Hash] identifier how we find all links. You can use a multiple parameters
     # by combining of any of the following except xpath. The valid keys are:
     #   * :class
     #   * :href
@@ -218,6 +221,7 @@ module Druid
     #   * :name
     #   * :xpath
     #   * :text
+    #   * :css
     #
     def link_elements identifier
       links_for identifier.clone

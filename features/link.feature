@@ -24,6 +24,7 @@ Feature: Links
     | xpath     |
     | link      |
     | link_text |
+    | css       |
 
   Scenario: Retrieve a Link
     When I retrieve a link element

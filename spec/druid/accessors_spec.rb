@@ -4,6 +4,8 @@ class AccessorsTestDruid
   include Druid
 
   page_url "http://apple.com"
+  expected_title "Expected Title"
+  expected_element :google_search
   link(:google_search, :link => 'Google Search')
   text_field(:first_name, :id => 'first_name')
   select_list(:state, :id => 'state')
@@ -135,6 +137,34 @@ describe Druid::Accessors do
     it "should not navigate to a page when 'page_url' not specified" do
       expect(driver).not_to receive(:goto)
       page = TestDruidBackUp.new(driver,true)
+    end
+  end
+
+  describe "validating the page title" do
+    it "should validate the title" do
+      expect(driver).to receive(:title).and_return("Expected Title")
+      expect(druid).to have_expected_title
+    end
+
+    it "should raise error when it does not have expected title" do
+      expect(driver).to receive(:title).twice.and_return("Not Expected")
+      expect {druid.has_expected_title? }.to raise_error
+    end
+  end
+
+  describe "validating the existence of an element" do
+    it "should validate an element exists" do
+      allow(druid).to receive(:google_search_element).and_return(driver)
+      allow(driver).to receive(:when_present).and_return(true)
+      druid.has_expected_element?
+    end
+
+    it "should handle non-existent elements gracefully" do
+      class FakePage
+        include Druid
+        expected_element :foo
+      end
+      expect(FakePage.new(driver)).not_to have_expected_element
     end
   end
 

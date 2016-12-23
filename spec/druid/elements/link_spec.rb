@@ -4,7 +4,7 @@ require 'druid/elements'
 describe Druid::Elements::Link do
   describe "when mapping how to find an element" do
     it "should map watir types to same" do
-      [:class, :href, :id, :name, :text, :xpath].each do |t|
+      [:class, :href, :id, :name, :text, :xpath, :css].each do |t|
         identifier = Druid::Elements::Link.identifier_for t => 'value'
         expect(identifier.keys.first).to eql t
       end
