@@ -30,6 +30,18 @@ Feature: Page level actions
     Given I can goto baidu.com using visit_page with block
     Then the page should have the title "百度" using on_page with block
 
+  Scenario: Validating the page title
+    Given I am on the static elements page
+    Then the page should have the expected title
+
+  Scenario: Validating the expected element
+    Given I am on the static elements page
+    Then the page should have the expected element
+
+  Scenario: Validating that an expected element does not exist
+    Given I am on the static elements page
+    Then the page should not have the expected element
+
   Scenario: Waiting for something
     Given I am on the static elements page
     Then I should be able to wait for a block to return true

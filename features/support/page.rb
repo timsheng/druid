@@ -1,5 +1,9 @@
 class Page
   include Druid
+
+  expected_title "Static Elements Page"
+  expected_element :hello0
+
   page_url("http://www.baidu.com")
 
   link(:google_search_id, :id => "link_id")
@@ -11,6 +15,7 @@ class Page
   link(:google_search_index, :index => 0)
   link(:google_search_link, :link => "Google Search")
   link(:google_search_link_text, :link_text => "Google Search")
+  link(:google_search_css, :css => "a.link_class")
   link(:hello0, {:text => "Hello", :index => 0})
   link(:hello1, {:text => "Hello", :index => 1})
   link(:hello2, {:text => "Hello", :index => 2})
@@ -66,6 +71,7 @@ class Page
   button(:button_value, :value => 'Click Me')
   button(:button_class_index, :class => "button_class", :index => 0)
   button(:button_name_index, :name => "button_name", :index => 0)
+  button(:button_css, :css => "input[type='submit']")
 
   button(:button_image_id, :id => 'button_image_id')
   button(:button_image_src, :src => 'images/submit.gif')
