@@ -5,7 +5,7 @@ module Druid
       protected
 
       def self.finders
-         super + [:href, :text]
+         super + [:href, :text, :css]
       end
 
       def self.mapping

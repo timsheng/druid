@@ -35,6 +35,7 @@ Feature: Button
     | index     |
     | text      |
     | value     |
+    | css       |
 
   Scenario Outline: Locating real buttons on the page
     When I locate the button by "<locate_by>"

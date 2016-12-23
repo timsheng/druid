@@ -1,6 +1,9 @@
-=== 2016-12-22
+=== 2016-12-23
 * Enhancement
   * Added #execute_script method to Druid
+  * Added support for finding the following using :css
+      Button
+      Link
 === 2016-12-20
 * Fixes
   WARNING: This change breaks existing code
