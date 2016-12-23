@@ -6,6 +6,7 @@
       Link
   * Added method to fetch generic element
   * Support alias method 'on' for 'on_page', 'visit' for 'visit_page' on PageFactory
+  * Changed Elements.element_class_for so parameters can be strings or symbols
 === 2016-12-20
 * Fixes
   WARNING: This change breaks existing code
