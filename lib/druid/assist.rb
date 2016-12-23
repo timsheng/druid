@@ -373,6 +373,10 @@ module Druid
       find_element("file_field(identifier)", Elements::FileField, identifier)
     end
 
+    def element_for(tag, identifier)
+      find_element("#{tag.to_s}(identifier)", Elements::Element, identifier, tag.to_s)
+    end
+
     private
 
     def find_elements(the_call, type, identifier, tag_name=nil)

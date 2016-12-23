@@ -263,4 +263,10 @@ class Page
   file_field(:file_field_name_index, :name => 'file_field_name', :index => 0)
 
   link(:child, :id => 'child')
+
+  element(:article_id, :article, :id => 'article_id')
+  element(:header_id, :header, :id => 'header_id')
+  element(:footer_id, :footer, :id => 'footer_id')
+  element(:summary_id, :summary, :id => 'summary_id')
+  element(:details_id, :details, :id => 'details_id')
 end
