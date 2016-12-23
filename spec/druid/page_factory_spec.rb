@@ -37,9 +37,23 @@ describe Druid::PageFactory do
     end
   end
 
+  it "should create a new page object and execute a block using 'on'" do
+    expect(driver).not_to receive(:goto)
+    world.on FactoryTestDruid do |page|
+      expect(page).to be_instance_of FactoryTestDruid
+    end
+  end
+
   it "should create and visit a new page" do
     expect(driver).to receive(:goto)
     world.visit_page FactoryTestDruid do |page|
+      expect(page).to be_instance_of FactoryTestDruid
+    end
+  end
+
+  it "should create and visit a new page using 'visit'" do
+    expect(driver).to receive(:goto)
+    world.visit FactoryTestDruid do |page|
       expect(page).to be_instance_of FactoryTestDruid
     end
   end
