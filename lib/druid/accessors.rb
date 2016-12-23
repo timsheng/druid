@@ -977,5 +977,18 @@ module Druid
         file_field_for(identifier.clone).exist?
       end
     end
+
+    def element(name, tag, identifier=nil, &block)
+      define_method("#{name}") do
+        self.send("#{name}_element").text
+      end
+      define_method("#{name}_element") do
+        return call_block(&block) if block_given?
+        element_for(tag, identifier.clone)
+      end
+      define_method("#{name}?") do
+        self.send("#{name}_element").exist?
+      end
+    end
   end
 end

@@ -4,6 +4,7 @@
   * Added support for finding the following using :css
       Button
       Link
+  * Added method to fetch generic element
 === 2016-12-20
 * Fixes
   WARNING: This change breaks existing code
