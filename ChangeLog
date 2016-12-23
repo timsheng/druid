@@ -5,6 +5,7 @@
       Button
       Link
   * Added method to fetch generic element
+  * Support alias method 'on' for 'on_page', 'visit' for 'visit_page' on PageFactory
 === 2016-12-20
 * Fixes
   WARNING: This change breaks existing code
