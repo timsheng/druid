@@ -6,6 +6,11 @@ class FactoryTestDruid
   page_url "http://google.com"
 end
 
+class TestPageWithDirectUrl
+  include Druid
+  direct_url "http://google.com"
+end
+
 class AnotherPage
   include Druid
 end
@@ -55,6 +60,13 @@ describe Druid::PageFactory do
     expect(driver).to receive(:goto)
     world.visit FactoryTestDruid do |page|
       expect(page).to be_instance_of FactoryTestDruid
+    end
+  end
+
+  it "should create and visit a new page when url is defined as 'direct_url'" do
+    expect(driver).to receive(:goto)
+    world.visit TestPageWithDirectUrl do |page|
+      expect(page).to be_instance_of TestPageWithDirectUrl
     end
   end
 
