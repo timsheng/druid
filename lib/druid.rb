@@ -275,6 +275,16 @@ module Druid
   end
 
   #
+  # Find the element that has focus on the page
+  #
+  def element_with_focus
+    element = driver.execute_script("return document.activeElement")
+    type = element.type.to_sym if element.tag_name.to_sym == :input
+    cls = Druid::Elements.element_class_for(element.tag_name, type)
+    cls.new(element)
+  end
+
+  #
   # Override the normal showModalDialog call is it opens a window instead of a dialog.
   # You will need to attach to the new window in order to continue.
   #
