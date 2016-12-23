@@ -113,6 +113,8 @@ module Druid
     #   :xpath
     #   :link
     #   :link_text
+    #   :css
+    #
     def link(name, identifier=nil, &block)
       define_method(name) do
         return click_link_for identifier.clone unless block_given?
@@ -320,6 +322,7 @@ module Druid
     #   :xpath
     #   :src
     #   :alt
+    #   :css
     #
     def button(name, identifier=nil, &block)
       define_method(name) do
