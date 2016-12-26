@@ -313,6 +313,11 @@ describe Druid::ElementLocators do
     expect(elements[0]).to be_instance_of Druid::Elements::Form
   end
 
+  it "should find all forms using no identifier" do
+    expect(driver).to receive(:forms).with({}).and_return([driver])
+    page.form_elements
+  end
+
   it "should find a list item element" do
     expect(driver).to receive(:li).with(:id => 'blah').and_return(driver)
     element = page.list_item_element(:id => 'blah')
@@ -328,6 +333,11 @@ describe Druid::ElementLocators do
     expect(driver).to receive(:lis).with(:id => 'blah').and_return([driver])
     elements = page.list_item_elements(:id => 'blah')
     expect(elements[0]).to be_instance_of Druid::Elements::ListItem
+  end
+
+  it "should find all list items using no identifier" do
+    expect(driver).to receive(:lis).with({}).and_return([driver])
+    page.list_item_elements
   end
 
   it "should find an ordered list element" do
