@@ -309,7 +309,8 @@ module Druid
     # Finds a div
     #
     # @param [Hash] identifier how we find a div. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  which will find the first div. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -325,7 +326,8 @@ module Druid
     # Finds all divs that match the provided identifier
     #
     # @param [Hash] identifier how we find a div. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all divs. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -333,7 +335,7 @@ module Druid
     #   * :xpath
     #   * :text
     #
-    def div_elements identifier
+    def div_elements(identifier={})
       divs_for identifier
     end
 
