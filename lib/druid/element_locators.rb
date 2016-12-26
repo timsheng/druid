@@ -407,7 +407,8 @@ module Druid
     # Finds a table cell
     #
     # @param [Hash] identifier how we find a table cell. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first cell. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -423,7 +424,8 @@ module Druid
     # Finds all table cell elements that match the provided identifier
     #
     # @param [Hash] identifier how we find a cell. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all cells. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -431,7 +433,7 @@ module Druid
     #   * :xpath
     #   * :text
     #
-    def cell_elements identifier
+    def cell_elements(identifier={})
       cells_for identifier.clone
     end
 
