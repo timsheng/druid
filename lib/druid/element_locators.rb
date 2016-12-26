@@ -375,7 +375,8 @@ module Druid
     # Finds a table
     #
     # @param [Hash] identifier how we find a table. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first table. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -390,14 +391,15 @@ module Druid
     # Finds all tables with match the provided identifier
     #
     # @param [Hash] identifier how we find a table. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all tables. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :name
     #   * :xpath
     #
-    def table_elements identifier
+    def table_elements(identifier={})
       tables_for identifier.clone
     end
 
