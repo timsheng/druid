@@ -88,7 +88,8 @@ module Druid
     # Finds a hidden field
     #
     # @param [Hash] identifier how we find a hidden field. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  which will find the first hidden field. The valid keys are:
     #   * :class
     #   * :css
     #   * :id
@@ -107,7 +108,8 @@ module Druid
     # Finds all hidden fields that match the identifier
     #
     # @param [Hash] identifier how we find all hidden fields. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to an empty Hash
+    #  which will return all hidden fields. The valid keys are:
     #
     #   * :class
     #   * :css
@@ -119,7 +121,7 @@ module Druid
     #   * :xpath
     #   * :value
     #
-    def hidden_field_elements identifier
+    def hidden_field_elements(identifier={})
       hidden_fields_for identifier.clone
     end
 
@@ -127,7 +129,8 @@ module Druid
     # Finds a text area
     #
     # @param [Hash] identifier how we find a text area. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  which will find the first text area. The valid keys are:
     #   * :class
     #   * :css
     #   * :id
@@ -144,7 +147,8 @@ module Druid
     # Finds all text areas for the provided identifier
     #
     # @param [Hash] identifier how we find all text areas. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all text areas. The valid keys are:
     #   * :class
     #   * :css
     #   * :id
@@ -153,7 +157,7 @@ module Druid
     #   * :tag_name
     #   * :xpath
     #
-    def text_area_elements identifier
+    def text_area_elements(identifier={})
       text_areas_for identifier.clone
     end
 
@@ -161,7 +165,8 @@ module Druid
     # Finds a select list
     #
     # @param [Hash] identifier how we find a select list. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  Which will find the first select list The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -178,7 +183,8 @@ module Druid
     # Finds all select lists for the provided identifier
     #
     # @param [Hash] identifier how we find all select lists. You can use a multiple paramaters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all select lists. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -187,7 +193,7 @@ module Druid
     #   * :value
     #   * :text
     #
-    def select_list_elements identifier
+    def select_list_elements(identifier={})
       select_lists_for identifier.clone
     end
 

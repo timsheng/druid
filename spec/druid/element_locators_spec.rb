@@ -43,12 +43,14 @@ describe Druid::ElementLocators do
 
   it "should find all text field elemnts" do
     expect(driver).to receive(:text_fields).with(:id => 'blah').and_return([driver])
+    expect(driver).to receive(:tag_name).and_return('input')
     elements = page.text_field_elements(:id => 'blah')
     expect(elements[0]).to be_instance_of Druid::Elements::TextField
   end
 
   it "should find all text fields with no identifier" do
     expect(driver).to receive(:text_fields).with({}).and_return([driver])
+    expect(driver).to receive(:tag_name).and_return('input')
     page.text_field_elements
   end
 
@@ -69,6 +71,11 @@ describe Druid::ElementLocators do
     expect(elements[0]).to be_instance_of Druid::Elements::HiddenField
   end
 
+  it "should find all hidden fields using no identifier" do
+    expect(driver).to receive(:hiddens).with({}).and_return([driver])
+    page.hidden_field_elements
+  end
+
   it "should find a text area element" do
     expect(driver).to receive(:textarea).with(:id => 'blah').and_return(driver)
     element = page.text_area_element(:id => "blah")
@@ -86,6 +93,11 @@ describe Druid::ElementLocators do
     expect(elements[0]).to be_instance_of Druid::Elements::TextArea
   end
 
+  it "should find all text areas using no identifier" do
+    expect(driver).to receive(:textareas).with({}).and_return([driver])
+    page.text_area_elements
+  end
+
   it "should find a select list element" do
     expect(driver).to receive(:select_list).with(:id => 'blah').and_return(driver)
     element = page.select_list_element(:id => "blah")
@@ -101,6 +113,11 @@ describe Druid::ElementLocators do
     expect(driver).to receive(:select_lists).with(:id => 'blah').and_return([driver])
     elements = page.select_list_elements(:id => 'blah')
     expect(elements[0]).to be_instance_of Druid::Elements::SelectList
+  end
+
+  it "should find all select lists using no identifier" do
+    expect(driver).to receive(:select_lists).with({}).and_return([driver])
+    page.select_list_elements
   end
 
   it "should find a link element" do
