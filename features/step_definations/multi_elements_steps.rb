@@ -334,3 +334,7 @@ end
 Then(/^I should be able to find (\d+) checkboxes using no identifier$/) do |num_checkboxes|
   expect(@page.checkbox_elements.size).to eql num_checkboxes.to_i
 end
+
+Then(/^I should be able to find (\d+) radio buttons using no identifier$/) do |num_radio_buttons|
+  expect(@page.radio_button_elements.size).to eql num_radio_buttons.to_i
+end

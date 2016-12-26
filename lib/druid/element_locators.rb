@@ -277,7 +277,8 @@ module Druid
     # Finds a radio button
     #
     # @param [Hash] identifier how we find a radio button. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  which will find the first radio button. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -292,14 +293,15 @@ module Druid
     # Finds all radio button elements that match the provided identifier
     #
     # @param [Hash] identifier how we find a radio button. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all radio buttons. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :name
     #   * :xpath
     #
-    def radio_button_elements identifier
+    def radio_button_elements(identifier={})
       radio_buttons_for identifier.clone
     end
 
