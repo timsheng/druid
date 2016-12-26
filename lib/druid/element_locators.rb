@@ -37,7 +37,7 @@ module Druid
     #   * :alt
     #   * :css
     #
-    def button_elements identifier
+    def button_elements(identifier={})
       buttons_for identifier.clone
     end
 

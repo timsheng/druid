@@ -25,6 +25,11 @@ describe Druid::ElementLocators do
     expect(elements[0]).to be_instance_of Druid::Elements::Button
   end
 
+  it "should find all buttons with no identifier" do
+    expect(driver).to receive(:buttons).with({}).and_return([driver])
+    page.button_elements
+  end
+
   it "should find a text field element" do
     expect(driver).to receive(:text_field).with(:id => 'blah').and_return(driver)
     text_field = page.text_field_element(:id => 'blah')
