@@ -137,6 +137,11 @@ describe Druid::ElementLocators do
     expect(elements[0]).to be_instance_of Druid::Elements::Link
   end
 
+  it "should find all links using no identifier" do
+    expect(driver).to receive(:links).with({}).and_return([driver])
+    page.link_elements
+  end
+
   it "should find a check box element" do
     expect(driver).to receive(:checkbox).with(:id => 'blah').and_return(driver)
     element = page.checkbox_element(:id => 'blah')

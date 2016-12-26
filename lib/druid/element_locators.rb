@@ -201,7 +201,8 @@ module Druid
     # Finds a link
     #
     # @param [Hash] identifier how we find a link. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  which will find the first link. The valid keys are:
     #   * :class
     #   * :href
     #   * :id
@@ -221,7 +222,8 @@ module Druid
     # Finds all links for the provided identifier
     #
     # @param [Hash] identifier how we find all links. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty hash
+    #   which will return all links. The valid keys are:
     #   * :class
     #   * :href
     #   * :id
@@ -233,7 +235,7 @@ module Druid
     #   * :text
     #   * :css
     #
-    def link_elements identifier
+    def link_elements(identifier={})
       links_for identifier.clone
     end
 
