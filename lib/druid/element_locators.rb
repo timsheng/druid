@@ -243,7 +243,8 @@ module Druid
     # Finds a check box
     #
     # @param [Hash] identifier how we find a check box. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  which will find the first checkbox. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -259,7 +260,8 @@ module Druid
     # Finds all checkbox elements for the provided identifier
     #
     # @param [Hash] identifier how we find a checkbox. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to empty Hash
+    #  which will return all checkboxes. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -267,7 +269,7 @@ module Druid
     #   * :xpath
     #   * :value
     #
-    def checkbox_elements identifier
+    def checkbox_elements(identifier={})
       checkboxes_for identifier.clone
     end
 

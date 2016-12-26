@@ -58,6 +58,7 @@ Feature: Multi Elements
      And the value of checkbox 1 should be "checkbox 1"
      And the value of checkbox 2 should be "checkbox 2"
      And the value of checkbox 3 should be "checkbox 3"
+     And I should be able to find 3 checkboxes using no identifier
 
    Scenario: Selecting radio buttons
      When I select the radio buttons with class "radio"
