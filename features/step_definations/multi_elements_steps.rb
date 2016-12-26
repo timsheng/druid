@@ -306,3 +306,23 @@ end
 Then(/^the text for label (\d+) should be "([^"]*)"$/) do |label_num, text|
   expect(@elements[label_num.to_i - 1].text).to eql text
 end
+
+Then(/^I should be able to find (\d+) buttons using no identifier$/) do |num_buttons|
+  expect(@page.button_elements.size).to eql num_buttons.to_i
+end
+
+Then(/^I should be able to find (\d+) text fields using no identifier$/) do |num_text_fields|
+  expect(@page.text_field_elements.size).to eql num_text_fields.to_i
+end
+
+Then(/^I should be able to find (\d+) hidden fields using no identifier$/) do |num_hidden_fields|
+  expect(@page.hidden_field_elements.size).to eql num_hidden_fields.to_i
+end
+
+Then(/^I should be able to find (\d+) text areas using no identifier$/) do |num_text_areas|
+  expect(@page.text_area_elements.size).to eql num_text_areas.to_i
+end
+
+Then(/^I should be able to find (\d+) select lists using no identifier$/) do |num_select_lists|
+  expect(@page.select_list_elements.size).to eql num_select_lists.to_i
+end
