@@ -346,3 +346,7 @@ end
 Then(/^I should be able to find (\d+) spans using no identifier$/) do |num_spans|
   expect(@page.span_elements.size).to eql num_spans.to_i
 end
+
+Then(/^I should be able to find all (\d+) tables using no identifier$/) do |num_tables|
+  expect(@page.table_elements.size).to eql num_tables.to_i
+end
