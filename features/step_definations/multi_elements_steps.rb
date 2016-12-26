@@ -307,22 +307,98 @@ Then(/^the text for label (\d+) should be "([^"]*)"$/) do |label_num, text|
   expect(@elements[label_num.to_i - 1].text).to eql text
 end
 
-Then(/^I should be able to find (\d+) buttons using no identifier$/) do |num_buttons|
-  expect(@page.button_elements.size).to eql num_buttons.to_i
+When(/^I select all buttons using no identifier$/) do
+  @elements = @page.button_elements
 end
 
-Then(/^I should be able to find (\d+) text fields using no identifier$/) do |num_text_fields|
-  expect(@page.text_field_elements.size).to eql num_text_fields.to_i
+When(/^I select all text fields using no identifier$/) do
+  @elements = @page.text_field_elements
 end
 
-Then(/^I should be able to find (\d+) hidden fields using no identifier$/) do |num_hidden_fields|
-  expect(@page.hidden_field_elements.size).to eql num_hidden_fields.to_i
+When(/^I select all hidden fields using no identifier$/) do
+  @elements = @page.hidden_field_elements
 end
 
-Then(/^I should be able to find (\d+) text areas using no identifier$/) do |num_text_areas|
-  expect(@page.text_area_elements.size).to eql num_text_areas.to_i
+When(/^I select all text areas using no identifier$/) do
+  @elements = @page.text_area_elements
 end
 
-Then(/^I should be able to find (\d+) select lists using no identifier$/) do |num_select_lists|
-  expect(@page.select_list_elements.size).to eql num_select_lists.to_i
+When(/^I select all select lists using no identifier$/) do
+  @elements = @page.select_list_elements
+end
+
+When(/^I select all links using no identifier$/) do
+  @elements = @page.link_elements
+end
+
+When(/^I select all checkboxes using no identifier$/) do
+  @elements = @page.checkboxes_elements
+end
+
+When(/^I select all radio buttons using no identifier$/) do
+  @elements = @page.radio_button_elements
+end
+
+When(/^I select all divs using no identifier$/) do
+  @elements = @page.div_elements
+end
+
+When(/^I select all spans using no identifier$/) do
+  @elements = @page.span_elements
+end
+
+When(/^I select all tables using no identifier$/) do
+  @elements = @page.table_elements
+end
+
+When(/^I select all cells using no identifier$/) do
+  @elements = @page.cell_elements
+end
+
+When(/^I select the images using no identifier$/) do
+  @elements = @page.image_elements
+end
+
+When(/^I select the forms using no identifier$/) do
+  @elements = @page.form_elements
+end
+
+When(/^I select all list items using no identifier$/) do
+  @elements = @page.list_item_elements
+end
+
+When(/^I select all unordered lists using no identifier$/) do
+  @elements = @page.unordered_list_elements
+end
+
+When(/^I select all ordered lists using no identifier$/) do
+  @elements = @page.ordered_list_elements
+end
+
+When /^I select all h(\d+)s using no identifier$/ do |num|
+  @elements = @page.send "h#{num}_elements"
+end
+
+When(/^I select all paragraphs using no identifier$/) do
+  @elements = @page.paragraph_elements
+end
+
+When(/^I select all labels using no identifier$/) do
+  @elements = @page.label_elements
+end
+
+When(/^I select the file fields with class "([^"]*)"$/) do |class_name|
+  @elements = @page.file_field_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) file fields$/) do |num_file_fields|
+  expect(@elements.size).to eql num_file_fields.to_i
+end
+
+Then(/^the title for file field (\d+) should be "([^"]*)"$/) do |file_field_num, title|
+  expect(@elements[file_field_num.to_i - 1].attribute('title')).to eql title
+end
+
+When(/^I select all file fields using no identifier$/) do
+  @elements = @page.file_field_elements
 end

@@ -4,6 +4,7 @@
   * Updated all accessor methods to take a default identifier of {:index => 0}
   * Added a page level element method to return a generic Element object
   * Updated all page level element locators to take a default identifier of {:index => 0}
+  * Added a method to retrieve all file fields on a page
 === 2016-12-23
 * Enhancement
   * Added #execute_script method to Druid

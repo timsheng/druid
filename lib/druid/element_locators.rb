@@ -201,7 +201,8 @@ module Druid
     # Finds a link
     #
     # @param [Hash] identifier how we find a link. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  which will find the first link. The valid keys are:
     #   * :class
     #   * :href
     #   * :id
@@ -221,7 +222,8 @@ module Druid
     # Finds all links for the provided identifier
     #
     # @param [Hash] identifier how we find all links. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty hash
+    #   which will return all links. The valid keys are:
     #   * :class
     #   * :href
     #   * :id
@@ -233,7 +235,7 @@ module Druid
     #   * :text
     #   * :css
     #
-    def link_elements identifier
+    def link_elements(identifier={})
       links_for identifier.clone
     end
 
@@ -241,7 +243,8 @@ module Druid
     # Finds a check box
     #
     # @param [Hash] identifier how we find a check box. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  which will find the first checkbox. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -257,7 +260,8 @@ module Druid
     # Finds all checkbox elements for the provided identifier
     #
     # @param [Hash] identifier how we find a checkbox. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to empty Hash
+    #  which will return all checkboxes. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -265,7 +269,7 @@ module Druid
     #   * :xpath
     #   * :value
     #
-    def checkbox_elements identifier
+    def checkbox_elements(identifier={})
       checkboxes_for identifier.clone
     end
 
@@ -273,7 +277,8 @@ module Druid
     # Finds a radio button
     #
     # @param [Hash] identifier how we find a radio button. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  which will find the first radio button. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -288,14 +293,15 @@ module Druid
     # Finds all radio button elements that match the provided identifier
     #
     # @param [Hash] identifier how we find a radio button. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all radio buttons. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :name
     #   * :xpath
     #
-    def radio_button_elements identifier
+    def radio_button_elements(identifier={})
       radio_buttons_for identifier.clone
     end
 
@@ -303,7 +309,8 @@ module Druid
     # Finds a div
     #
     # @param [Hash] identifier how we find a div. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  which will find the first div. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -319,7 +326,8 @@ module Druid
     # Finds all divs that match the provided identifier
     #
     # @param [Hash] identifier how we find a div. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all divs. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -327,7 +335,7 @@ module Druid
     #   * :xpath
     #   * :text
     #
-    def div_elements identifier
+    def div_elements(identifier={})
       divs_for identifier
     end
 
@@ -335,7 +343,8 @@ module Druid
     # Finds a span
     #
     # @param [Hash] identifier how we find a span. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  which will find the first span.  The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -350,14 +359,15 @@ module Druid
     # Finds all span elements that match the provided identifier
     #
     # @param [Hash] identifier how we find a span. You can use multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all spans.  The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :name
     #   * :xpath
     #
-    def span_elements identifier
+    def span_elements(identifier={})
       spans_for identifier.clone
     end
 
@@ -365,7 +375,8 @@ module Druid
     # Finds a table
     #
     # @param [Hash] identifier how we find a table. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first table. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -380,14 +391,15 @@ module Druid
     # Finds all tables with match the provided identifier
     #
     # @param [Hash] identifier how we find a table. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all tables. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :name
     #   * :xpath
     #
-    def table_elements identifier
+    def table_elements(identifier={})
       tables_for identifier.clone
     end
 
@@ -395,7 +407,8 @@ module Druid
     # Finds a table cell
     #
     # @param [Hash] identifier how we find a table cell. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first cell. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -411,7 +424,8 @@ module Druid
     # Finds all table cell elements that match the provided identifier
     #
     # @param [Hash] identifier how we find a cell. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all cells. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -419,7 +433,7 @@ module Druid
     #   * :xpath
     #   * :text
     #
-    def cell_elements identifier
+    def cell_elements(identifier={})
       cells_for identifier.clone
     end
 
@@ -427,7 +441,8 @@ module Druid
     # Finds an image
     #
     # @param [Hash] identifier how we find an image. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first image. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -444,7 +459,8 @@ module Druid
     # Finds all images that match the provided identifier
     #
     # @param [Hash] identifier how we find an image. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all images. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -453,7 +469,7 @@ module Druid
     #   * :alt
     #   * :src
     #
-    def image_elements identifier
+    def image_elements(identifier={})
       images_for identifier.clone
     end
 
@@ -461,7 +477,8 @@ module Druid
     # Finds a form
     #
     # @param [Hash] identifier how we find a form. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first form. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -476,14 +493,15 @@ module Druid
     # Finds all forms that match the provided identifier
     #
     # @param [Hash] identifier how we find a form. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all forms. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :action
     #
-    def form_elements identifier
+    def form_elements(identifier={})
       forms_for identifier.clone
     end
 
@@ -491,7 +509,8 @@ module Druid
     # Finds a list item
     #
     # @param [Hash] identifier how we find a list item. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first list item. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -506,14 +525,15 @@ module Druid
     # Finds all list items that match the identifier
     #
     # @param [Hash] identifier how we find a list item. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all list items. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def list_item_elements identifier
+    def list_item_elements(identifier={})
       list_items_for identifier.clone
     end
 
@@ -521,7 +541,8 @@ module Druid
     # Finds an ordered list
     #
     # @param [Hash] identifier how we find an ordered list. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first ordered list. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -536,14 +557,15 @@ module Druid
     # Finds all ordered lists that match the provided identifier
     #
     # @param [Hash] identifier how we find an ordered list. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all ordered lists. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def ordered_list_elements identifier
+    def ordered_list_elements(identifier={})
       ordered_lists_for identifier.clone
     end
 
@@ -551,7 +573,8 @@ module Druid
     # Finds an unordered list
     #
     # @param [Hash] identifier how we find an unordered list. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first unordered list. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -566,14 +589,15 @@ module Druid
     # Finds all unordered lists that match the provided identifier
     #
     # @param [Hash] identifier how we find an unordered list. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all unordered lists. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def unordered_list_elements identifier
+    def unordered_list_elements(identifier={})
       unordered_lists_for identifier.clone
     end
 
@@ -581,7 +605,8 @@ module Druid
     # Finds a h1
     #
     # @param [Hash] identifier how we find a h1. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first h1. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -597,14 +622,15 @@ module Druid
     #
     #
     # @param [Hash] identifier how we find a h1. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty hash
+    #   which will return all h1s. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def h1_elements identifier
+    def h1_elements(identifier={})
       h1s_for identifier.clone
     end
 
@@ -612,7 +638,8 @@ module Druid
     # Finds a h2
     #
     # @param [Hash] identifier how we find a h2. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first h2. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -628,14 +655,15 @@ module Druid
     #
     #
     # @param [Hash] identifier how we find a h2. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all h2s. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def h2_elements identifier
+    def h2_elements(identifier={})
       h2s_for identifier.clone
     end
 
@@ -643,7 +671,8 @@ module Druid
     # Finds a h3
     #
     # @param [Hash] identifier how we find a h3. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first h3. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -659,14 +688,15 @@ module Druid
     #
     #
     # @param [Hash] identifier how we find a h3. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all h3s. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def h3_elements identifier
+    def h3_elements(identifier={})
       h3s_for identifier.clone
     end
 
@@ -674,7 +704,8 @@ module Druid
     # Finds a h4
     #
     # @param [Hash] identifier how we find a h4. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first h4. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -690,14 +721,15 @@ module Druid
     #
     #
     # @param [Hash] identifier how we find a h4. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all h4s. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def h4_elements identifier
+    def h4_elements(identifier={})
       h4s_for identifier.clone
     end
 
@@ -705,7 +737,8 @@ module Druid
     # Finds a h5
     #
     # @param [Hash] identifier how we find a h5. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first h5. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -721,14 +754,15 @@ module Druid
     #
     #
     # @param [Hash] identifier how we find a h5. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all h5s.  The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def h5_elements identifier
+    def h5_elements(identifier={})
       h5s_for identifier.clone
     end
 
@@ -736,7 +770,8 @@ module Druid
     # Finds a h6
     #
     # @param [Hash] identifier how we find a h6. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first h6. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -752,14 +787,15 @@ module Druid
     #
     #
     # @param [Hash] identifier how we find a h6. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all h6s. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def h6_elements identifier
+    def h6_elements(identifier={})
       h6s_for identifier.clone
     end
 
@@ -767,7 +803,8 @@ module Druid
     # Finds a paragraph
     #
     # @param [Hash] identifier how we find a paragraph. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first paragraph. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -782,14 +819,15 @@ module Druid
     # Finds all paragraph elements that match the provided identifier
     #
     # @param [Hash] identifier how we find a paragraph. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all paragraphs. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def paragraph_elements identifier
+    def paragraph_elements(identifier={})
       paragraphs_for identifier.clone
     end
 
@@ -797,7 +835,8 @@ module Druid
     # Finds a file field
     #
     # @param [Hash] identifier how we find a file field. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first file field. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -810,10 +849,28 @@ module Druid
     end
 
     #
+    # Finds all file fields that match the provided identifier
+    #
+    # @param [Hash] identifier how we find a file field. You can use a multiple parameters
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all file fields. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #   * :title
+    #
+    def file_field_elements(identifier={})
+      file_fields_for identifier.clone
+    end
+
+    #
     # Finds a label
     #
     # @param [Hash] identifier how we find a label. You can use a multiple paramaters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first label. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -829,7 +886,8 @@ module Druid
     # Finds all labels that match the provided identifier
     #
     # @param [Hash] identifier how we find a label. You can use a multiple paramaters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all lables. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -837,7 +895,7 @@ module Druid
     #   * :text
     #   * :xpath
     #
-    def label_elements(identifier)
+    def label_elements(identifier={})
       labels_for identifier.clone
     end
 
