@@ -310,3 +310,7 @@ end
 Then(/^I should be able to find (\d+) buttons using no identifier$/) do |num_buttons|
   expect(@page.button_elements.size).to eql num_buttons.to_i
 end
+
+Then(/^I should be able to find (\d+) text fields using no identifier$/) do |num_text_fields|
+  expect(@page.text_field_elements.size).to eql num_text_fields.to_i
+end
