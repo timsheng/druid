@@ -307,46 +307,46 @@ Then(/^the text for label (\d+) should be "([^"]*)"$/) do |label_num, text|
   expect(@elements[label_num.to_i - 1].text).to eql text
 end
 
-Then(/^I should be able to find (\d+) buttons using no identifier$/) do |num_buttons|
-  expect(@page.button_elements.size).to eql num_buttons.to_i
+When(/^I select all buttons using no identifier$/) do
+  @elements = @page.button_elements
 end
 
-Then(/^I should be able to find (\d+) text fields using no identifier$/) do |num_text_fields|
-  expect(@page.text_field_elements.size).to eql num_text_fields.to_i
+When(/^I select all text fields using no identifier$/) do
+  @elements = @page.text_field_elements
 end
 
-Then(/^I should be able to find (\d+) hidden fields using no identifier$/) do |num_hidden_fields|
-  expect(@page.hidden_field_elements.size).to eql num_hidden_fields.to_i
+When(/^I select all hidden fields using no identifier$/) do
+  @elements = @page.hidden_field_elements
 end
 
-Then(/^I should be able to find (\d+) text areas using no identifier$/) do |num_text_areas|
-  expect(@page.text_area_elements.size).to eql num_text_areas.to_i
+When(/^I select all text areas using no identifier$/) do
+  @elements = @page.text_area_elements
 end
 
-Then(/^I should be able to find (\d+) select lists using no identifier$/) do |num_select_lists|
-  expect(@page.select_list_elements.size).to eql num_select_lists.to_i
+When(/^I select all select lists using no identifier$/) do
+  @elements = @page.select_list_elements
 end
 
-Then(/^I should be able to find (\d+) links using no identifier$/) do |num_links|
-  expect(@page.link_elements.size).to eql num_links.to_i
+When(/^I select all links using no identifier$/) do
+  @elements = @page.link_elements
 end
 
-Then(/^I should be able to find (\d+) checkboxes using no identifier$/) do |num_checkboxes|
-  expect(@page.checkbox_elements.size).to eql num_checkboxes.to_i
+When(/^I select all checkboxes using no identifier$/) do
+  @elements = @page.checkboxes_elements
 end
 
-Then(/^I should be able to find (\d+) radio buttons using no identifier$/) do |num_radio_buttons|
-  expect(@page.radio_button_elements.size).to eql num_radio_buttons.to_i
+When(/^I select all radio buttons using no identifier$/) do
+  @elements = @page.radio_button_elements
 end
 
-Then(/^I should be able to find (\d+) divs using no identifier$/) do |num_divs|
-  expect(@page.div_elements.size).to eql num_divs.to_i
+When(/^I select all divs using no identifier$/) do
+  @elements = @page.div_elements
 end
 
-Then(/^I should be able to find (\d+) spans using no identifier$/) do |num_spans|
-  expect(@page.span_elements.size).to eql num_spans.to_i
+When(/^I select all spans using no identifier$/) do
+  @elements = @page.span_elements
 end
 
-Then(/^I should be able to find all (\d+) tables using no identifier$/) do |num_tables|
-  expect(@page.table_elements.size).to eql num_tables.to_i
+When(/^I select all tables using no identifier$/) do
+  @elements = @page.table_elements
 end
