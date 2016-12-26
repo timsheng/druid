@@ -357,6 +357,10 @@ describe Druid::ElementLocators do
     expect(elements[0]).to be_instance_of Druid::Elements::OrderedList
   end
 
+  it "should find all ordered lists using no identifier" do
+    expect(driver).to receive(:ols).with({}).and_return([driver])
+    page.ordered_list_elements
+  end
 
   it "should find an unordered list element" do
     expect(driver).to receive(:ul).with(:id => 'blah').and_return(driver)
@@ -375,6 +379,10 @@ describe Druid::ElementLocators do
     expect(elements[0]).to be_instance_of Druid::Elements::UnOrderedList
   end
 
+  it "should find all unordered lists using no identifier" do
+    expect(driver).to receive(:uls).with({}).and_return([driver])
+    page.unordered_list_elements
+  end
 
   it "should find a h1 element" do
     expect(driver).to receive(:h1).with(:id => 'blah').and_return(driver)
