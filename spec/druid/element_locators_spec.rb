@@ -533,6 +533,11 @@ describe Druid::ElementLocators do
     page.paragraph_element
   end
 
+  it "should find all paragraphs using no identifier" do
+    expect(driver).to receive(:ps).with({}).and_return([driver])
+    page.paragraph_elements
+  end
+
   it "should find a file field element" do
     expect(driver).to receive(:file_field).with(:id => 'blah').and_return(driver)
     element = page.file_field_element(:id => 'blah')
@@ -559,6 +564,11 @@ describe Druid::ElementLocators do
     expect(driver).to receive(:labels).with(:id => 'blah').and_return([driver])
     elements = page.label_elements(:id => 'blah')
     expect(elements[0]).to be_instance_of Druid::Elements::Label
+  end
+
+  it "should find all labels using no identifier" do
+    expect(driver).to receive(:labels).with({}).and_return([driver])
+    page.label_elements
   end
 
   it "should find an element" do

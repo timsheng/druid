@@ -256,16 +256,24 @@ Feature: Multi Elements
      When I select all h6s using no identifier
      Then I should have 3 h6s
 
-   Scenario: Selecting paragraphs
+   Scenario: Selecting paragraphs using an identifier
      When I select the paragraphs with class "p"
      Then I should have 3 paragraphs
      And the text for paragraph 1 should be "Paragraph One"
      And the text for paragraph 2 should be "Paragraph Two"
      And the text for paragraph 3 should be "Paragraph Three"
 
-   Scenario: Selecting labels
+   Scenario: Selcting paragraphs using no identifier
+     When I select all paragraphs using no identifier
+     Then I should have 3 paragraphs
+
+   Scenario: Selecting labels using an identifier
      When I select the labels with class "label"
      Then I should have 3 labels
      And the text for label 1 should be "Label 1"
      And the text for label 2 should be "Label 2"
      And the text for label 3 should be "Label 3"
+
+   Scenario: Selecting lables using no identifier
+     When I select all labels using no identifier
+     Then I should have 3 labels
