@@ -225,6 +225,11 @@ describe Druid::ElementLocators do
     expect(elements[0]).to be_instance_of Druid::Elements::Span
   end
 
+  it "should find all spans using no identifier" do
+    expect(driver).to receive(:spans).with({}).and_return([driver])
+    page.span_elements
+  end
+
   it "should find a table element" do
     expect(driver).to receive(:table).with(:id => 'blah').and_return(driver)
     element = page.table_element(:id => 'blah')
