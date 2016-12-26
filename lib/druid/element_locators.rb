@@ -5,7 +5,8 @@ module Druid
     # Finds a button
     #
     # @param [Hash] identifier how we find a button.  You can use a multiple paramaters
-    #  by combining of any of the following except xpath.  The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  which will find the first button. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -25,7 +26,8 @@ module Druid
     # Finds all buttons that match the provided identifier
     #
     # @param [Hash] identifier how we find all buttons.  You can use a multiple paramaters
-    #  by combining of any of the following except xpath.  The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to an empty
+    #  hash which will find all button elements. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -45,7 +47,8 @@ module Druid
     # Finds a text field
     #
     # @param [Hash] identifier how we find a text field. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  which will find the first text field. The valid keys are:
     #   * :class
     #   * :css
     #   * :id
@@ -64,7 +67,8 @@ module Druid
     # Finds all text fields that match the provided identifier
     #
     # @param [Hash] identifier how we find all text fields. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to empty Hash
+    #  which will find all text field elements. The valid keys are:
     #
     #   * :class
     #   * :css
@@ -76,7 +80,7 @@ module Druid
     #   * :xpath
     #   * :title
     #
-    def text_field_elements(identifier)
+    def text_field_elements(identifier={})
       text_fields_for identifier.clone
     end
 
