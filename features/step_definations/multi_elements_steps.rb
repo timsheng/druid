@@ -342,3 +342,7 @@ end
 Then(/^I should be able to find (\d+) divs using no identifier$/) do |num_divs|
   expect(@page.div_elements.size).to eql num_divs.to_i
 end
+
+Then(/^I should be able to find (\d+) spans using no identifier$/) do |num_spans|
+  expect(@page.span_elements.size).to eql num_spans.to_i
+end
