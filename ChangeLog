@@ -2,6 +2,8 @@
 * Enhancement
   * Changed page_url to accept a symbol that will cause it to call a corresponding method
   * Updated all accessor methods to take a default identifier of {:index => 0}
+  * Added a page level element method to return a generic Element object
+  * Updated all page level element locators to take a default identifier of {:index => 0}
 === 2016-12-23
 * Enhancement
   * Added #execute_script method to Druid
