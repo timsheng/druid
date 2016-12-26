@@ -99,3 +99,7 @@ Then(/^I should know that the text_field has the focus$/) do
   expect(element).not_to be nil
   expect(element.class).to be Druid::Elements::TextField
 end
+
+When(/^I retrieve the label element$/) do
+  @element = @page.label_id_element
+end

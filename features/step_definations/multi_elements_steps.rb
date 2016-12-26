@@ -294,3 +294,15 @@ end
 Then(/^the text for paragraph (\d+) should be "([^"]*)"$/) do |paragraph_num, text|
   expect(@elements[paragraph_num.to_i - 1].text).to eql text
 end
+
+When(/^I select the labels with class "([^"]*)"$/) do |class_name|
+  @elements = @page.label_elements(:class => class_name)
+end
+
+Then(/^I should have (\d+) labels$/) do |num_labels|
+  expect(@elements.size).to eql num_labels.to_i
+end
+
+Then(/^the text for label (\d+) should be "([^"]*)"$/) do |label_num, text|
+  expect(@elements[label_num.to_i - 1].text).to eql text
+end

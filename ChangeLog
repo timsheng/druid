@@ -8,6 +8,7 @@
   * Support alias method 'on' for 'on_page', 'visit' for 'visit_page' on PageFactory
   * Changed Elements.element_class_for so parameters can be strings or symbols
   * Added element_with_focus method to return the element that has focus
+  * Added support for the label element
 === 2016-12-20
 * Fixes
   WARNING: This change breaks existing code

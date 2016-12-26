@@ -373,6 +373,27 @@ module Druid
       find_element("file_field(identifier)", Elements::FileField, identifier)
     end
 
+    #
+    # method to return the text for a label
+    #
+    def label_text_for(identifier)
+      process_call("label(identifier).text", Elements::Label, identifier, nil, 'label')
+    end
+
+    #
+    # method to return a Druid::Elements::Label element
+    #
+    def label_for(identifier)
+      find_element("label(identifier)", Elements::Label, identifier, 'label')
+    end
+
+    #
+    # method to retrieve an array of label elements
+    #
+    def labels_for(identifier)
+      find_elements("labels(identifier)", Elements::Label, identifier, 'p')
+    end
+
     def element_for(tag, identifier)
       find_element("#{tag.to_s}(identifier)", Elements::Element, identifier, tag.to_s)
     end
