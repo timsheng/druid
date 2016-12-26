@@ -17,7 +17,7 @@ module Druid
     #   * :alt
     #   * :css
     #
-    def button_element identifier
+    def button_element(identifier={:index => 0})
       button_for identifier.clone
     end
 
@@ -56,7 +56,7 @@ module Druid
     #   * :xpath
     #   * :title
     #
-    def text_field_element identifier
+    def text_field_element(identifier={:index => 0})
       text_field_for identifier.clone
     end
 
@@ -95,7 +95,7 @@ module Druid
     #   * :xpath
     #   * :value
     #
-    def hidden_field_element identifier
+    def hidden_field_element(identifier={:index => 0})
       hidden_field_for identifier.clone
     end
 
@@ -132,7 +132,7 @@ module Druid
     #   * :tag_name
     #   * :xpath
     #
-    def text_area_element identifier
+    def text_area_element(identifier={:index => 0})
       text_area_for identifier.clone
     end
 
@@ -166,7 +166,7 @@ module Druid
     #   * :value
     #   * :text
     #
-    def select_list_element identifier
+    def select_list_element(identifier={:index => 0})
       select_list_for identifier.clone
     end
 
@@ -203,7 +203,7 @@ module Druid
     #   * :text
     #   * :css
     #
-    def link_element identifier
+    def link_element(identifier={:index => 0})
       link_for identifier.clone
     end
 
@@ -239,7 +239,7 @@ module Druid
     #   * :xpath
     #   * :value
     #
-    def checkbox_element identifier
+    def checkbox_element(identifier={:index => 0})
       checkbox_for identifier.clone
     end
 
@@ -270,7 +270,7 @@ module Druid
     #   * :name
     #   * :xpath
     #
-    def radio_button_element identifier
+    def radio_button_element(identifier={:index => 0})
       radio_button_for identifier.clone
     end
 
@@ -301,7 +301,7 @@ module Druid
     #   * :xpath
     #   * :text
     #
-    def div_element identifier
+    def div_element(identifier={:index => 0})
       div_for identifier.clone
     end
 
@@ -332,7 +332,7 @@ module Druid
     #   * :name
     #   * :xpath
     #
-    def span_element identifier
+    def span_element(identifier={:index => 0})
       span_for identifier.clone
     end
 
@@ -362,7 +362,7 @@ module Druid
     #   * :name
     #   * :xpath
     #
-    def table_element identifier
+    def table_element(identifier={:index => 0})
       table_for identifier.clone
     end
 
@@ -393,7 +393,7 @@ module Druid
     #   * :xpath
     #   * :text
     #
-    def cell_element identifier
+    def cell_element(identifier={:index => 0})
       cell_for identifier.clone
     end
 
@@ -426,7 +426,7 @@ module Druid
     #   * :alt
     #   * :src
     #
-    def image_element identifier
+    def image_element(identifier={:index => 0})
       image_for identifier.clone
     end
 
@@ -458,7 +458,7 @@ module Druid
     #   * :xpath
     #   * :action
     #
-    def form_element identifier
+    def form_element(identifier={:index => 0})
       form_for identifier.clone
     end
 
@@ -488,7 +488,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def list_item_element identifier
+    def list_item_element(identifier={:index => 0})
       list_item_for identifier.clone
     end
 
@@ -518,7 +518,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def ordered_list_element identifier
+    def ordered_list_element(identifier={:index => 0})
       ordered_list_for identifier.clone
     end
 
@@ -548,7 +548,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def unordered_list_element identifier
+    def unordered_list_element(identifier={:index => 0})
       unordered_list_for identifier.clone
     end
 
@@ -578,7 +578,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def h1_element identifier
+    def h1_element(identifier={:index => 0})
       h1_for identifier.clone
     end
 
@@ -609,7 +609,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def h2_element identifier
+    def h2_element(identifier={:index => 0})
       h2_for identifier.clone
     end
 
@@ -640,7 +640,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def h3_element identifier
+    def h3_element(identifier={:index => 0})
       h3_for identifier.clone
     end
 
@@ -671,7 +671,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def h4_element identifier
+    def h4_element(identifier={:index => 0})
       h4_for identifier.clone
     end
 
@@ -702,7 +702,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def h5_element identifier
+    def h5_element(identifier={:index => 0})
       h5_for identifier.clone
     end
 
@@ -733,7 +733,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def h6_element identifier
+    def h6_element(identifier={:index => 0})
       h6_for identifier.clone
     end
 
@@ -764,7 +764,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def paragraph_element identifier
+    def paragraph_element(identifier={:index => 0})
       paragraph_for identifier.clone
     end
 
@@ -795,7 +795,7 @@ module Druid
     #   * :name
     #   * :title
     #
-    def file_field_element identifier
+    def file_field_element(identifier={:index => 0})
       file_field_for identifier.clone
     end
 
@@ -811,7 +811,7 @@ module Druid
     #   * :text
     #   * :xpath
     #
-    def label_element(identifier)
+    def label_element(identifier={:index => 0})
       label_for identifier.clone
     end
 
@@ -829,6 +829,22 @@ module Druid
     #
     def label_elements(identifier)
       labels_for identifier.clone
+    end
+
+    #
+    # Finds an element
+    #
+    # @param [Symbol] the name of the tag for the element
+    # @param [Hash] identifier how we find an element. You can use a multiple parameters
+    #   by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def element(tag, identifier={:index => 0})
+      element_for(tag, identifier.clone)
     end
   end
 end
