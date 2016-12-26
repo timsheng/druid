@@ -5,7 +5,8 @@ module Druid
     # Finds a button
     #
     # @param [Hash] identifier how we find a button.  You can use a multiple paramaters
-    #  by combining of any of the following except xpath.  The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  which will find the first button. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -17,7 +18,7 @@ module Druid
     #   * :alt
     #   * :css
     #
-    def button_element identifier
+    def button_element(identifier={:index => 0})
       button_for identifier.clone
     end
 
@@ -25,7 +26,8 @@ module Druid
     # Finds all buttons that match the provided identifier
     #
     # @param [Hash] identifier how we find all buttons.  You can use a multiple paramaters
-    #  by combining of any of the following except xpath.  The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to an empty
+    #  hash which will find all button elements. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -37,7 +39,7 @@ module Druid
     #   * :alt
     #   * :css
     #
-    def button_elements identifier
+    def button_elements(identifier={})
       buttons_for identifier.clone
     end
 
@@ -45,7 +47,8 @@ module Druid
     # Finds a text field
     #
     # @param [Hash] identifier how we find a text field. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  which will find the first text field. The valid keys are:
     #   * :class
     #   * :css
     #   * :id
@@ -56,7 +59,7 @@ module Druid
     #   * :xpath
     #   * :title
     #
-    def text_field_element identifier
+    def text_field_element(identifier={:index => 0})
       text_field_for identifier.clone
     end
 
@@ -64,7 +67,8 @@ module Druid
     # Finds all text fields that match the provided identifier
     #
     # @param [Hash] identifier how we find all text fields. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to empty Hash
+    #  which will find all text field elements. The valid keys are:
     #
     #   * :class
     #   * :css
@@ -76,7 +80,7 @@ module Druid
     #   * :xpath
     #   * :title
     #
-    def text_field_elements(identifier)
+    def text_field_elements(identifier={})
       text_fields_for identifier.clone
     end
 
@@ -84,7 +88,8 @@ module Druid
     # Finds a hidden field
     #
     # @param [Hash] identifier how we find a hidden field. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  which will find the first hidden field. The valid keys are:
     #   * :class
     #   * :css
     #   * :id
@@ -95,7 +100,7 @@ module Druid
     #   * :xpath
     #   * :value
     #
-    def hidden_field_element identifier
+    def hidden_field_element(identifier={:index => 0})
       hidden_field_for identifier.clone
     end
 
@@ -103,7 +108,8 @@ module Druid
     # Finds all hidden fields that match the identifier
     #
     # @param [Hash] identifier how we find all hidden fields. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to an empty Hash
+    #  which will return all hidden fields. The valid keys are:
     #
     #   * :class
     #   * :css
@@ -115,7 +121,7 @@ module Druid
     #   * :xpath
     #   * :value
     #
-    def hidden_field_elements identifier
+    def hidden_field_elements(identifier={})
       hidden_fields_for identifier.clone
     end
 
@@ -123,7 +129,8 @@ module Druid
     # Finds a text area
     #
     # @param [Hash] identifier how we find a text area. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  which will find the first text area. The valid keys are:
     #   * :class
     #   * :css
     #   * :id
@@ -132,7 +139,7 @@ module Druid
     #   * :tag_name
     #   * :xpath
     #
-    def text_area_element identifier
+    def text_area_element(identifier={:index => 0})
       text_area_for identifier.clone
     end
 
@@ -140,7 +147,8 @@ module Druid
     # Finds all text areas for the provided identifier
     #
     # @param [Hash] identifier how we find all text areas. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all text areas. The valid keys are:
     #   * :class
     #   * :css
     #   * :id
@@ -149,7 +157,7 @@ module Druid
     #   * :tag_name
     #   * :xpath
     #
-    def text_area_elements identifier
+    def text_area_elements(identifier={})
       text_areas_for identifier.clone
     end
 
@@ -157,7 +165,8 @@ module Druid
     # Finds a select list
     #
     # @param [Hash] identifier how we find a select list. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #  by combining of any of the following except xpath. It defaults to {:index => 0}
+    #  Which will find the first select list The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -166,7 +175,7 @@ module Druid
     #   * :value
     #   * :text
     #
-    def select_list_element identifier
+    def select_list_element(identifier={:index => 0})
       select_list_for identifier.clone
     end
 
@@ -174,7 +183,8 @@ module Druid
     # Finds all select lists for the provided identifier
     #
     # @param [Hash] identifier how we find all select lists. You can use a multiple paramaters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all select lists. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -183,7 +193,7 @@ module Druid
     #   * :value
     #   * :text
     #
-    def select_list_elements identifier
+    def select_list_elements(identifier={})
       select_lists_for identifier.clone
     end
 
@@ -203,7 +213,7 @@ module Druid
     #   * :text
     #   * :css
     #
-    def link_element identifier
+    def link_element(identifier={:index => 0})
       link_for identifier.clone
     end
 
@@ -239,7 +249,7 @@ module Druid
     #   * :xpath
     #   * :value
     #
-    def checkbox_element identifier
+    def checkbox_element(identifier={:index => 0})
       checkbox_for identifier.clone
     end
 
@@ -270,7 +280,7 @@ module Druid
     #   * :name
     #   * :xpath
     #
-    def radio_button_element identifier
+    def radio_button_element(identifier={:index => 0})
       radio_button_for identifier.clone
     end
 
@@ -301,7 +311,7 @@ module Druid
     #   * :xpath
     #   * :text
     #
-    def div_element identifier
+    def div_element(identifier={:index => 0})
       div_for identifier.clone
     end
 
@@ -332,7 +342,7 @@ module Druid
     #   * :name
     #   * :xpath
     #
-    def span_element identifier
+    def span_element(identifier={:index => 0})
       span_for identifier.clone
     end
 
@@ -362,7 +372,7 @@ module Druid
     #   * :name
     #   * :xpath
     #
-    def table_element identifier
+    def table_element(identifier={:index => 0})
       table_for identifier.clone
     end
 
@@ -393,7 +403,7 @@ module Druid
     #   * :xpath
     #   * :text
     #
-    def cell_element identifier
+    def cell_element(identifier={:index => 0})
       cell_for identifier.clone
     end
 
@@ -426,7 +436,7 @@ module Druid
     #   * :alt
     #   * :src
     #
-    def image_element identifier
+    def image_element(identifier={:index => 0})
       image_for identifier.clone
     end
 
@@ -458,7 +468,7 @@ module Druid
     #   * :xpath
     #   * :action
     #
-    def form_element identifier
+    def form_element(identifier={:index => 0})
       form_for identifier.clone
     end
 
@@ -488,7 +498,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def list_item_element identifier
+    def list_item_element(identifier={:index => 0})
       list_item_for identifier.clone
     end
 
@@ -518,7 +528,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def ordered_list_element identifier
+    def ordered_list_element(identifier={:index => 0})
       ordered_list_for identifier.clone
     end
 
@@ -548,7 +558,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def unordered_list_element identifier
+    def unordered_list_element(identifier={:index => 0})
       unordered_list_for identifier.clone
     end
 
@@ -578,7 +588,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def h1_element identifier
+    def h1_element(identifier={:index => 0})
       h1_for identifier.clone
     end
 
@@ -609,7 +619,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def h2_element identifier
+    def h2_element(identifier={:index => 0})
       h2_for identifier.clone
     end
 
@@ -640,7 +650,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def h3_element identifier
+    def h3_element(identifier={:index => 0})
       h3_for identifier.clone
     end
 
@@ -671,7 +681,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def h4_element identifier
+    def h4_element(identifier={:index => 0})
       h4_for identifier.clone
     end
 
@@ -702,7 +712,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def h5_element identifier
+    def h5_element(identifier={:index => 0})
       h5_for identifier.clone
     end
 
@@ -733,7 +743,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def h6_element identifier
+    def h6_element(identifier={:index => 0})
       h6_for identifier.clone
     end
 
@@ -764,7 +774,7 @@ module Druid
     #   * :xpath
     #   * :name
     #
-    def paragraph_element identifier
+    def paragraph_element(identifier={:index => 0})
       paragraph_for identifier.clone
     end
 
@@ -795,7 +805,7 @@ module Druid
     #   * :name
     #   * :title
     #
-    def file_field_element identifier
+    def file_field_element(identifier={:index => 0})
       file_field_for identifier.clone
     end
 
@@ -811,7 +821,7 @@ module Druid
     #   * :text
     #   * :xpath
     #
-    def label_element(identifier)
+    def label_element(identifier={:index => 0})
       label_for identifier.clone
     end
 
@@ -829,6 +839,22 @@ module Druid
     #
     def label_elements(identifier)
       labels_for identifier.clone
+    end
+
+    #
+    # Finds an element
+    #
+    # @param [Symbol] the name of the tag for the element
+    # @param [Hash] identifier how we find an element. You can use a multiple parameters
+    #   by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def element(tag, identifier={:index => 0})
+      element_for(tag, identifier.clone)
     end
   end
 end

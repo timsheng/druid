@@ -7,11 +7,7 @@ module Druid
       end
 
       def self.finders
-        super + [:tag_name, :text, :value]
-      end
-
-      def self.mapping
-        super.merge({:css => :tag_name})
+        super + [:text, :value]
       end
 
     end

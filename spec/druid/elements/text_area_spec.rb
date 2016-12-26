@@ -9,11 +9,6 @@ describe Druid::Elements::TextArea do
         expect(identifier.keys.first).to eql t
       end
     end
-
-    it "should map selenium types to watir" do
-      identifier = Druid::Elements::TextArea.identifier_for :css => 'value'
-      expect(identifier.keys.first).to eql :tag_name
-    end
   end
 
   describe "interface" do

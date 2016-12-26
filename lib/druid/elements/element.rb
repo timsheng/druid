@@ -17,91 +17,6 @@ module Druid
         @driver = @element
       end
 
-      # @private
-      def self.identifier_for identifier
-        if have_to_build_xpath(identifier)
-          how = :xpath
-          what = build_xpath_for(identifier)
-          return how => what
-        else
-          all_identities = {}
-          identifier.each do |key, value|
-            each = {key => value}
-            ident = identifier_for_element each, finders, mapping
-            all_identities[ident.keys.first] = ident.values.first
-          end
-          all_identities
-        end
-      end
-
-      def self.have_to_build_xpath(identifier)
-        ['table', 'span', 'div', 'td', 'li', 'ol', 'ul', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'label'].include? identifier[:tag_name] and identifier[:name]
-      end
-
-      def self.build_xpath_for identifier
-        tag_locator = identifier.delete(:tag_name)
-        idx = identifier.delete(:index)
-        identifier.delete(:tag_name)
-        xpath = ".//#{tag_locator}"
-        xpath << "[#{attribute_expression(identifier)}]" unless identifier.empty?
-        xpath << "[#{idx+1}]" if idx
-        xpath
-      end
-
-      def self.attribute_expression(identifier)
-        identifier.map do |key, value|
-          if value.kind_of?(Array)
-            "(" + value.map { |v| equal_pair(key, v) }.join(" or ") + ")"
-          else
-            equal_pair(key, value)
-          end
-        end.join(" and ")
-      end
-
-      def self.equal_pair(key, value)
-        if key == :label
-          "@id=//label[normalize-space()=#{xpath_string(value)}]/@for"
-        else
-          "#{lhs_for(key)}=#{xpath_string(value)}"
-        end
-      end
-
-      def self.lhs_for(key)
-        case key
-        when :text, 'text'
-          'normalize-space()'
-        when :href
-          'normalize-space(@href)'
-        else
-          "@#{key.to_s.gsub("_", "-")}"
-        end
-      end
-
-      def self.xpath_string(value)
-        if value.include? "'"
-          parts = value.split("'", -1).map { |part| "'#{part}'" }
-          string = parts.join(%{,"'",})
-          "concat(#{string})"
-        else
-          "'#{value}'"
-        end
-      end
-
-      def self.identifier_for_element identifier, find_by, find_by_mapping
-        how, what = identifier.keys.first, identifier.values.first
-        return how => what if find_by.include? how
-        return find_by_mapping[how] => what if find_by_mapping[how]
-        return nil => what
-      end
-
-      def self.finders
-        [:class, :id, :index, :name, :xpath]
-      end
-
-      def self.mapping
-        {}
-      end
-
       #
       # Get the text for the element
       #
@@ -281,6 +196,24 @@ module Druid
         Watir::Wait.until(timeout, message, &block)
       end
 
+
+      # @private
+      def self.identifier_for identifier
+        if have_to_build_xpath(identifier)
+          how = :xpath
+          what = build_xpath_for(identifier)
+          return how => what
+        end
+        all_identities = {}
+        identifier.each do |key, value|
+          each = {key => value}
+          ident = identifier_for_element each, finders, mapping
+          all_identities[ident.keys.first] = ident.values.first
+        end
+        all_identities
+        # end
+      end
+
       # @private
       # delegate calls to driver element
       def method_missing(m, *args, &block)
@@ -295,6 +228,90 @@ module Druid
         end
         element.__send__(m, *args, &block)
       end
+
+      protected
+
+      def self.have_to_build_xpath(identifier)
+        ['table', 'span', 'div', 'td', 'li', 'ol', 'ul', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'label'].include? identifier[:tag_name] and identifier[:name]
+      end
+
+      def self.build_xpath_for identifier
+        tag_locator = identifier.delete(:tag_name)
+        idx = identifier.delete(:index)
+        if tag_locator == 'input' and identifier[:type] == 'submit'
+          identifier.delete(:type)
+          btn_ident = identifier.clone
+          if btn_ident[:value]
+            btn_ident[:text] = btn_ident[:value]
+            btn_ident.delete(:value)
+          end
+          xpath = ".//button"
+          xpath << "[#{attribute_expression(btn_ident)}]" unless btn_ident.empty?
+          xpath << "[#{idx+1}]" if idx
+          identifier[:type] = %w[button reset submit image]
+          xpath << " | .//input"
+        else
+          xpath = ".//#{tag_locator}"
+        end
+        xpath << "[#{attribute_expression(identifier)}]" unless identifier.empty?
+        xpath << "[#{idx+1}]" if idx
+        xpath
+      end
+
+      def self.attribute_expression(identifier)
+        identifier.map do |key, value|
+          if value.kind_of?(Array)
+            "(" + value.map { |v| equal_pair(key, v) }.join(" or ") + ")"
+          else
+            equal_pair(key, value)
+          end
+        end.join(" and ")
+      end
+
+      def self.equal_pair(key, value)
+        if key == :label
+          "@id=//label[normalize-space()=#{xpath_string(value)}]/@for"
+        else
+          "#{lhs_for(key)}=#{xpath_string(value)}"
+        end
+      end
+
+      def self.lhs_for(key)
+        case key
+        when :text, 'text'
+          'normalize-space()'
+        when :href
+          'normalize-space(@href)'
+        else
+          "@#{key.to_s.gsub("_", "-")}"
+        end
+      end
+
+      def self.xpath_string(value)
+        if value.include? "'"
+          parts = value.split("'", -1).map { |part| "'#{part}'" }
+          string = parts.join(%{,"'",})
+          "concat(#{string})"
+        else
+          "'#{value}'"
+        end
+      end
+
+      def self.identifier_for_element identifier, find_by, find_by_mapping
+        how, what = identifier.keys.first, identifier.values.first
+        return how => what if find_by.include? how 
+        return find_by_mapping[how] => what if find_by_mapping[how]
+        return nil => what
+      end
+
+      def self.finders
+        [:class, :id, :index, :name, :xpath]
+      end
+
+      def self.mapping
+        {}
+      end
+
     end
   end
 end
