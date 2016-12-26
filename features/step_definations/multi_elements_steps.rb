@@ -358,3 +358,11 @@ end
 When(/^I select the images using no identifier$/) do
   @elements = @page.image_elements
 end
+
+When(/^I select the forms using no identifier$/) do
+  @elements = @page.form_elements
+end
+
+When(/^I select all list items using no identifier$/) do
+  @elements = @page.list_item_elements
+end

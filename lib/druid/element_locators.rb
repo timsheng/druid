@@ -477,7 +477,8 @@ module Druid
     # Finds a form
     #
     # @param [Hash] identifier how we find a form. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first form. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -492,14 +493,15 @@ module Druid
     # Finds all forms that match the provided identifier
     #
     # @param [Hash] identifier how we find a form. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all forms. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :action
     #
-    def form_elements identifier
+    def form_elements(identifier={})
       forms_for identifier.clone
     end
 
@@ -507,7 +509,8 @@ module Druid
     # Finds a list item
     #
     # @param [Hash] identifier how we find a list item. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first list item. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -522,14 +525,15 @@ module Druid
     # Finds all list items that match the identifier
     #
     # @param [Hash] identifier how we find a list item. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all list items. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def list_item_elements identifier
+    def list_item_elements(identifier={})
       list_items_for identifier.clone
     end
 
