@@ -441,7 +441,8 @@ module Druid
     # Finds an image
     #
     # @param [Hash] identifier how we find an image. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first image. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -458,7 +459,8 @@ module Druid
     # Finds all images that match the provided identifier
     #
     # @param [Hash] identifier how we find an image. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all images. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -467,7 +469,7 @@ module Druid
     #   * :alt
     #   * :src
     #
-    def image_elements identifier
+    def image_elements(identifier={})
       images_for identifier.clone
     end
 

@@ -291,6 +291,11 @@ describe Druid::ElementLocators do
     expect(elements[0]).to be_instance_of Druid::Elements::Image
   end
 
+  it "should find all images using no identifier" do
+    expect(driver).to receive(:images).with({}).and_return([driver])
+    page.image_elements
+  end
+
   it "should find a form element" do
     expect(driver).to receive(:form).with(:id => 'blah').and_return(driver)
     element = page.form_element(:id => 'blah')

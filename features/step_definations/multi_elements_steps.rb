@@ -354,3 +354,7 @@ end
 When(/^I select all cells using no identifier$/) do
   @elements = @page.cell_elements
 end
+
+When(/^I select the images using no identifier$/) do
+  @elements = @page.image_elements
+end
