@@ -192,8 +192,16 @@ module Druid
       paragraphs_for(identifier)
     end
 
-    def file_field_element(identifier={:index =>0})
+    def file_field_element(identifier={:index => 0})
       file_field_for(identifier)
+    end
+
+    def label_element(identifier={:index => 0})
+      label_for(identifier)
+    end
+
+    def label_elements(identifier={:index => 0})
+      labels_for(identifier)
     end
   end
 end

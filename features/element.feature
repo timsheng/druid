@@ -11,6 +11,10 @@ Feature: Elements
     Then it should know it is not enabled
     And it should know that it is disabled
 
+  Scenario: Setting focus and finding the element with focus
+    When I set the focus to the test text_field
+    Then I should know that the text_field has the focus
+
   Scenario: Link element methods
     When I retrieve a link element
     Then I should know it exists

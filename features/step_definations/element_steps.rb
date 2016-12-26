@@ -89,3 +89,17 @@ end
 Then(/^it should know that it is disabled$/) do
   expect(@element).to be_disabled
 end
+
+When(/^I set the focus to the test text_field$/) do
+  @page.text_field_element(:id => 'onfocus_text_field').focus
+end
+
+Then(/^I should know that the text_field has the focus$/) do
+  element = @page.element_with_focus
+  expect(element).not_to be nil
+  expect(element.class).to be Druid::Elements::TextField
+end
+
+When(/^I retrieve the label element$/) do
+  @element = @page.label_id_element
+end
