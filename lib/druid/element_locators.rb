@@ -803,7 +803,8 @@ module Druid
     # Finds a paragraph
     #
     # @param [Hash] identifier how we find a paragraph. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first paragraph. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -818,14 +819,15 @@ module Druid
     # Finds all paragraph elements that match the provided identifier
     #
     # @param [Hash] identifier how we find a paragraph. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all paragraphs. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def paragraph_elements identifier
+    def paragraph_elements(identifier={})
       paragraphs_for identifier.clone
     end
 
@@ -849,7 +851,8 @@ module Druid
     # Finds a label
     #
     # @param [Hash] identifier how we find a label. You can use a multiple paramaters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first label. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -865,7 +868,8 @@ module Druid
     # Finds all labels that match the provided identifier
     #
     # @param [Hash] identifier how we find a label. You can use a multiple paramaters
-    # by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all lables. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -873,7 +877,7 @@ module Druid
     #   * :text
     #   * :xpath
     #
-    def label_elements(identifier)
+    def label_elements(identifier={})
       labels_for identifier.clone
     end
 
