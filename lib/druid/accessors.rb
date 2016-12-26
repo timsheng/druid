@@ -158,11 +158,9 @@ module Druid
     # @param [Hash] identifier how we find a text_field. You can use a multiple parameters
     #   by combining of any of the following except xpath. The valid values are:
     #   * :class
-    #   * :css
     #   * :id
     #   * :index
     #   * :name
-    #   * :tag_name
     #   * :xpath
     #   * :text
     #   * :title
@@ -583,11 +581,9 @@ module Druid
     # @param [Hash] identifier how we find a hidden field. You can use a multiple parameters
     #   by combining of any of the following except xpath.  The valid keys are:
     #   * :class
-    #   * :css
     #   * :id
     #   * :index
     #   * :name
-    #   * :tag_name
     #   * :text
     #   * :xpath
     #   * :value
@@ -691,11 +687,9 @@ module Druid
     # @param [Hash] identifier how we find a text area. You can use a multiple parameters
     #   by combining of any of the following except xpath.  The valid keys are:
     #   * :class
-    #   * :css
     #   * :id
     #   * :index
     #   * :name
-    #   * :tag_name
     #   * :xpath
     # @param optional block to be invoked when element method is called
     #

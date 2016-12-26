@@ -23,7 +23,8 @@ module Druid
     # retrieve an array of hidden field elements
     #
     def text_fields_for(identifier)
-      find_elements("text_fields(identifier)", Elements::TextField, identifier)
+      elements = find_elements("text_fields(identifier)", Elements::TextField, identifier)
+      elements.select {|e| e.element.tag_name == "input"}
     end
 
     def text_field_value_for identifier
