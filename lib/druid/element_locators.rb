@@ -605,7 +605,8 @@ module Druid
     # Finds a h1
     #
     # @param [Hash] identifier how we find a h1. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first h1. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -621,14 +622,15 @@ module Druid
     #
     #
     # @param [Hash] identifier how we find a h1. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty hash
+    #   which will return all h1s. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def h1_elements identifier
+    def h1_elements(identifier={})
       h1s_for identifier.clone
     end
 
@@ -636,7 +638,8 @@ module Druid
     # Finds a h2
     #
     # @param [Hash] identifier how we find a h2. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first h2. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -652,14 +655,15 @@ module Druid
     #
     #
     # @param [Hash] identifier how we find a h2. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all h2s. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def h2_elements identifier
+    def h2_elements(identifier={})
       h2s_for identifier.clone
     end
 
@@ -667,7 +671,8 @@ module Druid
     # Finds a h3
     #
     # @param [Hash] identifier how we find a h3. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first h3. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -683,14 +688,15 @@ module Druid
     #
     #
     # @param [Hash] identifier how we find a h3. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all h3s. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def h3_elements identifier
+    def h3_elements(identifier={})
       h3s_for identifier.clone
     end
 
@@ -698,7 +704,8 @@ module Druid
     # Finds a h4
     #
     # @param [Hash] identifier how we find a h4. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first h4. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -714,14 +721,15 @@ module Druid
     #
     #
     # @param [Hash] identifier how we find a h4. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all h4s. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def h4_elements identifier
+    def h4_elements(identifier={})
       h4s_for identifier.clone
     end
 
@@ -729,7 +737,8 @@ module Druid
     # Finds a h5
     #
     # @param [Hash] identifier how we find a h5. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first h5. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -745,14 +754,15 @@ module Druid
     #
     #
     # @param [Hash] identifier how we find a h5. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all h5s.  The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def h5_elements identifier
+    def h5_elements(identifier={})
       h5s_for identifier.clone
     end
 
@@ -760,7 +770,8 @@ module Druid
     # Finds a h6
     #
     # @param [Hash] identifier how we find a h6. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first h6. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -776,14 +787,15 @@ module Druid
     #
     #
     # @param [Hash] identifier how we find a h6. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all h6s. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def h6_elements identifier
+    def h6_elements(identifier={})
       h6s_for identifier.clone
     end
 

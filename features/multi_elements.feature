@@ -190,47 +190,71 @@ Feature: Multi Elements
      When I select all ordered lists using no identifier
      Then I should have 3 ordered lists
 
-   Scenario: Selecting h1s
+   Scenario: Selecting h1s using an identifier
      When I select the h1s with class "h1"
      Then I should have 3 h1s
      And the text for h1 1 should be "H1 One"
      And the text for h1 2 should be "H1 Two"
      And the text for h1 3 should be "H1 Three"
 
-   Scenario: Selecting h2s
+   Scenario: Selecting h1s using no identifier
+     When I select all h1s using no identifier
+     Then I should have 3 h1s
+
+   Scenario: Selecting h2s using an identifier
      When I select the h2s with class "h2"
      Then I should have 3 h2s
      And the text for h2 1 should be "H2 One"
      And the text for h2 2 should be "H2 Two"
      And the text for h2 3 should be "H2 Three"
 
-   Scenario: Selecting h3s
+   Scenario: Selecting h2s using no identifier
+     When I select all h2s using no identifier
+     Then I should have 3 h2s
+
+   Scenario: Selecting h3s using an identifier
      When I select the h3s with class "h3"
      Then I should have 3 h3s
      And the text for h3 1 should be "H3 One"
      And the text for h3 2 should be "H3 Two"
      And the text for h3 3 should be "H3 Three"
 
-   Scenario: Selecting h4s
+   Scenario: Selecting h3s using no identifier
+     When I select all h3s using no identifier
+     Then I should have 3 h3s
+
+   Scenario: Selecting h4s using an identifier
      When I select the h4s with class "h4"
      Then I should have 3 h4s
      And the text for h4 1 should be "H4 One"
      And the text for h4 2 should be "H4 Two"
      And the text for h4 3 should be "H4 Three"
 
-   Scenario: Selecting h5s
+   Scenario: Selecting h4s using no identifier
+     When I select all h4s using no identifier
+     Then I should have 3 h4s
+
+   Scenario: Selecting h5s using an identifier
      When I select the h5s with class "h5"
      Then I should have 3 h5s
      And the text for h5 1 should be "H5 One"
      And the text for h5 2 should be "H5 Two"
      And the text for h5 3 should be "H5 Three"
 
-   Scenario: Selecting h6s
+   Scenario: Selecting h5s using no identifier
+     When I select all h5s using no identifier
+     Then I should have 3 h5s
+
+   Scenario: Selecting h6s using an identifier
      When I select the h6s with class "h6"
      Then I should have 3 h6s
      And the text for h6 1 should be "H6 One"
      And the text for h6 2 should be "H6 Two"
      And the text for h6 3 should be "H6 Three"
+
+   Scenario: Selecting h6s using no identifier
+     When I select all h6s using no identifier
+     Then I should have 3 h6s
 
    Scenario: Selecting paragraphs
      When I select the paragraphs with class "p"

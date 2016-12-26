@@ -401,6 +401,11 @@ describe Druid::ElementLocators do
     expect(elements[0]).to be_instance_of Druid::Elements::Heading
   end
 
+  it "should find all h1s using no identifier" do
+    expect(driver).to receive(:h1s).with({}).and_return([driver])
+    page.h1_elements
+  end
+
   it "should find a h2 element" do
     expect(driver).to receive(:h2).with(:id => 'blah').and_return(driver)
     element = page.h2_element(:id => 'blah')
@@ -416,6 +421,11 @@ describe Druid::ElementLocators do
     expect(driver).to receive(:h2s).with(:id => 'blah').and_return([driver])
     elements = page.h2_elements(:id => 'blah')
     expect(elements[0]).to be_instance_of Druid::Elements::Heading
+  end
+
+  it "should find all h2s using no identifier" do
+    expect(driver).to receive(:h2s).with({}).and_return([driver])
+    page.h2_elements
   end
 
   it "should find a h3 element" do
@@ -435,6 +445,11 @@ describe Druid::ElementLocators do
     expect(elements[0]).to be_instance_of Druid::Elements::Heading
   end
 
+  it "should find all h3s using no identifier" do
+    expect(driver).to receive(:h3s).with({}).and_return([driver])
+    page.h3_elements
+  end
+
   it "should find a h4 element" do
     expect(driver).to receive(:h4).with(:id => 'blah').and_return(driver)
     element = page.h4_element(:id => 'blah')
@@ -450,6 +465,11 @@ describe Druid::ElementLocators do
     expect(driver).to receive(:h4s).with(:id => 'blah').and_return([driver])
     elements = page.h4_elements(:id => 'blah')
     expect(elements[0]).to be_instance_of Druid::Elements::Heading
+  end
+
+  it "should find all h4s using no identifier" do
+    expect(driver).to receive(:h4s).with({}).and_return([driver])
+    page.h4_elements
   end
 
   it "should find a h5 element" do
@@ -469,6 +489,11 @@ describe Druid::ElementLocators do
     expect(elements[0]).to be_instance_of Druid::Elements::Heading
   end
 
+  it "should find all h5s using no identifier" do
+    expect(driver).to receive(:h5s).with({}).and_return([driver])
+    page.h5_elements
+  end
+
   it "should find a h6 element" do
     expect(driver).to receive(:h6).with(:id => 'blah').and_return(driver)
     element = page.h6_element(:id => 'blah')
@@ -484,6 +509,11 @@ describe Druid::ElementLocators do
     expect(driver).to receive(:h6s).with(:id => 'blah').and_return([driver])
     elements = page.h6_elements(:id => 'blah')
     expect(elements[0]).to be_instance_of Druid::Elements::Heading
+  end
+
+  it "should find all h6s using no identifier" do
+    expect(driver).to receive(:h6s).with({}).and_return([driver])
+    page.h6_elements
   end
 
   it "should find a paragraph element" do
