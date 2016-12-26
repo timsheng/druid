@@ -174,6 +174,13 @@ describe Druid do
         expect(driver).to receive(:execute_script).and_return("abc")
         expect(druid.execute_script("333")).to eql "abc"
       end
+
+      it "should know which element has focus" do
+        expect(driver).to receive(:execute_script).and_return(driver)
+        expect(driver).to receive(:tag_name).twice.and_return(:input)
+        expect(driver).to receive(:type).and_return(:submit)
+        expect(druid.element_with_focus.class).to eql Druid::Elements::Button
+      end
     end
   end
 

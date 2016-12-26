@@ -104,6 +104,10 @@ Feature: Nested Elements
     When I search for a file field located in a div
     Then I should be able to retrieve the nested file field
 
+  Scenario: Finding a label within a div
+    When I search for a label located in a div
+    Then I should see the nested labels text should be "page-object is the best!"
+
   Scenario: Unordered list nested in another Unordered list
     When I get the outter unordered list
     Then I should see "One" for list item 1

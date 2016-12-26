@@ -171,3 +171,10 @@ Feature: Multi Elements
      And the text for paragraph 1 should be "Paragraph One"
      And the text for paragraph 2 should be "Paragraph Two"
      And the text for paragraph 3 should be "Paragraph Three"
+
+   Scenario: Selecting labels
+     When I select the labels with class "label"
+     Then I should have 3 labels
+     And the text for label 1 should be "Label 1"
+     And the text for label 2 should be "Label 2"
+     And the text for label 3 should be "Label 3"

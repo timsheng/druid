@@ -304,4 +304,16 @@ describe Druid::ElementLocators do
     element = page.file_field_element(:id => 'blah')
     expect(element).to be_instance_of Druid::Elements::FileField
   end
+
+  it "should find a label" do
+    expect(driver).to receive(:label).with(:id => 'blah').and_return(driver)
+    element = page.label_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::Label
+  end
+
+  it "should find all label elements" do
+    expect(driver).to receive(:labels).with(:id => 'blah').and_return([driver])
+    elements = page.label_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Label
+  end
 end

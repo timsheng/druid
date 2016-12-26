@@ -27,6 +27,7 @@ class NestedElementsPage
   h6(:nested_h6) { |page| page.outer_div_element.h6_element }
   paragraph(:nested_paragraph) { |page| page.outer_div_element.paragraph_element }
   file_field(:nested_file_field) { |page| page.outer_div_element.file_field_element }
+  label(:nested_label) { |page| page.outer_div_element.label_element }
   unordered_list(:outer_list, :id => 'outer')
   ordered_list(:ordered_outer, :id => 'ol-outer')
 end
@@ -205,7 +206,14 @@ When(/^I get the outter ordered list$/) do
   @list = @page.ordered_outer_element
 end
 
-
 Then(/^I should see "([^"]*)" for list item (\d+)$/) do |text, item_num|
   expect(@list[item_num.to_i - 1].text).to eql text
+end
+
+When(/^I search for a label located in a div$/) do
+  @label = @page.nested_label_element
+end
+
+Then(/^I should see the nested labels text should be "([^"]*)"$/) do |text|
+  expect(@label.text).to eql text
 end

@@ -41,6 +41,9 @@ module Druid
     def visit_page(page_class, &block)
       on_page page_class, true, &block
     end
+
+    # Support 'visit' for readability of usage
+    alias_method :visit, :visit_page
     #
     # Create a page object.
     #
@@ -54,6 +57,9 @@ module Druid
       block.call @current_page if block
       @current_page
     end
+
+    # Support 'on' for readability of usage
+    alias_method :on, :on_page
 
     #
     # Navigate to a specific page following a predefined path.
