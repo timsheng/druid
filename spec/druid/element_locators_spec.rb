@@ -269,6 +269,11 @@ describe Druid::ElementLocators do
     expect(elements[0]).to be_instance_of Druid::Elements::TableCell
   end
 
+  it "should find all table cells using no identifier" do
+    expect(driver).to receive(:tds).with({}).and_return([driver])
+    page.cell_elements
+  end
+
   it "should find an image element" do
     expect(driver).to receive(:image).with(:id => 'blah').and_return(driver)
     element = page.image_element(:id => 'blah')
