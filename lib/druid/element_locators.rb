@@ -541,7 +541,8 @@ module Druid
     # Finds an ordered list
     #
     # @param [Hash] identifier how we find an ordered list. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first ordered list. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -556,14 +557,15 @@ module Druid
     # Finds all ordered lists that match the provided identifier
     #
     # @param [Hash] identifier how we find an ordered list. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all ordered lists. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def ordered_list_elements identifier
+    def ordered_list_elements(identifier={})
       ordered_lists_for identifier.clone
     end
 
@@ -571,7 +573,8 @@ module Druid
     # Finds an unordered list
     #
     # @param [Hash] identifier how we find an unordered list. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first unordered list. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -586,14 +589,15 @@ module Druid
     # Finds all unordered lists that match the provided identifier
     #
     # @param [Hash] identifier how we find an unordered list. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all unordered lists. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
     #   * :xpath
     #   * :name
     #
-    def unordered_list_elements identifier
+    def unordered_list_elements(identifier={})
       unordered_lists_for identifier.clone
     end
 
