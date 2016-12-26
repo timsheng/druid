@@ -374,3 +374,7 @@ end
 When(/^I select all ordered lists using no identifier$/) do
   @elements = @page.ordered_list_elements
 end
+
+When /^I select all h(\d+)s using no identifier$/ do |num|
+  @elements = @page.send "h#{num}_elements"
+end
