@@ -1,3 +1,6 @@
+=== 2016-12-26
+* Enhancement
+  * Changed page_url to accept a symbol that will cause it to call a corresponding method
 === 2016-12-23
 * Enhancement
   * Added #execute_script method to Druid
