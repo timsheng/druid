@@ -326,3 +326,7 @@ end
 Then(/^I should be able to find (\d+) select lists using no identifier$/) do |num_select_lists|
   expect(@page.select_list_elements.size).to eql num_select_lists.to_i
 end
+
+Then(/^I should be able to find (\d+) links using no identifier$/) do |num_links|
+  expect(@page.link_elements.size).to eql num_links.to_i
+end
