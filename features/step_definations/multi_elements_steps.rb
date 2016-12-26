@@ -306,3 +306,7 @@ end
 Then(/^the text for label (\d+) should be "([^"]*)"$/) do |label_num, text|
   expect(@elements[label_num.to_i - 1].text).to eql text
 end
+
+Then(/^I should be able to find (\d+) buttons using no identifier$/) do |num_buttons|
+  expect(@page.button_elements.size).to eql num_buttons.to_i
+end
