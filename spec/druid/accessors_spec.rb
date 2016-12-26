@@ -126,17 +126,29 @@ describe Druid::Accessors do
   describe "goto a page" do
     it "should navigate to a page when requested" do
       expect(driver).to receive(:goto)
-      page = AccessorsTestDruid.new(driver, true)
+      AccessorsTestDruid.new(driver, true)
+    end
+
+    it "should call a method when page_url called with a symbol" do
+      class SymbolPageUrl
+        include Druid
+        page_url :custom_url
+        def custom_url
+          'custom'
+        end
+      end
+      expect(driver).to receive(:goto).with("custom")
+      SymbolPageUrl.new(driver, true)
     end
 
     it "should not navigate to a page when not requested" do
       expect(driver).not_to receive(:goto)
-      page = AccessorsTestDruid.new(driver)
+      AccessorsTestDruid.new(driver)
     end
 
     it "should not navigate to a page when 'page_url' not specified" do
       expect(driver).not_to receive(:goto)
-      page = TestDruidBackUp.new(driver,true)
+      TestDruidBackUp.new(driver,true)
     end
   end
 
