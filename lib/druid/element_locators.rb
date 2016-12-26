@@ -798,5 +798,37 @@ module Druid
     def file_field_element identifier
       file_field_for identifier.clone
     end
+
+    #
+    # Finds a label
+    #
+    # @param [Hash] identifier how we find a label. You can use a multiple paramaters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :text
+    #   * :xpath
+    #
+    def label_element(identifier)
+      label_for identifier.clone
+    end
+
+    #
+    # Finds all labels that match the provided identifier
+    #
+    # @param [Hash] identifier how we find a label. You can use a multiple paramaters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :text
+    #   * :xpath
+    #
+    def label_elements(identifier)
+      labels_for identifier.clone
+    end
   end
 end

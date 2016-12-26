@@ -123,6 +123,15 @@ class Page
   span(:span_class_index, :class => "span_class", :index => 0)
   span(:span_name_index, :name => "span_name", :index => 0)
 
+  label(:label_id, :id => "label_id")
+  label(:label_name, :name => "label_name")
+  label(:label_class, :class => "label_class")
+  label(:label_text, :text => "page-object is the best!")
+  label(:label_index, :index => 0)
+  label(:label_xpath, :xpath => "//label")
+  label(:label_class_index, :class => "label_class", :index => 0)
+  label(:label_name_index, :name => "label_name", :index => 0)
+
   image(:image_id, :id => "image_id")
   image(:image_name, :name => 'image_name')
   image(:image_class, :class => 'image_class')

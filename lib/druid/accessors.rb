@@ -979,6 +979,59 @@ module Druid
       end
     end
 
+    #
+    # adds three methods - one to retrieve the text from a label,
+    # another to return the label element, and another to check the label's existence.
+    #
+    # @example
+    #   label(:message, :id => 'message')
+    #   # will generate 'message', 'message_element', and 'message?' methods
+    #
+    # @param [String] the name used for the generated methods
+    # @param [Hash] identifier how we find a label. You can use a multiple parameters
+    #  by combining of any of the following except xpath. The valid keys are:
+    #  * :class
+    #  * :id
+    #  * :index
+    #  * :name
+    #  * :text
+    #  * :xpath
+    # @param optional block to be invoked when element method is called
+    #
+    def label(name, identifier=nil, &block)
+      define_method(name) do
+        return label_text_for identifier.clone unless block_given?
+        self.send("#{name}_element").text
+      end
+      define_method("#{name}_element") do
+        return call_block(&block) if block_given?
+        label_for(identifier.clone)
+      end
+      define_method("#{name}?") do
+        return call_block(&block) if block_given?
+        label_for(identifier.clone).exist?
+      end
+      alias_method "#{name}_label".to_sym, "#{name}_element".to_sym
+    end
+
+    #
+    # adds three methods - one to retrieve the text an element, another
+    # to retrieve an element, and another to check the element's existence.
+    #
+    # @example
+    #   element(:titile, :id => 'title')
+    #   # will generate 'title'm 'title_element', and 'title?' methods
+    #
+    # @param [String] the name used for the generated methods
+    # @param [Hash] identifier how we find an element. You can use a multiple parameters
+    # by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    # @param optional block to be invoked when element method is called
+    #
     def element(name, tag, identifier=nil, &block)
       define_method("#{name}") do
         self.send("#{name}_element").text
