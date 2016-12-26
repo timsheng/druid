@@ -375,6 +375,13 @@ module Druid
     end
 
     #
+    # retrieve an array of file field elements
+    #
+    def file_fields_for identifier
+      find_elements("file_fields(identifier)", Elements::FileField, identifier)
+    end
+
+    #
     # method to return the text for a label
     #
     def label_text_for(identifier)

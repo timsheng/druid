@@ -835,7 +835,8 @@ module Druid
     # Finds a file field
     #
     # @param [Hash] identifier how we find a file field. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
+    #   by combining of any of the following except xpath. It defaults to {:index => 0}
+    #   which will find the first file field. The valid keys are:
     #   * :class
     #   * :id
     #   * :index
@@ -845,6 +846,23 @@ module Druid
     #
     def file_field_element(identifier={:index => 0})
       file_field_for identifier.clone
+    end
+
+    #
+    # Finds all file fields that match the provided identifier
+    #
+    # @param [Hash] identifier how we find a file field. You can use a multiple parameters
+    #   by combining of any of the following except xpath. It defaults to empty Hash
+    #   which will return all file fields. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :xpath
+    #   * :name
+    #   * :title
+    #
+    def file_field_elements(identifier={})
+      file_fields_for identifier.clone
     end
 
     #
