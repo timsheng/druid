@@ -2,6 +2,7 @@
 * Enhancement
   * Added ability to find span's by title
   * Changed order of initialization so initialize_page is called after goto
+  * Added flash method to Element to temporarily change the background color
 === 2016-12-26
 * Enhancement
   * Changed page_url to accept a symbol that will cause it to call a corresponding method

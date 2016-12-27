@@ -145,6 +145,13 @@ module Druid
       end
 
       #
+      # Flash the element by temporarily changing the background color
+      #
+      def flash
+        element.flash
+      end
+
+      #
       # Returns parent element of current element.
       def parent
         parent = element.parent

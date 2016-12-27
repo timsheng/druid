@@ -103,3 +103,9 @@ end
 When(/^I retrieve the label element$/) do
   @element = @page.label_id_element
 end
+
+Then(/^I should be able to flash it$/) do
+  sleep 5
+  @element.flash
+  sleep 5
+end
