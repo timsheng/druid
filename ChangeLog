@@ -11,6 +11,7 @@
   * Updated link to be able to identify by title
   * Updated div to be able to identify by title
   * Added ability to find text_field by :text and :label
+  * Added select_value method to SelectList
 * Fixes
   * Modified text area methods so it clears before setting new text
   * Updated [] method on Table to return nil when bad row header is provided
