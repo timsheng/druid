@@ -23,6 +23,7 @@ Feature: Text Fields
     | index     |
     | text      |
     | title     |
+    | label     |
 
   Scenario: Retrieve a text field
     When I retrieve a text field
