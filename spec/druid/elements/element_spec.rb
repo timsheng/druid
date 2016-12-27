@@ -151,5 +151,10 @@ describe Druid::Elements::Element do
       expect(we).to receive(:enabled?).and_return(false)
       expect(element).to be_disabled
     end
+
+    it "should be able to flash element" do
+      expect(we).to receive(:flash)
+      element.flash
+    end
   end
 end
