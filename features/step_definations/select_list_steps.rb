@@ -69,3 +69,11 @@ Then(/^the value for the option should be "([^"]*)"$/) do |value|
   @element = @page.send "select_list_#{@how}_element".to_sym
   expect(@element.value).to eql value
 end
+
+When(/^I clear multiple select list$/) do
+  @page.select_list_multiple_element.clear
+end
+
+Then(/^multiple select list should have no selected options$/) do
+  expect(@page.select_list_multiple_element.selected_options).to be_empty
+end
