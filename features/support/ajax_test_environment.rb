@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + "../sample-app/sample_app"
+require File.dirname(__FILE__) + "/../sample-app/sample_app"
 
 class AjaxTestEnvironment
   def run
