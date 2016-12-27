@@ -163,11 +163,22 @@ module Druid
       #
       # Waits until the element is present
       #
-      # @param [Integer] (default to:5) seconds to wait before timing out
+      # @param [Integer] (defaults to: 5) seconds to wait before
+      # timing out
       #
       def when_present(timeout=5)
         element.wait_until_present(timeout)
         self
+      end
+
+      #
+      # Waits until the element is not present
+      #
+      # @param [Integer] (defaults to: 5) seconds to wait before
+      # timing out
+      # 
+      def when_not_present(timeout=5)
+        element.wait_while_present(timeout)
       end
 
       #
