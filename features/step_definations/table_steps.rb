@@ -55,3 +55,11 @@ end
 Then(/^I should see that the table exists$/) do
   expect(@page.table_id?).to be true
 end
+
+Then(/^the data for column "([^"]*)" and row "([^"]*)" should be "([^"]*)"$/) do |column, row, value|
+  expect(@element[row.to_i - 1][column].text).to eql value
+end
+
+Then(/^the data for row "([^"]*)" and column "([^"]*)" should be "([^"]*)"$/) do |row, column, value|
+  expect(@element[row][column].text).to eql value
+end

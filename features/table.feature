@@ -14,6 +14,14 @@ Feature: Table
     When I retrieve a table element
     Then the data for row "Data3" should be "Data3" and "Data4"
 
+  Scenario: Retrieve data from a table using the column header
+    When I retrieve a table element
+    Then the data for column "Data2" and row "2" should be "Data4"
+
+  Scenario: Retrieve data from a table using both headers
+    When I retrieve a table element
+    Then the data for row "Data3" and column "Data2" should be "Data4"
+
   @name
   Scenario Outline: Locating table cells on the Page
     When I retrieve a table element by "<locate_by>"
