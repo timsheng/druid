@@ -1,6 +1,7 @@
 === 2016-12-27
 * Enhancement
   * Added ability to find span's by title
+  * Changed order of initialization so initialize_page is called after goto
 === 2016-12-26
 * Enhancement
   * Changed page_url to accept a symbol that will cause it to call a corresponding method
