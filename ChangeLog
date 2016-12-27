@@ -9,6 +9,7 @@
   * Added the ability to find a TableRow by providing a String to the [] method
   * Added the ability to find a TableCell by providing a String to the [] method from TableRow
   * Updated link to be able to identify by title
+  * Updated div to be able to identify by title
 * Fixes
   * Modified text area methods so it clears before setting new text
   * Updated [] method on Table to return nil when bad row header is provided
