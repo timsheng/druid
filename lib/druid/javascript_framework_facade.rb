@@ -1,5 +1,6 @@
 require 'druid/javascript/jquery'
 require 'druid/javascript/prototype'
+require 'druid/javascript/yui'
 
 module Druid
   #
