@@ -74,6 +74,20 @@ module Druid
   end
 
   #
+  # Set the default timeout for page level Waits
+  #
+  def self.default_page_wait=(timeout)
+    @page_wait = timeout
+  end
+
+  #
+  # Return the default timeout for page level Waits
+  #
+  def self.default_page_wait
+    @page_wait ||= 30
+  end
+
+  #
   # Set the javascript framework to use when determining number of
   # ajax requests. Valid frameworks are :jquery, :prototype, and :Dojo
   #
@@ -154,7 +168,7 @@ module Druid
   # @param [String] the message to include with the error if we exceed the timeout duration
   # @param block the block to execute. It should return true when successful.
   #
-  def wait_until(timeout = 30, message = nil, &block)
+  def wait_until(timeout = Druid.default_page_wait, message = nil, &block)
     driver.wait_until(timeout, message, &block)
   end
 
@@ -164,7 +178,7 @@ module Druid
   # @param [Numeric] the amount of time to wait for the block to return true.
   # @param [String] the message to include with the error if we exceed the timeout duration
   #
-  def wait_for_ajax(timeout = 30, message = nil)
+  def wait_for_ajax(timeout = Druid.default_page_wait, message = nil)
     end_time = ::Time.now + timeout
     until ::Time.now > end_time
       return if driver.execute_script(Druid::JavascriptFrameworkFacade.pending_requests) == 0
