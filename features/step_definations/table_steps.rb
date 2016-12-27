@@ -7,9 +7,10 @@ When(/^I retrieve a table element by "(.*?)"$/) do |how|
 end
 
 Then(/^the data for row "(.*?)" should be "(.*?)" and "(.*?)"$/) do |row, col1, col2|
-   row = @element[row.to_i - 1]
-   expect(row[0].text).to eql col1
-   expect(row[1].text).to eql col2
+   row = (row.to_i - 1) if row.to_i > 0
+   table_row = @element[row]
+   expect(table_row[0].text).to eql col1
+   expect(table_row[1].text).to eql col2
 end
 
 Then(/^the table should have "(.*?)" rows$/) do |number|
@@ -53,4 +54,12 @@ end
 
 Then(/^I should see that the table exists$/) do
   expect(@page.table_id?).to be true
+end
+
+Then(/^the data for column "([^"]*)" and row "([^"]*)" should be "([^"]*)"$/) do |column, row, value|
+  expect(@element[row.to_i - 1][column].text).to eql value
+end
+
+Then(/^the data for row "([^"]*)" and column "([^"]*)" should be "([^"]*)"$/) do |row, column, value|
+  expect(@element[row][column].text).to eql value
 end

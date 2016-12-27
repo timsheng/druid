@@ -120,6 +120,7 @@ class Page
   span(:span_xpath, :xpath => '//span')
   span(:span_name, :name => 'span_name')
   span(:span_text, :text => 'My alert')
+  span(:span_title, :title => 'span_title')
   span(:span_class_index, :class => "span_class", :index => 0)
   span(:span_name_index, :name => "span_name", :index => 0)
 

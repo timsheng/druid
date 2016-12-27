@@ -3,7 +3,7 @@ module Druid
     class Span < Element
 
       def self.finders
-        [:class, :id, :index, :xpath, :text]
+        [:class, :id, :index, :xpath, :text, :title]
       end
 
     end

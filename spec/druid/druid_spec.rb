@@ -154,6 +154,12 @@ describe Druid do
         druid.save_screenshot('tim.png')
       end
 
+      it "should use the overriden timeout value when set" do
+        Druid.default_page_wait = 10
+        expect(driver).to receive(:wait_until).with(10, nil)
+        druid.wait_until
+      end
+
       it "should wait until there are no pending ajax requests" do
         expect(Druid::JavascriptFrameworkFacade).to receive(:pending_requests).and_return('pending requests')
         expect(driver).to receive(:execute_script).with('pending requests').and_return(0)

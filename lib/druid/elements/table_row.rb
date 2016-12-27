@@ -1,9 +1,15 @@
 module Druid
   module Elements
     class TableRow < Element
+
+      #
+      # Return the Druid::Elements::TableCell for the index provided. Index
+      # is zero based. If the index provided is a String then it
+      # will be matched with the text from the columns in the first row.
+      #
       def [](idx)
-        table_cell = element[idx]
-        Druid::Elements::TableCell.new(table_cell)
+        idx = find_index_by_title(idx) if idx.kind_of?(String)
+        Druid::Elements::TableCell.new(element[idx])
       end
       #
       # Returns the number of rows in the table.
@@ -16,6 +22,14 @@ module Druid
         for index in 1..self.columns do
           yield self[index-1]
         end
+      end
+
+      private
+
+      def find_index_by_title(title)
+        table = element.parent
+        first_row = table[0]
+        first_row.cells.find_index { |column| column.text == title}
       end
 
     end

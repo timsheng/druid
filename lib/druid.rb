@@ -52,8 +52,8 @@ module Druid
   def initialize(driver, visit=false)
     if driver.is_a? Watir::Browser
       @driver ||= driver
-      initialize_page if respond_to?(:initialize_page)
       goto if visit && respond_to?(:goto)
+      initialize_page if respond_to?(:initialize_page)
     else
       raise ArgumentError, "expect Watir::Browser"
     end
@@ -71,6 +71,34 @@ module Druid
   #
   def navigate_to url
     driver.goto url
+  end
+
+  #
+  # Set the default timeout for page level Waits
+  #
+  def self.default_page_wait=(timeout)
+    @page_wait = timeout
+  end
+
+  #
+  # Return the default timeout for page level Waits
+  #
+  def self.default_page_wait
+    @page_wait ||= 30
+  end
+
+  #
+  # Sets the default timeout for element level Waits
+  #
+  def self.default_element_wait=(timeout)
+    @element_wait = timeout
+  end
+
+  #
+  # Returns the default timeout for element level Waits
+  #
+  def self.default_element_wait
+    @element_wait ||= 5
   end
 
   #
@@ -154,7 +182,7 @@ module Druid
   # @param [String] the message to include with the error if we exceed the timeout duration
   # @param block the block to execute. It should return true when successful.
   #
-  def wait_until(timeout = 30, message = nil, &block)
+  def wait_until(timeout = Druid.default_page_wait, message = nil, &block)
     driver.wait_until(timeout, message, &block)
   end
 
@@ -164,7 +192,7 @@ module Druid
   # @param [Numeric] the amount of time to wait for the block to return true.
   # @param [String] the message to include with the error if we exceed the timeout duration
   #
-  def wait_for_ajax(timeout = 30, message = nil)
+  def wait_for_ajax(timeout = Druid.default_page_wait, message = nil)
     end_time = ::Time.now + timeout
     until ::Time.now > end_time
       return if driver.execute_script(Druid::JavascriptFrameworkFacade.pending_requests) == 0
