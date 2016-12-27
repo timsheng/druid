@@ -6,6 +6,7 @@
   * Added when_not_present method to Element
   * Added default override of page level waits - Druid.default_page_wait
   * Added default override of element level waits - Druid.default_element_wait
+  * Added the ability to find a TableRow by providing a String to the [] method
 === 2016-12-26
 * Enhancement
   * Changed page_url to accept a symbol that will cause it to call a corresponding method

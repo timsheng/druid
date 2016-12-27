@@ -3,13 +3,14 @@ module Druid
     class Table < Element
       #
       # Return the Druid::Elements::Table for the index provided.  Index
-      # is zero based.
+      # is zero based. If the index provided is a String then it
+      # will be matched with the text from the first column
       #
       # @return [Druid::Elements::Table]
       #
       def [](idx)
-        table_row = element[idx]
-        Druid::Elements::TableRow.new(table_row)
+        idx = find_index_by_title(idx) if idx.kind_of?(String)
+        Druid::Elements::TableRow.new(element[idx])
       end
       #
       # Returns the number of rows in the table.
@@ -40,6 +41,12 @@ module Druid
       #
       def last_row
         self[-1]
+      end
+
+      private
+
+      def find_index_by_title(row_title)
+        element.rows.find_index {|row| row[0].text == row_title}
       end
 
     end
