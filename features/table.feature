@@ -10,6 +10,10 @@ Feature: Table
     Then I should know it is visible
     Then I should know it exists
 
+  Scenario: Retrieve data from a table using the row header
+    When I retrieve a table element
+    Then the data for row "Data3" should be "Data3" and "Data4"
+
   @name
   Scenario Outline: Locating table cells on the Page
     When I retrieve a table element by "<locate_by>"
