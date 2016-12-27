@@ -125,6 +125,7 @@ module Druid
     #   * :link
     #   * :link_text
     #   * :css
+    #   * :title
     # @param optional block to be invoked when element method is called
     #
     def link(name, identifier={:index => 0}, &block)
@@ -164,6 +165,7 @@ module Druid
     #   * :xpath
     #   * :text
     #   * :title
+    #   * :label
     # @param optional block to be invoked when element method is called
     #
     def text_field(name, identifier={:index => 0}, &block)
@@ -380,6 +382,7 @@ module Druid
     #   * :name
     #   * :text
     #   * :value
+    #   * :title
     # @param optional block to be invoked when element method is called
     #
     def div(name, identifier={:index => 0}, &block)
