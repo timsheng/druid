@@ -3,7 +3,7 @@ module Druid
     class Div < Element
 
       def self.finders
-        [:class, :id, :text, :index, :xpath]
+        super + [:text, :title]
       end
     end
 
