@@ -1,3 +1,6 @@
+=== 2016-12-27
+* Enhancement
+  * Added ability to find span's by title
 === 2016-12-26
 * Enhancement
   * Changed page_url to accept a symbol that will cause it to call a corresponding method

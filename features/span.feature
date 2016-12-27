@@ -20,6 +20,8 @@ Feature: Span
     | index     |
     | name      |
     | text      |
+    | title     |
+    
   Scenario: Retrieve a Span
     When I retrieve a span element
     Then I should know it exists
