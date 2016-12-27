@@ -217,12 +217,12 @@ module Druid
       # @private
       # delegate calls to driver element
       def method_missing(m, *args, &block)
-        puts "*** DEPRECATION WARNING"
-        puts "*** You are calling a method named #{m} at #{caller[0]}."
-        puts "*** This method does not exist in druid so it is being passed to the driver."
-        puts "*** This feature will be removed in the near future."
-        puts "*** Please change your code to call the correct druid method."
-        puts "*** If you are using functionality that does not exist in druid please request it be added."
+        $stderr.puts "*** DEPRECATION WARNING"
+        $stderr.puts "*** You are calling a method named #{m} at #{caller[0]}."
+        $stderr.puts "*** This method does not exist in druid so it is being passed to the driver."
+        $stderr.puts "*** This feature will be removed in the near future."
+        $stderr.puts "*** Please change your code to call the correct druid method."
+        $stderr.puts "*** If you are using functionality that does not exist in druid please request it be added."
         unless element.respond_to?(m)
           raise NoMethodError, "undefined method `#{m}` for #{element.inspect}:#{element.class}"
         end
@@ -299,7 +299,7 @@ module Druid
 
       def self.identifier_for_element identifier, find_by, find_by_mapping
         how, what = identifier.keys.first, identifier.values.first
-        return how => what if find_by.include? how 
+        return how => what if find_by.include? how
         return find_by_mapping[how] => what if find_by_mapping[how]
         return nil => what
       end
