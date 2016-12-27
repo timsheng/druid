@@ -1,3 +1,13 @@
+=== 2016-12-27
+* Enhancement
+  * Added ability to find span's by title
+  * Changed order of initialization so initialize_page is called after goto
+  * Added flash method to Element to temporarily change the background color
+  * Added when_not_present method to Element
+  * Added default override of page level waits - Druid.default_page_wait
+  * Added default override of element level waits - Druid.default_element_wait
+  * Added the ability to find a TableRow by providing a String to the [] method
+  * Added the ability to find a TableCell by providing a String to the [] method from TableRow
 === 2016-12-26
 * Enhancement
   * Changed page_url to accept a symbol that will cause it to call a corresponding method

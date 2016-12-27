@@ -145,6 +145,13 @@ module Druid
       end
 
       #
+      # Flash the element by temporarily changing the background color
+      #
+      def flash
+        element.flash
+      end
+
+      #
       # Returns parent element of current element.
       def parent
         parent = element.parent
@@ -156,11 +163,22 @@ module Druid
       #
       # Waits until the element is present
       #
-      # @param [Integer] (default to:5) seconds to wait before timing out
+      # @param [Integer] (defaults to: 5) seconds to wait before
+      # timing out
       #
-      def when_present(timeout=5)
+      def when_present(timeout=Druid.default_element_wait)
         element.wait_until_present(timeout)
         self
+      end
+
+      #
+      # Waits until the element is not present
+      #
+      # @param [Integer] (defaults to: 5) seconds to wait before
+      # timing out
+      #
+      def when_not_present(timeout=Druid.default_element_wait)
+        element.wait_while_present(timeout)
       end
 
       #
@@ -168,7 +186,7 @@ module Druid
       #
       # @param [Interger] (default to:5) seconds to wait before timing out
       #
-      def when_visible(timeout=5)
+      def when_visible(timeout=Druid.default_element_wait)
         Watir::Wait.until(timeout, "Element was not visible in #{timeout} seconds") do
           visible?
         end
@@ -180,7 +198,7 @@ module Druid
       #
       # @param [Integer] (default to:5) seconds to wait before timing out
       #
-      def when_not_visible(timeout=5)
+      def when_not_visible(timeout=Druid.default_element_wait)
         Watir::Wait.while(timeout, "Element still visible after #{timeout} seconds") do
           visible?
         end
@@ -192,7 +210,7 @@ module Druid
       #
       # @param [Integer] (default to:5) seconds to wait before timing out
       #
-      def wait_until(timeout=5, message=nil, &block)
+      def wait_until(timeout=Druid.default_element_wait, message=nil, &block)
         Watir::Wait.until(timeout, message, &block)
       end
 
@@ -217,12 +235,12 @@ module Druid
       # @private
       # delegate calls to driver element
       def method_missing(m, *args, &block)
-        puts "*** DEPRECATION WARNING"
-        puts "*** You are calling a method named #{m} at #{caller[0]}."
-        puts "*** This method does not exist in druid so it is being passed to the driver."
-        puts "*** This feature will be removed in the near future."
-        puts "*** Please change your code to call the correct druid method."
-        puts "*** If you are using functionality that does not exist in druid please request it be added."
+        $stderr.puts "*** DEPRECATION WARNING"
+        $stderr.puts "*** You are calling a method named #{m} at #{caller[0]}."
+        $stderr.puts "*** This method does not exist in druid so it is being passed to the driver."
+        $stderr.puts "*** This feature will be removed in the near future."
+        $stderr.puts "*** Please change your code to call the correct druid method."
+        $stderr.puts "*** If you are using functionality that does not exist in druid please request it be added."
         unless element.respond_to?(m)
           raise NoMethodError, "undefined method `#{m}` for #{element.inspect}:#{element.class}"
         end
@@ -299,7 +317,7 @@ module Druid
 
       def self.identifier_for_element identifier, find_by, find_by_mapping
         how, what = identifier.keys.first, identifier.values.first
-        return how => what if find_by.include? how 
+        return how => what if find_by.include? how
         return find_by_mapping[how] => what if find_by_mapping[how]
         return nil => what
       end
