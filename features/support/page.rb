@@ -16,6 +16,7 @@ class Page
   link(:google_search_link, :link => "Google Search")
   link(:google_search_link_text, :link_text => "Google Search")
   link(:google_search_css, :css => "a.link_class")
+  link(:google_search_title, :title => "link_title")
   link(:hello0, {:text => "Hello", :index => 0})
   link(:hello1, {:text => "Hello", :index => 1})
   link(:hello2, {:text => "Hello", :index => 2})
