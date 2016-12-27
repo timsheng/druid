@@ -22,6 +22,14 @@ module Druid
       end
 
       #
+      # Select the options whose value attribute matches the Given
+      # string
+      #
+      def select_value(value)
+        element.select_value(value)
+      end
+
+      #
       # @return [Array<sTRING>] An array of strings representing the text value of the currently selected options.
       #
       def selected_options
