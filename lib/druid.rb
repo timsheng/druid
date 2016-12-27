@@ -52,8 +52,8 @@ module Druid
   def initialize(driver, visit=false)
     if driver.is_a? Watir::Browser
       @driver ||= driver
-      initialize_page if respond_to?(:initialize_page)
       goto if visit && respond_to?(:goto)
+      initialize_page if respond_to?(:initialize_page)
     else
       raise ArgumentError, "expect Watir::Browser"
     end
