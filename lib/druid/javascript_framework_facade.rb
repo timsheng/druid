@@ -56,7 +56,8 @@ module Druid
       def initialize_script_builder
         @builder = {
           :jquery => Druid::Javascript::JQuery,
-          :prototype => Druid::Javascript::Prototype
+          :prototype => Druid::Javascript::Prototype,
+          :yui => Druid::Javascript::YUI
         }
       end
 
