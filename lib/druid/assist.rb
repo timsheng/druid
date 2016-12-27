@@ -234,7 +234,7 @@ module Druid
     end
 
     def text_area_value_set identifier, value
-      process_call("textarea(identifier).send_keys(value)", Elements::TextArea, identifier, value)
+      process_call("textarea(identifier).set(value)", Elements::TextArea, identifier, value)
     end
 
     def text_area_value_for identifier
