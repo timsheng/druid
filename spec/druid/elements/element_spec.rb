@@ -82,6 +82,12 @@ describe Druid::Elements::Element do
       expect(element.when_present(10)).to eq element
     end
 
+    it "should use the overriden wait when set" do
+      Druid.default_element_wait = 20
+      expect(we).to receive(:wait_until_present).with(20)
+      element.when_present
+    end
+
     it "should be able to block until it is visible" do
       expect(Watir::Wait).to receive(:until).with(10, "Element was not visible in 10 seconds")
       element.when_visible(10)
