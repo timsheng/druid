@@ -723,7 +723,7 @@ describe Druid::Accessors do
 
     context "implementation" do
       it "should set some text on the text area" do
-        expect(driver).to receive_message_chain(:textarea, :send_keys).with('123 main street')
+        expect(driver).to receive_message_chain(:textarea, :set).with('123 main street')
         druid.address='123 main street'
       end
 
