@@ -49,6 +49,7 @@ class Page
   select_list(:select_list_xpath, :xpath => "//select")
   select_list(:select_list_text, :text => "Test 1")
   select_list(:select_list_value, :value => "option1")
+  select_list(:select_list_multiple, :id => "sel_list_multiple")
   select_list(:select_list_class_index, :class => "sel_list_class", :index => 0)
   select_list(:select_list_name_index, :name => "sel_list_name", :index => 0)
 
