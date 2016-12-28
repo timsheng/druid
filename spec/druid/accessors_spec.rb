@@ -158,6 +158,15 @@ describe Druid::Accessors do
       expect(druid).to have_expected_title
     end
 
+    it "should validate the by regexp" do
+      class RegexpExpectedTitle
+        include Druid
+        expected_title /\w+ \w+/
+      end
+      expect(driver).to receive(:title).and_return("Expected Title")
+      expect(RegexpExpectedTitle.new(driver)).to have_expected_title
+    end
+
     it "should raise error when it does not have expected title" do
       expect(driver).to receive(:title).twice.and_return("Not Expected")
       expect {druid.has_expected_title? }.to raise_error
