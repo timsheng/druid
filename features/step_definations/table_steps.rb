@@ -63,3 +63,11 @@ end
 Then(/^the data for row "([^"]*)" and column "([^"]*)" should be "([^"]*)"$/) do |row, column, value|
   expect(@element[row][column].text).to eql value
 end
+
+Then(/^the data for row "([^"]*)" should be nil$/) do |row|
+  expect(@element[row]).to be_nil
+end
+
+Then(/^the data for row "([^"]*)" and column "([^"]*)" should be nil$/) do |row, column|
+  expect(@element[row][column]).to be_nil
+end

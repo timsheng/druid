@@ -25,6 +25,7 @@ Feature: Links
     | link      |
     | link_text |
     | css       |
+    | title     |
 
   Scenario: Retrieve a Link
     When I retrieve a link element

@@ -28,7 +28,8 @@ describe Druid::PagePopulator do
 
   it "should set a value in a text area" do
     expect(druid).to receive(:ta=).with('value')
-    expect(druid).to receive(:is_enabled?).and_return(true)
+    expect(druid).to receive(:ta_element).and_return(driver)
+    expect(driver).to receive(:tag_name).and_return('textarea')
     druid.populate_page_with('ta' => 'value')
   end
 
@@ -70,22 +71,25 @@ describe Druid::PagePopulator do
 
   it "should not populate a checkbox if it is disabled" do
     expect(druid).not_to receive(:check_cb)
-    expect(druid).to receive(:cb_element).and_return(driver)
+    expect(druid).to receive(:cb_element).twice.and_return(driver)
     expect(driver).to receive(:enabled?).and_return(false)
+    expect(driver).to receive(:tag_name).and_return('input')
     druid.populate_page_with('cb' => true)
   end
 
   it "should not populate a radio button when it is disabled" do
     expect(druid).not_to receive(:select_rb)
-    expect(druid).to receive(:rb_element).and_return(driver)
+    expect(druid).to receive(:rb_element).twice.and_return(driver)
     expect(driver).to receive(:enabled?).and_return(false)
+    expect(driver).to receive(:tag_name).and_return('input')
     druid.populate_page_with('rb' => true)
   end
 
   it "should not populate a text field when it is disabled" do
     expect(druid).not_to receive(:tf=)
-    expect(druid).to receive(:tf_element).and_return(driver)
+    expect(druid).to receive(:tf_element).twice.and_return(driver)
     expect(driver).to receive(:enabled?).and_return(false)
+    expect(driver).to receive(:tag_name).and_return("input")
     druid.populate_page_with('tf' => 'test')
   end
 

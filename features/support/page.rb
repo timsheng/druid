@@ -16,6 +16,7 @@ class Page
   link(:google_search_link, :link => "Google Search")
   link(:google_search_link_text, :link_text => "Google Search")
   link(:google_search_css, :css => "a.link_class")
+  link(:google_search_title, :title => "link_title")
   link(:hello0, {:text => "Hello", :index => 0})
   link(:hello1, {:text => "Hello", :index => 1})
   link(:hello2, {:text => "Hello", :index => 2})
@@ -30,6 +31,7 @@ class Page
   text_field(:text_field_text, :text => "")
   text_field(:text_field_value, :value => "")
   text_field(:text_field_title, :title => "text_field_title")
+  text_field(:text_field_label, :label => "Text Field")
   text_field(:text_field_class_index, :class => "text_field_class", :index => 0)
   text_field(:text_field_name_index, :name => "text_field_name", :index => 0)
 
@@ -49,6 +51,7 @@ class Page
   select_list(:select_list_xpath, :xpath => "//select")
   select_list(:select_list_text, :text => "Test 1")
   select_list(:select_list_value, :value => "option1")
+  select_list(:select_list_multiple, :id => "sel_list_multiple")
   select_list(:select_list_class_index, :class => "sel_list_class", :index => 0)
   select_list(:select_list_name_index, :name => "sel_list_name", :index => 0)
 
@@ -94,6 +97,7 @@ class Page
   div(:div_index, :index => 0)
   div(:div_xpath, :xpath => '//div')
   div(:div_text, :text => "page-object rocks!")
+  div(:div_title, :title => "div_title")
   div(:div_class_index, :class => "div_class", :index => 0)
   div(:div_name_index, :name => "div_name", :index => 0)
 
@@ -128,8 +132,8 @@ class Page
   label(:label_name, :name => "label_name")
   label(:label_class, :class => "label_class")
   label(:label_text, :text => "page-object is the best!")
-  label(:label_index, :index => 0)
-  label(:label_xpath, :xpath => "//label")
+  label(:label_index, :index => 1)
+  label(:label_xpath, :xpath => "//label[2]")
   label(:label_class_index, :class => "label_class", :index => 0)
   label(:label_name_index, :name => "label_name", :index => 0)
 

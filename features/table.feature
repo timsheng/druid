@@ -10,18 +10,41 @@ Feature: Table
     Then I should know it is visible
     Then I should know it exists
 
-  Scenario: Retrieve data from a table using the row header
+  Scenario: Retrieve data from a table using a row header
     When I retrieve a table element
     Then the data for row "Data3" should be "Data3" and "Data4"
 
-  Scenario: Retrieve data from a table using the column header
+  Scenario: Retrieve data from a table using a partial row header
+    When I retrieve a table element
+    Then the data for row "ata3" should be "Data3" and "Data4"
+
+  Scenario: Retrieve data from a table using a row header in the 2nd column
+    When I retrieve a table element
+    Then the data for row "Data4" should be "Data3" and "Data4"
+
+  Scenario: Retrieve data from a table using a partial row header in the 2nd column
+    When I retrieve a table element
+    Then the data for row "ata4" should be "Data3" and "Data4"
+
+  Scenario: Retrieve data from a table using a column header
     When I retrieve a table element
     Then the data for column "Data2" and row "2" should be "Data4"
+
+  Scenario: Retrieve data from a table using a partial column header
+    When I retrieve a table element
+    Then the data for column "ata2" and row "2" should be "Data4"
 
   Scenario: Retrieve data from a table using both headers
     When I retrieve a table element
     Then the data for row "Data3" and column "Data2" should be "Data4"
 
+  Scenario: Retrieve data from a table with an incorrect row header
+    When I retrieve a table element
+    Then the data for row "Data20" should be nil
+
+  Scenario: Retrieve data from a table with an incorrect column header
+    When I retrieve a table element
+    Then the data for row "Data3" and column "Data20" should be nil
   @name
   Scenario Outline: Locating table cells on the Page
     When I retrieve a table element by "<locate_by>"

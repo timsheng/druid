@@ -4,7 +4,7 @@ require 'druid/elements'
 describe Druid::Elements::Div do
   describe "when mapping how to find an element" do
     it "should map watir types to same" do
-      [:class, :id, :text, :index, :xpath].each do |t|
+      [:class, :id, :text, :index, :xpath, :title].each do |t|
         identifier = Druid::Elements::Div.identifier_for t => 'value'
         expect(identifier.keys.first).to eql t
       end
