@@ -2,6 +2,18 @@
 * Enhancement
   * Updated Table [] method to return a row that has matching partial text in any column
   * Updated TableRow [] method to return column that matching partial text in any column
+  * Added the following aliased methods to their corresponding Accessors method
+    a => link
+    hidden => hidden_field
+    img => image
+    li => list_item
+    ol => ordered_list
+    p => paragraph
+    radio => radio_button
+    select => select_list
+    td => cell
+    textarea => text_area
+    ul => unordered_list
 ===Version v1.1.4/ 2016-12-27
 * Enhancement
   * Added ability to find span's by title
