@@ -402,6 +402,20 @@ module Druid
       find_elements("labels(identifier)", Elements::Label, identifier, 'p')
     end
 
+    #
+    # method to click on an area
+    #
+    def click_area_for(identifier)
+      process_call("area(identifier).click", Elements::Area, identifier, nil, 'area')
+    end
+
+    #
+    # method to retrieve an area element
+    #
+    def area_for(identifier)
+      find_element("area(identifier)", Elements::Area, identifier, 'area')
+    end
+
     def element_for(tag, identifier)
       find_element("#{tag.to_s}(identifier)", Elements::Element, identifier, tag.to_s)
     end
