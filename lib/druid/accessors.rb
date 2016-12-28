@@ -35,7 +35,7 @@ module Druid
     #
     def expected_title(expected_title)
       define_method("has_expected_title?") do
-        has_expected_title = expected_title.kind_of?(Regexp) ? expected_title =~ title : expected_title == title
+        has_expected_title = expected_title === title
         raise "Expected title '#{expected_title}' instead of '#{title}'" unless has_expected_title
         has_expected_title
       end
