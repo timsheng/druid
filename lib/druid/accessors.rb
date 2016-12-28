@@ -635,6 +635,7 @@ module Druid
     #   * :index
     #   * :xpath
     #   * :name
+    #   * :text
     # @param optional block to be invoked when element method is called
     #
     def list_item(name, identifier={:index => 0}, &block)
