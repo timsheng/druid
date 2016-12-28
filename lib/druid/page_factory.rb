@@ -64,6 +64,17 @@ module Druid
     #
     # Create a page object if and only if the current page is the same page to be created
     #
+    # @example
+    #  original:
+    #   on_page(NewProduct).save if @current_page.class == NewProduct
+    #   on_page(EditProduct).save if @current_page.class == EditProduct
+    #  new:
+    #   if_page NewProduct do |page|
+    #      page.save
+    #   end
+    #   if_page EditProduct do |page|
+    #      page.update 
+    #   end
     # @param [PageObject] a class that has included the Druid module
     # @param [block] an optional block to be called
     # @return [PageObject] the newly created page object
