@@ -14,6 +14,8 @@
     td => cell
     textarea => text_area
     ul => unordered_list
+  * Added support for the following new elements
+    Area
 ===Version v1.1.4/ 2016-12-27
 * Enhancement
   * Added ability to find span's by title

@@ -416,6 +416,13 @@ module Druid
       find_element("area(identifier)", Elements::Area, identifier, 'area')
     end
 
+    #
+    # method to retrieve an array of area elements
+    #
+    def areas_for(identifier)
+      find_elements("areas(identifier)", Elements::Area, identifier, 'area')
+    end
+
     def element_for(tag, identifier)
       find_element("#{tag.to_s}(identifier)", Elements::Element, identifier, tag.to_s)
     end
