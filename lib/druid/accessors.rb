@@ -1068,6 +1068,40 @@ module Druid
     end
 
     #
+    # adds three methods - one to click the area,
+    # another to return the area element, and another to check the area's existence.
+    #
+    # @example
+    #   area(:message, :id => 'message')
+    #   # will generate 'message', 'message_element', and 'message?' methods
+    #
+    # @param [Symbol] the name used for the generated methods
+    # @param [Hash] identifier how we find an area. You can use a multiple parameters
+    #   by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #   * :text
+    # @param optional block to be invoked when element method is called
+    #
+    def area(name, identifier={:index => 0}, &block)
+      define_method(name) do
+        return click_area_for identifier.clone unless block_given?
+        self.send("#{name}_element").click
+      end
+      define_method("#{name}_element") do
+        return call_block(&block) if block_given?
+        area_for(identifier.clone)
+      end
+      define_method("#{name}?") do
+        return call_block(&block) if block_given?
+        area_for(identifier.clone).exist?
+      end
+    end
+
+    #
     # adds three methods - one to retrieve the text an element, another
     # to retrieve an element, and another to check the element's existence.
     #
