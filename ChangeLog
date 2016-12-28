@@ -2,7 +2,7 @@
 * Enhancement
   * Updated Table [] method to return a row that has matching partial text in any column
   * Updated TableRow [] method to return column that matching partial text in any column
-=== 2016-12-27
+===Version v1.1.4/ 2016-12-27
 * Enhancement
   * Added ability to find span's by title
   * Changed order of initialization so initialize_page is called after goto
