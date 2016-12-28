@@ -16,6 +16,7 @@
     ul => unordered_list
   * Added support for the following new elements
     Area
+    Canvas
   * Added ability to find list_item by :text
 ===Version v1.1.4/ 2016-12-27
 * Enhancement

@@ -31,6 +31,8 @@ class AccessorsTestDruid
   h6(:heading6, :id => 'main_heading')
   paragraph(:first_para, :id => 'first')
   file_field(:upload_me, :id => 'the_file')
+  area(:img_area, :id => 'area')
+  canvas(:my_canvas, :id => 'canvas_id')
 end
 
 class BlockDruid
@@ -110,6 +112,12 @@ class BlockDruid
   end
   file_field :a_file do |element|
     "file_field"
+  end
+  area :img_area do |element|
+    "area"
+  end
+  canvas :my_canvas do |element|
+    "canvas"
   end
 end
 
@@ -1015,6 +1023,43 @@ describe Druid::Accessors do
       it "should retrieve a file field element" do
         expect(driver).to receive(:file_field).and_return(driver)
         expect(druid.upload_me_element).to be_instance_of Druid::Elements::FileField
+      end
+    end
+  end
+
+  describe "area accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to(:img_area)
+        expect(druid).to respond_to(:img_area_element)
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.img_area_element).to eql "area"
+      end
+    end
+
+    it "should click on the area" do
+      expect(driver).to receive(:area).and_return(driver)
+      expect(driver).to receive(:click)
+      druid.img_area
+    end
+
+    it "should retrieve the element from the page" do
+      expect(driver).to receive(:area).and_return(driver)
+      element = druid.img_area_element
+      expect(element).to be_instance_of Druid::Elements::Area
+    end
+  end
+
+  describe "canvas accessors" do
+    context "when called on a page object" do
+      it "should generate accessors methods" do
+        expect(druid).to respond_to(:my_canvas_element)
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.my_canvas_element).to eql "canvas"
       end
     end
   end
