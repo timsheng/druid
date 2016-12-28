@@ -493,6 +493,7 @@ module Druid
     #   * :xpath
     #   * :name
     #   * :text
+    #   * :title
     # @param optional block to be invoked when element method is called
     #
     def span(name, identifier={:index => 0}, &block)
