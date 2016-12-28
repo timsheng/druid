@@ -77,6 +77,26 @@ describe Druid::PageFactory do
     expect(current_page).to be page
   end
 
+  it "should not execute block if page is not @current_page" do
+    world.instance_variable_set "@current_page", TestPageWithDirectUrl.new(driver)
+    world.if_page(FactoryTestDruid) do |page|
+      fail
+    end
+  end
+
+  it "should return the @current_page if asking for another page" do
+    expected = TestPageWithDirectUrl.new(driver)
+    world.instance_variable_set "@current_page", expected
+    expect(world.if_page(FactoryTestDruid)).to be expected
+  end
+
+  # it "should execute the block when we ask if it is the correct page" do
+  #   world.instance_variable_set "@current_page", FactoryTestDruid.new(driver)
+  #   world.if_page(FactoryTestDruid) do |page|
+  #     expect(page).to be_instance_of FactoryTestDruid
+  #   end
+  # end
+
   it "should raise an error when you do not provide a default route" do
     expect { Druid::PageFactory.routes = {:another => []} }.to raise_error 'You must provide a :default route for PageFactory routes'
   end
