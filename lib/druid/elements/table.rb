@@ -4,7 +4,8 @@ module Druid
       #
       # Return the Druid::Elements::Table for the index provided.  Index
       # is zero based. If the index provided is a String then it
-      # will be matched with the text from the first column
+      # will be matched with the text from any column. The text can be
+      # a substring of the full column text.
       #
       # @return [Druid::Elements::Table]
       #
@@ -47,7 +48,9 @@ module Druid
       private
 
       def find_index_by_title(row_title)
-        element.rows.find_index {|row| row[0].text == row_title}
+        element.rows.find_index do |row|
+          row.cells.any? { |col| col.text.include? row_title}
+        end
       end
 
     end
