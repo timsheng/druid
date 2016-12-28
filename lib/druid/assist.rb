@@ -423,6 +423,20 @@ module Druid
       find_elements("areas(identifier)", Elements::Area, identifier, 'area')
     end
 
+    #
+    # method to retrieve a canvas element
+    #
+    def canvas_for(identifier)
+      find_element("canvas(identifier)", Elements::Canvas, identifier, 'canvas')
+    end
+
+    #
+    # method to retrieve an array of canvas elements
+    #
+    def canvases_for(identifier)
+      find_elements("canvases(identifier)", Elements::Canvas, identifier, 'canvas')
+    end
+
     def element_for(tag, identifier)
       find_element("#{tag.to_s}(identifier)", Elements::Element, identifier, tag.to_s)
     end

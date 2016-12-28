@@ -203,5 +203,21 @@ module Druid
     def label_elements(identifier={:index => 0})
       labels_for(identifier)
     end
+
+    def area_element(identifier={:index => 0})
+      area_for(identifier)
+    end
+
+    def area_elements(identifier={:index => 0})
+      areas_for(identifier)
+    end
+
+    def canvas_element(identifier={:index => 0})
+      canvas_for(identifier)
+    end
+
+    def canvas_elements(identifier={:index => 0})
+      canvases_for(identifier)
+    end
   end
 end
