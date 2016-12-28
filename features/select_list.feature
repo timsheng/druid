@@ -65,3 +65,11 @@ Feature: Select List
   Scenario: It should know if an option is selected
     When I select "Test 2" from the select list
     Then the select list should know that "Test 2" is selected
+
+  Scenario: Clearing multiple select list
+    When I clear multiple select list
+    Then multiple select list should have no selected options
+
+  Scenario: Selecting an option by its value
+    When I select an option using the value "option2"
+    Then the selected option should be "Test 2"

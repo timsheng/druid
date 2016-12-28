@@ -9,6 +9,7 @@ module Druid
       #
       def [](idx)
         idx = find_index_by_title(idx) if idx.kind_of?(String)
+        return nil unless idx
         Druid::Elements::TableCell.new(element[idx])
       end
       #
@@ -29,7 +30,7 @@ module Druid
       def find_index_by_title(title)
         table = element.parent
         first_row = table[0]
-        first_row.cells.find_index { |column| column.text == title}
+        first_row.cells.find_index { |column| column.text.include? title}
       end
 
     end

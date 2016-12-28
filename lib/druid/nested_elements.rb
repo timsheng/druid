@@ -53,7 +53,7 @@ module Druid
     end
 
     def checkbox_elements(identifier={:index => 0})
-      checkboxs_for(identifier)
+      checkboxes_for(identifier)
     end
 
     def radio_button_element(identifier={:index => 0})

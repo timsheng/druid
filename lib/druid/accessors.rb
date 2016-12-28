@@ -35,7 +35,7 @@ module Druid
     #
     def expected_title(expected_title)
       define_method("has_expected_title?") do
-        has_expected_title = expected_title.kind_of?(Regexp) ? expected_title =~ title : expected_title == title
+        has_expected_title = expected_title === title
         raise "Expected title '#{expected_title}' instead of '#{title}'" unless has_expected_title
         has_expected_title
       end
@@ -125,6 +125,7 @@ module Druid
     #   * :link
     #   * :link_text
     #   * :css
+    #   * :title
     # @param optional block to be invoked when element method is called
     #
     def link(name, identifier={:index => 0}, &block)
@@ -164,6 +165,7 @@ module Druid
     #   * :xpath
     #   * :text
     #   * :title
+    #   * :label
     # @param optional block to be invoked when element method is called
     #
     def text_field(name, identifier={:index => 0}, &block)
@@ -380,6 +382,7 @@ module Druid
     #   * :name
     #   * :text
     #   * :value
+    #   * :title
     # @param optional block to be invoked when element method is called
     #
     def div(name, identifier={:index => 0}, &block)

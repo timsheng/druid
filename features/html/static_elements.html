@@ -4,6 +4,7 @@
   </head>
   <body>
     <p id="p_id" name="p_name" class="p_class">Static Elements Page</p>
+    <label for="text_field_id">Text Field</label>
     <input id="text_field_id" name="text_field_name" class="text_field_class" title="text_field_title"
            size="40" type="text" />
 
@@ -17,15 +18,21 @@
       <option value="option2">Test 2</option>
     </select>
 
+    <select multiple="multiple" id="sel_list_multiple">
+      <option value="option1" selected="true">Test 1</option>
+      <option value="option2">Test 2</option>
+      <option value="option3" selected="true">Test 3</option>
+    </select>
 
-    <a href="success.html" id="link_id" name="link_name" class="link_class" >Google Search</a>
+
+    <a href="success.html" id="link_id" name="link_name" class="link_class" title="link_title" >Google Search</a>
 
     <input id="cb_id" name="cb_name" class="cb_class" type="checkbox" value="1" />
 
     <input type="radio" id="milk_id" name="milk_name" class="milk_class" value="Milk"> Milk <br />
     <input type="radio" id="butter_id" name="butter_name" class="butter_class" value="Butter">Butter
 
-    <div id="div_id" name="div_name" class="div_class">
+    <div id="div_id" name="div_name" class="div_class" title="div_title">
       page-object rocks!
     </div>
 

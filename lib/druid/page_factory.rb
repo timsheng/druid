@@ -62,6 +62,31 @@ module Druid
     alias_method :on, :on_page
 
     #
+    # Create a page object if and only if the current page is the same page to be created
+    #
+    # @example
+    #  original:
+    #   on_page(NewProduct).save if @current_page.class == NewProduct
+    #   on_page(EditProduct).save if @current_page.class == EditProduct
+    #  new:
+    #   if_page NewProduct do |page|
+    #      page.save
+    #   end
+    #   if_page EditProduct do |page|
+    #      page.update 
+    #   end
+    # @param [PageObject] a class that has included the Druid module
+    # @param [block] an optional block to be called
+    # @return [PageObject] the newly created page object
+    def if_page(page_class, &block)
+      return @current_page unless @current_page.class == page_class
+      on_page(page_class, false, &block)
+    end
+
+    # support 'if' for readability of usage
+    alias_method :if, :if_page
+
+    #
     # Navigate to a specific page following a predefined path.
     #
     # This method requires a lot of setup.  See the documentation for
