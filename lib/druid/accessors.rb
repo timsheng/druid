@@ -145,6 +145,9 @@ module Druid
       alias_method "#{name}_link".to_sym, "#{name}_element".to_sym
     end
 
+    alias_method :a, :link
+
+
     #
     # adds four methods to the page objec - one to set text in a text field,
     # another to retrieve text from a text field, another to return the text
@@ -276,6 +279,7 @@ module Druid
       end
       alias_method "#{name}_select_list".to_sym, "#{name}_element".to_sym
     end
+    alias_method :select, :select_list
 
     #
     # adds five methods - one to select, another to clear,
@@ -324,6 +328,7 @@ module Druid
       end
       alias_method "#{name}_radio_button".to_sym, "#{name}_element".to_sym
     end
+    alias_method :radio, :radio_button
 
     #
     # adds three methods - one to click a button, another to
@@ -469,6 +474,7 @@ module Druid
       end
       alias_method "#{name}_cell".to_sym, "#{name}_element".to_sym
     end
+    alias_method :td, :cell
 
     #
     # adds three methods - one to retrieve the text from a span,
@@ -538,6 +544,7 @@ module Druid
       end
       alias_method "#{name}_image".to_sym, "#{name}_element".to_sym
     end
+    alias_method :img, :image
 
     #
     # adds two methods - one to retrieve the form element, and another to
@@ -608,6 +615,7 @@ module Druid
       end
       alias_method "#{name}_hidden_field".to_sym, "#{name}_element".to_sym
     end
+    alias_method :hidden, :hidden_field
 
     #
     # adds three methods - one to retrieve the text from a list item,
@@ -644,6 +652,7 @@ module Druid
       end
       alias_method "#{name}_list_item".to_sym, "#{name}_element".to_sym
     end
+    alias_method :li, :list_item
 
     #
     # adds two methods - one to retrieve the ordered list element, and another to
@@ -675,6 +684,7 @@ module Druid
       end
       alias_method "#{name}_ordered_list".to_sym, "#{name}_element".to_sym
     end
+    alias_method :ol, :ordered_list
 
     #
     # adds four methods to the page object - one to set text in a text area,
@@ -716,6 +726,7 @@ module Druid
       end
       alias_method "#{name}_text_area".to_sym, "#{name}_element".to_sym
     end
+    alias_method :textarea, :text_area
 
     #
     # adds two methods - one to retrieve the unordered list element, and another to
@@ -746,6 +757,7 @@ module Druid
       end
       alias_method "#{name}_unordered_list".to_sym, "#{name}_element".to_sym
     end
+    alias_method :ul, :unordered_list
 
     #
     # adds three methods - one to retrieve the text of a h1 element, another to
@@ -984,6 +996,7 @@ module Druid
       end
       alias_method "#{name}_paragraph".to_sym, "#{name}_element".to_sym
     end
+    alias_method :p, :paragraph
 
     #
     # adds three methods - one to set the file for a file field, another to retrieve
