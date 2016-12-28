@@ -1,4 +1,4 @@
-When(/^I retrieve an area element$/) do
+When(/^I retrieve the area element$/) do
   @element = @page.area_id_element
 end
 
@@ -8,4 +8,16 @@ end
 
 Then(/^I should be able to click the area$/) do
   @page.send("area_#{@how}")
+end
+
+Then(/^I should see the coordinates are "([^"]*)"$/) do |coords|
+  expect(@element.coords).to eql coords
+end
+
+Then(/^I should see the shape are "([^"]*)"$/) do |shape|
+  expect(@element.shape).to eql shape
+end
+
+Then(/^I should see the href is "([^"]*)"$/) do |href|
+  expect(@element.href).to include href
 end
