@@ -71,3 +71,7 @@ end
 Then(/^the data for row "([^"]*)" and column "([^"]*)" should be nil$/) do |row, column|
   expect(@element[row][column]).to be_nil
 end
+
+When(/^I retrieve a table with thead element$/) do
+  @element = @page.table_with_thead_id_element
+end

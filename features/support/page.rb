@@ -106,6 +106,7 @@ class Page
   table(:table_index, :index => 0)
   table(:table_xpath, :xpath => '//table')
   table(:table_name, :name => 'table_name')
+  table(:table_with_thead_id, :id => 'table_with_thead_id')
   table(:table_class_index, :class => "table_class", :index => 0)
   table(:table_name_index, :name => "table_name", :index => 0)
 
@@ -140,8 +141,8 @@ class Page
   image(:image_id, :id => "image_id")
   image(:image_name, :name => 'image_name')
   image(:image_class, :class => 'image_class')
-  image(:image_index, :index => 0)
-  image(:image_xpath, :xpath => '//img')
+  image(:image_index, :index => 1)
+  image(:image_xpath, :xpath => '//img[2]')
   image(:image_alt, :alt => 'image_alt')
   image(:image_src, :src => 'images/circle.png')
   image(:image_class_index, :class => "image_class", :index => 0)
@@ -173,6 +174,7 @@ class Page
   list_item(:li_name, :name => 'li_name')
   list_item(:li_index, :index => 0)
   list_item(:li_xpath, :xpath => '//li[1]')
+  list_item(:li_text, :text => 'Item One')
   list_item(:li_class_index, :class => "li_class", :index => 0)
   list_item(:li_name_index, :name => "li_name", :index => 0)
 
@@ -277,6 +279,30 @@ class Page
   file_field(:file_field_name_index, :name => 'file_field_name', :index => 0)
 
   link(:child, :id => 'child')
+
+  area(:area_id, :id => 'area')
+  area(:area_name, :name => 'area')
+  area(:area_class, :class => 'area')
+  area(:area_index, :index => 0)
+  area(:area_xpath, :xpath => '//area')
+  area(:area_class_index, :class => 'area', :index => 0)
+  area(:area_name_index, :name => 'area', :index => 0)
+
+  canvas(:canvas_id, :id => 'canvas')
+  canvas(:canvas_name, :name => 'canvas')
+  canvas(:canvas_class, :class => 'canvas')
+  canvas(:canvas_index, :index => 0)
+  canvas(:canvas_xpath, :xpath => '//canvas')
+  canvas(:canvas_class_index, :class => 'canvas', :index => 0)
+  canvas(:canvas_name_index, :name => 'canvas', :index => 0)
+
+  audio(:audio_id, :id => 'audio')
+  audio(:audio_name, :name => 'audio')
+  audio(:audio_class, :class => 'audio')
+  audio(:audio_index, :index => 0)
+  audio(:audio_xpath, :xpath => '//audio')
+  audio(:audio_class_index, :class => 'audio', :index => 0)
+  audio(:audio_name_index, :name => 'audio', :index => 0)
 
   element(:article_id, :article, :id => 'article_id')
   element(:header_id, :header, :id => 'header_id')

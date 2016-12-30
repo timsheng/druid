@@ -402,6 +402,55 @@ module Druid
       find_elements("labels(identifier)", Elements::Label, identifier, 'p')
     end
 
+    #
+    # method to click on an area
+    #
+    def click_area_for(identifier)
+      process_call("area(identifier).click", Elements::Area, identifier, nil, 'area')
+    end
+
+    #
+    # method to retrieve an area element
+    #
+    def area_for(identifier)
+      find_element("area(identifier)", Elements::Area, identifier, 'area')
+    end
+
+    #
+    # method to retrieve an array of area elements
+    #
+    def areas_for(identifier)
+      find_elements("areas(identifier)", Elements::Area, identifier, 'area')
+    end
+
+    #
+    # method to retrieve a canvas element
+    #
+    def canvas_for(identifier)
+      find_element("canvas(identifier)", Elements::Canvas, identifier, 'canvas')
+    end
+
+    #
+    # method to retrieve an array of canvas elements
+    #
+    def canvases_for(identifier)
+      find_elements("canvases(identifier)", Elements::Canvas, identifier, 'canvas')
+    end
+
+    #
+    # method to retrieve an audio element
+    #
+    def audio_for(identifier)
+      find_element("audio(identifier)", Elements::Audio, identifier, 'audio')
+    end
+
+    #
+    # method to retrieve an array of audio elements
+    #
+    def audios_for(identifier)
+      find_elements("audios(identifier)", Elements::Audio, identifier, 'audio')
+    end
+
     def element_for(tag, identifier)
       find_element("#{tag.to_s}(identifier)", Elements::Element, identifier, tag.to_s)
     end

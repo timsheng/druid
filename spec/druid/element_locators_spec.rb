@@ -592,4 +592,71 @@ describe Druid::ElementLocators do
     expect(driver).to receive(:audio).with(:index => 0).and_return(driver)
     page.element(:audio)
   end
+
+  it "should find an area element" do
+    expect(driver).to receive(:area).with(:id => 'blah').and_return(driver)
+    element = page.area_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::Area
+  end
+
+  it "should find an area element using a default identifier" do
+    expect(driver).to receive(:area).with(:index => 0).and_return(driver)
+    page.area_element
+  end
+
+  it "should find all area elements" do
+    expect(driver).to receive(:areas).with(:id => 'blah').and_return([driver])
+    elements = page.area_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Area
+  end
+
+  it "should find all areas with no identifier" do
+    expect(driver).to receive(:areas).with({}).and_return([driver])
+    page.area_elements
+  end
+
+  it "should find a canvas element" do
+    expect(driver).to receive(:canvas).with(:id => 'blah').and_return(driver)
+    element = page.canvas_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::Canvas
+  end
+
+  it "should find a canvas element using a default identifier" do
+    expect(driver).to receive(:canvas).with(:index => 0).and_return(driver)
+    page.canvas_element
+  end
+
+  it "should find all canvas elements" do
+    expect(driver).to receive(:canvases).with(:id => 'blah').and_return([driver])
+    elements = page.canvas_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Canvas
+  end
+
+  it "should find all canvas elements with no identifier" do
+    expect(driver).to receive(:canvases).with({}).and_return([driver])
+    page.canvas_elements
+  end
+
+  it "should find an audio element" do
+    expect(driver).to receive(:audio).with(:id => 'blah').and_return(driver)
+    element = page.audio_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::Audio
+  end
+
+  it "should find an audio element using a default identifier" do
+    expect(driver).to receive(:audio).with(:index => 0).and_return(driver)
+    page.audio_element
+  end
+
+  it "should find all audios elements" do
+    expect(driver).to receive(:audios).with(:id => 'blah').and_return([driver])
+    elements = page.audio_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Audio
+  end
+
+  it "should find all canvas elements with no identifier" do
+    expect(driver).to receive(:audios).with({}).and_return([driver])
+    page.audio_elements
+  end
+
 end

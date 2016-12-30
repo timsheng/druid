@@ -24,6 +24,26 @@
       <option value="option3" selected="true">Test 3</option>
     </select>
 
+    <img src="planets.gif" width="145" height="126" alt="Planets" usemap="#planetmap"/>
+    <map id="map" name="planetmap">
+      <area id="area" name="area" class="area" shape="rect" coords="0,0,82,126" href="sun.html"/>
+      <area shape="circle" coords="90,58,3" href="mercur.html"/>
+      <area shape="circle" coords="124,58,8" href="venus.html"/>
+    </map>
+
+    <canvas id="canvas" name="canvas" class="canvas" width="200" height="100"></canvas>
+    <script type="text/javascript">
+      var c=document.getElementById('myCanvas');
+      var ctx=c.getContext('2d');
+      ctx.fillStyle="#FF0000";
+      ctx.fillRect=(0,0,150,75);
+    </script>
+
+    <audio controls id="audio" name="audio" class="audio">
+      <source src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.mp4" type='audio/mp4'>
+      <source src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga" type='audio/ogg; codecs=vorbis'>
+      <p>Your user agent does not support the HTML5 Audio element.</p>
+    </audio>
 
     <a href="success.html" id="link_id" name="link_name" class="link_class" title="link_title" >Google Search</a>
 
@@ -52,6 +72,25 @@
         <td>Data3</td>
         <td id='cell_id', name='cell_name' class='cell_class'>Data4</td>
       </tr>
+    </table>
+
+    <table id="table_with_thead_id" border='1'>
+      <thead>
+        <tr>
+          <th>Col1</th>
+          <th>Col2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Data1</td>
+          <td>Data2</td>
+        </tr>
+        <tr>
+          <td>Data3</td>
+          <td>Data4</td>
+        </tr>
+      </tbody>
     </table>
 
     <form method="get" action="success.html">
