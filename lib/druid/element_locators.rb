@@ -900,6 +900,101 @@ module Druid
     end
 
     #
+    # Finds an area
+    #
+    # @param [Hash] identifier how we find an area. You can use a multiple parameters
+    #   by combining of any of the following except xpath.  It defaults to {:index => 0}
+    #   which will return the first file field.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def area_element(identifier={:index => 0})
+      area_for(identifier.clone)
+    end
+
+    #
+    # Finds all areas that matches the provided identifier
+    #
+    # @param [Hash] identifier how we find an area. You can use a multiple parameters
+    #   by combining of any of the following except xpath.  It defaults to empty hash
+    #   which will return all file fields.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def area_elements(identifier={})
+      areas_for(identifier.clone)
+    end
+
+    #
+    # Finds an canvas
+    #
+    # @param [Hash] identifier how we find an canvas. You can use a multiple parameters
+    #   by combining of any of the following except xpath.  It defaults to {:index => 0}
+    #   which will return the first file field.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def canvas_element(identifier={:index => 0})
+      canvas_for(identifier.clone)
+    end
+
+    #
+    # Finds all canvases that matches the provided identifier
+    #
+    # @param [Hash] identifier how we find an canvas. You can use a multiple parameters
+    #   by combining of any of the following except xpath.  It defaults to empty hash
+    #   which will return all file fields.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def canvas_elements(identifier={})
+      canvases_for(identifier.clone)
+    end
+
+    #
+    # Finds an audio element
+    #
+    # @param [Hash] identifier how we find an audio. You can use a multiple parameters
+    #   by combining of any of the following except xpath.  It defaults to {:index => 0}
+    #   which will return the first file field.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def audio_element(identifier={:index => 0})
+      audio_for(identifier.clone)
+    end
+
+    #
+    # Finds all audios that matches the provided identifier
+    #
+    # @param [Hash] identifier how we find an audio. You can use a multiple parameters
+    #   by combining of any of the following except xpath.  It defaults to empty hash
+    #   which will return all file fields.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def audio_elements(identifier={})
+      audios_for(identifier.clone)
+    end
+    #
     # Finds an element
     #
     # @param [Symbol] the name of the tag for the element

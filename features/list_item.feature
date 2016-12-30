@@ -19,6 +19,7 @@ Feature: List item
     | xpath     |
     | index     |
     | name      |
+    | text      |
 
   @multi
   Scenario Outline: Locating list items using multiple parameters
