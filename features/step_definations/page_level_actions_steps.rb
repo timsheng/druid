@@ -135,3 +135,16 @@ Then(/^the page should not have the expected element$/) do
 
   expect(FakePage.new(@driver)).not_to have_expected_element
 end
+
+
+When(/^I handle the alert that reloads the page$/) do
+  @msg = @page.alert do
+    @page.alert_button_that_reloads
+  end
+end
+
+When(/^I handle the confirm that reloads the page$/) do
+  @msg = @page.confirm(true) do
+    @page.confirm_button_that_reloads
+  end
+end

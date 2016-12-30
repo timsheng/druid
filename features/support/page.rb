@@ -208,7 +208,9 @@ class Page
   unordered_list(:ul_class_name, :class => "ul_class", :name => "ul_name")
 
   button(:alert_button, :id => "alert_button")
+  button(:alert_button_that_reloads, :id => 'alert_button_that_reloads')
   button(:confirm_button, :id => "confirm_button")
+  button(:confirm_button_that_reloads, :id => 'confirm_button_that_reloads')
   button(:prompt_button, :id => "prompt_button")
 
   link(:open_window, :text => 'New Window')
