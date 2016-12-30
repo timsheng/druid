@@ -219,5 +219,13 @@ module Druid
     def canvas_elements(identifier={:index => 0})
       canvases_for(identifier)
     end
+
+    def audio_element(identifier={:index => 0})
+      audio_for(identifier)
+    end
+
+    def audio_elements(identifier={:index => 0})
+      audios_for(identifier)
+    end
   end
 end
