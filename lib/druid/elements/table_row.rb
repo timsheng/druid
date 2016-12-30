@@ -29,6 +29,7 @@ module Druid
 
       def find_index_by_title(title)
         table = element.parent
+        table = table.parent if table.tag_name == 'tbody'
         first_row = table[0]
         first_row.cells.find_index { |column| column.text.include? title}
       end
