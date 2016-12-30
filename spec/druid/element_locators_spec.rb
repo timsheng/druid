@@ -637,4 +637,26 @@ describe Druid::ElementLocators do
     page.canvas_elements
   end
 
+  it "should find an audio element" do
+    expect(driver).to receive(:audio).with(:id => 'blah').and_return(driver)
+    element = page.audio_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::Audio
+  end
+
+  it "should find an audio element using a default identifier" do
+    expect(driver).to receive(:audio).with(:index => 0).and_return(driver)
+    page.audio_element
+  end
+
+  it "should find all audios elements" do
+    expect(driver).to receive(:audios).with(:id => 'blah').and_return([driver])
+    elements = page.audio_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Audio
+  end
+
+  it "should find all canvas elements with no identifier" do
+    expect(driver).to receive(:audios).with({}).and_return([driver])
+    page.audio_elements
+  end
+
 end

@@ -437,6 +437,20 @@ module Druid
       find_elements("canvases(identifier)", Elements::Canvas, identifier, 'canvas')
     end
 
+    #
+    # method to retrieve an audio element
+    #
+    def audio_for(identifier)
+      find_element("audio(identifier)", Elements::Audio, identifier, 'audio')
+    end
+
+    #
+    # method to retrieve an array of audio elements
+    #
+    def audios_for(identifier)
+      find_elements("audios(identifier)", Elements::Audio, identifier, 'audio')
+    end
+
     def element_for(tag, identifier)
       find_element("#{tag.to_s}(identifier)", Elements::Element, identifier, tag.to_s)
     end

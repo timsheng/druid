@@ -33,6 +33,7 @@ class AccessorsTestDruid
   file_field(:upload_me, :id => 'the_file')
   area(:img_area, :id => 'area')
   canvas(:my_canvas, :id => 'canvas_id')
+  audio(:acdc, :id => 'audio_id')
 end
 
 class BlockDruid
@@ -118,6 +119,9 @@ class BlockDruid
   end
   canvas :my_canvas do |element|
     "canvas"
+  end
+  audio :acdc do |element|
+    "audio"
   end
 end
 
@@ -1054,12 +1058,24 @@ describe Druid::Accessors do
 
   describe "canvas accessors" do
     context "when called on a page object" do
-      it "should generate accessors methods" do
+      it "should generate accessor methods" do
         expect(druid).to respond_to(:my_canvas_element)
       end
 
       it "should call a block on the element method when present" do
         expect(block_druid.my_canvas_element).to eql "canvas"
+      end
+    end
+  end
+
+  describe "audio accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to(:acdc_element)
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.acdc_element).to eql "audio"
       end
     end
   end

@@ -962,6 +962,38 @@ module Druid
     def canvas_elements(identifier={})
       canvases_for(identifier.clone)
     end
+
+    #
+    # Finds an audio element
+    #
+    # @param [Hash] identifier how we find an audio. You can use a multiple parameters
+    #   by combining of any of the following except xpath.  It defaults to {:index => 0}
+    #   which will return the first file field.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def audio_element(identifier={:index => 0})
+      audio_for(identifier.clone)
+    end
+
+    #
+    # Finds all audios that matches the provided identifier
+    #
+    # @param [Hash] identifier how we find an audio. You can use a multiple parameters
+    #   by combining of any of the following except xpath.  It defaults to empty hash
+    #   which will return all file fields.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def audio_elements(identifier={})
+      audios_for(identifier.clone)
+    end
     #
     # Finds an element
     #
