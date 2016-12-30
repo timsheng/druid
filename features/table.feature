@@ -84,3 +84,11 @@ Feature: Table
     When I retrieve a table element while the script is executing
     Then I should see that the table exists
     And the data for row "1" should be "Data1" and "Data2"
+
+  Scenario: Retrieve data from a table with a thead using a column header
+    When I retrieve a table with thead element
+    Then the data for column "Col1" and row "2" should be "Data1"
+
+  Scenario: Retrieve data from the first row of a table with a thead using a column header
+    When I retrieve a table with thead element
+    Then the data for column "Col1" and row "1" should be "Col1"

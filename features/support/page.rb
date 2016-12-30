@@ -106,6 +106,7 @@ class Page
   table(:table_index, :index => 0)
   table(:table_xpath, :xpath => '//table')
   table(:table_name, :name => 'table_name')
+  table(:table_with_thead_id, :id => 'table_with_thead_id')
   table(:table_class_index, :class => "table_class", :index => 0)
   table(:table_name_index, :name => "table_name", :index => 0)
 
