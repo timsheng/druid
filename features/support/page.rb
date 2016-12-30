@@ -306,6 +306,14 @@ class Page
   audio(:audio_class_index, :class => 'audio', :index => 0)
   audio(:audio_name_index, :name => 'audio', :index => 0)
 
+  video(:video_id, :id => 'video')
+  video(:video_name, :name => 'video')
+  video(:video_class, :class => 'video')
+  video(:video_index, :index => 0)
+  video(:video_xpath, :xpath => '//video')
+  video(:video_class_index, :class => 'video', :index => 0)
+  video(:video_name_index, :name => 'video', :index => 0)
+
   element(:article_id, :article, :id => 'article_id')
   element(:header_id, :header, :id => 'header_id')
   element(:footer_id, :footer, :id => 'footer_id')

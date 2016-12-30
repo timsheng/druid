@@ -451,6 +451,20 @@ module Druid
       find_elements("audios(identifier)", Elements::Audio, identifier, 'audio')
     end
 
+    #
+    # method to retrieve an video element
+    #
+    def video_for(identifier)
+      find_element("video(identifier)", Elements::Video, identifier, 'video')
+    end
+
+    #
+    # method to retrieve an array of audio elements
+    #
+    def videos_for(identifier)
+      finds_element("videos(identifier)", Elements::Video, identifier, 'video')
+    end
+
     def element_for(tag, identifier)
       find_element("#{tag.to_s}(identifier)", Elements::Element, identifier, tag.to_s)
     end

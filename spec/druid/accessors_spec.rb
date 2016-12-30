@@ -34,6 +34,7 @@ class AccessorsTestDruid
   area(:img_area, :id => 'area')
   canvas(:my_canvas, :id => 'canvas_id')
   audio(:acdc, :id => 'audio_id')
+  video(:movie, :id => 'video_id')
 end
 
 class BlockDruid
@@ -122,6 +123,9 @@ class BlockDruid
   end
   audio :acdc do |element|
     "audio"
+  end
+  video :movie do |element|
+    "video"
   end
 end
 
@@ -1076,6 +1080,18 @@ describe Druid::Accessors do
 
       it "should call a block on the element method when present" do
         expect(block_druid.acdc_element).to eql "audio"
+      end
+    end
+  end
+
+  describe "video accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to(:movie_element)
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.movie_element).to eql "video"
       end
     end
   end
