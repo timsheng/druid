@@ -51,9 +51,19 @@ Feature: Page level actions
     When I handle the alert
     Then I should be able to get the alert's message
 
+  Scenario: Handling alert popups that reload the page
+    Given I am on the static elements page
+    When I handle the alert that reloads the page
+    Then I should be able to get the alert's message
+
   Scenario: Handling confirm popups
     Given I am on the static elements page
     When I handle the confirm
+    Then I should be able to get the confirm's message
+
+  Scenario: Handling confirm popups that reload the page
+    Given I am on the static elements page
+    When I handle the confirm that reloads the page
     Then I should be able to get the confirm's message
 
   Scenario: Handling prompt popups
