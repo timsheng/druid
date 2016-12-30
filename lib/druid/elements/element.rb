@@ -152,6 +152,13 @@ module Druid
       end
 
       #
+      # hover over the element
+      #
+      def hover
+        element.hover
+      end
+
+      #
       # Returns parent element of current element.
       def parent
         parent = element.parent

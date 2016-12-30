@@ -40,5 +40,9 @@ module UrlHelper
       "#{files}/multi_elements.html"
     end
 
+    def hover
+      "#{files}/hover.html"
+    end
+
   end
 end
