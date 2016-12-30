@@ -222,3 +222,8 @@ Feature: Elements
   Scenario: Flashing an element
     When I retrieve a button element
     Then I should be able to flash it
+
+  Scenario: Hovering over an element
+    Given I am on the hover page
+    When I hover over the hello link
+    Then the font size should be "20px"
