@@ -462,7 +462,7 @@ module Druid
     # method to retrieve an array of audio elements
     #
     def videos_for(identifier)
-      finds_element("videos(identifier)", Elements::Video, identifier, 'video')
+      find_elements("videos(identifier)", Elements::Video, identifier, 'video')
     end
 
     def element_for(tag, identifier)

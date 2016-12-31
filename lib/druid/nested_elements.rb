@@ -227,5 +227,13 @@ module Druid
     def audio_elements(identifier={:index => 0})
       audios_for(identifier)
     end
+
+    def video_element(identifier={:index => 0})
+      video_for(identifier)
+    end
+
+    def video_elements(identifier={:index => 0})
+      videos_for(identifier)
+    end
   end
 end

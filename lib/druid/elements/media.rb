@@ -24,6 +24,22 @@ module Druid
         return volume.to_i if volume
       end
 
+      def ended?
+        attribute(:ended)
+      end
+
+      def seeking?
+        attribute(:seeking)
+      end
+
+      def loop?
+        attribute(:loop)
+      end
+
+      def muted?
+        attribute(:muted)
+      end
+
     end
   end
 end
