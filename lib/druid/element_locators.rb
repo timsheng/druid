@@ -995,6 +995,37 @@ module Druid
       audios_for(identifier.clone)
     end
     #
+    # Finds an video element
+    #
+    # @param [Hash] identifier how we find an video. You can use a multiple parameters
+    #   by combining of any of the following except xpath.  It defaults to {:index => 0}
+    #   which will return the first file field.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def video_element(identifier={:index => 0})
+      video_for(identifier.clone)
+    end
+
+    #
+    # Finds all videos that matches the provided identifier
+    #
+    # @param [Hash] identifier how we find an video. You can use a multiple parameters
+    #   by combining of any of the following except xpath.  It defaults to empty hash
+    #   which will return all file fields.  The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    #
+    def video_elements(identifier={})
+      videos_for(identifier.clone)
+    end
+    #
     # Finds an element
     #
     # @param [Symbol] the name of the tag for the element

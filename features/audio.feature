@@ -48,3 +48,19 @@ Feature: Support for the audio element
   Scenario: Should know its volume
     When I retrieve the audio element
     Then I should know that its volume is 1
+
+  #Scenario: Should know if it has ended
+      #When I retrieve the audio element
+      #Then I should know that it has not ended
+
+  #Scenario: Should know if it is seeking
+    #When I retrieve the audio element
+    #Then I should know that it is not seeking
+
+  #Scenario: Should know if it is in a loop
+    #When I retrieve the audio element
+    #Then I should know that it is not in a loop
+
+  #Scenario: Should know if it is muted
+    #When I retrieve the audio element
+    #Then I should know that it is muted
