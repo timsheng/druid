@@ -227,3 +227,7 @@ Feature: Elements
     Given I am on the hover page
     When I hover over the hello link
     Then the font size should be "20px"
+
+  Scenario: Getting an element's id
+    When I retrieve a button element
+    Then I should know its id is "button_id"

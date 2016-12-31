@@ -1,3 +1,6 @@
+=== 2016-12-31
+* Enhancement
+  * Added method to get the id of an Element
 === 2016-12-30
 * Enhancement
   * Added hover method to Element. Browser support is limited
@@ -21,6 +24,7 @@
     Area
     Canvas
     Audio
+    Video
   * Added ability to find list_item by :text
 ===Version v1.1.4/ 2016-12-27
 * Enhancement

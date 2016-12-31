@@ -126,3 +126,7 @@ end
 Then(/^the font size should be "([^"]*)"$/) do |font_size|
   expect(@page.hello_element.style('font-size')).to eql font_size
 end
+
+Then(/^I should know its id is "([^"]*)"$/) do |id|
+  expect(@element.id).to eql id
+end

@@ -145,6 +145,13 @@ module Druid
       end
 
       #
+      # get the id of element
+      #
+      def id
+        attribute(:id)
+      end
+
+      #
       # Flash the element by temporarily changing the background color
       #
       def flash
