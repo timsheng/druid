@@ -1,7 +1,7 @@
 === 2017-01-03
 * Enhancement
   * Added selected_values method to SelectList to get values of all selected elements
-=== 2016-12-31
+=== Version v1.1.5/ 2016-12-31
 * Enhancement
   * Added method to get the id of an Element
 === 2016-12-30
