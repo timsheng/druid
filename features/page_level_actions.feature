@@ -51,6 +51,11 @@ Feature: Page level actions
     When I handle the alert
     Then I should be able to get the alert's message
 
+  Scenario: Handling possible alert popups
+    Given I am on the static elements page
+    When I handle the possible alert
+    Then I should be able to verify the popup didn't have a message
+
   Scenario: Handling alert popups that reload the page
     Given I am on the static elements page
     When I handle the alert that reloads the page
@@ -61,6 +66,11 @@ Feature: Page level actions
     When I handle the confirm
     Then I should be able to get the confirm's message
 
+  Scenario: Handling possible confirm popups
+    Given I am on the static elements page
+    When I handle the possible confirm
+    Then I should be able to verify the popup didn't have a message
+
   Scenario: Handling confirm popups that reload the page
     Given I am on the static elements page
     When I handle the confirm that reloads the page
@@ -70,6 +80,11 @@ Feature: Page level actions
     Given I am on the static elements page
     When I handle the prompt
     Then I should be able to get the message and default value
+
+  Scenario: Handling possible prompt popups
+    Given I am on the static elements page
+    When I handle the possible prompt
+    Then I should be able to verify the popup didn't have a message
 
   Scenario: Attach to window using title
     Given I am on the static elements page
