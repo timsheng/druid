@@ -15,6 +15,7 @@ describe Druid::Elements::TableRow do
     let(:table_row) { Druid::Elements::TableRow.new(element) }
 
     it "should return a table cell when indexed" do
+      allow(table_row).to receive(:columns).and_return(2)
       expect(element).to receive(:[]).with(1)
       expect(table_row[1]).to be_instance_of Druid::Elements::TableCell
     end
