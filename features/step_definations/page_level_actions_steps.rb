@@ -148,3 +148,25 @@ When(/^I handle the confirm that reloads the page$/) do
     @page.confirm_button_that_reloads
   end
 end
+
+When(/^I handle the possible alert$/) do
+  @msg = @page.alert do
+    @page.alert_button_element.focus
+  end
+end
+
+Then(/^I should be able to verify the popup didn't have a message$/) do
+  expect(@msg).to be_nil
+end
+
+When(/^I handle the possible confirm$/) do
+  @msg = @page.confirm(true) do
+    @page.confirm_button_element.focus
+  end
+end
+
+When(/^I handle the possible prompt$/) do
+  @msg = @page.prompt("Tim") do
+    @page.prompt_button_element.focus
+  end
+end
