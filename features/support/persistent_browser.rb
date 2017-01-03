@@ -3,7 +3,8 @@ module Druid
     @@driver = false
     def self.get_browser
       if !@@driver
-        @@driver = Watir::Browser.new :firefox if ENV['DRIVER'] == 'WATIR'
+        target_browser = ENV['BROWSER'].to_sym
+        @@driver = Watir::Browser.new target_browser if ENV['DRIVER'] == 'WATIR'
       end
       @@driver
     end
