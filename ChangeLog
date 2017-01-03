@@ -1,6 +1,7 @@
 === 2017-01-03
 * Enhancement
   * Added selected_values method to SelectList to get values of all selected elements
+  * Added ability to pass classname as string to visit_page, on_page, and if_page methods
 === Version v1.1.5/ 2016-12-31
 * Enhancement
   * Added method to get the id of an Element
