@@ -105,7 +105,28 @@ When(/^I retrieve the label element$/) do
 end
 
 Then(/^I should be able to flash it$/) do
-  sleep 5
   @element.flash
-  sleep 5
+end
+
+class HoverPage
+  include Druid
+
+  link(:hello)
+end
+
+Given(/^I am on the hover page$/) do
+  @page = HoverPage.new(@driver)
+  @page.navigate_to UrlHelper.hover
+end
+
+When(/^I hover over the hello link$/) do
+  @page.hello_element.hover
+end
+
+Then(/^the font size should be "([^"]*)"$/) do |font_size|
+  expect(@page.hello_element.style('font-size')).to eql font_size
+end
+
+Then(/^I should know its id is "([^"]*)"$/) do |id|
+  expect(@element.id).to eql id
 end

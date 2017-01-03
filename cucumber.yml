@@ -1,2 +1,6 @@
-watir: DRIVER=WATIR --no-source --color --format pretty
-default: DRIVER=WATIR --no-source --color --format pretty 
+<%
+std_opts = "BROWSER=firefox --no-source --color --format pretty"
+%>
+
+default: DRIVER=WATIR <%= std_opts %>
+watir: DRIVER=WATIR <%= std_opts %>

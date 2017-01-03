@@ -40,10 +40,12 @@
     </script>
 
     <audio controls id="audio" name="audio" class="audio">
-      <source src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.mp4" type='audio/mp4'>
-      <source src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga" type='audio/ogg; codecs=vorbis'>
       <p>Your user agent does not support the HTML5 Audio element.</p>
     </audio>
+
+    <video width="320" height="240" controls="controls" id="video" name="video" class="video">
+      Your Browser does not support the video tag.
+    </video>
 
     <a href="success.html" id="link_id" name="link_name" class="link_class" title="link_title" >Google Search</a>
 
@@ -123,7 +125,9 @@
     <a href="success.html">Hello</a>
 
     <input id=alert_button type=button onclick="alert('I am an alert')" value=Alert>
+    <input id=alert_button_that_reloads type=button onclick="alert('I am an alert'); location.reload()" value="Alert that Reloads">
     <input id=confirm_button type=button onclick="this.value = confirm('set the value')" value=Confirm>
+    <input id=confirm_button_that_reloads type=button onclick="if(confirm('set the value')) location.reload()" value="Confirm that Reloads">
     <input id=prompt_button type=button onclick="this.value = prompt('enter your name','John Doe')" value=Prompt>
 
     <h1 id="h1_id" class="h1_class" name="h1_name">h1's are cool</h1>
