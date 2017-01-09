@@ -1,4 +1,5 @@
 require 'druid/elements'
+require 'erb'
 
 module Druid
   #
@@ -36,7 +37,10 @@ module Druid
     def page_url(url)
       define_method("goto") do
         url = url.kind_of?(Symbol) ? self.send(url) : url
-        driver.goto url
+        erb = ERB.new(%Q{#{url}})
+        merged_params = self.class.instance_variable_get("@merged_params")
+        params = merged_params ? merged_params : self.class.params
+        driver.goto erb.result(binding)
       end
     end
     alias_method :direct_url, :page_url

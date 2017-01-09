@@ -80,6 +80,33 @@ describe Druid::PageFactory do
     end
   end
 
+  it "should merge params with the class level params if provided when visiting" do
+    expect(driver).to receive(:goto)
+    FactoryTestDruid.params = {:initial => :value}
+    world.visit_page(FactoryTestDruid, :using_params => {:new_value => :merged})
+    merged = FactoryTestDruid.instance_variable_get("@merged_params")
+    expect(merged[:initial]).to eql :value
+    expect(merged[:new_value]).to eql :merged
+  end
+
+  it "should use the params in the url when they are provided" do
+    class PageUsingParams
+      include Druid
+      page_url "http://google.com/<%=params[:value]%>"
+    end
+    expect(driver).to receive(:goto).with("http://google.com/Druid")
+    world.visit_page(PageUsingParams, :using_params => {:value => 'Druid'})
+  end
+
+  it "should use the params as well as interpolated values" do
+    class PageUsingParamsAndInterpolated
+      include Druid
+      page_url "http://google.com/#{1+2}/<%=params[:value]%>"
+    end
+    expect(driver).to receive(:goto).with("http://google.com/3/Druid")
+    world.visit_page(PageUsingParamsAndInterpolated, :using_params => {:value => 'Druid'})
+  end
+
   it "should create and visit a new page using 'visit'" do
     expect(driver).to receive(:goto).exactly(3).times
     world.visit FactoryTestDruid do |page|
