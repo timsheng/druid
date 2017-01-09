@@ -1,3 +1,6 @@
+=== 2017-01-09
+* Enhancement
+  * Added params class instance variable to hold hash values that can be used in the page
 === 2017-01-03
 * Enhancement
   * Added selected_values method to SelectList to get values of all selected elements
