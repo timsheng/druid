@@ -149,12 +149,18 @@ describe Druid::Accessors do
       class SymbolPageUrl
         include Druid
         page_url :custom_url
-        def custom_url
-          'custom'
+
+        attr_reader :custom_url
+
+        def initialize(d, v, url)
+          @custom_url = url
+          super(d, v)
         end
       end
       expect(driver).to receive(:goto).with("custom")
-      SymbolPageUrl.new(driver, true)
+      SymbolPageUrl.new(driver, true, 'custom')
+      expect(driver).to receive(:goto).with('different')
+      SymbolPageUrl.new(driver, true, 'different')
     end
 
     it "should not navigate to a page when not requested" do
