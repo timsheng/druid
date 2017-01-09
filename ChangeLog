@@ -2,6 +2,8 @@
 * Enhancement
   * Added params class instance variable to hold hash values that can be used in the page
   * Added ability to insert ERB into page_url string and have it access params
+* Fixes
+  * Fixed issue when passing symbol to page_url and calling multiple times
 === 2017-01-03
 * Enhancement
   * Added selected_values method to SelectList to get values of all selected elements
