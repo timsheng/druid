@@ -8,6 +8,68 @@ describe Druid do
   let(:driver) { mock_driver }
   let(:druid) { TestDruid.new(driver) }
 
+  context "setting values on the Druid module" do
+    it "should set the javascript framework" do
+      expect(Druid::JavascriptFrameworkFacade).to receive(:framework=)
+      Druid.javascript_framework = :foo
+    end
+
+    it "should add the javascript framework" do
+      expect(Druid::JavascriptFrameworkFacade).to receive(:add_framework)
+      Druid.add_framework(:foo, :bar)
+    end
+
+    it "should set a default page wait value" do
+      Druid.default_page_wait = 20
+      wait = Druid.instance_variable_get("@page_wait")
+      expect(wait).to eql 20
+    end
+
+    it "should provide the default page wait value" do
+      Druid.instance_variable_set("@page_wait", 10)
+      expect(Druid.default_page_wait).to eql 10
+    end
+
+    it "should default the page wait value to 30" do
+      Druid.instance_variable_set("@page_wait", nil)
+      expect(Druid.default_page_wait).to eql 30
+    end
+
+    it "should set the default element wait value" do
+      Druid.default_element_wait = 20
+      wait = Druid.instance_variable_get("@element_wait")
+      expect(wait).to eql 20
+    end
+
+    it "should provide the default element wait value" do
+      Druid.instance_variable_set("@element_wait", 10)
+      expect(Druid.default_element_wait).to eql 10
+    end
+
+    it "should default the element wait to 5" do
+      Druid.instance_variable_set("@element_wait", nil)
+      expect(Druid.default_element_wait).to eql 5
+    end
+  end
+
+  context "setting values on the Druid class instance" do
+    it "should set the params value" do
+      TestDruid.params = {:some => :value}
+      params = TestDruid.instance_variable_get("@params")
+      expect(params[:some]).to eql :value
+    end
+
+    it "should provide the params value" do
+      TestDruid.instance_variable_set("@params", {:value => :updated})
+      expect(TestDruid.params[:value]).to eql :updated
+    end
+
+    it "should default the params to an empty hash" do
+      TestDruid.instance_variable_set("@params", nil)
+      expect(TestDruid.params).to eql Hash.new
+    end
+  end
+
   context "when created with a watir-webdriver browser" do
     it "should include the Druid module" do
       expect(druid).to be_kind_of Druid
@@ -164,16 +226,6 @@ describe Druid do
         expect(Druid::JavascriptFrameworkFacade).to receive(:pending_requests).and_return('pending requests')
         expect(driver).to receive(:execute_script).with('pending requests').and_return(0)
         druid.wait_for_ajax
-      end
-
-      it "should set the javascript framework" do
-        expect(Druid::JavascriptFrameworkFacade).to receive(:framework=)
-        Druid.javascript_framework = :foo
-      end
-
-      it "should add the javascript framework" do
-        expect(Druid::JavascriptFrameworkFacade).to receive(:add_framework)
-        Druid.add_framework(:foo, :bar)
       end
 
       it "should execute javascript on the browser" do
