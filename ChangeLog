@@ -15,6 +15,7 @@
     * links
     * checkboxes
     * radio_buttons
+    * spans
 === 2017-01-09
 * Enhancement
   * Added params class instance variable to hold hash values that can be used in the page
