@@ -1257,5 +1257,12 @@ module Druid
         self.send("#{name}_element").exist?
       end
     end
+
+    def divs(name, identifier, &block)
+      define_method("#{name}_elements") do
+        return call_block(&block) if block_given?
+        divs_for identifier.clone
+      end
+    end
   end
 end
