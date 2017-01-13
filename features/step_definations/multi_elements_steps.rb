@@ -1,7 +1,8 @@
 class MultiElementsPage
   include Druid
 
-  divs(:div_num, :class => 'div')
+  divs(:the_divs, :class => 'div')
+  buttons(:the_buttons, :class => 'button')
 end
 
 Given(/^I am on the multi elements page$/) do
@@ -406,5 +407,9 @@ When(/^I select all file fields using no identifier$/) do
 end
 
 When(/^I select the divs using the generated methods$/) do
-  @elements = @page.div_num_elements
+  @elements = @page.the_divs_elements
+end
+
+When(/^I select the buttons using the generated methods$/) do
+  @elements = @page.the_buttons_elements
 end

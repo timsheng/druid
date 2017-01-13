@@ -1258,11 +1258,14 @@ module Druid
       end
     end
 
-    def divs(name, identifier, &block)
-      define_method("#{name}_elements") do
-        return call_block(&block) if block_given?
-        divs_for identifier.clone
+    [:buttons, :divs].each do |method_name|
+      define_method(method_name) do |name, identifier, &block|
+        define_method("#{name}_elements") do
+          return call_block(&block) if block_given?
+          self.send "#{method_name.to_s}_for", identifier.clone
+        end
       end
     end
+
   end
 end
