@@ -290,15 +290,22 @@ Feature: Multi Elements
      Then I should have 3 file fields
 
    Scenario: Selecting all divs based on a class declaration
-     When I select the divs using the generated methods
+     When I select the divs using the generated method
      Then I should have 3 divs
      And the text of div 1 should be "Div 1"
      And the text of div 2 should be "Div 2"
      And the text of div 3 should be "Div 3"
 
    Scenario: Selecting buttons based on a class declaration
-     When I select the buttons using the generated methods
+     When I select the buttons using the generated method
      Then I should have 3 buttons
      And the value of button 1 should be "Button 1"
      And the value of button 2 should be "Button 2"
      And the value of button 3 should be "Button 3"
+
+   Scenario: Selecting text fields based on a class declaration
+     When I select the text field using the generated method
+     Then I should have 3 text fields
+     And the value of text field 1 should be "text 1"
+     And the value of text field 2 should be "text 2"
+     And the value of text field 3 should be "text 3"
