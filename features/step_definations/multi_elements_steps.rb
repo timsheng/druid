@@ -1,5 +1,7 @@
 class MultiElementsPage
   include Druid
+
+  divs(:div_num, :class => 'div')
 end
 
 Given(/^I am on the multi elements page$/) do
@@ -401,4 +403,8 @@ end
 
 When(/^I select all file fields using no identifier$/) do
   @elements = @page.file_field_elements
+end
+
+When(/^I select the divs using the generated methods$/) do
+  @elements = @page.div_num_elements
 end

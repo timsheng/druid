@@ -288,3 +288,10 @@ Feature: Multi Elements
    Scenario: Selecting file fields using no identifier
      When I select all file fields using no identifier
      Then I should have 3 file fields
+
+   Scenario: Selecting all divs based on a class declaration
+     When I select the divs using the generated methods
+     Then I should have 3 divs
+     And the text of div 1 should be "Div 1"
+     And the text of div 2 should be "Div 2"
+     And the text of div 3 should be "Div 3"
