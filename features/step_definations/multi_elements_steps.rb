@@ -10,6 +10,7 @@ class MultiElementsPage
   links(:the_links, :class => 'link')
   checkboxes(:the_checkboxes, :class => 'checkbox')
   radio_buttons(:the_radio_buttons, :class => 'radio')
+  spans(:the_spans, :class => 'span')
 end
 
 Given(/^I am on the multi elements page$/) do
@@ -447,4 +448,8 @@ end
 
 When(/^I select the radio buttons using the generated method$/) do
   @elements = @page.the_radio_buttons_elements
+end
+
+When(/^I select the spans using the generated method$/) do
+  @elements = @page.the_spans_elements
 end
