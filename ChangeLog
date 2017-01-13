@@ -4,6 +4,7 @@
   * Added html method to Element
   * Added generated method to return text for a table
   * Added generated method to return text for an unordered list
+  * Added generated method to return text for an ordered list
 === 2017-01-09
 * Enhancement
   * Added params class instance variable to hold hash values that can be used in the page

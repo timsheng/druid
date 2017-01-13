@@ -229,6 +229,13 @@ module Druid
       find_elements("lis(identifier)", Elements::ListItem, identifier, 'li')
     end
 
+    #
+    # method to retrieve the text from an ordered list
+    #
+    def ordered_list_text_for(identifier)
+      process_call("ol(identifier).text", Elements::OrderedList, identifier, nil, 'ol')
+    end
+
     def ordered_list_for identifier
       find_element("ol(identifier)", Elements::OrderedList, identifier, 'ol')
     end
