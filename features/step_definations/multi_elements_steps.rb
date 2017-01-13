@@ -4,6 +4,7 @@ class MultiElementsPage
   divs(:the_divs, :class => 'div')
   buttons(:the_buttons, :class => 'button')
   text_fields(:the_text_fields, :class => 'textfield')
+  hidden_fields(:the_hidden_fields, :class => 'hiddenfield')
 end
 
 Given(/^I am on the multi elements page$/) do
@@ -417,4 +418,8 @@ end
 
 When(/^I select the text field using the generated method$/) do
   @elements = @page.the_text_fields_elements
+end
+
+When(/^I select the hidden fields using the generated method$/) do
+  @elements = @page.the_hidden_fields_elements
 end
