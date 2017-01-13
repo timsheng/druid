@@ -21,3 +21,7 @@ end
 Then(/^I should see that the unordered list exists$/) do
   expect(@page.ul_id?).to be true
 end
+
+Then(/^the text for the unordered list should contain "([^"]*)"$/) do |text|
+  expect(@page.send("ul_id")).to include text
+end

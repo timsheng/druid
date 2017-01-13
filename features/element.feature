@@ -20,6 +20,7 @@ Feature: Elements
     Then I should know it exists
     And I should know it is visible
     And I should know its' text is "Google Search"
+    And I should know the html is "<a href="success.html" id="link_id" name="link_name" class="link_class" title="link_title">Google Search</a>"
     And I should know it is equal to itself
     And I should know its' tag name is "a"
     And I should know the attribute "readonly" is false

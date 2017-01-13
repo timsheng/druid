@@ -1,4 +1,5 @@
 require 'druid/elements'
+require 'erb'
 
 module Druid
   #
@@ -7,6 +8,25 @@ module Druid
   # set of methods that provide access to the elements on the web pages.
   #
   module Accessors
+
+    #
+    # Set some values that can be used withing the class. This is
+    # typically used to provided values that help build dynamic urls in
+    # the page_url method
+    #
+    # @param [Hash] the value to set the params
+    #
+    def params=(the_params)
+      @params = the_params
+    end
+
+    #
+    # Return the params that exist on this page class
+    #
+    def params
+      @params ||= {}
+    end
+
     #
     # Specify the url for the page.  A call to this method will generate a
     # 'goto' method to take you to the page.
@@ -16,8 +36,11 @@ module Druid
     #
     def page_url(url)
       define_method("goto") do
-        url = url.kind_of?(Symbol) ? self.send(url) : url
-        driver.goto url
+        lookup = url.kind_of?(Symbol) ? self.send(url) : url
+        erb = ERB.new(%Q{#{lookup}})
+        merged_params = self.class.instance_variable_get("@merged_params")
+        params = merged_params ? merged_params : self.class.params
+        driver.goto erb.result(binding)
       end
     end
     alias_method :direct_url, :page_url
@@ -408,12 +431,13 @@ module Druid
     end
 
     #
-    # adds two methods - one to retrieve the table element, and another to
+    # adds three methods - one to retrieve the text for the table, one
+    # to retrieve the table element, and another to
     # check the table's existence.
     #
     # @example
     #   table(:cart, :id => 'shopping_cart')
-    #   # will generate a 'cart_element' and 'cart?' method
+    #   # will generate a 'cart', 'cart_element' and 'cart?' method
     #
     # @param the name used for the generated methods
     # @param identifier how we find a table. You can use a multiple parameters
@@ -426,6 +450,10 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def table(name, identifier={:index => 0}, &block)
+      define_method(name) do
+        return table_text_for identifier.clone unless block_given?
+        self.send("#{name}_element").text
+      end
       define_method("#{name}_element") do
         return call_block(&block) if block_given?
         table_for(identifier.clone)
@@ -657,12 +685,13 @@ module Druid
     alias_method :li, :list_item
 
     #
-    # adds two methods - one to retrieve the ordered list element, and another to
+    # adds three methods - one to return the text within the ordered
+    # list, one to retrieve the ordered list element, and another to
     # test it's existence.
     #
     # @example
     #   ordered_list(:top_five, :id => 'top')
-    #   # will generate 'top_five_element' and 'top_five?' methods
+    #   # will generate 'top_five' 'top_five_element' and 'top_five?' methods
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find an ordered list. You can use a multiple parameters
@@ -675,6 +704,10 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def ordered_list(name, identifier={:index => 0}, &block)
+      define_method(name) do
+        return ordered_list_text_for identifier.clone unless block_given?
+        self.send("#{name}_element").text
+      end
       define_method("#{name}_element") do
         return call_block(&block) if block_given?
         ordered_list_for(identifier.clone)
@@ -731,12 +764,12 @@ module Druid
     alias_method :textarea, :text_area
 
     #
-    # adds two methods - one to retrieve the unordered list element, and another to
-    # check it's existence.
+    # adds three methods - one to return the text of unordered list, another one
+    # retrieve the unordered list element, and another to check it's existence.
     #
     # @example
     #   unordered_list(:menu, :id => 'main_menu')
-    #   # will generate 'menu_element' and 'menu?' methods
+    #   # will generate 'menu' 'menu_element' and 'menu?' methods
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find an unordered list. You can use a multiple parameters
@@ -748,6 +781,10 @@ module Druid
     #   * :name
     # @param optional block to be invoked when element method is called
     def unordered_list(name, identifier={:index => 0}, &block)
+      define_method(name) do
+        return unordered_list_text_for identifier.clone unless block_given?
+        self.send("#{name}_element").text
+      end
       define_method("#{name}_element") do
         return call_block(&block) if block_given?
         unordered_list_for(identifier.clone)

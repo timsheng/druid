@@ -43,3 +43,7 @@ end
 Then(/^I should see that the ordered list exists$/) do
   expect(@page.ol_id?).to be true
 end
+
+Then(/^the text for the ordered list should contain "([^"]*)"$/) do |text|
+  expect(@page.send("ol_id")).to include text
+end
