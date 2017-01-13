@@ -1268,7 +1268,8 @@ module Druid
      :buttons,
      :divs,
      :spans,
-     :tables].each do |method_name|
+     :tables,
+     :cells].each do |method_name|
       define_method(method_name) do |name, identifier, &block|
         define_method("#{name}_elements") do
           return call_block(&block) if block_given?
