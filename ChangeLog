@@ -1,6 +1,7 @@
 === 2017-01-13
 * Enhancement
   * Added callback to initialize_accessors method during initialization
+  * Added html method to Element
 === 2017-01-09
 * Enhancement
   * Added params class instance variable to hold hash values that can be used in the page
