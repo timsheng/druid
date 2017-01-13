@@ -1263,7 +1263,8 @@ module Druid
      :text_areas,
      :select_lists,
      :links,
-     :checkboxes, 
+     :checkboxes,
+     :radio_buttons, 
      :buttons,
      :divs].each do |method_name|
       define_method(method_name) do |name, identifier, &block|
