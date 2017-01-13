@@ -189,15 +189,47 @@ describe Druid do
       it "should call intialize_page if it exists" do
         class CallbackPage
           include Druid
-          attr_reader :initialize_page
+          attr_reader :initialize_page_called
 
           def initialize_page
-            @initialize_page = true
+            @initialize_page_called = true
           end
         end
 
         page = CallbackPage.new(driver)
-        expect(page.initialize_page).to be true
+        expect(page.initialize_page_called).to be true
+      end
+
+      it "should call initialize_accessors if it exists" do
+        class CallbackPage
+          include Druid
+          attr_reader :initialize_accessors_called
+
+          def initialize_accessors
+            @initialize_accessors_called = true
+          end
+        end
+
+        @page = CallbackPage.new(driver)
+        expect(@page.initialize_accessors_called).to be true
+      end
+
+      it "should call initialize_accessors before initialize_page if both exist" do
+        class CallbackPage
+          include Druid
+          attr_reader :initialize_page, :initialize_accessors
+
+          def initialize_page
+            @initialize_page = Time.now
+          end
+
+          def initialize_accessors
+            @initialize_accessors = Time.now
+          end
+        end
+
+        @page = CallbackPage.new(driver)
+        expect(@page.initialize_accessors.usec).to be < @page.initialize_page.usec
       end
 
       it "should convert a modal popup to a window" do
