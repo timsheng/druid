@@ -129,6 +129,13 @@ module Druid
       find_elements("divs(identifier)", Elements::Div, identifier, 'div')
     end
 
+    #
+    # method to return the text for a table
+    #
+    def table_text_for(identifier)
+      process_call("table(identifier).text", Elements::Table, identifier, nil, 'table')
+    end
+
     def table_for identifier
       find_element("table(identifier)", Elements::Table, identifier, 'table')
     end

@@ -49,7 +49,7 @@ Feature: Table
   Scenario: Retrieve data from a table that does not have a cell which corresponds to a column header
     When I retrieve a table with thead element
     Then the data for row "Data5" and column "Col2" should be nil
-    
+
   @name
   Scenario Outline: Locating table cells on the Page
     When I retrieve a table element by "<locate_by>"
@@ -97,3 +97,7 @@ Feature: Table
   Scenario: Retrieve data from the first row of a table with a thead using a column header
     When I retrieve a table with thead element
     Then the data for column "Col1" and row "1" should be "Col1"
+
+  Scenario: Getting the text from a table
+    Then I should see the text includes "Data1" when I retrieve it by "id"
+    And I should see the text includes "Data2" when I retrieve it by "id"
