@@ -759,8 +759,8 @@ module Druid
     alias_method :textarea, :text_area
 
     #
-    # adds two methods - one to retrieve the unordered list element, and another to
-    # check it's existence.
+    # adds three methods - one to return the text of unordered list, another one
+    # retrieve the unordered list element, and another to check it's existence.
     #
     # @example
     #   unordered_list(:menu, :id => 'main_menu')
@@ -776,6 +776,10 @@ module Druid
     #   * :name
     # @param optional block to be invoked when element method is called
     def unordered_list(name, identifier={:index => 0}, &block)
+      define_method(name) do
+        return unordered_list_text_for identifier.clone unless block_given?
+        self.send("#{name}_element").text
+      end
       define_method("#{name}_element") do
         return call_block(&block) if block_given?
         unordered_list_for(identifier.clone)
