@@ -337,3 +337,10 @@ Feature: Multi Elements
      And the text of link 1 should be "link 1"
      And the text of link 2 should be "link 2"
      And the text of link 3 should be "link 3"
+
+   Scenario: Selecting checkboxes based on a class declaration
+     When I select the check boxes using the generated method
+     Then I should have 3 checkboxes
+     And the value of checkbox 1 should be "checkbox 1"
+     And the value of checkbox 2 should be "checkbox 2"
+     And the value of checkbox 3 should be "checkbox 3"
