@@ -257,6 +257,13 @@ module Druid
       find_elements("textareas(identifier)", Elements::TextArea, identifier)
     end
 
+    #
+    # method to retrieve the text from an unordered list
+    #
+    def unordered_list_text_for(identifier)
+      process_call("ul(identifier).text", Elements::UnOrderedList, identifier, nil, 'ul')
+    end
+
     def unordered_list_for identifier
       find_element("ul(identifier)", Elements::UnOrderedList, identifier, 'ul')
     end
