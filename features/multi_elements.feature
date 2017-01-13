@@ -323,3 +323,10 @@ Feature: Multi Elements
      And the value of text area 1 should be "textarea 1"
      And the value of text area 2 should be "textarea 2"
      And the value of text area 3 should be "textarea 3"
+
+   Scenario: Selecting select lists based on a class declaration
+     When I select the select lists using the generated method
+     Then I should have 3 select lists
+     And the value of select list 1 should be "selectlist 1"
+     And the value of select list 2 should be "selectlist 2"
+     And the value of select list 3 should be "selectlist 3"

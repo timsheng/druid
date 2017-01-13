@@ -11,6 +11,7 @@
     * text_fields
     * hidden_fields
     * text_areas
+    * select_lists
 === 2017-01-09
 * Enhancement
   * Added params class instance variable to hold hash values that can be used in the page
