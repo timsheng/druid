@@ -129,6 +129,13 @@ module Druid
       find_elements("divs(identifier)", Elements::Div, identifier, 'div')
     end
 
+    #
+    # method to return the text for a table
+    #
+    def table_text_for(identifier)
+      process_call("table(identifier).text", Elements::Table, identifier, nil, 'table')
+    end
+
     def table_for identifier
       find_element("table(identifier)", Elements::Table, identifier, 'table')
     end
@@ -222,6 +229,13 @@ module Druid
       find_elements("lis(identifier)", Elements::ListItem, identifier, 'li')
     end
 
+    #
+    # method to retrieve the text from an ordered list
+    #
+    def ordered_list_text_for(identifier)
+      process_call("ol(identifier).text", Elements::OrderedList, identifier, nil, 'ol')
+    end
+
     def ordered_list_for identifier
       find_element("ol(identifier)", Elements::OrderedList, identifier, 'ol')
     end
@@ -248,6 +262,13 @@ module Druid
     # retrieve an array of textarea elements
     def text_areas_for identifier
       find_elements("textareas(identifier)", Elements::TextArea, identifier)
+    end
+
+    #
+    # method to retrieve the text from an unordered list
+    #
+    def unordered_list_text_for(identifier)
+      process_call("ul(identifier).text", Elements::UnOrderedList, identifier, nil, 'ul')
     end
 
     def unordered_list_for identifier

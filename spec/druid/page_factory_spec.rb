@@ -19,13 +19,19 @@ class YetAnotherPage
   include Druid
 end
 
+module ContainingModule
+  class PageInsideModule
+    include Druid
+    page_url "http://google.co.uk"
+  end
+end
+
 class TestWorld
   include Druid::PageFactory
 
   attr_accessor :driver
   attr_accessor :current_page
 end
-
 
 describe Druid::PageFactory do
 
@@ -40,6 +46,12 @@ describe Druid::PageFactory do
     world.on_page FactoryTestDruid do |page|
       expect(page).to be_instance_of FactoryTestDruid
     end
+    world.on_page "FactoryTestDruid" do |page|
+      expect(page).to be_instance_of FactoryTestDruid
+    end
+    world.on_page "ContainingModule::PageInsideModule" do |page|
+      expect(page).to be_instance_of ContainingModule::PageInsideModule
+    end
   end
 
   it "should create a new page object and execute a block using 'on'" do
@@ -47,19 +59,64 @@ describe Druid::PageFactory do
     world.on FactoryTestDruid do |page|
       expect(page).to be_instance_of FactoryTestDruid
     end
-  end
-
-  it "should create and visit a new page" do
-    expect(driver).to receive(:goto)
-    world.visit_page FactoryTestDruid do |page|
+    world.on "FactoryTestDruid" do |page|
       expect(page).to be_instance_of FactoryTestDruid
+    end
+    world.on "ContainingModule::PageInsideModule" do |page|
+      expect(page).to be_instance_of ContainingModule::PageInsideModule
     end
   end
 
-  it "should create and visit a new page using 'visit'" do
+  it "should create and visit a new page" do
+    expect(driver).to receive(:goto).exactly(3).times
+    world.visit_page FactoryTestDruid do |page|
+      expect(page).to be_instance_of FactoryTestDruid
+    end
+    world.visit_page "FactoryTestDruid" do |page|
+      expect(page).to be_instance_of FactoryTestDruid
+    end
+    world.visit_page "ContainingModule::PageInsideModule" do |page|
+      expect(page).to be_instance_of ContainingModule::PageInsideModule
+    end
+  end
+
+  it "should merge params with the class level params if provided when visiting" do
     expect(driver).to receive(:goto)
+    FactoryTestDruid.params = {:initial => :value}
+    world.visit_page(FactoryTestDruid, :using_params => {:new_value => :merged})
+    merged = FactoryTestDruid.instance_variable_get("@merged_params")
+    expect(merged[:initial]).to eql :value
+    expect(merged[:new_value]).to eql :merged
+  end
+
+  it "should use the params in the url when they are provided" do
+    class PageUsingParams
+      include Druid
+      page_url "http://google.com/<%=params[:value]%>"
+    end
+    expect(driver).to receive(:goto).with("http://google.com/Druid")
+    world.visit_page(PageUsingParams, :using_params => {:value => 'Druid'})
+  end
+
+  it "should use the params as well as interpolated values" do
+    class PageUsingParamsAndInterpolated
+      include Druid
+      page_url "http://google.com/#{1+2}/<%=params[:value]%>"
+    end
+    expect(driver).to receive(:goto).with("http://google.com/3/Druid")
+    world.visit_page(PageUsingParamsAndInterpolated, :using_params => {:value => 'Druid'})
+  end
+
+  it "should create and visit a new page using 'visit'" do
+    expect(driver).to receive(:goto).exactly(3).times
     world.visit FactoryTestDruid do |page|
       expect(page).to be_instance_of FactoryTestDruid
+    end
+    world.visit "FactoryTestDruid" do |page|
+      expect(page).to be_instance_of FactoryTestDruid
+    end
+    world.visit "ContainingModule::PageInsideModule" do |page|
+      expect(page).to be_instance_of ContainingModule::PageInsideModule
     end
   end
 
@@ -82,20 +139,44 @@ describe Druid::PageFactory do
     world.if_page(FactoryTestDruid) do |page|
       fail
     end
+    world.if_page("FactoryTestDruid") do |page|
+      fail
+    end
+    world.if_page("ContainingModule::PageInsideModule") do |page|
+      fail
+    end
   end
 
   it "should return the @current_page if asking for another page" do
     expected = TestPageWithDirectUrl.new(driver)
     world.instance_variable_set "@current_page", expected
     expect(world.if_page(FactoryTestDruid)).to be expected
+    expect(world.if_page("FactoryTestDruid")).to be expected
+    expect(world.if_page("ContainingModule::PageInsideModule")).to be expected
   end
 
-  # it "should execute the block when we ask if it is the correct page" do
-  #   world.instance_variable_set "@current_page", FactoryTestDruid.new(driver)
-  #   world.if_page(FactoryTestDruid) do |page|
-  #     expect(page).to be_instance_of FactoryTestDruid
-  #   end
-  # end
+  it "should execute the block when we ask if it is the correct page" do
+    world.instance_variable_set "@current_page", FactoryTestDruid.new(driver)
+    done = false
+    world.if_page(FactoryTestDruid) do |page|
+      expect(page).to be_instance_of FactoryTestDruid
+      done = true
+    end
+    expect(done).to be true
+    done = false
+    world.if_page("FactoryTestDruid") do |page|
+      expect(page).to be_instance_of FactoryTestDruid
+      done = true
+    end
+    expect(done).to be true
+    done = false
+    world.instance_variable_set "@current_page", ContainingModule::PageInsideModule.new(driver)
+    world.if_page("ContainingModule::PageInsideModule") do |page|
+      expect(page).to be_instance_of ContainingModule::PageInsideModule
+      done = true
+    end
+    expect(done).to be true
+  end
 
   it "should raise an error when you do not provide a default route" do
     expect { Druid::PageFactory.routes = {:another => []} }.to raise_error 'You must provide a :default route for PageFactory routes'

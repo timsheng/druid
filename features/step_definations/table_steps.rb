@@ -75,3 +75,7 @@ end
 When(/^I retrieve a table with thead element$/) do
   @element = @page.table_with_thead_id_element
 end
+
+Then(/^I should see the text includes "([^"]*)" when I retrieve it by "([^"]*)"$/) do |text, how|
+  expect(@page.send("table_#{how}")).to include text
+end

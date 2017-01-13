@@ -34,11 +34,14 @@ module Druid
     # Create and navigate to a page object.  The navigation will only work if the
     # 'page_url' method was call on the page object.
     #
-    # @param [page_class] a class that has included the Druid module
+    # @param [PageObject, String] a class that has included the Druid module or a string containing the name of the class
     # @param an optional block to be called
     # @return [PageObject] the newly created page object
     #
-    def visit_page(page_class, &block)
+    def visit_page(page_class, params={:using_params => {}}, &block)
+      page_class = class_from_string(page_class) if page_class.is_a? String
+      merged = page_class.params.merge(params[:using_params])
+      page_class.instance_variable_set("@merged_params", merged) unless merged.empty?
       on_page page_class, true, &block
     end
 
@@ -47,12 +50,13 @@ module Druid
     #
     # Create a page object.
     #
-    # @param [page_class] a class that has included the Druid module
+    # @param [PageObject, String] a class that has included the Druid module or a string containing the name of the class
     # @param [Bool] should the page be visited?  default is false.
     # @param an optional block to be called
     # @return [PageObject] the newly created page object
     #
     def on_page(page_class, visit=false, &block)
+      page_class = class_from_string(page_class) if page_class.is_a? String
       @current_page = page_class.new(@driver, visit)
       block.call @current_page if block
       @current_page
@@ -73,12 +77,13 @@ module Druid
     #      page.save
     #   end
     #   if_page EditProduct do |page|
-    #      page.update 
+    #      page.update
     #   end
-    # @param [PageObject] a class that has included the Druid module
+    # @param [PageObject, String] a class that has included the Druid module or a string containing the name of the class
     # @param [block] an optional block to be called
     # @return [PageObject] the newly created page object
     def if_page(page_class, &block)
+      page_class = class_from_string(page_class) if page_class.is_a? String
       return @current_page unless @current_page.class == page_class
       on_page(page_class, false, &block)
     end
@@ -135,6 +140,12 @@ module Druid
     end
 
     private
+
+    def class_from_string(str)
+      str.split('::').inject(Object) do |mod, class_name|
+        mod.const_get(class_name)
+      end
+    end
 
     def path_for(how)
       path = Druid::PageFactory.page_object_routes[how[:using]]

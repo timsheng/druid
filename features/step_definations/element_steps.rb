@@ -130,3 +130,7 @@ end
 Then(/^I should know its id is "([^"]*)"$/) do |id|
   expect(@element.id).to eql id
 end
+
+Then(/^I should know the html is "(.*)"$/) do |html|
+  expect(@element.html).to eql html
+end
