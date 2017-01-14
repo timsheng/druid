@@ -14,6 +14,7 @@ class MultiElementsPage
   tables(:the_tables, :class => 'table')
   cells(:the_cells, :class => 'td')
   images(:the_images, :class => 'image')
+  forms(:the_forms, :class => 'form')
 end
 
 Given(/^I am on the multi elements page$/) do
@@ -467,4 +468,8 @@ end
 
 When(/^I select the images using the generated method$/) do
   @elements = @page.the_images_elements
+end
+
+When(/^I select the forms using the generated method$/) do
+  @elements = @page.the_forms_elements
 end
