@@ -5,7 +5,7 @@
   * Added generated method to return text for a table
   * Added generated method to return text for an unordered list
   * Added generated method to return text for an ordered list
-  * Added the following class level method to return all elements matching the locator
+  * Added the following class level methods to return all elements matching the locator
     * divs
     * buttons
     * text_fields
@@ -20,6 +20,7 @@
     * cells
     * images
     * forms
+    * list_items
 === 2017-01-09
 * Enhancement
   * Added params class instance variable to hold hash values that can be used in the page
