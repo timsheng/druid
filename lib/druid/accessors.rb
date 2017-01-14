@@ -1274,7 +1274,13 @@ module Druid
      :forms,
      :list_items,
      :unordered_lists,
-     :ordered_lists].each do |method_name|
+     :ordered_lists,
+     :h1s,
+     :h2s,
+     :h3s,
+     :h4s,
+     :h5s,
+     :h6s].each do |method_name|
       define_method(method_name) do |name, identifier, &block|
         define_method("#{name}_elements") do
           return call_block(&block) if block_given?
