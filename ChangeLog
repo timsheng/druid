@@ -23,6 +23,12 @@
     * list_items
     * unordered_lists
     * ordered_lists
+    * h1s
+    * h2s
+    * h3s
+    * h4s
+    * h5s
+    * h6s
 === 2017-01-09
 * Enhancement
   * Added params class instance variable to hold hash values that can be used in the page
