@@ -25,6 +25,8 @@ class MultiElementsPage
   h5s(:the_h5s, :class => 'h5')
   h6s(:the_h6s, :class => 'h6')
   paragraphs(:the_paragraphs, :class => 'p')
+  labels(:the_labels, :class => 'label')
+  file_fields(:the_file_fields, :class => 'file_field_class')
 end
 
 Given(/^I am on the multi elements page$/) do
@@ -502,4 +504,12 @@ end
 
 When(/^I select the paragraphs using the generated method$/) do
   @elements = @page.the_paragraphs_elements
+end
+
+When(/^I select the labels using the generated method$/) do
+  @elements = @page.the_labels_elements
+end
+
+When(/^I select the file fields using the generated method$/) do
+  @elements = @page.the_file_fields_elements
 end
