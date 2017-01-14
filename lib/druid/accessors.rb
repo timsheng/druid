@@ -1271,7 +1271,8 @@ module Druid
      :tables,
      :cells,
      :images,
-     :forms].each do |method_name|
+     :forms,
+     :list_items].each do |method_name|
       define_method(method_name) do |name, identifier, &block|
         define_method("#{name}_elements") do
           return call_block(&block) if block_given?
