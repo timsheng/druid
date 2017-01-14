@@ -1280,7 +1280,8 @@ module Druid
      :h3s,
      :h4s,
      :h5s,
-     :h6s].each do |method_name|
+     :h6s,
+     :paragraphs].each do |method_name|
       define_method(method_name) do |name, identifier, &block|
         define_method("#{name}_elements") do
           return call_block(&block) if block_given?

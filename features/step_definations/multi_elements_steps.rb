@@ -24,6 +24,7 @@ class MultiElementsPage
   h4s(:the_h4s, :class => 'h4')
   h5s(:the_h5s, :class => 'h5')
   h6s(:the_h6s, :class => 'h6')
+  paragraphs(:the_paragraphs, :class => 'p')
 end
 
 Given(/^I am on the multi elements page$/) do
@@ -497,4 +498,8 @@ end
 
 When(/^I select the h(\d+)s using the generated method$/) do |num|
   @elements = @page.send("the_h#{num.to_i}s_elements")
+end
+
+When(/^I select the paragraphs using the generated method$/) do
+  @elements = @page.the_paragraphs_elements
 end
