@@ -1,3 +1,6 @@
+=== 2017-01-15
+* Fixes
+  * Fixed issue when calling new multi-element class methods using a block
 === Version 1.1.6/2017-01-13
 * Enhancement
   * Added callback to initialize_accessors method during initialization
