@@ -5,7 +5,11 @@ require 'webrick'
 class SampleApp
 
   def self.start(host, port)
-    Rack::Handler::WEBrick.run(new, :Host => host, :Port => port)
+    Rack::Handler::WEBrick.run new,
+                               :Host => host,
+                               :Port => port,
+                               :Logger => ::WEBrick::Log.new(RUBY_PLATFORM =~ /mswin|mingw/ ? 'NUL:' : '/dev/null'),
+                               :AccessLog => [nil, nil]
   end
 
   def initialize
