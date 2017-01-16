@@ -6,16 +6,22 @@ class JavascriptPage
   button(:compute, :value => 'Compute')
 end
 
+def build_url(page)
+  target = ENV['BROWSER']
+  return "http://localhost:4567/#{page}" if target.nil? or target.include? 'local'
+  "http://ec2-107-22-131-88.compute-1.amazonaws.com:4567/#{page}"
+end
+
 Given(/^I am on jQuery example page$/) do
   Druid.javascript_framework = :jquery
   @page = JavascriptPage.new(@driver)
-  @page.navigate_to "http://localhost:4567/jquery.html"
+  @page.navigate_to build_url("jquery.html")
 end
 
 Given(/^I am on the Prototype example page$/) do
   Druid.javascript_framework = :prototype
   @page = JavascriptPage.new(@driver)
-  @page.navigate_to "http://localhost:4567/prototype.html"
+  @page.navigate_to build_url("prototype.html")
 end
 
 When(/^I ask to compute "([^"]*)"$/) do |expression|
