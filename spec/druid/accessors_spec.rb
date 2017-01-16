@@ -634,7 +634,7 @@ describe Druid::Accessors do
       end
 
       it "should call a block on the element method when present" do
-        expect(block_druid.total_cell).to eql "cell"
+        expect(block_druid.total_element).to eql "cell"
       end
     end
 
