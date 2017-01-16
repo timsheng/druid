@@ -1,3 +1,5 @@
+require 'druid/locator_generator'
+
 module Druid
   module ElementLocators
 
