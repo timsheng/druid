@@ -484,6 +484,17 @@ describe Druid::Accessors do
         expect(driver).to receive(:select_list)
         expect(druid.state_element).to be_instance_of Druid::Elements::SelectList
       end
+
+      it "should return list of selection options" do
+        option1 = double('option')
+        option2 = double('option')
+        expect(option1).to receive(:text).and_return("CA")
+        expect(option2).to receive(:text).and_return('OH')
+        select_element = double("select")
+        expect(select_element).to receive(:options).twice.and_return([option1,option2])
+        expect(druid).to receive(:state_element).and_return(select_element)
+        expect(druid.state_options).to eql ["CA","OH"]
+      end
     end
   end
 
