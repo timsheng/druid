@@ -5,6 +5,10 @@ module Druid
       Druid::LocatorGenerator.generate_locators(cls)
     end
 
+    def element(tag, identifier={:index => 0})
+      element_for(tag, identifier.clone)
+    end
+
     private
 
     def locator(identifier)
