@@ -1,3 +1,5 @@
+require 'selenium/webdriver/remote/http/persistent'
+
 module Druid
   module PersistantBrowser
     @@driver = false
@@ -33,7 +35,7 @@ module Druid
                            :url => url,
                            :desired_capabilities => desired_capabilities )
       else
-        Watir::Browser.new :firefox
+        Watir::Browser.new :firefox, :http_client => client
       end
     end
 
