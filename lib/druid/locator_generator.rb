@@ -33,11 +33,11 @@ module Druid
        :audio,
        :video].each do |tag|
          target.send(:define_method, "#{tag.to_s}_element") do |*identifier|
-           self.send "#{tag.to_s}_for", locator(identifier)
+           self.send "#{tag.to_s}_for", locator(identifier).clone
          end
 
          target.send(:define_method, "#{tag.to_s}_elements") do |*identifier|
-           self.send "#{tag.to_s}s_for", identifier[0] ? identifier[0] : {}
+           self.send "#{tag.to_s}s_for", identifier[0] ? identifier[0].clone : {}
          end
        end
     end
