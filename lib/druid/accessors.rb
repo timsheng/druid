@@ -75,7 +75,7 @@ module Druid
     #   expected_element(:address, 10)
     #   page.has_expected_element?
     #
-    def expected_element(element_name, timeout=5)
+    def expected_element(element_name, timeout=Druid.default_element_wait)
       define_method("has_expected_element?") do
         self.respond_to? "#{element_name}_element" and self.send("#{element_name}_element").when_present timeout
       end
@@ -1005,6 +1005,63 @@ module Druid
         self.send("#{name}_element").exist?
       end
     end
+
+    #
+   # methods to generate accessors for types that follow the same
+   # pattern as element
+   #
+   # @example
+   #   address(:home_address, :id => "home_address")
+   #   will generate 'home_address', 'home_address_element' and 'home_address?'
+   #
+   # @param [Symbol] the name used for the generated methods
+   # @param [Symbol] the name of the tag for the element
+   # @param [Hash] identifier how we find an element.  You can use a multiple paramaters
+   #   by combining of any of the following except xpath.  The valid keys are:
+   #   * :class
+   #   * :css
+   #   * :id
+   #   * :index
+   #   * :name
+   #   * :xpath
+   # @param optional block to be invoked when element method is called
+   #
+   [:abbr,
+    :address,
+    :article,
+    :aside,
+    :bdi,
+    :bdo,
+    :cite,
+    :code,
+    :dd,
+    :dfn,
+    :dt,
+    :em,
+    :figcaption,
+    :figure,
+    :footer,
+    :header,
+    :hgroup,
+    :kbd,
+    :mark,
+    :nav,
+    :noscript,
+    :rp,
+    :rt,
+    :ruby,
+    :samp,
+    :section,
+    :sub,
+    :summary,
+    :sup,
+    :var,
+    :wbr].each do |type|
+     define_method(type) do |name, *identifier, &block|
+       identifier = identifier[0] ? identifier[0] : {:index => 0}
+       element(name, type, identifier, &block)
+     end
+   end
 
     def standard_methods(name, identifier, method, &block)
       define_method("#{name}_element") do
