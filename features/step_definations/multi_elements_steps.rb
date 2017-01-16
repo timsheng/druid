@@ -27,6 +27,9 @@ class MultiElementsPage
   paragraphs(:the_paragraphs, :class => 'p')
   labels(:the_labels, :class => 'label')
   file_fields(:the_file_fields, :class => 'file_field_class')
+  divs(:block_divs) do |page|
+    page.div_elements(:class => 'div')
+  end
 end
 
 Given(/^I am on the multi elements page$/) do
@@ -512,4 +515,8 @@ end
 
 When(/^I select the file fields using the generated method$/) do
   @elements = @page.the_file_fields_elements
+end
+
+When(/^I select the divs using a block$/) do
+  @elements = @page.block_divs_elements
 end

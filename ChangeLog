@@ -1,3 +1,43 @@
+=== 2017-01-16
+* Enhancements
+  * Updated expected_element to use the global default element wait by default
+  * Added scroll_into_view method to Element
+  * Updated routes to accept more than two entries in the array which are passed as arguments
+  * Added *_element and *_elements methods to Druid and Element for the following types
+    * addr
+    * address
+    * article
+    * aside
+    * bdi
+    * bdo
+    * cite
+    * code
+    * dd
+    * dfn
+    * dt
+    * em
+    * figcaption
+    * figure
+    * footer
+    * header
+    * hgroup
+    * kbd
+    * mark
+    * nav
+    * noscript
+    * rp
+    * rt
+    * ruby
+    * samp
+    * section
+    * sub
+    * summary
+    * sup
+    * var
+    * wbr
+=== 2017-01-15
+* Fixes
+  * Fixed issue when calling new multi-element class methods using a block
 === Version 1.1.6/2017-01-13
 * Enhancement
   * Added callback to initialize_accessors method during initialization

@@ -162,5 +162,11 @@ describe Druid::Elements::Element do
       expect(we).to receive(:flash)
       element.flash
     end
+
+    it "should scroll into view" do
+      expect(we).to receive(:wd).and_return(we)
+      expect(we).to receive(:location_once_scrolled_into_view)
+      element.scroll_into_view
+    end
   end
 end

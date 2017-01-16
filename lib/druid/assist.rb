@@ -54,7 +54,7 @@ module Druid
     #
     # retrieve an array of checkbox elements
 
-    def checkboxes_for identifier
+    def checkboxs_for identifier
       find_elements("checkboxes(identifier)", Elements::CheckBox, identifier)
     end
 
@@ -454,7 +454,7 @@ module Druid
     #
     # method to retrieve an array of canvas elements
     #
-    def canvases_for(identifier)
+    def canvass_for(identifier)
       find_elements("canvases(identifier)", Elements::Canvas, identifier, 'canvas')
     end
 

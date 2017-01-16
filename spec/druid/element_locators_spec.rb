@@ -582,15 +582,15 @@ describe Druid::ElementLocators do
     page.label_elements
   end
 
-  it "should find an element" do
+  it "should find an audio element" do
     expect(driver).to receive(:audio).with(:id => 'blah').and_return(driver)
-    element = page.element(:audio, :id => 'blah')
-    expect(element).to be_instance_of Druid::Elements::Element
+    element = page.audio_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::Audio
   end
 
-  it "should find an element using a default identifier" do
+  it "should find an audio element using a default identifier" do
     expect(driver).to receive(:audio).with(:index => 0).and_return(driver)
-    page.element(:audio)
+    page.audio_element
   end
 
   it "should find an area element" do

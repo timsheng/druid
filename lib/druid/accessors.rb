@@ -75,7 +75,7 @@ module Druid
     #   expected_element(:address, 10)
     #   page.has_expected_element?
     #
-    def expected_element(element_name, timeout=5)
+    def expected_element(element_name, timeout=Druid.default_element_wait)
       define_method("has_expected_element?") do
         self.respond_to? "#{element_name}_element" and self.send("#{element_name}_element").when_present timeout
       end
@@ -156,16 +156,7 @@ module Druid
         return click_link_for identifier.clone unless block_given?
         self.send("#{name}_element").click
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        link_for(identifier.clone)
-        # block ? call_block(&block) : link_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        link_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_link".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'link_for', &block)
     end
 
     alias_method :a, :link
@@ -203,16 +194,7 @@ module Druid
         return text_field_value_set(identifier.clone, value) unless block_given?
         self.send("#{name}_element").value = value
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        text_field_for(identifier.clone)
-        # block ? call_block(&block) : text_field_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        text_field_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_text_field".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'text_field_for', &block)
     end
 
     #
@@ -250,27 +232,19 @@ module Druid
         return checkbox_checked? identifier.clone unless block_given?
         self.send("#{name}_element").checked?
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        checkbox_for(identifier.clone)
-        # block ? call_block(&block) : checkbox_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        checkbox_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_checkbox".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'checkbox_for', &block)
     end
 
     #
-    # adds four methods - one to select an item in a drop-down,
+    # adds five methods - one to select an item in a drop-down,
     # another to fetch the currently selected item text, another
     # to retrieve the select list element, and another to check the
-    # drop down's existence.
+    # drop down's existence and another to get all the available options
+    # to select from
     #
     # @example
     #   select_list(:state, :id => "state")
-    #   # will generate 'state', 'state=', 'state_element', 'state?' methods
+    #   # will generate 'state', 'state=', 'state_element', 'state?', 'state_options' methods
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a select_list.  You can use a multiple parameters
@@ -291,16 +265,11 @@ module Druid
         return select_list_value_set(identifier.clone, value) unless block_given?
         self.send("#{name}_element").select(value)
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        select_list_for(identifier.clone)
-        # block ? call_block(&block) : select_list_for(identifier.clone)
+      define_method("#{name}_options") do
+        element = self.send("#{name}_element")
+        (element && element.options) ? element.options.collect(&:text) : []
       end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        select_list_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_select_list".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'select_list_for', &block)
     end
     alias_method :select, :select_list
 
@@ -340,16 +309,7 @@ module Druid
         return radio_selected? identifier.clone unless block_given?
         self.send("#{name}_element").selected?
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        radio_button_for(identifier.clone)
-        # block ? call_block(&block) : radio_button_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        radio_button_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_radio_button".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'radio_button_for', &block)
     end
     alias_method :radio, :radio_button
 
@@ -380,16 +340,7 @@ module Druid
         return click_button_for identifier.clone unless block_given?
         self.send("#{name}_element").click
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        button_for(identifier.clone)
-        # block ? call_block(&block) : button_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        button_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_button".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'button_for', &block)
     end
 
     #
@@ -418,16 +369,7 @@ module Druid
         return div_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        div_for(identifier.clone)
-        # block ? call_block(&block) : div_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        div_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_div".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'div_for', &block)
     end
 
     #
@@ -454,16 +396,7 @@ module Druid
         return table_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        table_for(identifier.clone)
-        # block ? call_block(&block) : table_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        table_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_table".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'table_for', &block)
     end
 
     #
@@ -491,16 +424,7 @@ module Druid
         return cell_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        cell_for(identifier.clone)
-        # block ? call_block(&block) : cell_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        cell_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_cell".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'cell_for', &block)
     end
     alias_method :td, :cell
 
@@ -529,16 +453,7 @@ module Druid
         return span_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        span_for(identifier.clone)
-        # block ? call_block(&block) : span_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        span_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_span".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'span_for', &block)
     end
 
     #
@@ -562,16 +477,7 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def image(name, identifier={:index => 0}, &block)
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        image_for(identifier.clone)
-        # block ? call_block(&block) : image_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        image_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_image".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'image_for', &block)
     end
     alias_method :img, :image
 
@@ -595,16 +501,7 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def form(name, identifier={:index => 0}, &block)
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        form_for(identifier.clone)
-        # block ? call_block(&block) : form_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        form_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_form".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'form_for', &block)
     end
 
     #
@@ -629,20 +526,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def hidden_field(name, identifier={:index => 0}, &block)
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        hidden_field_for(identifier.clone)
-        # block ? call_block(&block) : hidden_field_for(identifier.clone)
-      end
       define_method(name) do
         return hidden_field_value_for identifier.clone unless block_given?
         self.send("#{name}_element").value
       end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        hidden_field_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_hidden_field".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'hidden_field_for', &block)
     end
     alias_method :hidden, :hidden_field
 
@@ -671,16 +559,7 @@ module Druid
         return list_item_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        list_item_for(identifier.clone)
-        # block ? call_block(&block) : list_item_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        list_item_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_list_item".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'list_item_for', &block)
     end
     alias_method :li, :list_item
 
@@ -708,16 +587,7 @@ module Druid
         return ordered_list_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        ordered_list_for(identifier.clone)
-        # block ? call_block(&block) : ordered_list_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        ordered_list_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_ordered_list".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'ordered_list_for', &block)
     end
     alias_method :ol, :ordered_list
 
@@ -750,16 +620,7 @@ module Druid
         return text_area_value_for identifier.clone unless block_given?
         self.send("#{name}_element").value
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        text_area_for(identifier.clone)
-        # block ? call_block(&block) : text_area_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        text_area_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_text_area".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'text_area_for', &block)
     end
     alias_method :textarea, :text_area
 
@@ -785,16 +646,7 @@ module Druid
         return unordered_list_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        unordered_list_for(identifier.clone)
-        # block ? call_block(&block) : unordered_list_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        unordered_list_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_unordered_list".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'unordered_list_for', &block)
     end
     alias_method :ul, :unordered_list
 
@@ -821,15 +673,7 @@ module Druid
         return h1_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        h1_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        h1_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_h1".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'h1_for', &block)
     end
 
     #
@@ -855,15 +699,7 @@ module Druid
         return h2_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        h2_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        h2_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_h2".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'h2_for', &block)
     end
 
     #
@@ -889,15 +725,7 @@ module Druid
         return h3_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        h3_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        h3_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_h3".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'h3_for', &block)
     end
 
     #
@@ -923,15 +751,7 @@ module Druid
         return h4_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        h4_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        h4_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_h4".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'h4_for', &block)
     end
 
     #
@@ -957,15 +777,7 @@ module Druid
         return h5_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        h5_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        h5_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_h5".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'h5_for', &block)
     end
 
     #
@@ -991,15 +803,7 @@ module Druid
         return h6_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        h6_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        h6_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_h6".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'h6_for', &block)
     end
 
     #
@@ -1025,15 +829,7 @@ module Druid
         return paragraph_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        paragraph_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        paragraph_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_paragraph".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'paragraph_for', &block)
     end
     alias_method :p, :paragraph
 
@@ -1061,14 +857,7 @@ module Druid
         return file_field_value_set(identifier.clone, value) unless block_given?
         self.send("#{name}_element").value = value
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        file_field_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        file_field_for(identifier.clone).exist?
-      end
+      standard_methods(name, identifier, 'file_field_for', &block)
     end
 
     #
@@ -1095,15 +884,7 @@ module Druid
         return label_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        label_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        label_for(identifier.clone).exist?
-      end
-      alias_method "#{name}_label".to_sym, "#{name}_element".to_sym
+      standard_methods(name, identifier, 'label_for', &block)
     end
 
     #
@@ -1130,14 +911,7 @@ module Druid
         return click_area_for identifier.clone unless block_given?
         self.send("#{name}_element").click
       end
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        area_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        area_for(identifier.clone).exist?
-      end
+      standard_methods(name, identifier, 'area_for', &block)
     end
 
     #
@@ -1159,14 +933,7 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def canvas(name, identifier={:index => 0}, &block)
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        canvas_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        canvas_for(identifier.clone).exist?
-      end
+      standard_methods(name, identifier, 'canvas_for', &block)
     end
 
     #
@@ -1188,14 +955,7 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def audio(name, identifier={:index => 0}, &block)
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        audio_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        audio_for(identifier.clone).exist?
-      end
+      standard_methods(name, identifier, 'audio_for', &block)
     end
 
     #
@@ -1217,14 +977,7 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def video(name, identifier={:index => 0}, &block)
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        video_for(identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        video_for(identifier.clone).exist?
-      end
+      standard_methods(name, identifier, 'video_for', &block)
     end
 
     #
@@ -1255,6 +1008,74 @@ module Druid
       end
       define_method("#{name}?") do
         self.send("#{name}_element").exist?
+      end
+    end
+
+    #
+   # methods to generate accessors for types that follow the same
+   # pattern as element
+   #
+   # @example
+   #   address(:home_address, :id => "home_address")
+   #   will generate 'home_address', 'home_address_element' and 'home_address?'
+   #
+   # @param [Symbol] the name used for the generated methods
+   # @param [Symbol] the name of the tag for the element
+   # @param [Hash] identifier how we find an element.  You can use a multiple paramaters
+   #   by combining of any of the following except xpath.  The valid keys are:
+   #   * :class
+   #   * :css
+   #   * :id
+   #   * :index
+   #   * :name
+   #   * :xpath
+   # @param optional block to be invoked when element method is called
+   #
+   [:abbr,
+    :address,
+    :article,
+    :aside,
+    :bdi,
+    :bdo,
+    :cite,
+    :code,
+    :dd,
+    :dfn,
+    :dt,
+    :em,
+    :figcaption,
+    :figure,
+    :footer,
+    :header,
+    :hgroup,
+    :kbd,
+    :mark,
+    :nav,
+    :noscript,
+    :rp,
+    :rt,
+    :ruby,
+    :samp,
+    :section,
+    :sub,
+    :summary,
+    :sup,
+    :var,
+    :wbr].each do |type|
+     define_method(type) do |name, *identifier, &block|
+       identifier = identifier[0] ? identifier[0] : {:index => 0}
+       element(name, type, identifier, &block)
+     end
+   end
+
+    def standard_methods(name, identifier, method, &block)
+      define_method("#{name}_element") do
+        return call_block(&block) if block_given?
+        self.send(method, identifier.clone)
+      end
+      define_method("#{name}?") do
+        return call_block(&block).exist? if block_given?
+        self.send(method, identifier.clone).exist?
       end
     end
 
@@ -1299,10 +1120,11 @@ module Druid
      :paragraphs,
      :labels,
      :file_fields].each do |method_name|
-      define_method(method_name) do |name, identifier, &block|
+      define_method(method_name) do |name, *identifier, &block|
         define_method("#{name}_elements") do
-          return call_block(&block) if block_given?
-          self.send "#{method_name.to_s}_for", identifier.clone
+          return call_block(&block) unless block.nil?
+          platform_method = (method_name == :checkboxes) ? 'checkboxs_for' : "#{method_name.to_s}_for"
+          self.send platform_method, identifier.first.clone
         end
       end
     end
