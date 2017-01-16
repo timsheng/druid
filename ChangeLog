@@ -2,6 +2,7 @@
 * Enhancements
   * Updated expected_element to use the global default element wait by default
   * Added scroll_into_view method to Element
+  * Updated routes to accept more than two entries in the array which are passed as arguments
   * Added *_element and *_elements methods to Druid and Element for the following types
     * addr
     * address
