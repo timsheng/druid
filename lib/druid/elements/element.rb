@@ -161,6 +161,13 @@ module Druid
       end
 
       #
+      # Scroll until the element is viewable
+      #
+      def scroll_into_view
+        element.wd.location_once_scrolled_into_view
+      end
+
+      #
       # Flash the element by temporarily changing the background color
       #
       def flash

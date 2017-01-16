@@ -1,6 +1,7 @@
 === 2017-01-16
 * Enhancements
   * Updated expected_element to use the global default element wait by default
+  * Added scroll_into_view method to Element
   * Added *_element and *_elements methods to Druid and Element for the following types
     * addr
     * address

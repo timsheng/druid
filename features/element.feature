@@ -232,3 +232,8 @@ Feature: Elements
   Scenario: Getting an element's id
     When I retrieve a button element
     Then I should know its id is "button_id"
+
+  Scenario: Scrolling so an element is visible
+    When I retrieve a heading element
+    And I scroll the heading element into view
+    Then the heading element should be visible

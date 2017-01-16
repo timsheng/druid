@@ -134,3 +134,11 @@ end
 Then(/^I should know the html is "(.*)"$/) do |html|
   expect(@element.html).to eql html
 end
+
+When(/^I scroll the heading element into view$/) do
+  @element.scroll_into_view
+end
+
+Then(/^the heading element should be visible$/) do
+  expect(@element).to be_visible
+end
