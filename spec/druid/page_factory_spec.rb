@@ -189,11 +189,20 @@ describe Druid::PageFactory do
   end
 
   it "should navigate to a page calling the default methods" do
-    pages = [[FactoryTestDruid, :a_method], [AnotherPage,:b_method]]
+    pages = [[FactoryTestDruid, :a_method], [AnotherPage, :b_method]]
     Druid::PageFactory.routes = {:default => pages}
     fake_page = double('a_page')
     expect(FactoryTestDruid).to receive(:new).with(driver,false).and_return(fake_page)
     expect(fake_page).to receive(:a_method)
+    expect(world.navigate_to(AnotherPage).class).to eql AnotherPage
+  end
+
+  it "should pass parameters to methods when navigating" do
+    pages = [[FactoryTestDruid, :a_method, 'blah'], [AnotherPage, :b_method]]
+    Druid::PageFactory.routes = {:default => pages}
+    fake_page = double('a_page')
+    expect(FactoryTestDruid).to receive(:new).with(driver,false).and_return(fake_page)
+    expect(fake_page).to receive(:a_method).with('blah')
     expect(world.navigate_to(AnotherPage).class).to eql AnotherPage
   end
 
