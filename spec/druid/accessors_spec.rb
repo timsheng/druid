@@ -190,7 +190,7 @@ describe Druid::Accessors do
     end
 
     it "should raise error when it does not have expected title" do
-      expect(driver).to receive(:title).twice.and_return("Not Expected")
+      expect(driver).to receive(:title).and_return("Not Expected")
       expect {druid.has_expected_title? }.to raise_error
     end
   end
