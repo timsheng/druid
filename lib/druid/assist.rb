@@ -490,6 +490,20 @@ module Druid
       find_element("#{tag.to_s}(identifier)", Elements::Element, identifier, tag.to_s)
     end
 
+    #
+    # method to return a svg element
+    #
+    def svg_for(identifier)
+      find_element("element(identifier)", Elements::Element, identifier)
+    end
+
+    #
+    # method to return an array of svg elements
+    #
+    def svgs_for(identifier)
+      find_elements("element(identifier)", Elements::Element, identifier)
+    end
+
     private
 
     def find_elements(the_call, type, identifier, tag_name=nil)

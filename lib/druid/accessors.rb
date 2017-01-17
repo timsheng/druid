@@ -1013,6 +1013,29 @@ module Druid
     end
 
     #
+    # adds two methods - one to retrieve a svg, and another to check
+    # svg's existence.
+    #
+    # @example
+    #   svg(:circle, :id => 'circle')
+    #   # will generate 'circle_element', and 'circle?' methods
+    #
+    # @param [Symbol] the name used for the generated methods
+    # @param [Hash] identifier how we find a svg. You can use a multiple parameters
+    #   by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :css
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    # @param optional block to be invoked when element method is called
+    #
+    def svg(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'svg_for', &block)
+    end
+
+    #
    # methods to generate accessors for types that follow the same
    # pattern as element
    #
