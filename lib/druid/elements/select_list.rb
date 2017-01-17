@@ -3,7 +3,7 @@ module Druid
     class SelectList < Element
 
       def self.finders
-        super + [:value, :text]
+        super + [:value, :text, :label]
       end
 
       def [](idx)

@@ -22,8 +22,7 @@ Feature: Select List
     | name      |
     | xpath     |
     | index     |
-  #  | value     |
-  #  | text      |
+    | label     |
 
   Scenario: Retrieve a select list
     When I retrieve a select list

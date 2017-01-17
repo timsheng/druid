@@ -19,6 +19,7 @@ Feature: File Field
     | xpath     |
     | title     |
     | index     |
+    | label     |
 
   Scenario Outline: Locating file fields using multiple parameters
     When I search for the file field by "<param1>" and "<param2>"

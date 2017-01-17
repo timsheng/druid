@@ -25,6 +25,7 @@ Feature: Radio Buttons
     | xpath     |
     | index     |
     | value     |
+    | label     |
 
   Scenario: Retrieve a radio button
     When I retrieve a radio button
