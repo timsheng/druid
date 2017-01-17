@@ -31,8 +31,17 @@ module Druid
        :area,
        :canvas,
        :audio,
-       :video,
-       :abbr,
+       :video].each do |tag|
+         target.send(:define_method, "#{tag.to_s}_element") do |*identifier|
+           self.send "#{tag.to_s}_for", locator(identifier).clone
+         end
+
+         target.send(:define_method, "#{tag.to_s}_elements") do |*identifier|
+           self.send "#{tag.to_s}s_for", identifier[0] ? identifier[0].clone : {}
+         end
+       end
+
+       [:abbr,
        :address,
        :article,
        :aside,
@@ -61,11 +70,11 @@ module Druid
        :var,
        :wbr].each do |tag|
          target.send(:define_method, "#{tag.to_s}_element") do |*identifier|
-           self.send "#{tag.to_s}_for", locator(identifier).clone
+           self.send :element_for, locator(identifier)
          end
 
          target.send(:define_method, "#{tag.to_s}_elements") do |*identifier|
-           self.send "#{tag.to_s}s_for", identifier[0] ? identifier[0].clone : {}
+           self.send(:elements_for, identifier[0] ? identifier[0] : {})
          end
        end
     end
