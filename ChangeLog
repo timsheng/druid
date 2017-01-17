@@ -1,6 +1,7 @@
 === 2017-01-17
 * Enhancements
   * Added :using_params parameter to both on_page and if_page methods
+  * fixed issue with generic element calls
 === Version-1.1.7/2017-01-16
 * Enhancements
   * Updated expected_element to use the global default element wait by default
