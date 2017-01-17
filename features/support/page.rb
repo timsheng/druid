@@ -53,6 +53,7 @@ class Page
   select_list(:select_list_text, :text => "Test 1")
   select_list(:select_list_value, :value => "option1")
   select_list(:select_list_multiple, :id => "sel_list_multiple")
+  select_list(:select_list_label, :label => "Select List")
   select_list(:select_list_class_index, :class => "sel_list_class", :index => 0)
   select_list(:select_list_name_index, :name => "sel_list_name", :index => 0)
 
@@ -63,6 +64,7 @@ class Page
   radio_button(:milk_index, :index => 0)
   radio_button(:milk_value, :value => 'Milk')
   radio_button(:milk_xpath, :xpath => "//input[@type='radio']")
+  radio_button(:milk_label, :label => "Radio")
   radio_button(:milk_class_index, :class => "milk_class", :index => 0)
   radio_button(:milk_name_index, :name => "milk_name", :index => 0)
 
@@ -196,6 +198,7 @@ class Page
   text_area(:text_area_index, :index => 0)
   text_area(:text_area_text, :text => "")
   text_area(:text_area_value, :value => "")
+  text_area(:text_area_label, :label => "Text Area")
   text_area(:text_area_class_index, :class => "text_area_class", :index => 0)
   text_area(:text_area_name_index, :name => "text_area_name", :index => 0)
 
@@ -278,6 +281,7 @@ class Page
   file_field(:file_field_index, :index => 0)
   file_field(:file_field_title, :title => 'file_field_title')
   file_field(:file_field_xpath, :xpath => "//input[@type='file']")
+  file_field(:file_field_label, :label => "File Field")
   file_field(:file_field_class_index, :class => 'file_field_class', :index => 0)
   file_field(:file_field_name_index, :name => 'file_field_name', :index => 0)
 
