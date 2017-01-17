@@ -219,4 +219,17 @@ describe Druid::PageFactory do
     expect{world.navigate_to(AnotherPage)}.to raise_error
   end
 
+  it "should know how to continue routing from a location" do
+    Druid::PageFactory.routes = {:default => [[FactoryTestDruid, :a_method], [AnotherPage, :b_method], [YetAnotherPage, :c_method]]}
+    world.current_page = FactoryTestDruid.new(driver)
+    f_page = FactoryTestDruid.new(driver)
+    allow(FactoryTestDruid).to receive(:new).with(driver,false).and_return(f_page)
+    allow(f_page).to receive(:respond_to?).with(:a_method).and_return(true)
+    allow(f_page).to receive(:a_method)
+    a_page = AnotherPage.new(driver)
+    allow(AnotherPage).to receive(:new).with(driver,false).and_return(a_page)
+    allow(a_page).to receive(:respond_to?).with(:b_method).and_return(true)
+    allow(a_page).to receive(:b_method)
+    expect(world.continue_navigation_to(YetAnotherPage).class).to eql YetAnotherPage
+  end
 end
