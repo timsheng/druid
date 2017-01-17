@@ -218,6 +218,7 @@ module Druid
     #   * :name
     #   * :xpath
     #   * :value
+    #   * :label
     # @param optional block to be invoked when element method is called
     #
     def checkbox(name, identifier={:index => 0}, &block)

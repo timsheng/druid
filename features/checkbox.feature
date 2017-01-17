@@ -23,6 +23,7 @@ Feature: Check Box
     | xpath     |
     | index     |
     | value     |
+    | label     |
 
   Scenario: Retrieve a CheckBox
     When I retrieve a check box element
