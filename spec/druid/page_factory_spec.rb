@@ -179,13 +179,13 @@ describe Druid::PageFactory do
   end
 
   it "should raise an error when you do not provide a default route" do
-    expect { Druid::PageFactory.routes = {:another => []} }.to raise_error 'You must provide a :default route for PageFactory routes'
+    expect { Druid::PageFactory.routes = {:another => []} }.to raise_error 'You must provide a :default route'
   end
 
   it "should store the routes" do
     routes = ['a', 'b', 'c']
     Druid::PageFactory.routes = {:default => routes}
-    expect(Druid::PageFactory.page_object_routes[:default]).to eql routes
+    expect(Druid::PageFactory.routes[:default]).to eql routes
   end
 
   it "should navigate to a page calling the default methods" do
@@ -219,16 +219,4 @@ describe Druid::PageFactory do
     expect{world.navigate_to(AnotherPage)}.to raise_error
   end
 
-  it "should know how to continue routing from a location" do
-    Druid::PageFactory.routes = {
-      :default => [[FactoryTestDruid, :a_method], [AnotherPage, :b_method], [YetAnotherPage, :c_method]]
-    }
-    fake_page = double('a_page')
-    expect(AnotherPage).to receive(:new).with(driver,false).and_return(fake_page)
-    expect(fake_page).to receive(:respond_to?).with(:b_method).and_return(true)
-    expect(fake_page).to receive(:b_method)
-    expect(fake_page).to receive(:class).and_return(FactoryTestDruid)
-    world.instance_variable_set :@current_page, fake_page
-    expect(world.continue_navigation_to(YetAnotherPage).class).to eql YetAnotherPage
-  end
 end
