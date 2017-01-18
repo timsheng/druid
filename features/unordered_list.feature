@@ -22,6 +22,7 @@ Feature: Unordered list
     | xpath     |
     | index     |
     | name      |
+    | css       |
 
   @multi
   Scenario Outline: Locating unordered lists using multiple parameters

@@ -1,7 +1,7 @@
 module Druid
   module Elements
     class Canvas < Element
-
+      
       #
       # return the width of the canvas
       #

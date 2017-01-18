@@ -22,6 +22,7 @@ Feature: Ordered list
     | xpath     |
     | index     |
     | name      |
+    | css       |
 
   @multi
   Scenario Outline: Locating ordered lists using multiple parameters

@@ -24,6 +24,7 @@ Feature: Check Box
     | index     |
     | value     |
     | label     |
+    | css       |
 
   Scenario: Retrieve a CheckBox
     When I retrieve a check box element

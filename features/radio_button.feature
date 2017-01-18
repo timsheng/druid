@@ -26,6 +26,7 @@ Feature: Radio Buttons
     | index     |
     | value     |
     | label     |
+    | css       |
 
   Scenario: Retrieve a radio button
     When I retrieve a radio button
