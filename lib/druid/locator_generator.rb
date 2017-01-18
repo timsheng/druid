@@ -71,11 +71,11 @@ module Druid
        :var,
        :wbr].each do |tag|
          target.send(:define_method, "#{tag.to_s}_element") do |*identifier|
-           self.send :element_for, locator(identifier)
+           self.send :element_for, tag, locator(identifier)
          end
 
          target.send(:define_method, "#{tag.to_s}_elements") do |*identifier|
-           self.send(:elements_for, identifier[0] ? identifier[0] : {})
+           self.send(:elements_for, tag, identifier[0] ? identifier[0] : {})
          end
        end
     end
