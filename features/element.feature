@@ -237,3 +237,9 @@ Feature: Elements
     When I retrieve a heading element
     And I scroll the heading element into view
     Then the heading element should be visible
+
+  Scenario: Expanding how we find elemnts to include non-stardard locators
+    When I retrieve a div using data-entity
+    Then I should know it exists
+    And I should know it is visible
+    And I should know the text is "found using data-entity"
