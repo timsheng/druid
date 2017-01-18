@@ -24,6 +24,7 @@ Feature: Elements
     And I should know it is equal to itself
     And I should know its' tag name is "a"
     And I should know the attribute "readonly" is false
+    And I should know the attribute "href" includes "success.html"
     And I should know its' value is ""
     And I should be able to click it
 
