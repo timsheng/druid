@@ -62,6 +62,7 @@ Feature: Table
     | xpath     |
     | index     |
     | name      |
+    | css       |
 
   Scenario: Retrieve the data from a table
     When I retrieve a table element

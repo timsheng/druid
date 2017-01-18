@@ -42,6 +42,7 @@ class Page
   checkbox(:cb_value, :value => '1')
   checkbox(:cb_xpath, :xpath => "//input[@type='checkbox']")
   checkbox(:cb_label, :label => 'Checkbox')
+  checkbox(:cb_css, :css => '.cb_class')
   checkbox(:cb_class_index, :class => "cb_class", :index => 0)
   checkbox(:cb_name_index, :name => "cb_name", :index => 0)
 
@@ -54,6 +55,7 @@ class Page
   select_list(:select_list_value, :value => "option1")
   select_list(:select_list_multiple, :id => "sel_list_multiple")
   select_list(:select_list_label, :label => "Select List")
+  select_list(:select_list_css, :css => '.sel_list_class')
   select_list(:select_list_class_index, :class => "sel_list_class", :index => 0)
   select_list(:select_list_name_index, :name => "sel_list_name", :index => 0)
 
@@ -65,6 +67,7 @@ class Page
   radio_button(:milk_value, :value => 'Milk')
   radio_button(:milk_xpath, :xpath => "//input[@type='radio']")
   radio_button(:milk_label, :label => "Radio")
+  radio_button(:milk_css, :css => '.milk_class')
   radio_button(:milk_class_index, :class => "milk_class", :index => 0)
   radio_button(:milk_name_index, :name => "milk_name", :index => 0)
 
@@ -101,6 +104,7 @@ class Page
   div(:div_xpath, :xpath => '//div')
   div(:div_text, :text => "page-object rocks!")
   div(:div_title, :title => "div_title")
+  div(:div_css, :css => '.div_class')
   div(:div_data_entity, :data_entity => "test")
   div(:div_class_index, :class => "div_class", :index => 0)
   div(:div_name_index, :name => "div_name", :index => 0)
@@ -111,6 +115,7 @@ class Page
   table(:table_xpath, :xpath => '//table')
   table(:table_name, :name => 'table_name')
   table(:table_with_thead_id, :id => 'table_with_thead_id')
+  table(:table_css, :css => '.table_class')
   table(:table_class_index, :class => "table_class", :index => 0)
   table(:table_name_index, :name => "table_name", :index => 0)
 
@@ -120,6 +125,7 @@ class Page
   cell(:cell_xpath, :xpath => '//table//tr[2]//td[2]')
   cell(:cell_name, :name => 'cell_name')
   cell(:cell_text, :text => 'Data4')
+  cell(:cell_css, :css => '.cell_class')
   cell(:cell_class_index, :class => "cell_class", :index => 0)
   cell(:cell_name_index, :name => "cell_name", :index => 0)
 
@@ -130,6 +136,7 @@ class Page
   span(:span_name, :name => 'span_name')
   span(:span_text, :text => 'My alert')
   span(:span_title, :title => 'span_title')
+  span(:span_css, :css => '.span_class')
   span(:span_class_index, :class => "span_class", :index => 0)
   span(:span_name_index, :name => "span_name", :index => 0)
 
@@ -139,6 +146,7 @@ class Page
   label(:label_text, :text => "page-object is the best!")
   label(:label_index, :index => 5)
   label(:label_xpath, :xpath => "//label[6]")
+  label(:label_css, :css => '.label_class')
   label(:label_class_index, :class => "label_class", :index => 0)
   label(:label_name_index, :name => "label_name", :index => 0)
 
@@ -149,6 +157,7 @@ class Page
   image(:image_xpath, :xpath => '//img[2]')
   image(:image_alt, :alt => 'image_alt')
   image(:image_src, :src => 'images/circle.png')
+  image(:image_css, :css => '.image_class')
   image(:image_class_index, :class => "image_class", :index => 0)
   image(:image_name_index, :name => "image_name", :index => 0)
 
@@ -158,6 +167,7 @@ class Page
   form(:form_index, :index => 0)
   form(:form_xpath, :xpath => '//form')
   form(:form_action, :action => 'success.html')
+  form(:form_css, :css => '.form_class')
   form(:form_class_index, :class => "form_class", :index => 0)
   form(:form_name_index, :name => "form_name", :index => 0)
 
@@ -179,6 +189,7 @@ class Page
   list_item(:li_index, :index => 0)
   list_item(:li_xpath, :xpath => '//li[1]')
   list_item(:li_text, :text => 'Item One')
+  list_item(:li_css, :css => '.li_class')
   list_item(:li_class_index, :class => "li_class", :index => 0)
   list_item(:li_name_index, :name => "li_name", :index => 0)
 
@@ -187,6 +198,7 @@ class Page
   ordered_list(:ol_index, :index => 0)
   ordered_list(:ol_xpath, :xpath => '//ol')
   ordered_list(:ol_name, :name => 'ol_name')
+  ordered_list(:ol_css, :css => '.ol_class')
   ordered_list(:ol_class_index, :class => "ol_class", :index => 0)
   ordered_list(:ol_name_index, :name => "ol_name", :index => 0)
 
@@ -208,6 +220,7 @@ class Page
   unordered_list(:ul_index, :index => 0)
   unordered_list(:ul_xpath, :xpath => '//ul')
   unordered_list(:ul_name, :name => 'ul_name')
+  unordered_list(:ul_css, :css => '.ul_class')
   unordered_list(:ul_class_index, :class => "ul_class", :index => 0)
   unordered_list(:ul_name_index, :name => "ul_name", :index => 0)
   unordered_list(:ul_class_name, :class => "ul_class", :name => "ul_name")
@@ -225,6 +238,7 @@ class Page
   h1(:h1_name, :name => 'h1_name')
   h1(:h1_index, :index => 0)
   h1(:h1_xpath, :xpath => '//h1')
+  h1(:h1_css, :css => '.h1_class')
   h1(:h1_class_index, :class => 'h1_class', :index => 0)
   h1(:h1_name_index, :name => 'h1_name', :index => 0)
 
@@ -233,6 +247,7 @@ class Page
   h2(:h2_name, :name => 'h2_name')
   h2(:h2_index, :index => 0)
   h2(:h2_xpath, :xpath => '//h2')
+  h2(:h2_css, :css => '.h2_class')
   h2(:h2_class_index, :class => 'h2_class', :index => 0)
   h2(:h2_name_index, :name => 'h2_name', :index =>0)
 
@@ -241,6 +256,7 @@ class Page
   h3(:h3_name, :name => 'h3_name')
   h3(:h3_index, :index => 0)
   h3(:h3_xpath, :xpath => '//h3')
+  h3(:h3_css, :css => '.h3_class')
   h3(:h3_class_index, :class => 'h3_class', :index => 0)
   h3(:h3_name_index, :name => 'h3_name', :index => 0)
 
@@ -249,6 +265,7 @@ class Page
   h4(:h4_name, :name => 'h4_name')
   h4(:h4_index, :index => 0)
   h4(:h4_xpath, :xpath => '//h4')
+  h4(:h4_css, :css => '.h4_class')
   h4(:h4_class_index, :class => 'h4_class', :index => 0)
   h4(:h4_name_index, :name => 'h4_name', :index => 0)
 
@@ -257,6 +274,7 @@ class Page
   h5(:h5_name, :name => 'h5_name')
   h5(:h5_index, :index => 0)
   h5(:h5_xpath, :xpath => '//h5')
+  h5(:h5_css, :css => '.h5_class')
   h5(:h5_class_index, :class => 'h5_class', :index => 0)
   h5(:h5_name_index, :name => 'h5_name', :index => 0)
 
@@ -265,6 +283,7 @@ class Page
   h6(:h6_name, :name => 'h6_name')
   h6(:h6_index, :index => 0)
   h6(:h6_xpath, :xpath => '//h6')
+  h6(:h6_css, :css => '.h6_class')
   h6(:h6_class_index, :class => 'h6_class', :index => 0)
   h6(:h6_name_index, :name => 'h6_name', :index => 0)
 
@@ -273,6 +292,7 @@ class Page
   paragraph(:p_name, :name => 'p_name')
   paragraph(:p_index, :index => 0)
   paragraph(:p_xpath, :xpath => '//p')
+  paragraph(:p_css, :css => '.p_class')
   paragraph(:p_class_index, :class => 'p_class', :index => 0)
   paragraph(:p_name_index, :name => 'p_name', :index => 0)
 
@@ -283,6 +303,7 @@ class Page
   file_field(:file_field_title, :title => 'file_field_title')
   file_field(:file_field_xpath, :xpath => "//input[@type='file']")
   file_field(:file_field_label, :label => "File Field")
+  file_field(:file_field_css, :css => '.file_field_class')
   file_field(:file_field_class_index, :class => 'file_field_class', :index => 0)
   file_field(:file_field_name_index, :name => 'file_field_name', :index => 0)
 
@@ -293,6 +314,7 @@ class Page
   area(:area_class, :class => 'area')
   area(:area_index, :index => 0)
   area(:area_xpath, :xpath => '//area')
+  area(:area_css, :css => '.area')
   area(:area_class_index, :class => 'area', :index => 0)
   area(:area_name_index, :name => 'area', :index => 0)
 
@@ -301,6 +323,7 @@ class Page
   canvas(:canvas_class, :class => 'canvas')
   canvas(:canvas_index, :index => 0)
   canvas(:canvas_xpath, :xpath => '//canvas')
+  canvas(:canvas_css, :css => '.canvas')
   canvas(:canvas_class_index, :class => 'canvas', :index => 0)
   canvas(:canvas_name_index, :name => 'canvas', :index => 0)
 
@@ -309,6 +332,7 @@ class Page
   audio(:audio_class, :class => 'audio')
   audio(:audio_index, :index => 0)
   audio(:audio_xpath, :xpath => '//audio')
+  audio(:audio_css, :css => '.audio')
   audio(:audio_class_index, :class => 'audio', :index => 0)
   audio(:audio_name_index, :name => 'audio', :index => 0)
 
@@ -317,6 +341,7 @@ class Page
   video(:video_class, :class => 'video')
   video(:video_index, :index => 0)
   video(:video_xpath, :xpath => '//video')
+  video(:video_css, :css => '.video')
   video(:video_class_index, :class => 'video', :index => 0)
   video(:video_name_index, :name => 'video', :index => 0)
 

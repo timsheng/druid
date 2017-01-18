@@ -29,6 +29,7 @@ Feature: Headings
      | name      |
      | xpath     |
      | index     |
+     | css       |
 
    @multi
    Scenario Outline: Locating h1 using multiple parameters
@@ -56,6 +57,7 @@ Feature: Headings
      | name      |
      | xpath     |
      | index     |
+     | css       |
 
    @multi
    Scenario Outline: Locating h2 using multiple parameters
@@ -83,6 +85,7 @@ Feature: Headings
      | name      |
      | xpath     |
      | index     |
+     | css       |
 
    @multi
    Scenario Outline: Locating h3 using multiple parameters
@@ -111,6 +114,7 @@ Feature: Headings
      | name      |
      | xpath     |
      | index     |
+     | css       |
 
    @multi
    Scenario Outline: Locating h4 using multiple parameters
@@ -139,6 +143,7 @@ Feature: Headings
      | name      |
      | xpath     |
      | index     |
+     | css       |
 
    @locator
    Scenario: Finding a h5 dynamically
@@ -157,6 +162,7 @@ Feature: Headings
      | name      |
      | xpath     |
      | index     |
+     | css       |
 
    @locator
    Scenario: Finding a h6 dynamically

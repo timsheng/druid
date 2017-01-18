@@ -19,6 +19,7 @@ Feature: Support for the canvas element
         | name        |
         | xpath       |
         | index       |
+        | css         |
 
     Scenario: Determining the width and height of the canvas
       When I retrieve the canvas element

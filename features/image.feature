@@ -22,6 +22,7 @@ Feature: Image
     | index     |
     | alt       |
     | src       |
+    | css       |
 
   @multi
   Scenario Outline: Locating an image using multiple parameters

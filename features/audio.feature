@@ -19,6 +19,7 @@ Feature: Support for the audio element
       | name        |
       | xpath       |
       | index       |
+      | css         |
 
   Scenario Outline: Locating audios using multiple parameters
     When I search for the audio element by "<param1>" and "<param2>"
