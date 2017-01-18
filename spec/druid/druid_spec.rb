@@ -229,7 +229,7 @@ describe Druid do
         end
 
         @page = CallbackPage.new(driver)
-        expect(@page.initialize_accessors.usec).to be < @page.initialize_page.usec
+        expect(@page.initialize_accessors.usec).to be <= @page.initialize_page.usec
       end
 
       it "should convert a modal popup to a window" do
