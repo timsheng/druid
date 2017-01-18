@@ -63,7 +63,7 @@ module Druid
     end
 
     def select_list_value_for identifier
-      process_call("select_list(identifier).options.each {|o| return o.text if o.selected?}", Elements::SelectList, identifier)
+      process_call("select_list(identifier).options.find {|o| o.selected?}.text", Elements::SelectList, identifier)
     end
 
     def select_list_for identifier
@@ -488,6 +488,20 @@ module Druid
 
     def element_for(tag, identifier)
       find_element("#{tag.to_s}(identifier)", Elements::Element, identifier, tag.to_s)
+    end
+
+    #
+    # method to return a svg element
+    #
+    def svg_for(identifier)
+      find_element("element(identifier)", Elements::Element, identifier)
+    end
+
+    #
+    # method to return an array of svg elements
+    #
+    def svgs_for(identifier)
+      find_elements("element(identifier)", Elements::Element, identifier)
     end
 
     private

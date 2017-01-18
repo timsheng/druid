@@ -20,6 +20,7 @@ Feature: Table Cell
     | index     |
     | name      |
     | text      |
+    | css       |
 
   Scenario: Retrieve a cell from a table by id
     When I retrieve table cell

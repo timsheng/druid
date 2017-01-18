@@ -20,6 +20,7 @@ Feature: Hidden Fields
     | index     |
     | text      |
     | value     |
+    | css       |
 
   @multi
   Scenario Outline: Locating a hidden field using multiple parameters

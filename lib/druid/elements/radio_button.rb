@@ -3,7 +3,7 @@ module Druid
     class RadioButton < Element
 
       def self.finders
-        super + [:value]
+        super + [:value, :label]
       end
       #
       # Select the RadioButton

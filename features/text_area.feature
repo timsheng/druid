@@ -18,6 +18,8 @@ Feature: Text Area
     | name      |
     | xpath     |
     | index     |
+    | label     |
+    | css       |
 
   @multi
   Scenario Outline: Locating a text area using multiple parameters

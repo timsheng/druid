@@ -3,7 +3,7 @@ module Druid
     class CheckBox < Element
 
       def self.finders
-        super + [:value]
+        super + [:value, :label]
       end
 
       #

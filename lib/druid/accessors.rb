@@ -1,5 +1,6 @@
 require 'druid/elements'
 require 'erb'
+require 'druid/locator_generator'
 
 module Druid
   #
@@ -184,6 +185,7 @@ module Druid
     #   * :text
     #   * :title
     #   * :label
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def text_field(name, identifier={:index => 0}, &block)
@@ -218,6 +220,8 @@ module Druid
     #   * :name
     #   * :xpath
     #   * :value
+    #   * :label
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def checkbox(name, identifier={:index => 0}, &block)
@@ -255,6 +259,8 @@ module Druid
     #   :index
     #   :name
     #   :xpath
+    #   :label
+    #   :css
     # @param optional block to be invoked when element method is called
     #
     def select_list(name, identifier={:index => 0}, &block)
@@ -295,6 +301,8 @@ module Druid
     #   * :name
     #   * :xpath
     #   * :value
+    #   * :label
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def radio_button(name, identifier={:index => 0}, &block)
@@ -363,6 +371,7 @@ module Druid
     #   * :text
     #   * :value
     #   * :title
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def div(name, identifier={:index => 0}, &block)
@@ -390,6 +399,7 @@ module Druid
     #   * :index
     #   * :xpath
     #   * :name
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def table(name, identifier={:index => 0}, &block)
@@ -418,6 +428,7 @@ module Druid
     #   * :xpath
     #   * :name
     #   * :text
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def cell(name, identifier={:index => 0}, &block)
@@ -447,6 +458,7 @@ module Druid
     #   * :name
     #   * :text
     #   * :title
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def span(name, identifier={:index => 0}, &block)
@@ -475,6 +487,7 @@ module Druid
     #   * :xpath
     #   * :alt
     #   * :src
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def image(name, identifier={:index => 0}, &block)
@@ -499,6 +512,7 @@ module Druid
     #   * :xpath
     #   * :name
     #   * :action
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def form(name, identifier={:index => 0}, &block)
@@ -524,6 +538,7 @@ module Druid
     #   * :text
     #   * :xpath
     #   * :value
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def hidden_field(name, identifier={:index => 0}, &block)
@@ -553,6 +568,7 @@ module Druid
     #   * :xpath
     #   * :name
     #   * :text
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def list_item(name, identifier={:index => 0}, &block)
@@ -581,6 +597,7 @@ module Druid
     #   * :index
     #   * :xpath
     #   * :name
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def ordered_list(name, identifier={:index => 0}, &block)
@@ -610,6 +627,8 @@ module Druid
     #   * :index
     #   * :name
     #   * :xpath
+    #   * :label
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def text_area(name, identifier={:index => 0}, &block)
@@ -641,6 +660,7 @@ module Druid
     #   * :index
     #   * :xpath
     #   * :name
+    #   * :css
     # @param optional block to be invoked when element method is called
     def unordered_list(name, identifier={:index => 0}, &block)
       define_method(name) do
@@ -667,6 +687,7 @@ module Druid
     #   * :index
     #   * :name
     #   * :xpath
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def h1(name, identifier={:index => 0}, &block)
@@ -693,6 +714,7 @@ module Druid
     #   * :index
     #   * :name
     #   * :xpath
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def h2(name, identifier={:index => 0}, &block)
@@ -719,6 +741,7 @@ module Druid
     #   * :index
     #   * :name
     #   * :xpath
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def h3(name, identifier={:index => 0}, &block)
@@ -745,6 +768,7 @@ module Druid
     #   * :index
     #   * :name
     #   * :xpath
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def h4(name, identifier={:index => 0}, &block)
@@ -771,6 +795,7 @@ module Druid
     #   * :index
     #   * :name
     #   * :xpath
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def h5(name, identifier={:index => 0}, &block)
@@ -797,6 +822,7 @@ module Druid
     #   * :index
     #   * :name
     #   * :xpath
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def h6(name, identifier={:index => 0}, &block)
@@ -823,6 +849,7 @@ module Druid
     #   * :index
     #   * :name
     #   * :xpath
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def paragraph(name, identifier={:index => 0}, &block)
@@ -851,6 +878,8 @@ module Druid
     #   * :name
     #   * :title
     #   * :xpath
+    #   * :label
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def file_field(name, identifier={:index => 0}, &block)
@@ -878,6 +907,7 @@ module Druid
     #  * :name
     #  * :text
     #  * :xpath
+    #  * :css
     # @param optional block to be invoked when element method is called
     #
     def label(name, identifier={:index => 0}, &block)
@@ -905,6 +935,7 @@ module Druid
     #   * :name
     #   * :xpath
     #   * :text
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def area(name, identifier={:index => 0}, &block)
@@ -931,6 +962,7 @@ module Druid
     #   * :index
     #   * :name
     #   * :xpath
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def canvas(name, identifier={:index => 0}, &block)
@@ -953,6 +985,7 @@ module Druid
     #   * :index
     #   * :name
     #   * :xpath
+    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def audio(name, identifier={:index => 0}, &block)
@@ -975,6 +1008,7 @@ module Druid
     #   * :index
     #   * :name
     #   * :xpath
+    #   * css
     # @param optional block to be invoked when element method is called
     #
     def video(name, identifier={:index => 0}, &block)
@@ -1013,6 +1047,29 @@ module Druid
     end
 
     #
+    # adds two methods - one to retrieve a svg, and another to check
+    # svg's existence.
+    #
+    # @example
+    #   svg(:circle, :id => 'circle')
+    #   # will generate 'circle_element', and 'circle?' methods
+    #
+    # @param [Symbol] the name used for the generated methods
+    # @param [Hash] identifier how we find a svg. You can use a multiple parameters
+    #   by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :css
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    # @param optional block to be invoked when element method is called
+    #
+    def svg(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'svg_for', &block)
+    end
+
+    #
    # methods to generate accessors for types that follow the same
    # pattern as element
    #
@@ -1032,37 +1089,7 @@ module Druid
    #   * :xpath
    # @param optional block to be invoked when element method is called
    #
-   [:abbr,
-    :address,
-    :article,
-    :aside,
-    :bdi,
-    :bdo,
-    :cite,
-    :code,
-    :dd,
-    :dfn,
-    :dt,
-    :em,
-    :figcaption,
-    :figure,
-    :footer,
-    :header,
-    :hgroup,
-    :kbd,
-    :mark,
-    :nav,
-    :noscript,
-    :rp,
-    :rt,
-    :ruby,
-    :samp,
-    :section,
-    :sub,
-    :summary,
-    :sup,
-    :var,
-    :wbr].each do |type|
+   LocatorGenerator::BASIC_ELEMENTS.each do |type|
      define_method(type) do |name, *identifier, &block|
        identifier = identifier[0] ? identifier[0] : {:index => 0}
        element(name, type, identifier, &block)
@@ -1095,37 +1122,15 @@ module Druid
     #   keys are the same ones supported by the standard methods.
     # @param optional block to be invoked when element method is called
     #
-    [:text_fields,
-     :hidden_fields,
-     :text_areas,
-     :select_lists,
-     :links,
-     :checkboxes,
-     :radio_buttons,
-     :buttons,
-     :divs,
-     :spans,
-     :tables,
-     :cells,
-     :images,
-     :forms,
-     :list_items,
-     :unordered_lists,
-     :ordered_lists,
-     :h1s,
-     :h2s,
-     :h3s,
-     :h4s,
-     :h5s,
-     :h6s,
-     :paragraphs,
-     :labels,
-     :file_fields].each do |method_name|
-      define_method(method_name) do |name, *identifier, &block|
+    idx = LocatorGenerator::ADVANCED_ELEMENTS.find_index { |type| type == :checkbox}
+    elements = LocatorGenerator::ADVANCED_ELEMENTS.clone
+    elements[idx] = :checkboxe
+    elements.each do |method_name|
+      define_method("#{method_name}s") do |name, *identifier, &block|
         define_method("#{name}_elements") do
           return call_block(&block) unless block.nil?
-          platform_method = (method_name == :checkboxes) ? 'checkboxs_for' : "#{method_name.to_s}_for"
-          self.send platform_method, identifier.first.clone
+          platform_method = (method_name == :checkboxe) ? 'checkboxs_for' : "#{method_name.to_s}s_for"
+          self.send platform_method, (identifier.first ? identifier.first.clone : {})
         end
       end
     end

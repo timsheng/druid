@@ -24,6 +24,8 @@ Feature: Text Fields
     | text      |
     | title     |
     | label     |
+    | css       |
+    | data_field|
 
   Scenario: Retrieve a text field
     When I retrieve a text field

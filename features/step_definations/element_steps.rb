@@ -142,3 +142,28 @@ end
 Then(/^the heading element should be visible$/) do
   expect(@element).to be_visible
 end
+
+When(/^I retrieve a div using data\-entity$/) do
+  @element = @page.div_data_entity_element
+end
+
+Then(/^I should know the text is "([^"]*)"$/) do |text|
+  expect(@element.text).to eql text
+end
+
+When(/^I retrieve the figure uisng the declaration$/) do
+  @element = @page.figure_id_element
+end
+
+Then(/^I should see the figure contains an image$/) do
+  expect(@element.image_element).not_to be nil
+end
+
+When(/^I retrieve the figure using the element$/) do
+  @element = @page.figure_element(:id => 'figure_id')
+end
+
+Then(/^I should know the attribute "([^"]*)" includes "([^"]*)"$/) do |attribute, included|
+  @attr = @element.attribute(attribute)
+  expect(@attr).to include included
+end

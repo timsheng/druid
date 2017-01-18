@@ -28,6 +28,7 @@ Feature: Handling labels with page object
     | index     |
     | name      |
     | text      |
+    | css       |
 
   Scenario Outline: Locating lables using multiple parameters
     When I search for the label by "<param1>" and "<param2>"

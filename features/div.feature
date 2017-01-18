@@ -23,6 +23,7 @@ Feature: Div
     | name      |
     | text      |
     | title     |
+    | css       |
 
   Scenario: Getting the div element
     When I retrieve the div element

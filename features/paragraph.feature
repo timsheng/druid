@@ -18,6 +18,7 @@ Feature: Paragraph
     | xpath     |
     | index     |
     | name      |
+    | css       |
 
   Scenario Outline: Locating paragraphs using multiple parameters
     When I search for the paragraph by "<param1>" and "<param2>"
