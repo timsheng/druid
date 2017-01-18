@@ -1181,7 +1181,7 @@ module Druid
         define_method("#{name}_elements") do
           return call_block(&block) unless block.nil?
           platform_method = (method_name == :checkboxes) ? 'checkboxs_for' : "#{method_name.to_s}_for"
-          self.send platform_method, identifier.first.clone
+          self.send platform_method, (identifier.first ? identifier.first.clone : {})
         end
       end
     end
