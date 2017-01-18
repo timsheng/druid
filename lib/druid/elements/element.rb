@@ -349,7 +349,7 @@ module Druid
         how, what = identifier.keys.first, identifier.values.first
         return how => what if find_by.include? how
         return find_by_mapping[how] => what if find_by_mapping[how]
-        return nil => what
+        identifier
       end
 
       def self.finders

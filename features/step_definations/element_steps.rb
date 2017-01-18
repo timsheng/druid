@@ -142,3 +142,11 @@ end
 Then(/^the heading element should be visible$/) do
   expect(@element).to be_visible
 end
+
+When(/^I retrieve a div using data\-entity$/) do
+  @element = @page.div_data_entity_element
+end
+
+Then(/^I should know the text is "([^"]*)"$/) do |text|
+  expect(@element.text).to eql text
+end
