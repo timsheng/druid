@@ -1,3 +1,5 @@
+require 'page_navigation'
+
 module Druid
   #
   # Module to facilitate to creating of page objects in step definitions.  You
@@ -31,20 +33,21 @@ module Druid
   # to the method
   # You must also call the navigation_method on each page.
   module PageFactory
+    include PageNavigation
     # attr_accessor :page
     #
     # Create and navigate to a page object.  The navigation will only work if the
     # 'page_url' method was call on the page object.
     #
-    # @param [PageObject, String] a class that has included the Druid module or a string containing the name of the class
+    # @param [PageObject, String] a class that has included the
+    # Druid module or a string containing the name of the class
+    # @param Hash values that is pass through to page class a
+    # available in the @params instance variable
     # @param an optional block to be called
     # @return [PageObject] the newly created page object
     #
     def visit_page(page_class, params={:using_params => {}}, &block)
-      page_class = class_from_string(page_class) if page_class.is_a? String
-      merged = page_class.params.merge(params[:using_params])
-      page_class.instance_variable_set("@merged_params", merged) unless merged.empty?
-      on_page page_class, true, &block
+      on_page page_class, params, true, &block
     end
 
     # Support 'visit' for readability of usage
@@ -53,12 +56,16 @@ module Druid
     # Create a page object.
     #
     # @param [PageObject, String] a class that has included the Druid module or a string containing the name of the class
+    # @param  Hash values that is pass through to page class a
+    # available in the @params instance variable.
     # @param [Bool] should the page be visited?  default is false.
     # @param an optional block to be called
     # @return [PageObject] the newly created page object
     #
-    def on_page(page_class, visit=false, &block)
+    def on_page(page_class, params={:using_params => {}}, visit=false, &block)
       page_class = class_from_string(page_class) if page_class.is_a? String
+      merged = page_class.params.merge(params[:using_params])
+      page_class.instance_variable_set("@merged_params", merged) unless merged.empty?
       @current_page = page_class.new(@driver, visit)
       block.call @current_page if block
       @current_page
@@ -82,64 +89,18 @@ module Druid
     #      page.update
     #   end
     # @param [PageObject, String] a class that has included the Druid module or a string containing the name of the class
+    # @param Hash values that is pass through to page class a
+    # available in the @params instance variable
     # @param [block] an optional block to be called
     # @return [PageObject] the newly created page object
-    def if_page(page_class, &block)
+    def if_page(page_class, params={:using_params => {}}, &block)
       page_class = class_from_string(page_class) if page_class.is_a? String
       return @current_page unless @current_page.class == page_class
-      on_page(page_class, false, &block)
+      on_page(page_class, params, false, &block)
     end
 
     # support 'if' for readability of usage
     alias_method :if, :if_page
-
-    #
-    # Navigate to a specific page following a predefined path.
-    #
-    # This method requires a lot of setup.  See the documentation for
-    # this class.  Once the setup is complete you can navigate to a
-    # page traversing through all other pages along the way.  It will
-    # call the method you specified in the routes for each
-    # page as it navigates.  Using the example setup defined in the
-    # documentation above you can call the method two ways:
-    #
-    # @example
-    #   page.navigate_to(PageThree)  # will use the default path
-    #   page.navigate_to(PageThree, :using => :another_route)
-    #
-    # @param [PageObject]  a class that has included the PageObject
-    # module and which has the navigation_method defined
-    # @param [Hash] a hash that contains an element with the key
-    # :using.  This will be used to lookup the route.  It has a
-    # default value of :default.
-    # @param [block]  an optional block to be called
-    # @return [PageObject] the page you are navigating to
-    #
-    def navigate_to(page_cls, how = {:using => :default}, &block)
-      path = path_for how
-      to_index = find_index_for(path, page_cls)-1
-      navigate_through_pages(path[0..to_index])
-      on_page(page_cls, &block)
-    end
-
-    #
-    # Same as navigate_to except it will start at the @current_page
-    # instead the beginning of the path.
-    #
-    # @param [Druid] a class that has included the Druid
-    # module and which has the navigation_method defined
-    # @param [Hash] a hash that contains an element with the key
-    # :using. This will be used to lookup the route. It has a default value of :default.
-    # @param [block] an optional block to be called
-    # @return [Druid] the page you are navigating to
-    #
-    def continue_navigation_to(page_cls, how = {:using => :default}, &block)
-      path = path_for how
-      from_index = find_index_for(path, @current_page.class)+1
-      to_index = find_index_for(path, page_cls)-1
-      navigate_through_pages(path[from_index..to_index])
-      on_page(page_cls, &block)
-    end
 
     private
 
@@ -149,32 +110,5 @@ module Druid
       end
     end
 
-    def path_for(how)
-      path = Druid::PageFactory.page_object_routes[how[:using]]
-      fail("PageFactory route :#{how[:using].to_s} not found") unless path
-      path
-    end
-
-    def navigate_through_pages(pages)
-      pages.each do |cls, method, *args|
-        page = on_page(cls)
-        fail("Navigation method not specified on #{cls}.") unless page.respond_to? method
-        page.send method unless args
-        page.send method, *args if args
-      end
-    end
-
-    def find_index_for(path, item)
-      path.each_with_index { |each, index| return index if each[0] == item }
-    end
-
-    class << self
-      attr_accessor :page_object_routes
-
-      def routes=(routes)
-        raise("You must provide a :default route for PageFactory routes") unless routes[:default]
-        @page_object_routes = routes
-      end
-    end
   end
 end

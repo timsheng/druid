@@ -26,6 +26,15 @@ describe Druid::PagePopulator do
     druid.populate_page_with('coffee' => 'value')
   end
 
+  it "should not populate a text field when it is not visible" do
+    expect(druid).not_to receive(:tf=)
+    expect(druid).to receive(:tf_element).twice.and_return(driver)
+    expect(driver).to receive(:enabled?).and_return(true)
+    expect(driver).to receive(:visible?).and_return(false)
+    expect(driver).to receive(:tag_name).and_return('input')
+    druid.populate_page_with('tf' => true)
+  end
+
   it "should set a value in a text area" do
     expect(druid).to receive(:ta=).with('value')
     expect(druid).to receive(:ta_element).and_return(driver)
@@ -77,6 +86,15 @@ describe Druid::PagePopulator do
     druid.populate_page_with('cb' => true)
   end
 
+  it "should not populate a checkbox if it is not visible" do
+    expect(druid).not_to receive(:check_cb)
+    expect(druid).to receive(:cb_element).twice.and_return(driver)
+    expect(driver).to receive(:enabled?).and_return(true)
+    expect(driver).to receive(:visible?).and_return(false)
+    expect(driver).to receive(:tag_name).and_return('input')
+    druid.populate_page_with('cb' => true)
+  end
+
   it "should not populate a radio button when it is disabled" do
     expect(druid).not_to receive(:select_rb)
     expect(druid).to receive(:rb_element).twice.and_return(driver)
@@ -91,6 +109,15 @@ describe Druid::PagePopulator do
     expect(driver).to receive(:enabled?).and_return(false)
     expect(driver).to receive(:tag_name).and_return("input")
     druid.populate_page_with('tf' => 'test')
+  end
+
+  it "should not populate a radio button when it is not visible" do
+    expect(druid).not_to receive(:select_rb)
+    expect(druid).to receive(:rb_element).twice.and_return(driver)
+    expect(driver).to receive(:enabled?).and_return(true)
+    expect(driver).to receive(:visible?).and_return(false)
+    expect(driver).to receive(:tag_name).and_return('input')
+    druid.populate_page_with('rb' => true)
   end
 
 end

@@ -2,7 +2,7 @@ module Druid
   module Elements
     class FileField < Element
       def self.finders
-        super + [:title]
+        super + [:title, :label]
       end
 
       #

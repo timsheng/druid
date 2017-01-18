@@ -20,6 +20,7 @@ Feature: List item
     | index     |
     | name      |
     | text      |
+    | css       |
 
   @multi
   Scenario Outline: Locating list items using multiple parameters

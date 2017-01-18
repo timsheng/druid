@@ -19,6 +19,7 @@ Feature: Area
     | name      |
     | xpath     |
     | index     |
+    | css       |
 
   Scenario: Getting the coordinates for the area
     When I retrieve the area element

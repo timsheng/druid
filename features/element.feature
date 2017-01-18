@@ -24,6 +24,7 @@ Feature: Elements
     And I should know it is equal to itself
     And I should know its' tag name is "a"
     And I should know the attribute "readonly" is false
+    And I should know the attribute "href" includes "success.html"
     And I should know its' value is ""
     And I should be able to click it
 
@@ -237,3 +238,17 @@ Feature: Elements
     When I retrieve a heading element
     And I scroll the heading element into view
     Then the heading element should be visible
+
+  Scenario: Expanding how we find elemnts to include non-stardard locators
+    When I retrieve a div using data-entity
+    Then I should know it exists
+    And I should know it is visible
+    And I should know the text is "found using data-entity"
+
+  Scenario: Accessing an HTML 5 element using the declaration
+    When I retrieve the figure uisng the declaration
+    Then I should see the figure contains an image
+
+  Scenario: Accessing an HTML 5 element using the element method
+    When I retrieve the figure using the element
+    Then I should see the figure contains an image
