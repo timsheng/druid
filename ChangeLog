@@ -2,6 +2,12 @@
 * Enhancements
   * Added ability to find elements using any valid attribute
   * Updated populate_page_with to also check if the element is visible prior to setting value
+  * Added plural _elements methods for the following types:
+    * area
+    * canvas
+    * audio
+    * video
+    * svg
 * Fixes
   * Fixed issue when using the page and element accessors for html 5 elements
 === 2017-01-17
