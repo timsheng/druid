@@ -162,3 +162,8 @@ end
 When(/^I retrieve the figure using the element$/) do
   @element = @page.figure_element(:id => 'figure_id')
 end
+
+Then(/^I should know the attribute "([^"]*)" includes "([^"]*)"$/) do |attribute, included|
+  @attr = @element.attribute(attribute)
+  expect(@attr).to include included
+end
