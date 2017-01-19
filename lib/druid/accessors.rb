@@ -357,6 +357,28 @@ module Druid
     end
     alias_method :radio, :radio_button
 
+    def radio_button_group(name, identifier)
+      define_method("select_#{name}") do |value|
+        radio_buttons_for(identifier.clone).each do |radio_elem|
+          return radio_elem.select if radio_elem.value == value
+        end
+      end
+      define_method("#{name}_values") do
+        radio_buttons_for(identifier.clone).collect { |e| e.value }
+      end
+      define_method("#{name}_selected?") do
+        radio_buttons_for(identifier.clone).each do |radio_elem|
+          return radio_elem.value if radio_elem.selected?
+        end
+        return false
+      end
+      define_method("#{name}_elements") do
+        radio_buttons_for(identifier.clone)
+      end
+      define_method("#{name}?") do
+        radio_buttons_for(identifier.clone).any?
+      end
+    end
     #
     # adds three methods - one to click a button, another to
     # return the button element, and another to check the button's existence.
