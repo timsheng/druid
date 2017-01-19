@@ -1,7 +1,7 @@
 class FramePage
   include Druid
 
-  in_frame(:id => "frame_2") do |frame|
+  in_frame(:id => "frame_two_2") do |frame|
     text_field(:text_field_2_id, :name => 'recieverElement', :frame => frame)
   end
 
@@ -13,7 +13,7 @@ class FramePage
     text_field(:text_field_2_index, :name => 'recieverElement', :frame => frame)
   end
 
-  in_frame(:id => "frame_1") do |frame|
+  in_frame(:id => "frame_one_1") do |frame|
     text_field(:text_field_1_id, :name => 'senderElement', :frame => frame)
   end
 
@@ -23,6 +23,10 @@ class FramePage
 
   in_frame(:index => 0) do |frame|
     text_field(:text_field_1_index, :name => 'senderElement', :frame => frame)
+  end
+
+  in_frame(:id => /frame_two_\d+/) do |frame|
+    text_field(:text_field_2_regex, :name => 'recieverElement', :frame => frame)
   end
 
 end
@@ -76,19 +80,19 @@ Then(/^I should be able to click the link in the frame$/) do
 end
 
 When(/^I type "([^"]*)" into the text field from frame 1 identified dynamically$/) do |value|
-  @page.in_frame(:id => 'frame_1') do |frame|
+  @page.in_frame(:id => 'frame_one_1') do |frame|
     @page.text_field_element(:name => 'senderElement', :frame => frame).value = value
   end
 end
 
 Then(/^I should verify "([^"]*)" in the text field for frame 1 identified dynamically$/) do |value|
-  @page.in_frame(:id => 'frame_1') do |frame|
+  @page.in_frame(:id => 'frame_one_1') do |frame|
     expect(@page.text_field_element(:name => 'senderElement', :frame => frame).value).to eql value
   end
 end
 
 When(/^I trigger an alert within a frame$/) do
-  @page.in_frame(:id => 'frame_3') do |frame|
+  @page.in_frame(:id => 'frame_three_3') do |frame|
     @msg = @page.alert do
       @page.button_element(:id => 'alert_button', :frame => frame).click
     end
@@ -96,7 +100,7 @@ When(/^I trigger an alert within a frame$/) do
 end
 
 When(/^I trigger an confirm within a frame$/) do
-  @page.in_frame(:id => 'frame_3') do |frame|
+  @page.in_frame(:id => 'frame_three_3') do |frame|
     @msg = @page.confirm(true) do
       @page.button_element(:id => 'confirm_button', :frame => frame).click
     end
@@ -104,7 +108,7 @@ When(/^I trigger an confirm within a frame$/) do
 end
 
 When(/^I trigger an prompt within a frame$/) do
-  @page.in_frame(:id => 'frame_3') do |frame|
+  @page.in_frame(:id => 'frame_three_3') do |frame|
     @msg = @page.prompt("Tim") do
       @page.button_element(:id => 'prompt_button', :frame => frame).click
     end
