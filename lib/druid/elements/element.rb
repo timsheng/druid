@@ -89,6 +89,13 @@ module Druid
       end
 
       #
+      # retrieve the class name for an element
+      #
+      def class_name
+        element.class_name
+      end
+
+      #
       # Click this element
       #
       def click
