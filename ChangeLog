@@ -9,6 +9,7 @@
   * Added href method to Link
   * Added generation of plural version of basic types on class
   * added accessor to support radio_button_group method
+  * Updated in_iframe methods to match the updates to the watir-webdriver gem
 === Version 1.1.8/2017-01-18
 * Enhancements
   * Added ability to find elements using any valid attribute
