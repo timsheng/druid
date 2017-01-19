@@ -167,3 +167,7 @@ Then(/^I should know the attribute "([^"]*)" includes "([^"]*)"$/) do |attribute
   @attr = @element.attribute(attribute)
   expect(@attr).to include included
 end
+
+Then(/^I should know the paragraph class is "([^"]*)"$/) do |class_name|
+  expect(@page.p_id_element.class_name).to eql class_name
+end
