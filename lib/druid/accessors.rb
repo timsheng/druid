@@ -1028,6 +1028,7 @@ module Druid
     # by combining of any of the following except xpath. The valid keys are:
     #   * :class
     #   * :id
+    #   * :css
     #   * :index
     #   * :name
     #   * :xpath
@@ -1046,6 +1047,26 @@ module Druid
       end
     end
 
+    #
+    # adds a method to return a collection of generic Element objects
+    # for a specific tag
+    #
+    # @example
+    #   elements(:title, :header, :id => 'title')
+    #    # will generate 'title_elements'
+    #
+    # @param [Symbol] the name used for the generated methods
+    # @param [Symbol] the name of the tag for the element
+    # @param [Hash] identifier how we find an element. You can use a multiple parameters
+    #   by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :id
+    #   * :index
+    #   * :css
+    #   * :name
+    #   * :xpath
+    # @param optional block to be invoked when element method is called
+    #
     def elements(name, tag, identifier={:index => 0}, &block)
       define_method("#{name}_elements") do
         return call_block(&block) if block_given?
@@ -1077,31 +1098,31 @@ module Druid
     end
 
     #
-   # methods to generate accessors for types that follow the same
-   # pattern as element
-   #
-   # @example
-   #   address(:home_address, :id => "home_address")
-   #   will generate 'home_address', 'home_address_element' and 'home_address?'
-   #
-   # @param [Symbol] the name used for the generated methods
-   # @param [Symbol] the name of the tag for the element
-   # @param [Hash] identifier how we find an element.  You can use a multiple paramaters
-   #   by combining of any of the following except xpath.  The valid keys are:
-   #   * :class
-   #   * :css
-   #   * :id
-   #   * :index
-   #   * :name
-   #   * :xpath
-   # @param optional block to be invoked when element method is called
-   #
-   LocatorGenerator::BASIC_ELEMENTS.each do |type|
-     define_method(type) do |name, *identifier, &block|
-       identifier = identifier[0] ? identifier[0] : {:index => 0}
-       element(name, type, identifier, &block)
-     end
-   end
+    # methods to generate accessors for types that follow the same
+    # pattern as element
+    #
+    # @example
+    #   address(:my_article, :id => "article_id")
+    #   will generate 'my_article', 'my_article_element' and 'my_article?'
+    #
+    # @param [Symbol] the name used for the generated methods
+    # @param [Symbol] the name of the tag for the element
+    # @param [Hash] identifier how we find an element.  You can use a multiple paramaters
+    #   by combining of any of the following except xpath.  The valid keys are:
+    #   * :class
+    #   * :css
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    # @param optional block to be invoked when element method is called
+    #
+    LocatorGenerator::BASIC_ELEMENTS.each do |type|
+      define_method(type) do |name, *identifier, &block|
+        identifier = identifier[0] ? identifier[0] : {:index => 0}
+        element(name, type, identifier, &block)
+      end
+    end
 
     def standard_methods(name, identifier, method, &block)
       define_method("#{name}_element") do
