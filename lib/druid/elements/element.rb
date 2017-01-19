@@ -1,3 +1,5 @@
+require 'watir-webdriver'
+require 'watir-webdriver/extensions/select_text'
 require 'druid/nested_elements'
 require 'druid/assist'
 module Druid
@@ -158,6 +160,10 @@ module Druid
 
       def focus
         element.focus
+      end
+
+      def select_text text
+        element.select_text text
       end
 
       #
