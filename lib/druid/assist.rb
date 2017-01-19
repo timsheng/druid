@@ -490,6 +490,10 @@ module Druid
       find_element("#{tag.to_s}(identifier)", Elements::Element, identifier, tag.to_s)
     end
 
+    def elements_for(tag, identifier)
+      find_elements("#{tag.to_s}s(identifier)", Elements::Element, identifier, tag.to_s)
+    end
+
     #
     # method to return a svg element
     #
