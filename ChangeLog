@@ -1,4 +1,7 @@
-=== 2017-01-18
+=== 2017-01-19
+* Enhancements
+  * Added elements method to accessor so one can generate methods for generic collections of elements
+=== Version 1.1.8/2017-01-18
 * Enhancements
   * Added ability to find elements using any valid attribute
   * Updated populate_page_with to also check if the element is visible prior to setting value
