@@ -2,6 +2,7 @@
 * Enhancements
   * Added elements method to accessor so one can generate methods for generic collections of elements
   * Added class_name method to Element
+  * Added wait_for_expected_title and expected_element_visible methods
 === Version 1.1.8/2017-01-18
 * Enhancements
   * Added ability to find elements using any valid attribute
