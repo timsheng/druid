@@ -477,3 +477,10 @@ Feature: Multi Elements
      And the text of div 1 should be "Div 1"
      And the text of div 2 should be "Div 2"
      And the text of div 3 should be "Div 3"
+
+   Scenario: Selecting multiple generic element types
+     When I select the multiple elements with a tag label
+     Then I should have 3 labels
+     And the text for label 1 should be "Label 1"
+     And the text for label 2 should be "Label 2"
+     And the text for label 3 should be "Label 3"

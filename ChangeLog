@@ -1,3 +1,6 @@
+=== 2017-01-19
+* Enhancements
+  * Added elements method to accessor so one can generate methods for generic collections of elements
 === 2017-01-18
 * Enhancements
   * Added ability to find elements using any valid attribute
