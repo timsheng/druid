@@ -32,3 +32,11 @@ When(/^I select a link while the script is executing$/) do
   link = @page.link_element(:id => 'link_id')
   link.click
 end
+
+When(/^I get the href for the link$/) do
+  @href = @page.google_search_id_element.href
+end
+
+Then(/^I should know it was "([^"]*)"$/) do |href|
+  expect(@href).to include href
+end
