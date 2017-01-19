@@ -17,13 +17,13 @@ describe Druid::Elements::SelectList do
     let(:select_list) { Druid::Elements::SelectList.new(element) }
 
     it "should return an option when indexed" do
-      expect(element).to receive_message_chain(:options, :[]).with(1)
+      expect(element).to receive(:options).with(no_args).and_return(opts)
       expect(select_list[1]).to be_instance_of Druid::Elements::Option
     end
 
     it "should retrieve all values of select_list" do
-      expect(element).to receive(:options).and_return(['val1','val2'])
-      expect(select_list.options).to eql ['val1','val2']
+      expect(element).to receive(:options).with(no_args).and_return(opts)
+      expect(select_list.options.size).to eql 2
     end
 
     it "should select an element" do
