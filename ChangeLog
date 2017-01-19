@@ -5,6 +5,7 @@
   * Added wait_for_expected_title and expected_element_visible methods
   * Added select_text method to Element
   * Added ability for execute_scripts to accept arguments
+  * Added ability to identify frame using a regular expression when using Watir
 === Version 1.1.8/2017-01-18
 * Enhancements
   * Added ability to find elements using any valid attribute
