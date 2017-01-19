@@ -27,7 +27,7 @@ class MultiElementsPage
   paragraphs(:the_paragraphs, :class => 'p')
   labels(:the_labels, :class => 'label')
   file_fields(:the_file_fields, :class => 'file_field_class')
-  elements(:generic_label, :label, :class => 'label')
+  elements(:generic_label, :label, :css => '.label')
   divs(:block_divs) do |page|
     page.div_elements(:class => 'div')
   end
