@@ -275,8 +275,9 @@ module Druid
   #
   # Execute javascript on the browser
   #
-  def execute_script(script)
-    driver.execute_script(script)
+  def execute_script(script, *args)
+    args.map! { |e| e.kind_of?(Druid::Elements::Element) ? e.element : e }
+    driver.execute_script(script, *args)
   end
 
   #
