@@ -26,9 +26,15 @@ module ContainingModule
   end
 end
 
-class TestWorld
-  include Druid::PageFactory
+class WorldSuper
+  attr_reader :super_called
+  def on_page(cls, params={}, visit=false, &block)
+    @super_called = true
+  end
+end
 
+class TestWorld < WorldSuper
+  include Druid::PageFactory
   attr_accessor :driver
   attr_accessor :current_page
 end
@@ -39,6 +45,13 @@ describe Druid::PageFactory do
   let(:driver) do
     world.driver = mock_driver
     driver = world.driver
+  end
+
+  it "should call super when non druid class passed" do
+    class NoDruid
+    end
+    world.on(NoDruid)
+    expect(world.super_called).to be true
   end
 
   it "should create a new page object and execute a block" do
