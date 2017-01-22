@@ -15,7 +15,7 @@ class AccessorsTestDruid
   div(:message, :id => 'message_id')
   table(:cart, :id => 'cart_id')
   cell(:total, :id => 'total')
-  span(:alert, :id => 'alert_id')
+  span(:alert_span, :id => 'alert_id')
   image(:logo, :id => 'logo')
   hidden_field(:social_security_number, :id => 'ssn')
   form(:login, :id => 'login')
@@ -67,7 +67,7 @@ class BlockDruid
   div :footer do |element|
     "div"
   end
-  span :alert do |element|
+  span :alert_span do |element|
     "span"
   end
   table :cart do |element|
@@ -669,24 +669,24 @@ describe Druid::Accessors do
   describe "span accessors" do
     context "when called on a page object" do
       it "should generate accessor methods" do
-        expect(druid).to respond_to :alert
-        expect(druid).to respond_to :alert_element
+        expect(druid).to respond_to :alert_span
+        expect(druid).to respond_to :alert_span_element
       end
 
       it "should call a block on the element method when present" do
-        expect(block_druid.alert_element).to eql "span"
+        expect(block_druid.alert_span_element).to eql "span"
       end
     end
 
     context "implementation" do
       it "should retrieve the text from a span" do
         expect(driver).to receive_message_chain(:span, :text).and_return('Alert')
-        expect(druid.alert).to eql 'Alert'
+        expect(druid.alert_span).to eql 'Alert'
       end
 
       it "should retrieve the span element from the page" do
         expect(driver).to receive(:span)
-        expect(druid.alert_element).to be_instance_of Druid::Elements::Span
+        expect(druid.alert_span_element).to be_instance_of Druid::Elements::Span
       end
     end
   end
