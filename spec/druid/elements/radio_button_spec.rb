@@ -21,11 +21,6 @@ describe Druid::Elements::RadioButton do
       radio.select
     end
 
-    it "should clear" do
-      expect(element).to receive(:clear)
-      radio.clear
-    end
-
     it "should know if it is selected" do
       expect(element).to receive(:set?)
       radio.selected?

@@ -81,10 +81,6 @@ module Druid
       process_call("radio(identifier).set", Elements::RadioButton, identifier)
     end
 
-    def clear_radio identifier
-      process_call("radio(identifier).clear", Elements::RadioButton, identifier)
-    end
-
     def radio_selected? identifier
       process_call("radio(identifier).set?", Elements::RadioButton, identifier)
     end

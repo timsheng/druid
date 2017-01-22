@@ -320,15 +320,14 @@ module Druid
     alias_method :select, :select_list
 
     #
-    # adds five methods - one to select, another to clear,
-    # another to return if a radio button is selected,
-    # another method to return a PageObject::Elements::RadioButton
+    # adds four methods - one to select, another to return if a radio button
+    # is selected, another method to return a PageObject::Elements::RadioButton
     # object representing the radio button element, and another to check
     # the radio button's existence.
     #
     # @example
     #   radio_button(:north, :id => "north")
-    #   # will generate 'select_north', 'clear_north', 'north_selected?',
+    #   # will generate 'select_north', 'north_selected?',
     #   # 'north_element', and 'north?' methods
     #
     # @param [Symbol] the name used for the generated methods
@@ -349,10 +348,6 @@ module Druid
       define_method("select_#{name}") do
         return select_radio identifier.clone unless block_given?
         self.send("#{name}_element").select
-      end
-      define_method("clear_#{name}") do
-        return clear_radio identifier.clone unless block_given?
-        self.send("#{name}_element").clear
       end
       define_method("#{name}_selected?") do
         return radio_selected? identifier.clone unless block_given?

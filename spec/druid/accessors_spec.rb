@@ -566,7 +566,6 @@ describe Druid::Accessors do
         expect(druid).to respond_to :first_element
         expect(druid).to respond_to :select_first
         expect(druid).to respond_to :first_selected?
-        expect(druid).to respond_to :clear_first
       end
 
       it "should call a block on the element method when present" do
@@ -578,11 +577,6 @@ describe Druid::Accessors do
       it "should select a radio button" do
         expect(driver).to receive_message_chain(:radio, :set)
         druid.select_first
-      end
-
-      it "should clear a radio button" do
-        expect(driver).to receive_message_chain(:radio, :clear)
-        druid.clear_first
       end
 
       it "should determine if a radio is selected" do

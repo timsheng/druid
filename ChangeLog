@@ -6,6 +6,7 @@
   * Added support for dynamically finding elements inside iframes
   * Reverted the method name check due to unintended consequences
   * Added support to use multiple identifiers when locating nested frames / iframes
+  * Remove methods for clearing radio buttons
 === 2017-01-20
 * Enhancements
   * Super called when factory method invoked with non Druid class
