@@ -205,7 +205,7 @@ module Druid
   end
 
   #
-  # Override the normal alert popup so it does not occurr.
+  # Override the normal alert popup so it does not occur.
   #
   # @example
   #   message = @page.alert do
@@ -228,7 +228,7 @@ module Druid
   end
 
   #
-  # Override the normal confirm popup so it does not occurr
+  # Override the normal confirm popup so it does not occur
   #
   # @example
   #   message = @popup.confirm(true) do
@@ -250,7 +250,7 @@ module Druid
   end
 
   #
-  # Override the normal prompt popup so it does not occurr
+  # Override the normal prompt popup so it does not occur
   #
   # @example
   #   message = @popup.prompt("Some Value") do
@@ -282,7 +282,7 @@ module Druid
 
   #
   # Attach to a running window. You can locate the window using either
-  # the window's title or url or index, If it failes to connect to a window it will
+  # the window's title or url or index, If it fails to connect to a window it will
   # pause for 1 second and try again.
   #
   # @example
