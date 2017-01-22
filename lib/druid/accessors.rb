@@ -362,7 +362,6 @@ module Druid
     alias_method :radio, :radio_button
 
     def radio_button_group(name, identifier)
-      check_name(name)
       define_method("select_#{name}") do |value|
         radio_buttons_for(identifier.clone).each do |radio_elem|
           return radio_elem.select if radio_elem.value == value
@@ -1120,7 +1119,6 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def element(name, tag, identifier={:index => 0}, &block)
-      check_name(name)
       define_method("#{name}") do
         self.send("#{name}_element").text
       end
@@ -1154,19 +1152,13 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def elements(name, tag, identifier={:index => 0}, &block)
-      check_name(name)
       define_method("#{name}_elements") do
         return call_block(&block) if block_given?
         elements_for(tag, identifier.clone)
       end
     end
 
-    def check_name(name)
-      raise NameError, "Identifier '#{name}' conflicts with druid method fo the same name" if self.instance_methods.include? name
-    end
-
     def standard_methods(name, identifier, method, &block)
-      check_name(name)
       define_method("#{name}_element") do
         return call_block(&block) if block_given?
         self.send(method, identifier.clone)
