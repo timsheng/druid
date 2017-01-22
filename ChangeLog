@@ -2,6 +2,7 @@
 * Enhancements
   * Populate_page_with now supports radio groups
   * Added new page_url_value mehod that is created when you define page_url to return the value
+  * Checking the name of accessors to ensure it does not conflict with an existing druid method name
 === 2017-01-20
 * Enhancements
   * Super called when factory method invoked with non Druid class
