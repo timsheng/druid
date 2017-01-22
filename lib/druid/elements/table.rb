@@ -45,6 +45,13 @@ module Druid
         self[-1]
       end
 
+      #
+      # return the table as hashes
+      #
+      def hashes
+        element.hashes
+      end
+
       private
 
       def find_index_by_title(row_title)

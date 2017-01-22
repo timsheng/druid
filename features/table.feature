@@ -99,3 +99,10 @@ Feature: Table
   Scenario: Getting the text from a table
     Then I should see the text includes "Data1" when I retrieve it by "id"
     And I should see the text includes "Data2" when I retrieve it by "id"
+
+  Scenario: Matching the expected table with the table on the Page
+    When I retrieve a table element
+    Then the table should be like the expected one
+      | Table | Header  |
+      | Data1 | Data2   |
+      | Data3 | Data4   |
