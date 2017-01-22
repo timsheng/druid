@@ -308,14 +308,14 @@ module Druid
           end
           xpath = ".//button"
           xpath << "[#{attribute_expression(btn_ident)}]" unless btn_ident.empty?
-          xpath << "[#{idx+1}]" if idx
+          xpath = "(#{xpath})[#{idx+1}]" if idx
           identifier[:type] = %w[button reset submit image]
           xpath << " | .//input"
         else
           xpath = ".//#{tag_locator}"
         end
         xpath << "[#{attribute_expression(identifier)}]" unless identifier.empty?
-        xpath << "[#{idx+1}]" if idx
+        xpath = "(#{xpath})[#{idx+1}]" if idx
         xpath
       end
 
