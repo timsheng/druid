@@ -8,6 +8,7 @@
   * Added support to use multiple identifiers when locating nested frames / iframes
   * Remove methods for clearing radio buttons
   * Add support bold tag
+  * Fixed wait_for_expected_title so it detects if the title changes
 === 2017-01-20
 * Enhancements
   * Super called when factory method invoked with non Druid class
