@@ -31,6 +31,7 @@ class MultiElementsPage
   divs(:block_divs) do |page|
     page.div_elements(:class => 'div')
   end
+  b(:bs)
 end
 
 Given(/^I am on the multi elements page$/) do
@@ -524,4 +525,16 @@ end
 
 When(/^I select the multiple elements with a tag label$/) do
   @elements = @page.generic_label_elements
+end
+
+When(/^I select the bs$/) do
+  @elements = @page.b_elements
+end
+
+Then(/^I should have (\d+) bs$/) do |num_bs|
+  expect(@elements.size).to eql num_bs.to_i
+end
+
+Then(/^the text for b (\d+) should be "([^"]*)"$/) do |b_num, text|
+  expect(@elements[b_num.to_i - 1].text).to eql text
 end

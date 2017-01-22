@@ -1,6 +1,30 @@
+=== Version 1.1.9/2017-01-22
+* Enhancements
+  * Populate_page_with now supports radio groups
+  * Added new page_url_value mehod that is created when you define page_url to return the value
+  * Checking the name of accessors to ensure it does not conflict with an existing druid method name
+  * Added support for dynamically finding elements inside iframes
+  * Reverted the method name check due to unintended consequences
+  * Added support to use multiple identifiers when locating nested frames / iframes
+  * Remove methods for clearing radio buttons
+  * Add support bold tag
+  * Fixed wait_for_expected_title so it detects if the title changes
+=== 2017-01-20
+* Enhancements
+  * Super called when factory method invoked with non Druid class
+  * populate_page_with
 === 2017-01-19
 * Enhancements
   * Added elements method to accessor so one can generate methods for generic collections of elements
+  * Added class_name method to Element
+  * Added wait_for_expected_title and expected_element_visible methods
+  * Added select_text method to Element
+  * Added ability for execute_scripts to accept arguments
+  * Added ability to identify frame using a regular expression when using Watir
+  * Added href method to Link
+  * Added generation of plural version of basic types on class
+  * added accessor to support radio_button_group method
+  * Updated in_iframe methods to match the updates to the watir-webdriver gem
 === Version 1.1.8/2017-01-18
 * Enhancements
   * Added ability to find elements using any valid attribute

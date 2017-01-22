@@ -9,6 +9,10 @@ Feature: Select List
     When I select "Test 2" from the select list
     Then the current item should be "Test 2"
 
+  Scenario: Selecting an element when there is a forward slash
+    When I select "Test/Test 3" from the select list
+    Then the current item should be "Test/Test 3"
+
   Scenario Outline: Locating select lists on the Page
     When I locate the select list by "<locate_by>"
     Then I should be able to select "Test 2"

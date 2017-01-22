@@ -41,6 +41,11 @@ Scenario: Identifying items in frames at runtime
   When I type "page-object" into the text field from frame 1 identified dynamically
   Then I should verify "page-object" in the text field for frame 1 identified dynamically
 
+Scenario: Identifying items in iframes at runtime
+  Given I am on the iframe elements page
+  When I type "page-object" into the text field from iframe 1 identified dynamically
+  Then I should verify "page-object" in the text field for iframe 1 identified dynamically
+
 Scenario: Handling alerts inside frames
   Given I am on the frame elements page
   When I trigger an alert within a frame
@@ -55,3 +60,13 @@ Scenario: Handling prompts inside frames
   Given I am on the frame elements page
   When I trigger an prompt within a frame
   Then I should be able to get the message and default value
+
+Scenario: Accessing elements within the frame using Regexp
+  Given I am on the frame elements page
+  When I type "page-object" into the text field for frame 2 using "regex"
+  Then I should verify "page-object" is in the text field for frame 2 using "regex"
+
+Scenario: Accessing elements within the frame using multiple identifiers
+  Given I am on the iframe elements page
+  When I type "page-object" into the text field for frame 2 using "multiple identifiers"
+  Then I should verify "page-object" is in the text field for frame 2 using "multiple identifiers"

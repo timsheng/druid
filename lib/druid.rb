@@ -105,7 +105,8 @@ module Druid
 
   #
   # Set the javascript framework to use when determining number of
-  # ajax requests. Valid frameworks are :jquery, :prototype, and :Dojo
+  # ajax requests. Valid frameworks are :jquery, :prototype, and :yui,
+  # and :angularjs
   #
   def self.javascript_framework=(framework)
     Druid::JavascriptFrameworkFacade.framework = framework
@@ -205,7 +206,7 @@ module Druid
   end
 
   #
-  # Override the normal alert popup so it does not occurr.
+  # Override the normal alert popup so it does not occur.
   #
   # @example
   #   message = @page.alert do
@@ -228,7 +229,7 @@ module Druid
   end
 
   #
-  # Override the normal confirm popup so it does not occurr
+  # Override the normal confirm popup so it does not occur
   #
   # @example
   #   message = @popup.confirm(true) do
@@ -250,7 +251,7 @@ module Druid
   end
 
   #
-  # Override the normal prompt popup so it does not occurr
+  # Override the normal prompt popup so it does not occur
   #
   # @example
   #   message = @popup.prompt("Some Value") do
@@ -275,13 +276,14 @@ module Druid
   #
   # Execute javascript on the browser
   #
-  def execute_script(script)
-    driver.execute_script(script)
+  def execute_script(script, *args)
+    args.map! { |e| e.kind_of?(Druid::Elements::Element) ? e.element : e }
+    driver.execute_script(script, *args)
   end
 
   #
   # Attach to a running window. You can locate the window using either
-  # the window's title or url or index, If it failes to connect to a window it will
+  # the window's title or url or index, If it fails to connect to a window it will
   # pause for 1 second and try again.
   #
   # @example
@@ -353,7 +355,7 @@ module Druid
   end
 
   #
-  # Identify an element as existing within a frame or iframe. A frame parameter is
+  # Identify an element as existing within a frame. A frame parameter is
   # passed to the block and must be passed to the other calls to Druid.
   # You can nest calls to in_frame by passing the frame to the next level.
   #
@@ -375,9 +377,9 @@ module Druid
   end
 
   #
-  # Identify an element as existing within a frame or iframe. A frame parameter is
+  # Identify an element as existing within an iframe. Aframe parameter is
   # passed to the block and must be passed to the other calls to Druid.
-  # You can nest calls to in_frame by passing the frame to the next level.
+  # You can nest calls to in_iframe by passing the frame to the next level.
   #
   # @example
   #  @page.in_iframe(:id => 'frame_id') do |frame|
@@ -396,15 +398,15 @@ module Druid
     block.call(frame)
   end
 
-  # def switch_to_frame(frame_identifiers)
-  #   unless frame_identifiers.nil?
-  #     frame_identifiers.each do |frame|
-  #       frame_id = frame.values.first
-  #       value = frame_id.values.first
-  #       driver.wd.switch_to.frame(value)
-  #     end
-  #   end
-  # end
+  def switch_to_frame(frame_identifiers)
+    unless frame_identifiers.nil?
+      frame_identifiers.each do |frame|
+        frame_id = frame.values.first
+        value = frame_id.values.first
+        driver.wd.switch_to.frame(value)
+      end
+    end
+  end
 
   def call_block(&block)
     block.arity == 1 ? block.call(self) : self.instance_eval(&block)

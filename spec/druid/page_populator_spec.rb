@@ -9,6 +9,7 @@ class DruidPagePopulator
   checkbox(:cb, :id => 'id')
   radio_button(:rb, :id => 'id')
   file_field(:ff, :id => 'id')
+  radio_button_group(:rbg, :id => 'id')
 end
 
 describe Druid::PagePopulator do
@@ -72,10 +73,9 @@ describe Druid::PagePopulator do
     druid.populate_page_with('rb' => true)
   end
 
-  it "should clear a radio button when false is specified" do
-    expect(druid).to receive(:clear_rb)
-    expect(druid).to receive(:is_enabled?).and_return(true)
-    druid.populate_page_with('rb' => false)
+  it "should select the correct element from a radio button group" do
+    expect(druid).to receive(:select_rbg).with('blah')
+    druid.populate_page_with('rbg' => 'blah')
   end
 
   it "should not populate a checkbox if it is disabled" do

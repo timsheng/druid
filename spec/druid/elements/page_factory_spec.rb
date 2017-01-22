@@ -6,7 +6,7 @@ class FactoryTestDruid
   page_url "http://www.baidu.com"
 end
 
-class TestWorld
+class TestWorldOne
   include Druid::PageFactory
 
   attr_accessor :driver
@@ -14,7 +14,7 @@ end
 
 describe Druid::PageFactory do
   before(:each) do
-    @world = TestWorld.new
+    @world = TestWorldOne.new
     @world.driver = mock_driver
   end
 

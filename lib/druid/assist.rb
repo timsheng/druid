@@ -81,10 +81,6 @@ module Druid
       process_call("radio(identifier).set", Elements::RadioButton, identifier)
     end
 
-    def clear_radio identifier
-      process_call("radio(identifier).clear", Elements::RadioButton, identifier)
-    end
-
     def radio_selected? identifier
       process_call("radio(identifier).set?", Elements::RadioButton, identifier)
     end
@@ -506,6 +502,24 @@ module Druid
     #
     def svgs_for(identifier)
       find_elements("element(identifier)", Elements::Element, identifier)
+    end
+
+    #
+    # method to retrieve the text for a b
+    #
+    def b_text_for(identifier)
+      process_call("b(identifier).text", Elements::Bold, identifier, nil, 'b')
+    end
+
+    def b_for(identifier)
+      find_element("b(identifier)", Elements::Bold, identifier, 'b')
+    end
+
+    #
+    # method to retrieve all b elements
+    #
+    def bs_for(identifier)
+      find_elements("bs(identifier)", Elements::Bold, identifier, 'b')
     end
 
     private

@@ -1,6 +1,7 @@
 require 'druid/javascript/jquery'
 require 'druid/javascript/prototype'
 require 'druid/javascript/yui'
+require 'druid/javascript/angularjs'
 
 module Druid
   #
@@ -18,8 +19,8 @@ module Druid
       #
       # Set the framework to use
       #
-      # @param [Symbol] the framework to use. :jquery and :prototype
-      # are supported
+      # @param [Symbol] the framework to use. :jquery and :prototype, :yui,
+      # and :angularjs are supported
       #
       def framework=(framework)
         initialize_script_builder unless @builder
@@ -58,7 +59,8 @@ module Druid
         @builder = {
           :jquery => Druid::Javascript::JQuery,
           :prototype => Druid::Javascript::Prototype,
-          :yui => Druid::Javascript::YUI
+          :yui => Druid::Javascript::YUI,
+          :angularjs => Druid::Javascript::AngularJS
         }
       end
 

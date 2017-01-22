@@ -100,6 +100,7 @@ module Druid
                          :canvas,
                          :audio,
                          :video,
+                         :b,
                          :svg]
 
     def self.generate_locators(target)

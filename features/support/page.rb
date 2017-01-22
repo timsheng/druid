@@ -72,6 +72,8 @@ class Page
   radio_button(:milk_class_index, :class => "milk_class", :index => 0)
   radio_button(:milk_name_index, :name => "milk_name", :index => 0)
 
+  radio_button_group(:favorite_cheese, name: 'fav_cheese')
+
   button(:button_id, :id => 'button_id')
   button(:button_name, :name => 'button_name')
   button(:button_class, :class => 'button_class')
@@ -81,7 +83,7 @@ class Page
   button(:button_value, :value => 'Click Me')
   button(:button_class_index, :class => "button_class", :index => 0)
   button(:button_name_index, :name => "button_name", :index => 0)
-  button(:button_css, :css => "input[type='submit']")
+  button(:button_css, :css => ".button_class")
 
   button(:button_image_id, :id => 'button_image_id')
   button(:button_image_src, :src => 'images/submit.gif')
@@ -145,8 +147,8 @@ class Page
   label(:label_name, :name => "label_name")
   label(:label_class, :class => "label_class")
   label(:label_text, :text => "page-object is the best!")
-  label(:label_index, :index => 5)
-  label(:label_xpath, :xpath => "//label[6]")
+  label(:label_index, :index => 6)
+  label(:label_xpath, :xpath => "//label[7]")
   label(:label_css, :css => '.label_class')
   label(:label_class_index, :class => "label_class", :index => 0)
   label(:label_name_index, :name => "label_name", :index => 0)
@@ -176,7 +178,7 @@ class Page
   hidden_field(:hidden_field_class, :class => "hidden_field_class")
   hidden_field(:hidden_field_name, :name => "hidden_field_name")
   hidden_field(:hidden_field_xpath, :xpath => "//input[@type='hidden']")
-  hidden_field(:hidden_field_css, :css => "input[type='hidden']")
+  hidden_field(:hidden_field_css, :css => ".hidden_field_class")
   hidden_field(:hidden_field_tag_name, :tag_name => "input[type='hidden']")
   hidden_field(:hidden_field_index, :index => 0)
   hidden_field(:hidden_field_text, :text => "")
@@ -207,7 +209,7 @@ class Page
   text_area(:text_area_class, :class => "text_area_class")
   text_area(:text_area_name, :name => "text_area_name")
   text_area(:text_area_xpath, :xpath => "//textarea")
-  text_area(:text_area_css, :css => "textarea")
+  text_area(:text_area_css, :css => ".text_area_class")
   text_area(:text_area_tag_name, :tag_name => "textarea")
   text_area(:text_area_index, :index => 0)
   text_area(:text_area_text, :text => "")
@@ -354,4 +356,13 @@ class Page
 
   figure(:figure_id, :id => 'figure_id')
   svg(:svg_id, :id => 'the_svg')
+
+  b(:b_id, :id => 'b_id')
+  b(:b_class, :class => 'b_class')
+  b(:b_css, :css => '.b_class')
+  b(:b_name, :name => 'b_name')
+  b(:b_index, :index => 0)
+  b(:b_xpath, :xpath => '//b')
+  b(:b_class_index, :class => 'b_class', :index => 0)
+  b(:b_name_index, :name => 'b_name', :index => 0)
 end
