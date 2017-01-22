@@ -105,7 +105,8 @@ module Druid
 
   #
   # Set the javascript framework to use when determining number of
-  # ajax requests. Valid frameworks are :jquery, :prototype, and :Dojo
+  # ajax requests. Valid frameworks are :jquery, :prototype, and :yui,
+  # and :angularjs
   #
   def self.javascript_framework=(framework)
     Druid::JavascriptFrameworkFacade.framework = framework
