@@ -61,7 +61,12 @@ Scenario: Handling prompts inside frames
   When I trigger an prompt within a frame
   Then I should be able to get the message and default value
 
-Scenario: Accessing elements withing the frame using Regexp
+Scenario: Accessing elements within the frame using Regexp
   Given I am on the frame elements page
   When I type "page-object" into the text field for frame 2 using "regex"
   Then I should verify "page-object" is in the text field for frame 2 using "regex"
+
+Scenario: Accessing elements within the frame using multiple identifiers
+  Given I am on the iframe elements page
+  When I type "page-object" into the text field for frame 2 using "multiple identifiers"
+  Then I should verify "page-object" is in the text field for frame 2 using "multiple identifiers"
