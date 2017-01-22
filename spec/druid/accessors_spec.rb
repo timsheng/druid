@@ -35,6 +35,7 @@ class AccessorsTestDruid
   canvas(:my_canvas, :id => 'canvas_id')
   audio(:acdc, :id => 'audio_id')
   video(:movie, :id => 'video_id')
+  b(:bold, :id => 'bold')
 end
 
 class BlockDruid
@@ -126,6 +127,9 @@ class BlockDruid
   end
   video :movie do |element|
     "video"
+  end
+  b :bold do |element|
+    "b"
   end
 end
 
@@ -1108,6 +1112,32 @@ describe Druid::Accessors do
       it "should call a block on the element method when present" do
         expect(block_druid.movie_element).to eql "video"
       end
+    end
+  end
+
+  describe "b accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to(:bold)
+        expect(druid).to respond_to(:bold_element)
+        expect(druid).to respond_to(:bold?)
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.bold_element).to eql "b"
+      end
+    end
+
+    it "should retrieve the text from the b" do
+      expect(driver).to receive(:b).and_return(driver)
+      expect(driver).to receive(:text).and_return("value")
+      expect(druid.bold).to eql "value"
+    end
+
+    it "should retrieve the element from the page" do
+      expect(driver).to receive(:b).and_return(driver)
+      element = druid.bold_element
+      expect(element).to be_instance_of Druid::Elements::Bold
     end
   end
 end

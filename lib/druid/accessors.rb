@@ -1072,6 +1072,33 @@ module Druid
     end
 
     #
+    # adds three methods - one to retrieve the text of a b element, another to
+    # retrieve a b element, and another to check for it's existence.
+    #
+    # @example
+    #   b(:blod, :id => 'title')
+    #   # will generate 'bold', 'bold_element', 'bold?' methods
+    #
+    # @param [Symbol] the name used for the generated methods
+    # @param [Hash] identifier how we find a b, You can use a multiple parameters
+    #   by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :css
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    # @param optional block to be invoked when element method is called
+    #
+    def b(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'b_for', &block)
+      define_method(name) do
+        return b_text_for identifier.clone unless block_given?
+        self.send("#{name}_element").text
+      end
+    end
+
+    #
     # adds two methods - one to retrieve a svg, and another to check
     # svg's existence.
     #

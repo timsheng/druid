@@ -681,4 +681,26 @@ describe Druid::ElementLocators do
     page.video_elements
   end
 
+  it "should find a b element" do
+    expect(driver).to receive(:b).with(:id => 'blah').and_return(driver)
+    element = page.b_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::Bold
+  end
+
+  it "should find a b element using a default identifier" do
+    expect(driver).to receive(:b).with(:index => 0).and_return(driver)
+    page.b_element
+  end
+
+  it "should find all b elements" do
+    expect(driver).to receive(:bs).with(:id => 'blah').and_return([driver])
+    elements = page.b_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Bold
+  end
+
+  it "should find all b elements using no parameters" do
+    expect(driver).to receive(:bs).with({}).and_return([driver])
+    page.b_elements
+  end
+
 end
