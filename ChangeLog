@@ -1,6 +1,10 @@
+=== 2017-01-22
+* Enhancements
+  * populate_page_with now supports radio groups
 === 2017-01-20
 * Enhancements
   * Super called when factory method invoked with non Druid class
+  * populate_page_with
 === 2017-01-19
 * Enhancements
   * Added elements method to accessor so one can generate methods for generic collections of elements
