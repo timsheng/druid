@@ -137,3 +137,15 @@ When(/^I trigger an prompt within a frame$/) do
     end
   end
 end
+
+When(/^I type "([^"]*)" into the text field from iframe 1 identified dynamically$/) do |value|
+  @page.in_iframe(:id => 'frame_one_1') do |frame|
+    @page.text_field_element(:name => 'senderElement', :frame => frame).value = value
+  end
+end
+
+Then(/^I should verify "([^"]*)" in the text field for iframe 1 identified dynamically$/) do |value|
+  @page.in_iframe(:id => 'frame_one_1') do |frame|
+    expect(@page.text_field_element(:name => 'senderElement', :frame => frame).value).to eql value
+  end
+end
