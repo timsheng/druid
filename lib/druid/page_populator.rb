@@ -31,6 +31,7 @@ module Druid
     def populate_page_with(data)
       data.each do |key, value|
         populate_checkbox(key, value) if is_checkbox?(key) and is_enabled?(key)
+        populate_radiobuttongroup(key, value) if is_radiobuttongroup?(key)
         populate_radiobutton(key, value) if is_radiobutton?(key) and is_enabled?(key)
         populate_text(key, value) if is_text?(key) and is_enabled?(key)
       end
@@ -52,6 +53,10 @@ module Druid
       return self.send "clear_#{key}"
     end
 
+    def populate_radiobuttongroup(key, value)
+      return self.send "select_#{key}", value
+    end
+
     def is_text?(key)
       respond_to?("#{key}=".to_sym)
     end
@@ -64,7 +69,12 @@ module Druid
       respond_to?("select_#{key}".to_sym)
     end
 
+    def is_radiobuttongroup?(key)
+      respond_to?("select_#{key}".to_sym) and respond_to?("#{key}_values")
+    end
+
     def is_enabled?(key)
+      return false if is_radiobuttongroup?(key)
       return true if (self.send "#{key}_element").tag_name == "textarea"
       element = self.send("#{key}_element")
       element.enabled? and element.visible?
