@@ -354,7 +354,7 @@ module Druid
   end
 
   #
-  # Identify an element as existing within a frame or iframe. A frame parameter is
+  # Identify an element as existing within a frame. A frame parameter is
   # passed to the block and must be passed to the other calls to Druid.
   # You can nest calls to in_frame by passing the frame to the next level.
   #
@@ -376,9 +376,9 @@ module Druid
   end
 
   #
-  # Identify an element as existing within a frame or iframe. A frame parameter is
+  # Identify an element as existing within an iframe. Aframe parameter is
   # passed to the block and must be passed to the other calls to Druid.
-  # You can nest calls to in_frame by passing the frame to the next level.
+  # You can nest calls to in_iframe by passing the frame to the next level.
   #
   # @example
   #  @page.in_iframe(:id => 'frame_id') do |frame|
