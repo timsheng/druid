@@ -172,6 +172,10 @@ describe Druid::Accessors do
       expect(driver).not_to receive(:goto)
       TestDruidBackUp.new(driver,true)
     end
+
+    it "should provide the page url" do
+      expect(druid.page_url_value).to eql "http://apple.com"
+    end
   end
 
   describe "validating the page title" do

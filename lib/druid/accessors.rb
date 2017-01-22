@@ -37,11 +37,15 @@ module Druid
     #
     def page_url(url)
       define_method("goto") do
+        driver.goto self.page_url_value
+      end
+
+      define_method("page_url_value") do
         lookup = url.kind_of?(Symbol) ? self.send(url) : url
         erb = ERB.new(%Q{#{lookup}})
         merged_params = self.class.instance_variable_get("@merged_params")
         params = merged_params ? merged_params : self.class.params
-        driver.goto erb.result(binding)
+        erb.result(binding)
       end
     end
     alias_method :direct_url, :page_url
@@ -364,7 +368,7 @@ module Druid
         end
       end
       define_method("#{name}_values") do
-        radio_buttons_for(identifier.clone).collect { |e| e.value }
+        radio_buttons_for(identifier.clone).collect { |e| e.value}
       end
       define_method("#{name}_selected?") do
         radio_buttons_for(identifier.clone).each do |radio_elem|
