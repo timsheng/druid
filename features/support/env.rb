@@ -1,3 +1,4 @@
+require 'rspec'
 require 'watir-webdriver'
 require 'druid'
 

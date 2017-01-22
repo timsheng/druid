@@ -13,13 +13,6 @@ module Druid
       end
 
       #
-      # Clear the RadioButton
-      #
-      def clear
-        element.clear
-      end
-
-      #
       # Return if it is selected
       #
       def selected?

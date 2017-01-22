@@ -1,3 +1,5 @@
+require 'watir-webdriver'
+require 'watir-webdriver/extensions/select_text'
 require 'druid/nested_elements'
 require 'druid/assist'
 module Druid
@@ -89,6 +91,13 @@ module Druid
       end
 
       #
+      # retrieve the class name for an element
+      #
+      def class_name
+        element.class_name
+      end
+
+      #
       # Click this element
       #
       def click
@@ -151,6 +160,10 @@ module Druid
 
       def focus
         element.focus
+      end
+
+      def select_text text
+        element.select_text text
       end
 
       #
@@ -280,7 +293,7 @@ module Druid
       protected
 
       def self.have_to_build_xpath(identifier)
-        ['table', 'span', 'div', 'td', 'li', 'ol', 'ul', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'label', 'area', 'canvas', 'audio', 'video'].include? identifier[:tag_name] and identifier[:name]
+        ['table', 'span', 'div', 'td', 'li', 'ol', 'ul', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'label', 'area', 'canvas', 'audio', 'video','b'].include? identifier[:tag_name] and identifier[:name]
       end
 
       def self.build_xpath_for identifier
@@ -295,14 +308,14 @@ module Druid
           end
           xpath = ".//button"
           xpath << "[#{attribute_expression(btn_ident)}]" unless btn_ident.empty?
-          xpath << "[#{idx+1}]" if idx
+          xpath = "(#{xpath})[#{idx+1}]" if idx
           identifier[:type] = %w[button reset submit image]
           xpath << " | .//input"
         else
           xpath = ".//#{tag_locator}"
         end
         xpath << "[#{attribute_expression(identifier)}]" unless identifier.empty?
-        xpath << "[#{idx+1}]" if idx
+        xpath = "(#{xpath})[#{idx+1}]" if idx
         xpath
       end
 

@@ -18,6 +18,7 @@
     <select name="sel_list_name" id="sel_list_id" class="sel_list_class">
       <option value="option1">Test 1</option>
       <option value="option2">Test 2</option>
+      <option value="option3">Test/Test 3</option>
     </select>
 
     <select multiple="multiple" id="sel_list_multiple">
@@ -64,6 +65,13 @@
     <input type="radio" id="milk_id" name="milk_name" class="milk_class" value="Milk"> Milk <br />
     <input type="radio" id="butter_id" name="butter_name" class="butter_class" value="Butter">Butter
 
+    <br/>
+    <label>Radio Button Group</label>
+    <input type="radio" name="fav_cheese" value="ched">Cheddar</input>
+    <input type="radio" name="fav_cheese" value="emmen">Emmental</input>
+    <input type="radio" name="fav_cheese" value="muen">Muenster</input>
+    <br/>
+
     <div id="div_id" name="div_name" class="div_class" title="div_title">
       page-object rocks!
     </div>
@@ -81,13 +89,22 @@
     </label>
 
     <table id='table_id' name='table_name' class='table_class' border='1'>
-      <tr>
-        <td>Data1</td><td>Data2</td>
-      </tr>
-      <tr>
-        <td>Data3</td>
-        <td id='cell_id', name='cell_name' class='cell_class'>Data4</td>
-      </tr>
+      <thead>
+        <tr>
+          <th>Table</th>
+          <th>Header</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Data1</td>
+          <td>Data2</td>
+        </tr>
+        <tr>
+          <td>Data3</td>
+          <td id='cell_id', name='cell_name' class='cell_class'>Data4</td>
+        </tr>
+      </tbody>
     </table>
 
     <table id="table_with_thead_id" border='1'>
@@ -176,6 +193,6 @@
     <figure id='figure_id'>
       <img src="images/img_pulpit.jpg" alt="The Pulpit Rock" width="304" height="228">
     </figure>
-
+    This text have <b id="b_id" class="b_class" name="b_name">some text in bold</b>
   </body>
 </html>

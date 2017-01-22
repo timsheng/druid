@@ -10,8 +10,8 @@ describe Druid::ElementLocators do
 
   it "should find a button element" do
     expect(driver).to receive(:button).with(:id => 'blah').and_return(driver)
-    button = page.button_element(:id => 'blah')
-    expect(button).to be_instance_of Druid::Elements::Button
+    element = page.button_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::Button
   end
 
   it "should find a button element using a default identifier" do
@@ -32,8 +32,8 @@ describe Druid::ElementLocators do
 
   it "should find a text field element" do
     expect(driver).to receive(:text_field).with(:id => 'blah').and_return(driver)
-    text_field = page.text_field_element(:id => 'blah')
-    expect(text_field).to be_instance_of Druid::Elements::TextField
+    element = page.text_field_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::TextField
   end
 
   it "should find a text field element using a default identifier" do
@@ -679,6 +679,28 @@ describe Druid::ElementLocators do
   it "should find all videos elements with no identifier" do
     expect(driver).to receive(:videos).with({}).and_return([driver])
     page.video_elements
+  end
+
+  it "should find a b element" do
+    expect(driver).to receive(:b).with(:id => 'blah').and_return(driver)
+    element = page.b_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::Bold
+  end
+
+  it "should find a b element using a default identifier" do
+    expect(driver).to receive(:b).with(:index => 0).and_return(driver)
+    page.b_element
+  end
+
+  it "should find all b elements" do
+    expect(driver).to receive(:bs).with(:id => 'blah').and_return([driver])
+    elements = page.b_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Bold
+  end
+
+  it "should find all b elements using no parameters" do
+    expect(driver).to receive(:bs).with({}).and_return([driver])
+    page.b_elements
   end
 
 end

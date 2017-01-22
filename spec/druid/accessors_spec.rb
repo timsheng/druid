@@ -1,5 +1,11 @@
 require 'spec_helper'
 
+class GenericPage
+  include Druid
+
+  wait_for_expected_title 'expected title'
+end
+
 class AccessorsTestDruid
   include Druid
 
@@ -15,7 +21,7 @@ class AccessorsTestDruid
   div(:message, :id => 'message_id')
   table(:cart, :id => 'cart_id')
   cell(:total, :id => 'total')
-  span(:alert, :id => 'alert_id')
+  span(:alert_span, :id => 'alert_id')
   image(:logo, :id => 'logo')
   hidden_field(:social_security_number, :id => 'ssn')
   form(:login, :id => 'login')
@@ -35,6 +41,7 @@ class AccessorsTestDruid
   canvas(:my_canvas, :id => 'canvas_id')
   audio(:acdc, :id => 'audio_id')
   video(:movie, :id => 'video_id')
+  b(:bold, :id => 'bold')
 end
 
 class BlockDruid
@@ -67,7 +74,7 @@ class BlockDruid
   div :footer do |element|
     "div"
   end
-  span :alert do |element|
+  span :alert_span do |element|
     "span"
   end
   table :cart do |element|
@@ -127,6 +134,9 @@ class BlockDruid
   video :movie do |element|
     "video"
   end
+  b :bold do |element|
+    "b"
+  end
 end
 
 class TestDruidBackUp
@@ -171,6 +181,10 @@ describe Druid::Accessors do
     it "should not navigate to a page when 'page_url' not specified" do
       expect(driver).not_to receive(:goto)
       TestDruidBackUp.new(driver,true)
+    end
+
+    it "should provide the page url" do
+      expect(druid.page_url_value).to eql "http://apple.com"
     end
   end
 
@@ -562,7 +576,6 @@ describe Druid::Accessors do
         expect(druid).to respond_to :first_element
         expect(druid).to respond_to :select_first
         expect(druid).to respond_to :first_selected?
-        expect(druid).to respond_to :clear_first
       end
 
       it "should call a block on the element method when present" do
@@ -574,11 +587,6 @@ describe Druid::Accessors do
       it "should select a radio button" do
         expect(driver).to receive_message_chain(:radio, :set)
         druid.select_first
-      end
-
-      it "should clear a radio button" do
-        expect(driver).to receive_message_chain(:radio, :clear)
-        druid.clear_first
       end
 
       it "should determine if a radio is selected" do
@@ -665,24 +673,24 @@ describe Druid::Accessors do
   describe "span accessors" do
     context "when called on a page object" do
       it "should generate accessor methods" do
-        expect(druid).to respond_to :alert
-        expect(druid).to respond_to :alert_element
+        expect(druid).to respond_to :alert_span
+        expect(druid).to respond_to :alert_span_element
       end
 
       it "should call a block on the element method when present" do
-        expect(block_druid.alert_element).to eql "span"
+        expect(block_druid.alert_span_element).to eql "span"
       end
     end
 
     context "implementation" do
       it "should retrieve the text from a span" do
         expect(driver).to receive_message_chain(:span, :text).and_return('Alert')
-        expect(druid.alert).to eql 'Alert'
+        expect(druid.alert_span).to eql 'Alert'
       end
 
       it "should retrieve the span element from the page" do
         expect(driver).to receive(:span)
-        expect(druid.alert_element).to be_instance_of Druid::Elements::Span
+        expect(druid.alert_span_element).to be_instance_of Druid::Elements::Span
       end
     end
   end
@@ -1110,6 +1118,64 @@ describe Druid::Accessors do
       it "should call a block on the element method when present" do
         expect(block_druid.movie_element).to eql "video"
       end
+    end
+  end
+
+  describe "b accessors" do
+    context "when called on a page object" do
+      it "should generate accessor methods" do
+        expect(druid).to respond_to(:bold)
+        expect(druid).to respond_to(:bold_element)
+        expect(druid).to respond_to(:bold?)
+      end
+
+      it "should call a block on the element method when present" do
+        expect(block_druid.bold_element).to eql "b"
+      end
+    end
+
+    it "should retrieve the text from the b" do
+      expect(driver).to receive(:b).and_return(driver)
+      expect(driver).to receive(:text).and_return("value")
+      expect(druid.bold).to eql "value"
+    end
+
+    it "should retrieve the element from the page" do
+      expect(driver).to receive(:b).and_return(driver)
+      element = druid.bold_element
+      expect(element).to be_instance_of Druid::Elements::Bold
+    end
+  end
+end
+
+describe "accessors" do
+  let(:driver) { mock_driver }
+  let(:page) { GenericPage.new driver}
+
+  context '#wait_for_expected_title' do
+    before(:each) do
+      allow(driver).to receive(:wait_until).and_yield
+    end
+
+    it "true if already there" do
+      allow(driver).to receive(:title).and_return 'expected title'
+      expect(page.wait_for_expected_title?).to be_truthy
+    end
+
+    it "does not wait if it already is there" do
+      allow(driver).to receive(:title).and_return 'expected title'
+      expect(driver).to_not receive(:wait_until)
+      expect(page.wait_for_expected_title?).to be_truthy
+    end
+
+    it "errors when it does not match" do
+      allow(driver).to receive(:title).and_return 'wrong title'
+      expect { page.wait_for_expected_title? }.to raise_error "Expected title 'expected title' instead of 'wrong title'"
+    end
+
+    it 'pick up when the title changes' do
+      allow(driver).to receive(:title).and_return 'wrong title', 'expected title'
+      expect(page.wait_for_expected_title?).to be_truthy
     end
   end
 end

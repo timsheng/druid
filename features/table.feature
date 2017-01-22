@@ -28,15 +28,15 @@ Feature: Table
 
   Scenario: Retrieve data from a table using a column header
     When I retrieve a table element
-    Then the data for column "Data2" and row "2" should be "Data4"
+    Then the data for column "Header" and row "3" should be "Data4"
 
   Scenario: Retrieve data from a table using a partial column header
     When I retrieve a table element
-    Then the data for column "ata2" and row "2" should be "Data4"
+    Then the data for column "eader" and row "3" should be "Data4"
 
   Scenario: Retrieve data from a table using both headers
     When I retrieve a table element
-    Then the data for row "Data3" and column "Data2" should be "Data4"
+    Then the data for row "Data3" and column "eader" should be "Data4"
 
   Scenario: Retrieve data from a table with an incorrect row header
     When I retrieve a table element
@@ -53,7 +53,7 @@ Feature: Table
   @name
   Scenario Outline: Locating table cells on the Page
     When I retrieve a table element by "<locate_by>"
-    Then the data for row "1" should be "Data1" and "Data2"
+    Then the data for row "2" should be "Data1" and "Data2"
 
   Examples:
     | locate_by |
@@ -66,19 +66,16 @@ Feature: Table
 
   Scenario: Retrieve the data from a table
     When I retrieve a table element
-    Then the data for row "1" should be "Data1" and "Data2"
-    And the data for row "2" should be "Data3" and "Data4"
-    And the table should have "2" rows
-    And each row should contain "Data"
-    And row "1" should have "2" columns
-    And each column should contain "Data"
-    And the data for the first row should be "Data1" and "Data2"
-    And the data for the last row should be "Data3" and "Data4"
+    Then the data for row "2" should be "Data1" and "Data2"
+    And the data for row "3" should be "Data3" and "Data4"
+    And the table should have "3" rows
+    And row "2" should have "2" columns
+    And the data for the second row should be "Data1" and "Data2"
 
   @multi
   Scenario Outline: Locating table using multiple parameters
     When I retrieve a table element bys "<param1>" and "<param2>"
-    Then the data for row "1" should be "Data1" and "Data2"
+    Then the data for row "2" should be "Data1" and "Data2"
 
     Examples:
     | param1  | param2  |
@@ -89,7 +86,7 @@ Feature: Table
   Scenario: Finding a table dynamically
     When I retrieve a table element while the script is executing
     Then I should see that the table exists
-    And the data for row "1" should be "Data1" and "Data2"
+    And the data for row "2" should be "Data1" and "Data2"
 
   Scenario: Retrieve data from a table with a thead using a column header
     When I retrieve a table with thead element
@@ -102,3 +99,10 @@ Feature: Table
   Scenario: Getting the text from a table
     Then I should see the text includes "Data1" when I retrieve it by "id"
     And I should see the text includes "Data2" when I retrieve it by "id"
+
+  Scenario: Matching the expected table with the table on the Page
+    When I retrieve a table element
+    Then the table should be like the expected one
+      | Table | Header  |
+      | Data1 | Data2   |
+      | Data3 | Data4   |

@@ -252,3 +252,10 @@ Feature: Elements
   Scenario: Accessing an HTML 5 element using the element method
     When I retrieve the figure using the element
     Then I should see the figure contains an image
+
+  Scenario: Getting the class name for an element
+    When I search for the paragraph by "id"
+    Then I should know the paragraph class is "p_class"
+
+  Scenario: Selecting the text for an element
+    Then I should be able to select "Elements" from the paragraph

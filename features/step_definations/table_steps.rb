@@ -79,3 +79,12 @@ end
 Then(/^I should see the text includes "([^"]*)" when I retrieve it by "([^"]*)"$/) do |text, how|
   expect(@page.send("table_#{how}")).to include text
 end
+
+Then(/^the data for the second row should be "([^"]*)" and "([^"]*)"$/) do |col1, col2|
+  expect(@element[1][0].text).to eql col1
+  expect(@element[1][1].text).to eql col2
+end
+
+Then(/^the table should be like the expected one$/) do |expected_table|
+  expect(expected_table.diff!@element.hashes).to be_nil
+end

@@ -37,14 +37,42 @@ module Druid
     #
     def page_url(url)
       define_method("goto") do
+        driver.goto self.page_url_value
+      end
+
+      define_method("page_url_value") do
         lookup = url.kind_of?(Symbol) ? self.send(url) : url
         erb = ERB.new(%Q{#{lookup}})
         merged_params = self.class.instance_variable_get("@merged_params")
         params = merged_params ? merged_params : self.class.params
-        driver.goto erb.result(binding)
+        erb.result(binding)
       end
     end
     alias_method :direct_url, :page_url
+
+    #
+    # Creates a method that waits the expected_title of a page to match the actual.
+    # @param [String] expected_title the literal expected title for the page
+    # @param [Regexp] expected_title the expected title pattern for the page
+    # @param [optional, Integer] timeout default value is nil - do not wait
+    # @return [boolean]
+    # @raise An exception if expected_title does not match actual title
+    #
+    # @example Specify 'Google' as the expected title of a page
+    #   wait_for_expected_title "Google"
+    #   page.wait_for_expected_title?
+    #
+    def wait_for_expected_title(expected_title, timeout=Druid.default_element_wait)
+      define_method("wait_for_expected_title?") do
+        error_message = lambda { "Expected title '#{expected_title}' instead of '#{title}'" }
+        has_expected_title = (expected_title === title)
+        wait_until(timeout, error_message.call) do
+          has_expected_title = (expected_title === title)
+        end unless has_expected_title
+        raise error_message.call unless has_expected_title
+        has_expected_title
+      end
+    end
 
     #
     # Creates a method that compares the expected_title of a page against the actual.
@@ -81,6 +109,14 @@ module Druid
       define_method("has_expected_element?") do
         self.respond_to? "#{element_name}_element" and self.send("#{element_name}_element").when_present timeout
       end
+    end
+
+    def expected_element_visible(element_name, timeout=Druid.default_element_wait)
+      define_method("has_expected_element_visible?") do
+        self.respond_to? "#{element_name}_element" and self.send("#{element_name}_element").when_present timeout
+        self.respond_to? "#{element_name}_element" and self.send("#{element_name}_element").when_visible timeout
+      end
+
     end
 
     #
@@ -154,11 +190,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def link(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'link_for', &block)
       define_method(name) do
         return click_link_for identifier.clone unless block_given?
         self.send("#{name}_element").click
       end
-      standard_methods(name, identifier, 'link_for', &block)
     end
 
     alias_method :a, :link
@@ -189,6 +225,7 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def text_field(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'text_field_for', &block)
       define_method(name) do
         return text_field_value_for identifier.clone unless block_given?
         self.send("#{name}_element").value
@@ -197,7 +234,6 @@ module Druid
         return text_field_value_set(identifier.clone, value) unless block_given?
         self.send("#{name}_element").value = value
       end
-      standard_methods(name, identifier, 'text_field_for', &block)
     end
 
     #
@@ -225,6 +261,7 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def checkbox(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'checkbox_for', &block)
       define_method("check_#{name}") do
         return check_checkbox identifier.clone unless block_given?
         self.send("#{name}_element").check
@@ -237,7 +274,6 @@ module Druid
         return checkbox_checked? identifier.clone unless block_given?
         self.send("#{name}_element").checked?
       end
-      standard_methods(name, identifier, 'checkbox_for', &block)
     end
 
     #
@@ -264,6 +300,7 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def select_list(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'select_list_for', &block)
       define_method(name) do
         return select_list_value_for identifier.clone unless block_given?
         self.send("#{name}_element").options.each {|o| return o.text if o.selected?}
@@ -276,20 +313,18 @@ module Druid
         element = self.send("#{name}_element")
         (element && element.options) ? element.options.collect(&:text) : []
       end
-      standard_methods(name, identifier, 'select_list_for', &block)
     end
     alias_method :select, :select_list
 
     #
-    # adds five methods - one to select, another to clear,
-    # another to return if a radio button is selected,
-    # another method to return a PageObject::Elements::RadioButton
+    # adds four methods - one to select, another to return if a radio button
+    # is selected, another method to return a PageObject::Elements::RadioButton
     # object representing the radio button element, and another to check
     # the radio button's existence.
     #
     # @example
     #   radio_button(:north, :id => "north")
-    #   # will generate 'select_north', 'clear_north', 'north_selected?',
+    #   # will generate 'select_north', 'north_selected?',
     #   # 'north_element', and 'north?' methods
     #
     # @param [Symbol] the name used for the generated methods
@@ -306,22 +341,40 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def radio_button(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'radio_button_for', &block)
       define_method("select_#{name}") do
         return select_radio identifier.clone unless block_given?
         self.send("#{name}_element").select
-      end
-      define_method("clear_#{name}") do
-        return clear_radio identifier.clone unless block_given?
-        self.send("#{name}_element").clear
       end
       define_method("#{name}_selected?") do
         return radio_selected? identifier.clone unless block_given?
         self.send("#{name}_element").selected?
       end
-      standard_methods(name, identifier, 'radio_button_for', &block)
     end
     alias_method :radio, :radio_button
 
+    def radio_button_group(name, identifier)
+      define_method("select_#{name}") do |value|
+        radio_buttons_for(identifier.clone).each do |radio_elem|
+          return radio_elem.select if radio_elem.value == value
+        end
+      end
+      define_method("#{name}_values") do
+        radio_buttons_for(identifier.clone).collect { |e| e.value}
+      end
+      define_method("#{name}_selected?") do
+        radio_buttons_for(identifier.clone).each do |radio_elem|
+          return radio_elem.value if radio_elem.selected?
+        end
+        return false
+      end
+      define_method("#{name}_elements") do
+        radio_buttons_for(identifier.clone)
+      end
+      define_method("#{name}?") do
+        radio_buttons_for(identifier.clone).any?
+      end
+    end
     #
     # adds three methods - one to click a button, another to
     # return the button element, and another to check the button's existence.
@@ -345,11 +398,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def button(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'button_for', &block)
       define_method(name) do
         return click_button_for identifier.clone unless block_given?
         self.send("#{name}_element").click
       end
-      standard_methods(name, identifier, 'button_for', &block)
     end
 
     #
@@ -375,11 +428,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def div(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'div_for', &block)
       define_method(name) do
         return div_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      standard_methods(name, identifier, 'div_for', &block)
     end
 
     #
@@ -403,11 +456,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def table(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'table_for', &block)
       define_method(name) do
         return table_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      standard_methods(name, identifier, 'table_for', &block)
     end
 
     #
@@ -432,11 +485,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def cell(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'cell_for', &block)
       define_method(name) do
         return cell_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      standard_methods(name, identifier, 'cell_for', &block)
     end
     alias_method :td, :cell
 
@@ -462,11 +515,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def span(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'span_for', &block)
       define_method(name) do
         return span_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      standard_methods(name, identifier, 'span_for', &block)
     end
 
     #
@@ -542,11 +595,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def hidden_field(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'hidden_field_for', &block)
       define_method(name) do
         return hidden_field_value_for identifier.clone unless block_given?
         self.send("#{name}_element").value
       end
-      standard_methods(name, identifier, 'hidden_field_for', &block)
     end
     alias_method :hidden, :hidden_field
 
@@ -572,11 +625,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def list_item(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'list_item_for', &block)
       define_method(name) do
         return list_item_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      standard_methods(name, identifier, 'list_item_for', &block)
     end
     alias_method :li, :list_item
 
@@ -601,11 +654,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def ordered_list(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'ordered_list_for', &block)
       define_method(name) do
         return ordered_list_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      standard_methods(name, identifier, 'ordered_list_for', &block)
     end
     alias_method :ol, :ordered_list
 
@@ -632,6 +685,7 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def text_area(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'text_area_for', &block)
       define_method("#{name}=") do |value|
         return text_area_value_set(identifier.clone, value) unless block_given?
         self.send("#{name}_element").value = value
@@ -640,7 +694,6 @@ module Druid
         return text_area_value_for identifier.clone unless block_given?
         self.send("#{name}_element").value
       end
-      standard_methods(name, identifier, 'text_area_for', &block)
     end
     alias_method :textarea, :text_area
 
@@ -663,11 +716,11 @@ module Druid
     #   * :css
     # @param optional block to be invoked when element method is called
     def unordered_list(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'unordered_list_for', &block)
       define_method(name) do
         return unordered_list_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      standard_methods(name, identifier, 'unordered_list_for', &block)
     end
     alias_method :ul, :unordered_list
 
@@ -691,11 +744,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def h1(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'h1_for', &block)
       define_method(name) do
         return h1_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      standard_methods(name, identifier, 'h1_for', &block)
     end
 
     #
@@ -718,11 +771,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def h2(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'h2_for', &block)
       define_method(name) do
         return h2_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      standard_methods(name, identifier, 'h2_for', &block)
     end
 
     #
@@ -745,11 +798,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def h3(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'h3_for', &block)
       define_method(name) do
         return h3_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      standard_methods(name, identifier, 'h3_for', &block)
     end
 
     #
@@ -772,11 +825,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def h4(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'h4_for', &block)
       define_method(name) do
         return h4_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      standard_methods(name, identifier, 'h4_for', &block)
     end
 
     #
@@ -799,11 +852,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def h5(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'h5_for', &block)
       define_method(name) do
         return h5_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      standard_methods(name, identifier, 'h5_for', &block)
     end
 
     #
@@ -826,11 +879,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def h6(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'h6_for', &block)
       define_method(name) do
         return h6_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      standard_methods(name, identifier, 'h6_for', &block)
     end
 
     #
@@ -853,11 +906,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def paragraph(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'paragraph_for', &block)
       define_method(name) do
         return paragraph_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      standard_methods(name, identifier, 'paragraph_for', &block)
     end
     alias_method :p, :paragraph
 
@@ -883,11 +936,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def file_field(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'file_field_for', &block)
       define_method("#{name}=") do |value|
         return file_field_value_set(identifier.clone, value) unless block_given?
         self.send("#{name}_element").value = value
       end
-      standard_methods(name, identifier, 'file_field_for', &block)
     end
 
     #
@@ -911,11 +964,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def label(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'label_for', &block)
       define_method(name) do
         return label_text_for identifier.clone unless block_given?
         self.send("#{name}_element").text
       end
-      standard_methods(name, identifier, 'label_for', &block)
     end
 
     #
@@ -939,11 +992,11 @@ module Druid
     # @param optional block to be invoked when element method is called
     #
     def area(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'area_for', &block)
       define_method(name) do
         return click_area_for identifier.clone unless block_given?
         self.send("#{name}_element").click
       end
-      standard_methods(name, identifier, 'area_for', &block)
     end
 
     #
@@ -1016,6 +1069,56 @@ module Druid
     end
 
     #
+    # adds three methods - one to retrieve the text of a b element, another to
+    # retrieve a b element, and another to check for it's existence.
+    #
+    # @example
+    #   b(:blod, :id => 'title')
+    #   # will generate 'bold', 'bold_element', 'bold?' methods
+    #
+    # @param [Symbol] the name used for the generated methods
+    # @param [Hash] identifier how we find a b, You can use a multiple parameters
+    #   by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :css
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    # @param optional block to be invoked when element method is called
+    #
+    def b(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'b_for', &block)
+      define_method(name) do
+        return b_text_for identifier.clone unless block_given?
+        self.send("#{name}_element").text
+      end
+    end
+
+    #
+    # adds two methods - one to retrieve a svg, and another to check
+    # svg's existence.
+    #
+    # @example
+    #   svg(:circle, :id => 'circle')
+    #   # will generate 'circle_element', and 'circle?' methods
+    #
+    # @param [Symbol] the name used for the generated methods
+    # @param [Hash] identifier how we find a svg. You can use a multiple parameters
+    #   by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :css
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    # @param optional block to be invoked when element method is called
+    #
+    def svg(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'svg_for', &block)
+    end
+
+    #
     # adds three methods - one to retrieve the text an element, another
     # to retrieve an element, and another to check the element's existence.
     #
@@ -1074,27 +1177,15 @@ module Druid
       end
     end
 
-    #
-    # adds two methods - one to retrieve a svg, and another to check
-    # svg's existence.
-    #
-    # @example
-    #   svg(:circle, :id => 'circle')
-    #   # will generate 'circle_element', and 'circle?' methods
-    #
-    # @param [Symbol] the name used for the generated methods
-    # @param [Hash] identifier how we find a svg. You can use a multiple parameters
-    #   by combining of any of the following except xpath. The valid keys are:
-    #   * :class
-    #   * :css
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    # @param optional block to be invoked when element method is called
-    #
-    def svg(name, identifier={:index => 0}, &block)
-      standard_methods(name, identifier, 'svg_for', &block)
+    def standard_methods(name, identifier, method, &block)
+      define_method("#{name}_element") do
+        return call_block(&block) if block_given?
+        self.send(method, identifier.clone)
+      end
+      define_method("#{name}?") do
+        return call_block(&block).exist? if block_given?
+        self.send(method, identifier.clone).exist?
+      end
     end
 
     #
@@ -1117,22 +1208,16 @@ module Druid
     #   * :xpath
     # @param optional block to be invoked when element method is called
     #
-    LocatorGenerator::BASIC_ELEMENTS.each do |type|
-      define_method(type) do |name, *identifier, &block|
+    LocatorGenerator::BASIC_ELEMENTS.each do |tag|
+      define_method(tag) do |name, *identifier, &block|
         identifier = identifier[0] ? identifier[0] : {:index => 0}
-        element(name, type, identifier, &block)
+        element(name, tag, identifier, &block)
       end
-    end
 
-    def standard_methods(name, identifier, method, &block)
-      define_method("#{name}_element") do
-        return call_block(&block) if block_given?
-        self.send(method, identifier.clone)
-      end
-      define_method("#{name}?") do
-        return call_block(&block).exist? if block_given?
-        self.send(method, identifier.clone).exist?
-      end
+      define_method("#{tag}s") do |name, *identifier, &block|
+        identifier = identifier[0] ? identifier[0] : {:index => 0}
+        elements(name, tag, identifier, &block)
+      end unless tag == :param
     end
 
     #

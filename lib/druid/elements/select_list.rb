@@ -7,11 +7,11 @@ module Druid
       end
 
       def [](idx)
-        Druid::Elements::Option.new(options[idx])
+        options[idx]
       end
 
       def options
-        element.options
+        element.options.map { |e| Druid::Elements::Option.new(e)}
       end
 
       #
