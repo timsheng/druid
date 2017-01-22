@@ -1,5 +1,11 @@
 require 'spec_helper'
 
+class GenericPage
+  include Druid
+
+  wait_for_expected_title 'expected title'
+end
+
 class AccessorsTestDruid
   include Druid
 
@@ -1138,6 +1144,38 @@ describe Druid::Accessors do
       expect(driver).to receive(:b).and_return(driver)
       element = druid.bold_element
       expect(element).to be_instance_of Druid::Elements::Bold
+    end
+  end
+end
+
+describe "accessors" do
+  let(:driver) { mock_driver }
+  let(:page) { GenericPage.new driver}
+
+  context '#wait_for_expected_title' do
+    before(:each) do
+      allow(driver).to receive(:wait_until).and_yield
+    end
+
+    it "true if already there" do
+      allow(driver).to receive(:title).and_return 'expected title'
+      expect(page.wait_for_expected_title?).to be_truthy
+    end
+
+    it "does not wait if it already is there" do
+      allow(driver).to receive(:title).and_return 'expected title'
+      expect(driver).to_not receive(:wait_until)
+      expect(page.wait_for_expected_title?).to be_truthy
+    end
+
+    it "errors when it does not match" do
+      allow(driver).to receive(:title).and_return 'wrong title'
+      expect { page.wait_for_expected_title? }.to raise_error "Expected title 'expected title' instead of 'wrong title'"
+    end
+
+    it 'pick up when the title changes' do
+      allow(driver).to receive(:title).and_return 'wrong title', 'expected title'
+      expect(page.wait_for_expected_title?).to be_truthy
     end
   end
 end
