@@ -10,8 +10,8 @@ describe Druid::ElementLocators do
 
   it "should find a button element" do
     expect(driver).to receive(:button).with(:id => 'blah').and_return(driver)
-    button = page.button_element(:id => 'blah')
-    expect(button).to be_instance_of Druid::Elements::Button
+    element = page.button_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::Button
   end
 
   it "should find a button element using a default identifier" do
@@ -32,8 +32,8 @@ describe Druid::ElementLocators do
 
   it "should find a text field element" do
     expect(driver).to receive(:text_field).with(:id => 'blah').and_return(driver)
-    text_field = page.text_field_element(:id => 'blah')
-    expect(text_field).to be_instance_of Druid::Elements::TextField
+    element = page.text_field_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::TextField
   end
 
   it "should find a text field element using a default identifier" do
