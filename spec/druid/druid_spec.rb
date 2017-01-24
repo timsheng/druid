@@ -80,7 +80,7 @@ describe Druid do
     it "should throw an error" do
       expect {
         TestDruid.new("blah")
-      }.to raise_error 'expect Watir::Browser'
+      }.to raise_error 'expect Watir::Browser or Watir::HTMLElement'
     end
   end
 

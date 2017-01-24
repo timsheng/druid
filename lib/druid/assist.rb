@@ -522,6 +522,20 @@ module Druid
       find_elements("bs(identifier)", Elements::Bold, identifier, 'b')
     end
 
+    #
+    # method to return a Druid rooted at an element
+    #
+    def page_for(identifier, section_class)
+      find_page(identifier, section_class)
+    end
+
+    #
+    # method to return a collection of Druids rooted at elements
+    #
+    def pages_for(identifier, section_class)
+      SectionCollection.new(find_pages(identifier, section_class))
+    end
+
     private
 
     def find_elements(the_call, type, identifier, tag_name=nil)
@@ -536,6 +550,20 @@ module Druid
       element = driver.instance_eval "#{nested_frames(frame_identifiers)}#{the_call}"
       switch_to_default_content(frame_identifiers)
       type.new(element)
+    end
+
+    def find_pages(identifier, section_class)
+      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Element, 'element')
+      elements = driver.instance_eval "#{nested_frames(frame_identifiers)}elements(identifier)"
+      switch_to_default_content(frame_identifiers)
+      elements.map { |element| section_class.new(element) }
+    end
+
+    def find_page(identifier, section_class)
+      identifier, frame_identifiers = parse_identifiers(identifier, Elements::Element, 'element')
+      element = driver.instance_eval "#{nested_frames(frame_identifiers)}element(identifier)"
+      switch_to_default_content(frame_identifiers)
+      section_class.new(element)
     end
 
     def process_call(the_call, type, identifier, value=nil, tag_name=nil)
