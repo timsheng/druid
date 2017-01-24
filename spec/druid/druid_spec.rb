@@ -80,7 +80,7 @@ describe Druid do
     it "should throw an error" do
       expect {
         TestDruid.new("blah")
-      }.to raise_error 'expect Watir::Browser'
+      }.to raise_error 'expect Watir::Browser or Watir::HTMLElement'
     end
   end
 
@@ -88,6 +88,7 @@ describe Druid do
     context "when using PageObject" do
 
       it "should display the page text" do
+        # expect(driver).to receive(:element).and_return(driver)
         expect(driver).to receive(:text).and_return("driver text")
         expect(druid.text).to eql "driver text"
       end

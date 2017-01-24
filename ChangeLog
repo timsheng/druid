@@ -1,3 +1,6 @@
+=== 2017-01-24
+* Enhancements
+  * Added new page_section/ page_sections method to accessor
 === Version 1.1.9/2017-01-22
 * Enhancements
   * Populate_page_with now supports radio groups

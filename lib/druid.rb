@@ -4,6 +4,7 @@ require 'druid/page_factory'
 require 'druid/core_ext/string'
 require 'druid/element_locators'
 require 'druid/page_populator'
+require 'druid/sections'
 require 'druid/javascript_framework_facade'
 
 # require 'watir-webdriver/extensions/alerts'
@@ -39,26 +40,29 @@ module Druid
   include Assist
   include ElementLocators
   include PagePopulator
-  # include Watir::AlertHelper
+
   # @return [Watir::Browser] the drvier passed to the constructor
   attr_reader :driver
+
   #
   # Construct a new druid. Prior to browser initialization it will call
   # a method named initialize_accessors if it exists. Upon initialization of
   # the page it will call a method named initialize_page if it exists
   #
-  # @param [Watir::Browser] the driver to use
+  # @param [Watir::Browser, Watir:HTMLElement] the driver/element to use
   # @param [bool] open the page if page_url is set
   #
-  def initialize(driver, visit=false)
+  def initialize(root, visit=false)
     initialize_accessors if respond_to?(:initialize_accessors)
-    if driver.is_a? Watir::Browser
-      @driver ||= driver
-      goto if visit && respond_to?(:goto)
-      initialize_page if respond_to?(:initialize_page)
-    else
-      raise ArgumentError, "expect Watir::Browser"
-    end
+    initialize_driver root
+    goto if visit && respond_to?(:goto)
+    initialize_page if respond_to?(:initialize_page)
+  end
+
+  def initialize_driver root
+    @driver = root if root.is_a? Watir::HTMLElement or root.is_a? Watir::Browser
+    @root_element = Elements::Element.new root if root.is_a? Watir::HTMLElement
+    raise "expect Watir::Browser or Watir::HTMLElement" if not root.is_a? Watir::HTMLElement and not root.is_a? Watir::Browser
   end
 
   # @private
@@ -136,7 +140,7 @@ module Druid
   # Returns the text of the current page
   #
   def text
-    driver.text
+    root.text
   end
 
   #
@@ -410,6 +414,12 @@ module Druid
 
   def call_block(&block)
     block.arity == 1 ? block.call(self) : self.instance_eval(&block)
+  end
+
+  private
+
+  def root
+    @root_element || driver
   end
 
 end
