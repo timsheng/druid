@@ -69,7 +69,7 @@ module Druid
       # @return [Boolean]
       #
       def ==(other)
-        element == other.element
+        other.is_a? self.class and element == other.element
       end
 
       #

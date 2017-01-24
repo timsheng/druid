@@ -47,6 +47,10 @@ describe Druid::Elements::Element do
       expect(element.text).to eql "my text"
     end
 
+    it "should know when it is not equal to another" do
+      expect(element).not_to eq 'not an element'
+    end
+
     it "should know when it is equal to another" do
       expect(we).to receive(:==).and_return(true)
       expect(element == element).to be true
