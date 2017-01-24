@@ -88,6 +88,7 @@ describe Druid do
     context "when using PageObject" do
 
       it "should display the page text" do
+        # expect(driver).to receive(:element).and_return(driver)
         expect(driver).to receive(:text).and_return("driver text")
         expect(druid.text).to eql "driver text"
       end

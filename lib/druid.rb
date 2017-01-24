@@ -60,12 +60,9 @@ module Druid
   end
 
   def initialize_driver root
-    if root.is_a? Watir::HTMLElement || root.is_a?(Watir::Browser)
-      @root_element = Elements::Element.new root
-      @driver = root
-    else
-      raise ArgumentError, "expect Watir::Browser or Watir::HTMLElement"
-    end
+    @driver = root if root.is_a? Watir::HTMLElement or root.is_a? Watir::Browser
+    @root_element = Elements::Element.new root if root.is_a? Watir::HTMLElement
+    raise "expect Watir::Browser or Watir::HTMLElement" if not root.is_a? Watir::HTMLElement and not root.is_a? Watir::Browser
   end
 
   # @private
@@ -422,7 +419,7 @@ module Druid
   private
 
   def root
-    @root_element
+    @root_element || driver
   end
 
 end
