@@ -1,4 +1,3 @@
-require 'watir-webdriver'
 require 'watir-webdriver/extensions/select_text'
 require 'druid/nested_elements'
 require 'druid/assist'

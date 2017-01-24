@@ -1,3 +1,4 @@
+require 'watir-webdriver'
 require 'druid/accessors'
 require 'druid/assist'
 require 'druid/page_factory'
