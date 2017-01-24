@@ -1,6 +1,7 @@
 ===Version 1.2.0/ 2017-01-24
 * Enhancements
   * Added new page_section/ page_sections method to accessor
+  * Added row accessors method and support for finding row elements directly
 === Version 1.1.9/2017-01-22
 * Enhancements
   * Populate_page_with now supports radio groups

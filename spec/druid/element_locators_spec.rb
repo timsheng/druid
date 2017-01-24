@@ -274,6 +274,28 @@ describe Druid::ElementLocators do
     page.cell_elements
   end
 
+  it "should find a table row" do
+    expect(driver).to receive(:tr).with(:id => 'blah').and_return(driver)
+    element = page.row_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::TableRow
+  end
+
+  it "should find a table row using a default identifier" do
+    expect(driver).to receive(:tr).with(:index => 0).and_return(driver)
+    page.row_element
+  end
+
+  it "should find all table row" do
+    expect(driver).to receive(:trs).with(:id => 'blah').and_return([driver])
+    elements = page.row_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::TableRow
+  end
+
+  it "should find all table rows using no identifier" do
+    expect(driver).to receive(:trs).with({}).and_return([driver])
+    page.row_elements
+  end
+
   it "should find an image element" do
     expect(driver).to receive(:image).with(:id => 'blah').and_return(driver)
     element = page.image_element(:id => 'blah')

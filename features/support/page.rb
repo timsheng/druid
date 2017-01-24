@@ -365,4 +365,12 @@ class Page
   b(:b_xpath, :xpath => '//b')
   b(:b_class_index, :class => 'b_class', :index => 0)
   b(:b_name_index, :name => 'b_name', :index => 0)
+
+  row(:tr_id, :id => 'tr_id')
+  row(:tr_class, :class => 'tr_class')
+  row(:tr_css, :css => '.tr_class')
+  row(:tr_index, :index => 1)
+  row(:tr_text, :text => 'Data1 Data2')
+  row(:tr_xpath, :xpath => '//table//tbody//tr[1]')
+  row(:tr_class_index, :class => 'tr_class', :index => 0)
 end
