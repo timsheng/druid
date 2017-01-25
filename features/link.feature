@@ -48,3 +48,11 @@ Feature: Links
   Scenario: Getting the href for a link
     When I get the href for the link
     Then I should know it was "success.html"
+
+  Scenario: Link element methods
+    Given I am on the static elements page
+    When I retrieve a link element
+    Then I should be able to wait until it is present
+    And I should be able to wait until it is visible
+    And I should be able to wait until it is not visible
+    And I should be able to wait until a block returns true

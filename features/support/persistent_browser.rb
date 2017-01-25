@@ -35,7 +35,7 @@ module Druid
                            :url => url,
                            :desired_capabilities => desired_capabilities )
       else
-        Watir::Browser.new :firefox
+        Watir::Browser.new :chrome
       end
     end
 
