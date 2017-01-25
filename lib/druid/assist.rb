@@ -482,6 +482,21 @@ module Druid
       find_elements("videos(identifier)", Elements::Video, identifier, 'video')
     end
 
+    #
+    # method to retrieve the text from a table row_text_for
+    #
+    def row_text_for(identifier)
+      process_call("tr(identifier).text", Elements::TableRow, identifier, nil, 'tr')
+    end
+
+    def row_for(identifier)
+      find_element("tr(identifier)", Elements::TableRow, identifier, 'tr')
+    end
+
+    def rows_for(identifier)
+      find_elements("trs(identifier)", Elements::TableRow, identifier, 'tr')
+    end
+
     def element_for(tag, identifier)
       find_element("#{tag.to_s}(identifier)", Elements::Element, identifier, tag.to_s)
     end

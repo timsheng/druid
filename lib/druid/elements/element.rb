@@ -1,4 +1,3 @@
-require 'watir-webdriver'
 require 'watir-webdriver/extensions/select_text'
 require 'druid/nested_elements'
 require 'druid/assist'
@@ -69,7 +68,7 @@ module Druid
       # @return [Boolean]
       #
       def ==(other)
-        element == other.element
+        other.is_a? self.class and element == other.element
       end
 
       #
@@ -293,7 +292,7 @@ module Druid
       protected
 
       def self.have_to_build_xpath(identifier)
-        ['table', 'span', 'div', 'td', 'li', 'ol', 'ul', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'label', 'area', 'canvas', 'audio', 'video','b'].include? identifier[:tag_name] and identifier[:name]
+        ['table', 'span', 'div', 'td', 'li', 'ol', 'ul', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'label', 'area', 'canvas', 'audio', 'video', 'b'].include? identifier[:tag_name] and identifier[:name]
       end
 
       def self.build_xpath_for identifier
