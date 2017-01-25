@@ -225,6 +225,33 @@ describe Druid::Accessors do
     end
   end
 
+  context "using element accessor" do
+    class DefaultElementTagToElement
+      include Druid
+      # verify that the explicit :element tag can be omitted
+      # element('button', :element, {:css => 'some css'})
+      element('button', { :css => 'some css' })
+      elements('button2', { :css => 'some css' })
+    end
+
+    let(:page) { DefaultElementTagToElement.new(driver) }
+
+    def mock_driver_for(tag)
+      expect(driver).to receive(tag).with(:css => 'some css').and_return(driver)
+    end
+
+    it "should default element tag to element" do
+      mock_driver_for :element
+      page.button_element
+    end
+
+    it "should default elements tag to element" do
+      mock_driver_for :elements
+      expect(driver).to receive(:map).and_return([])
+      page.button2_elements.to_a
+    end
+  end
+
   describe "using default identifiers" do
     class DefaultIdentifier
       include Druid
