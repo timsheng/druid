@@ -1,13 +1,9 @@
-When(/^I retrieve the audio element$/) do
-  @element = @page.audio_id_element
-end
-
 When(/^I search for the audio element by "([^"]*)"$/) do |how|
-  @element = @page.send "audio_#{how}_element"
+  @element = @avpage.send "audio_#{how}_element"
 end
 
 When(/^I search for the audio element by "([^"]*)" and "([^"]*)"$/) do |param1, param2|
-  @element = @page.send "audio_#{param1}_#{param2}_element"
+  @element = @avpage.send "audio_#{param1}_#{param2}_element"
 end
 
 Then(/^I should know the audio is not autoplay$/) do
@@ -28,4 +24,28 @@ end
 
 Then(/^I should know that its volume is (\d+)$/) do |volume|
   expect(@element.volume).to eql volume.to_i
+end
+
+Given(/^I am on the audio video page$/) do
+  @avpage = visit AudioVideoPage
+end
+
+When(/^I retrieve the audio element from the page$/) do
+  @element = @avpage.audio_id_element
+end
+
+Then(/^I should know that it has not ended$/) do
+  expect(@element).not_to be_ended
+end
+
+Then(/^I should know that it is not seeking$/) do
+  expect(@element).not_to be_seeking
+end
+
+Then(/^I should know that it is not in a loop$/) do
+  expect(@element).not_to be_loop
+end
+
+Then(/^I should know that it is muted$/) do
+  expect(@element).not_to be_muted
 end

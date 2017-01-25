@@ -494,6 +494,34 @@ module Druid
     alias_method :td, :cell
 
     #
+    # adds three methods - one to retrieve the text from a table row,
+    # another to return the table row element, and another to check the row's
+    # existence.
+    #
+    # @example
+    #   row(:sums, :id => 'sum_row')
+    #   # will generate 'sums', 'sums_element', and 'sums?' methods
+    #
+    # @param [Symbol] the name used for the generated methods
+    # @param [Hash] identifier how we find a cell. You can use a multiple parameters
+    #   by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :css
+    #   * :id
+    #   * :index
+    #   * :text
+    #   * :xpath
+    # @param optional block to be invoked when element method is called
+    #
+    def row(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'row_for', &block)
+      define_method(name) do
+        return row_text_for identifier.clone unless block_given?
+        self.send("#{name}_element").text
+      end
+    end
+
+    #
     # adds three methods - one to retrieve the text from a span,
     # another to return the span element, and another to check the span's existence.
     #
@@ -1137,7 +1165,15 @@ module Druid
     #   * :xpath
     # @param optional block to be invoked when element method is called
     #
-    def element(name, tag, identifier={:index => 0}, &block)
+    def element(name, tag=:element, identifier={:index => 0}, &block)
+      #
+      # sets tag as element if not defined
+      #
+      if tag.is_a? Hash
+        identifier = tag
+        tag = :element
+      end
+
       define_method("#{name}") do
         self.send("#{name}_element").text
       end
@@ -1170,7 +1206,15 @@ module Druid
     #   * :xpath
     # @param optional block to be invoked when element method is called
     #
-    def elements(name, tag, identifier={:index => 0}, &block)
+    def elements(name, tag=:element, identifier={:index => 0}, &block)
+      #
+      # sets tag as element if not defined
+      #
+      if tag.is_a? Hash
+        identifier = tag
+        tag = :element
+      end
+
       define_method("#{name}_elements") do
         return call_block(&block) if block_given?
         elements_for(tag, identifier.clone)
