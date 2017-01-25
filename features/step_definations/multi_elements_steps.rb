@@ -32,6 +32,7 @@ class MultiElementsPage
     page.div_elements(:class => 'div')
   end
   b(:bs)
+  i(:is)
 end
 
 Given(/^I am on the multi elements page$/) do
@@ -537,4 +538,16 @@ end
 
 Then(/^the text for b (\d+) should be "([^"]*)"$/) do |b_num, text|
   expect(@elements[b_num.to_i - 1].text).to eql text
+end
+
+When(/^I select the is$/) do
+  @elements = @page.i_elements
+end
+
+Then(/^I should have (\d+) is$/) do |num_is|
+  expect(@elements.size).to eql num_is.to_i
+end
+
+Then(/^the text for i (\d+) should be "([^"]*)"$/) do |i_num, text|
+  expect(@elements[i_num.to_i - 1].text).to eql text
 end
