@@ -41,6 +41,11 @@ module Druid
   include Assist
   include ElementLocators
   include PagePopulator
+  extend Forwardable
+
+  # Forward visibility checks to root so page sections can be tested for existence.
+  def_delegators :root, :visible?, :present?, :exist?
+
 
   # @return [Watir::Browser] the drvier passed to the constructor
   attr_reader :driver
