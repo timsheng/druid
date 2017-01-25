@@ -17,19 +17,12 @@ describe Druid::Elements::UnOrderedList do
 
     it "should return a list item when indexed" do
       allow(element).to receive(:uls).and_return(element)
-      allow(element).to receive(:find_all).and_return([element])
-      allow(element).to receive(:parent).and_return(element)
-      allow(element).to receive(:element).and_return(element)
-      allow(element).to receive(:==).and_return(true)
+      expect(element).to receive(:[])
       ul[1]
     end
 
     it "should know how many items it contains" do
-      allow(element).to receive(:uls).and_return(element)
-      allow(element).to receive(:find_all).and_return([element])
-      allow(element).to receive(:parent).and_return(element)
-      allow(element).to receive(:element).and_return(element)
-      allow(element).to receive(:==).and_return(true)
+      allow(element).to receive(:uls).and_return([element])
       expect(ul.items).to eql 1
     end
 
