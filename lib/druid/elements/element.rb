@@ -180,6 +180,19 @@ module Druid
       end
 
       #
+      # location of element (x,y)
+      #
+      def location
+        element.wd.location
+      end
+
+      #
+      # size of element (width, height)
+      #
+      def size
+        element.wd.size
+      end
+      #
       # Flash the element by temporarily changing the background color
       #
       def flash
