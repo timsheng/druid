@@ -17,19 +17,12 @@ describe Druid::Elements::OrderedList do
 
     it "should return a list item when indexed" do
       allow(element).to receive(:ols).and_return(element)
-      allow(element).to receive(:find_all).and_return([element])
-      allow(element).to receive(:parent).and_return(element)
-      allow(element).to receive(:element).and_return(element)
-      allow(element).to receive(:==).and_return(true)
+      expect(element).to receive(:[])
       ol[1]
     end
 
     it "should know how many list items it contains" do
-      allow(element).to receive(:ols).and_return(element)
-      allow(element).to receive(:find_all).and_return([element])
-      allow(element).to receive(:parent).and_return(element)
-      allow(element).to receive(:element).and_return(element)
-      allow(element).to receive(:==).and_return(true)
+      allow(element).to receive(:ols).and_return([element])
       expect(ol.items).to eql 1
     end
 

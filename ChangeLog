@@ -2,6 +2,8 @@
 * Enhancements
   * Added list_items method to UnorderedList to get an array of children.
   * Speed optimizations for UnorderedList
+  * Added list_items method to OrderedList to get an array of children
+  * Speed optimization for OrderedList
 ===Version 1.2.0/ 2017-01-24
 * Enhancements
   * Added new page_section/ page_sections method to accessor
