@@ -490,3 +490,9 @@ Feature: Multi Elements
      Then I should have 2 bs
      And the text for b 1 should be "One B"
      And the text for b 2 should be "Two B"
+
+   Scenario: Selecting is using an identifier
+     When I select the is
+     Then I should have 2 is
+     And the text for i 1 should be "One I"
+     And the text for i 2 should be "Two I"

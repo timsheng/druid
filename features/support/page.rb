@@ -355,4 +355,13 @@ class Page
   row(:tr_text, :text => 'Data1 Data2')
   row(:tr_xpath, :xpath => '//table//tbody//tr[1]')
   row(:tr_class_index, :class => 'tr_class', :index => 0)
+
+  i(:i_id, :id => 'i_id')
+  i(:i_class, :class => 'i_class')
+  i(:i_css, :css => '.i_class')
+  i(:i_name, :name => 'i_name')
+  i(:i_index, :index => 0)
+  i(:i_xpath, :xpath => '//i')
+  i(:i_class_index, :class => 'i_class', :index => 0)
+  i(:i_name_index, :name => 'i_name', :index => 0)
 end

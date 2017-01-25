@@ -526,6 +526,9 @@ module Druid
       process_call("b(identifier).text", Elements::Bold, identifier, nil, 'b')
     end
 
+    #
+    # method to retrieve the b element
+    #
     def b_for(identifier)
       find_element("b(identifier)", Elements::Bold, identifier, 'b')
     end
@@ -535,6 +538,27 @@ module Druid
     #
     def bs_for(identifier)
       find_elements("bs(identifier)", Elements::Bold, identifier, 'b')
+    end
+
+    #
+    # method to retrieve the text for a i
+    #
+    def i_text_for(identifier)
+      process_call("i(identifier).text", Elements::Italic, identifier, nil, 'i')
+    end
+
+    #
+    # method to retrieve the i element
+    #
+    def i_for(identifier)
+      find_element("i(identifier)", Elements::Italic, identifier, 'i')
+    end
+
+    #
+    # method to retrieve all i elements
+    #
+    def is_for(identifier)
+      find_elements("is(identifier)", Elements::Italic, identifier, 'i')
     end
 
     #

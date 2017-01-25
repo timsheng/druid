@@ -4,6 +4,7 @@
   * Speed optimizations for UnorderedList
   * Added list_items method to OrderedList to get an array of children
   * Speed optimization for OrderedList
+  * Added support for the Italic(i) element
 ===Version 1.2.0/ 2017-01-24
 * Enhancements
   * Added new page_section/ page_sections method to accessor
