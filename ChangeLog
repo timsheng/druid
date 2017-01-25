@@ -1,3 +1,7 @@
+=== 2017-01-25
+* Enhancements
+  * Added list_items method to UnorderedList to get an array of children.
+  * Speed optimizations for UnorderedList
 ===Version 1.2.0/ 2017-01-24
 * Enhancements
   * Added new page_section/ page_sections method to accessor
