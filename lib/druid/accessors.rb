@@ -1165,7 +1165,15 @@ module Druid
     #   * :xpath
     # @param optional block to be invoked when element method is called
     #
-    def element(name, tag, identifier={:index => 0}, &block)
+    def element(name, tag=:element, identifier={:index => 0}, &block)
+      #
+      # sets tag as element if not defined
+      #
+      if tag.is_a? Hash
+        identifier = tag
+        tag = :element
+      end
+
       define_method("#{name}") do
         self.send("#{name}_element").text
       end
@@ -1198,7 +1206,15 @@ module Druid
     #   * :xpath
     # @param optional block to be invoked when element method is called
     #
-    def elements(name, tag, identifier={:index => 0}, &block)
+    def elements(name, tag=:element, identifier={:index => 0}, &block)
+      #
+      # sets tag as element if not defined
+      #
+      if tag.is_a? Hash
+        identifier = tag
+        tag = :element
+      end
+
       define_method("#{name}_elements") do
         return call_block(&block) if block_given?
         elements_for(tag, identifier.clone)

@@ -2,6 +2,7 @@
 * Enhancements
   * Added new page_section/ page_sections method to accessor
   * Added row accessors method and support for finding row elements directly
+  * Default element tag to element
 === Version 1.1.9/2017-01-22
 * Enhancements
   * Populate_page_with now supports radio groups
