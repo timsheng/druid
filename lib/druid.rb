@@ -44,7 +44,7 @@ module Druid
   extend Forwardable
 
   # Forward visibility checks to root so page sections can be tested for existence.
-  def_delegators :root, :visible?, :present?, :exist?
+  def_delegators :root, :visible?, :exist?
 
 
   # @return [Watir::Browser] the drvier passed to the constructor
