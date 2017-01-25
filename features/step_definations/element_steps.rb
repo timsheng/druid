@@ -185,3 +185,21 @@ Then(/^I should be able to know its size$/) do
   expect(@element.size.width).to be > 0
   expect(@element.size.height).to be > 0
 end
+
+Then(/^the element width is not 0$/) do
+  expect(@element.width.is_a? Integer).to be true
+  expect(@element.width).to be > 0
+end
+
+Then(/^the element height is not 0$/) do
+  expect(@element.height.is_a? Integer).to be true
+  expect(@element.height).to be > 0
+end
+
+Then(/^the element centre should be greater than element y position$/) do
+  expect(@element.centre['y']).to be > @element.location.y
+end
+
+Then(/^the element centre should be greater than element x position$/) do
+  expect(@element.centre['x']).to be > @element.location.x
+end
