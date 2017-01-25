@@ -192,6 +192,27 @@ module Druid
       def size
         element.wd.size
       end
+
+      #
+      # Get width of element
+      #
+      def width
+        size['width']
+      end
+
+      #
+      # Get height of element
+      #
+      def height
+        size['height']
+      end
+
+      #
+      # Get centre coordinates of element
+      #
+      def centre
+        { 'y' => (location['y'] + (size['height']/2)), 'x' => (location['x'] + (size['width']/2)) }
+      end
       #
       # Flash the element by temporarily changing the background color
       #

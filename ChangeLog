@@ -5,6 +5,8 @@
   * Added list_items method to OrderedList to get an array of children
   * Speed optimization for OrderedList
   * Added support for the Italic(i) element
+  * Added size and location methods to all elements
+  * Added width, height, and centre methods for elements
 ===Version 1.2.0/ 2017-01-24
 * Enhancements
   * Added new page_section/ page_sections method to accessor
