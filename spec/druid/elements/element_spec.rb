@@ -172,5 +172,17 @@ describe Druid::Elements::Element do
       expect(we).to receive(:location_once_scrolled_into_view)
       element.scroll_into_view
     end
+
+    it "should know its location" do
+      expect(we).to receive(:wd).and_return(we)
+      expect(we).to receive(:location)
+      element.location
+    end
+
+    it "should know its size" do
+      expect(we).to receive(:wd).and_return(we)
+      expect(we).to receive(:size)
+      element.size
+    end
   end
 end

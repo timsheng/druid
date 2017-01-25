@@ -175,3 +175,13 @@ end
 Then(/^I should be able to select "([^"]*)" from the paragraph$/) do |text|
   @page.p_id_element.select_text text
 end
+
+Then(/^I should be able to know its location$/) do
+  expect(@element.location.y).to be > 0
+  expect(@element.location.x).to be > 0
+end
+
+Then(/^I should be able to know its size$/) do
+  expect(@element.size.width).to be > 0
+  expect(@element.size.height).to be > 0
+end
