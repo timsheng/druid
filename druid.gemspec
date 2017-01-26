@@ -23,8 +23,8 @@ Gem::Specification.new do |s|
   s.add_dependency "page_navigation", ">= 0.10"
   s.add_dependency "net-http-persistent", "~> 2.9.4"
 
-  s.add_development_dependency "rspec", ">= 3.4.0"
-  s.add_development_dependency "cucumber", ">= 1.3.20"
+  s.add_development_dependency "rspec", ">= 3.0.0"
+  s.add_development_dependency "cucumber", ">= 2.0.0"
   s.add_development_dependency "rack", ">= 1.0"
   s.add_development_dependency "coveralls", "~> 0.8.1"
 end
