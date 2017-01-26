@@ -1,15 +1,13 @@
 source "http://rubygems.org"
 
-gem 'simplecov', :require => false, :group => :test
+# adding rake so travis-ci will build properly
 gem 'rake'
-gem 'watir', '6.0'
-gem 'selenium-webdriver', '2.53.4'
-gem 'rspec'
-gem 'cucumber'
-gem 'rack'
-gem 'listen'
+gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+gem 'listen', '3.0.8'
 gem 'net-http-persistent'
-gem 'page_navigation'
+gem 'coveralls', require: false
+
+gemspec
 
 if ENV['WATIR_BRANCH']
   gem 'watir', :git => 'https://github.com/watir/watir.git', :branch => ENV['WATIR_BRANCH']
