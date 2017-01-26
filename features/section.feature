@@ -126,3 +126,7 @@ Feature: Sections
     Given I select multiple sections
     When I filter by a specific value of the sections
     Then I will find all sections with that value
+
+  Scenario: Sections roots can be accessed
+    When I have a page section
+    Then methods called on the section are passed to the root if missing

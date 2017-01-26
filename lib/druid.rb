@@ -41,10 +41,22 @@ module Druid
   include Assist
   include ElementLocators
   include PagePopulator
-  extend Forwardable
+  # extend Forwardable
+
+  def method_missing(method, *args, &block)
+    if @root_element && @root_element.respond_to?(method)
+      @root_element.send(method, *args, &block)
+    else
+      super
+    end
+  end
+
+  def respond_to_missing?(method, include_all = false)
+    @root_element && @root_element.respond_to?(method) || super
+  end
 
   # Forward visibility checks to root so page sections can be tested for existence.
-  def_delegators :root, :visible?, :exist?
+  # def_delegators :root, :visible?, :exist?
 
 
   # @return [Watir::Browser] the drvier passed to the constructor
