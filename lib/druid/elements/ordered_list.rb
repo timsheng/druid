@@ -21,19 +21,21 @@ module Druid
         end
       end
 
+      def list_items
+        children.collect do |obj|
+          Druid::Elements::ListItem.new(obj)
+        end
+      end
+
       protected
 
       def child_xpath
-        ".//child::li"
+        "./child::li"
       end
 
       private
 
       def children
-        list_items.find_all { |item| item.parent == element }
-      end
-
-      def list_items
         element.ols(:xpath => child_xpath)
       end
 

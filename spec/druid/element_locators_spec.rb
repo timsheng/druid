@@ -725,4 +725,26 @@ describe Druid::ElementLocators do
     page.b_elements
   end
 
+  it "should find a i element" do
+    expect(driver).to receive(:i).with(:id => 'blah').and_return(driver)
+    element = page.i_element(:id => 'blah')
+    expect(element).to be_instance_of Druid::Elements::Italic
+  end
+
+  it "should find a i element using a default identifier" do
+    expect(driver).to receive(:i).with(:index => 0).and_return(driver)
+    page.i_element
+  end
+
+  it "should find all i elements" do
+    expect(driver).to receive(:is).with(:id => 'blah').and_return([driver])
+    elements = page.i_elements(:id => 'blah')
+    expect(elements[0]).to be_instance_of Druid::Elements::Italic
+  end
+
+  it "should find all b elements using no parameters" do
+    expect(driver).to receive(:is).with({}).and_return([driver])
+    page.i_elements
+  end
+
 end

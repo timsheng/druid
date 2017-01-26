@@ -1,4 +1,4 @@
-require 'watir-webdriver/extensions/select_text'
+require 'watir/extensions/select_text'
 require 'druid/nested_elements'
 require 'druid/assist'
 module Druid
@@ -106,7 +106,7 @@ module Druid
       #
       # get the value of the given CSS property
       #
-      def style(property)
+      def style(property = nil)
         element.style property
       end
 
@@ -180,6 +180,40 @@ module Druid
       end
 
       #
+      # location of element (x,y)
+      #
+      def location
+        element.wd.location
+      end
+
+      #
+      # size of element (width, height)
+      #
+      def size
+        element.wd.size
+      end
+
+      #
+      # Get width of element
+      #
+      def width
+        size['width']
+      end
+
+      #
+      # Get height of element
+      #
+      def height
+        size['height']
+      end
+
+      #
+      # Get centre coordinates of element
+      #
+      def centre
+        { 'y' => (location['y'] + (size['height']/2)), 'x' => (location['x'] + (size['width']/2)) }
+      end
+      #
       # Flash the element by temporarily changing the background color
       #
       def flash
@@ -191,6 +225,18 @@ module Druid
       #
       def hover
         element.hover
+      end
+
+      def check_visible(timeout=Druid.default_element_wait)
+        timed_loop(timeout) do |element|
+          element.visible?
+        end
+      end
+
+      def check_exist(timeout=Druid.default_element_wait)
+        timed_loop(timeout) do |element|
+          element.exist?
+        end
       end
 
       #
@@ -292,7 +338,7 @@ module Druid
       protected
 
       def self.have_to_build_xpath(identifier)
-        ['table', 'span', 'div', 'td', 'li', 'ol', 'ul', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'label', 'area', 'canvas', 'audio', 'video', 'b'].include? identifier[:tag_name] and identifier[:name]
+        ['table', 'span', 'div', 'td', 'li', 'ol', 'ul', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'label', 'area', 'canvas', 'audio', 'video', 'b', 'i'].include? identifier[:tag_name] and identifier[:name]
       end
 
       def self.build_xpath_for identifier
@@ -372,6 +418,17 @@ module Druid
         {}
       end
 
+      private
+
+      def timed_loop(timeout)
+        end_time = Time.now + timeout
+        until Time.now > end_time
+          result = yield(self)
+          return result if result
+          sleep 0.5
+        end
+        false
+      end
     end
   end
 end

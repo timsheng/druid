@@ -1,5 +1,5 @@
 require "druid"
-require "watir-webdriver"
+require "watir"
 
 def mock_driver
   driver = double('watir')

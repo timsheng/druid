@@ -229,7 +229,7 @@ describe Druid::PageFactory do
     fake_page = double('a_page')
     expect(FactoryTestDruid).to receive(:new).and_return(fake_page)
     expect(fake_page).to receive(:respond_to?).with(:a_method).and_return(false)
-    expect{world.navigate_to(AnotherPage)}.to raise_error
+    expect{world.navigate_to(AnotherPage)}.to raise_error "Navigation method 'a_method' not defined on FactoryTestDruid."
   end
 
 end
