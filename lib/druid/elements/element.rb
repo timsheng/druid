@@ -46,12 +46,33 @@ module Druid
       end
 
       #
-      # Get the html for the element
+      # return true if the element is stale(no longer attached to the DOM)
+      #
+      def stale?
+        element.stale?
+      end
+
+      #
+      # Returns the html for the element
       #
       # @return [String]
       #
       def html
         element.html
+      end
+
+      #
+      # Returns the inner html for the element
+      #
+      def outer_html
+        element.outer_html
+      end
+
+      #
+      # Returns the inner html for the element
+      #
+      def inner_html
+        element.inner_html
       end
 
       #
