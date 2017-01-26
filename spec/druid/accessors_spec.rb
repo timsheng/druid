@@ -726,6 +726,7 @@ describe Druid::Accessors do
     context "when called on a page object" do
       it "should generate accessor methods" do
         expect(druid).to respond_to :logo_element
+        expect(druid).to respond_to :logo_loaded?
       end
 
       it "should call a block on the element method when present " do
