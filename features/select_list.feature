@@ -76,7 +76,7 @@ Feature: Select List
 
   Scenario: Selecting an option by its value
     When I select an option using the value "option2"
-    Then the selected option should be "Test 2
+    Then the selected option should be "Test 2"
 
   Scenario: Getting the value from a selected option
     When I select an option using the value "option2"
