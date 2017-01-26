@@ -1,6 +1,8 @@
 === 2017-01-26
 * Enhancements
   * Added array methods to section collections
+  * Added ability to call style method with no parameters
+  * clean up frame and iframe nesting
 === 2017-01-25
 * Enhancements
   * Added list_items method to UnorderedList to get an array of children.
