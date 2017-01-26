@@ -5,7 +5,7 @@ require 'druid/page_factory'
 require 'druid/core_ext/string'
 require 'druid/element_locators'
 require 'druid/page_populator'
-require 'druid/sections'
+require 'druid/section_collection'
 require 'druid/javascript_framework_facade'
 
 # require 'watir-webdriver/extensions/alerts'

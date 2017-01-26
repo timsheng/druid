@@ -36,7 +36,16 @@ describe Druid::Accessors do
     ContainedItem = Struct.new(:type, :name)
     let(:section_collection) do
       contained_items = [ContainedItem.new(:sandwich, :reuben), ContainedItem.new(:soup, :lobstar_bisque), ContainedItem.new(:sandwich, :dagwood)]
-      Druid::SectionCollection.new(contained_items)
+      Druid::SectionCollection[*contained_items]
+    end
+
+    it "should inherit from Array" do
+      expect(Druid::SectionCollection.superclass).to eq Array
+    end
+
+    it "should have functioning array methods" do
+      expect(section_collection.methods).to include *Array.instance_methods
+      expect(section_collection.last.type).to eq :sandwich
     end
 
     it "should be indexed to the sections" do
