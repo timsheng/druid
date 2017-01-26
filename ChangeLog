@@ -4,6 +4,7 @@
   * Added ability to call style method with no parameters
   * clean up frame and iframe nesting
   * Update travis.yml
+  * Added numerous missing element types
 === 2017-01-25
 * Enhancements
   * Added list_items method to UnorderedList to get an array of children.
