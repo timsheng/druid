@@ -77,44 +77,39 @@ describe Druid::Elements::Element do
     end
 
     it "should be able to block until it is present" do
-      expect(we).to receive(:wait_until_present).with(10)
+      expect(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
       element.when_present(10)
     end
 
     it "should return the element when it is present" do
-      expect(we).to receive(:wait_until_present).with(10)
+      expect(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
       expect(element.when_present(10)).to eq element
     end
 
     it "should use the overriden wait when set" do
       Druid.default_element_wait = 20
-      expect(we).to receive(:wait_until_present).with(20)
+      expect(we).to receive(:wait_until).with(timeout: 20, message: "Element not present in 20 seconds")
       element.when_present
     end
 
     it "should be able to block until it is visible" do
-      expect(Watir::Wait).to receive(:until).with(10, "Element was not visible in 10 seconds")
+      expect(we).to receive(:wait_until).with(timeout: 10, message: "Element not visible in 10 seconds")
       element.when_visible(10)
     end
 
     it "should return the element when it is visible" do
-      expect(Watir::Wait).to receive(:until).with(10, "Element was not visible in 10 seconds")
+      expect(we).to receive(:wait_until).with(timeout: 10, message: "Element not visible in 10 seconds")
       expect(element.when_visible(10)).to eq element
     end
 
     it "should be able to block until it is not visible" do
-      expect(Watir::Wait).to receive(:while).with(10, "Element still visible after 10 seconds")
+      expect(we).to receive(:wait_while).with(timeout: 10, message: "Element still visible after 10 seconds")
       element.when_not_visible(10)
     end
 
-    it "should return the element when it is not visible" do
-      expect(Watir::Wait).to receive(:while).with(10, "Element still visible after 10 seconds")
-      expect(element.when_not_visible(10)).to eq element
-    end
-
     it "should be able to block until a user define event fires true" do
-      expect(Watir::Wait).to receive(:until).with(10, "Element blah")
-      element.wait_until(10, "Element blah") {}
+      expect(Watir::Wait).to receive(:until).with(timeout: 10, message: "Element blah")
+      element.wait_until(10, "Element blah") {true}
     end
 
     it "should send keys to the element" do
@@ -145,6 +140,16 @@ describe Druid::Elements::Element do
     it "should inspect element" do
       expect(we).to receive(:inspect)
       element.inspect
+    end
+
+    it "should know if an element is focused" do
+      expect(we).to receive(:focused?).and_return(true)
+      expect(element).to be_focused
+    end
+
+    it "should know if an element is not focuesd" do
+      expect(we).to receive(:focused?).and_return(false)
+      expect(element).to_not be_focused
     end
 
     it "should be able to fire event" do
@@ -232,6 +237,21 @@ describe Druid::Elements::Element do
       allow(we).to receive(:location).and_return({'y' => 80, 'x' => 40})
       allow(we).to receive(:size).and_return({'width' => 30, 'height' => 20})
       expect(element.centre['x']).to be > element.location['x']
+    end
+
+    it "should return the outer html" do
+      expect(we).to receive(:outer_html).and_return("<div>blah</div>")
+      element.outer_html
+    end
+
+    it "should return the inner html" do
+      expect(we).to receive(:inner_html).and_return("blah")
+      element.inner_html
+    end
+
+    it "should know if it is stale" do
+      expect(we).to receive(:stale?).and_return(false)
+      expect(element.stale?).to be false
     end
   end
 end

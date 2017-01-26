@@ -46,12 +46,33 @@ module Druid
       end
 
       #
-      # Get the html for the element
+      # return true if the element is stale(no longer attached to the DOM)
+      #
+      def stale?
+        element.stale?
+      end
+
+      #
+      # Returns the html for the element
       #
       # @return [String]
       #
       def html
         element.html
+      end
+
+      #
+      # Returns the inner html for the element
+      #
+      def outer_html
+        element.outer_html
+      end
+
+      #
+      # Returns the inner html for the element
+      #
+      def inner_html
+        element.inner_html
       end
 
       #
@@ -161,6 +182,16 @@ module Druid
         element.focus
       end
 
+      #
+      # return true if an element is focused
+      #
+      def focused?
+        element.focused?
+      end
+
+      #
+      # Select the provided text
+      #
       def select_text text
         element.select_text text
       end
@@ -255,7 +286,7 @@ module Druid
       # timing out
       #
       def when_present(timeout=Druid.default_element_wait)
-        element.wait_until_present(timeout)
+        element.wait_until(timeout: timeout, message: "Element not present in #{timeout} seconds", &:present?)
         self
       end
 
@@ -266,7 +297,7 @@ module Druid
       # timing out
       #
       def when_not_present(timeout=Druid.default_element_wait)
-        element.wait_while_present(timeout)
+        element.wait_while(timeout: timeout, message: "Element still present after #{timeout} seconds", &:present?)
       end
 
       #
@@ -275,9 +306,7 @@ module Druid
       # @param [Interger] (default to:5) seconds to wait before timing out
       #
       def when_visible(timeout=Druid.default_element_wait)
-        Watir::Wait.until(timeout, "Element was not visible in #{timeout} seconds") do
-          visible?
-        end
+        element.wait_until(timeout: timeout, message: "Element not visible in #{timeout} seconds", &:visible?)
         self
       end
 
@@ -287,9 +316,7 @@ module Druid
       # @param [Integer] (default to:5) seconds to wait before timing out
       #
       def when_not_visible(timeout=Druid.default_element_wait)
-        Watir::Wait.while(timeout, "Element still visible after #{timeout} seconds") do
-          visible?
-        end
+        element.wait_while(timeout: timeout, message: "Element still visible after #{timeout} seconds", &:visible?)
         self
       end
 
@@ -299,7 +326,7 @@ module Druid
       # @param [Integer] (default to:5) seconds to wait before timing out
       #
       def wait_until(timeout=Druid.default_element_wait, message=nil, &block)
-        Watir::Wait.until(timeout, message, &block)
+        Watir::Wait.until(timeout: timeout, message: message, &block)
       end
 
 
@@ -322,17 +349,9 @@ module Druid
 
       # @private
       # delegate calls to driver element
-      def method_missing(m, *args, &block)
-        $stderr.puts "*** DEPRECATION WARNING"
-        $stderr.puts "*** You are calling a method named #{m} at #{caller[0]}."
-        $stderr.puts "*** This method does not exist in druid so it is being passed to the driver."
-        $stderr.puts "*** This feature will be removed in the near future."
-        $stderr.puts "*** Please change your code to call the correct druid method."
-        $stderr.puts "*** If you are using functionality that does not exist in druid please request it be added."
-        unless element.respond_to?(m)
-          raise NoMethodError, "undefined method `#{m}` for #{element.inspect}:#{element.class}"
-        end
-        element.__send__(m, *args, &block)
+      def method_missing(*args, &block)
+        m = args.shift
+        element.send m, *args, &block
       end
 
       protected
