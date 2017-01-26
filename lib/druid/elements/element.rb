@@ -161,6 +161,16 @@ module Druid
         element.focus
       end
 
+      #
+      # return true if an element is focused
+      #
+      def focused?
+        element.focused?
+      end
+
+      #
+      # Select the provided text
+      #
       def select_text text
         element.select_text text
       end
