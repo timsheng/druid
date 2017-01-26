@@ -203,3 +203,19 @@ end
 Then(/^the element centre should be greater than element x position$/) do
   expect(@element.centre['x']).to be > @element.location.x
 end
+
+When(/^I retrieve the focus state of the text_field$/) do
+  @focused_state = @page.text_field_onfocus_element.focused?
+end
+
+Then(/^I should know that the text_field is focused$/) do
+  expect(@focused_state).to be true
+end
+
+Given(/^I set the focus off the test text_field$/) do
+  @page.text_field_unfocus_element.focus
+end
+
+Then(/^I should know that the text_field is not focused$/) do
+  expect(@focused_state).to be false
+end

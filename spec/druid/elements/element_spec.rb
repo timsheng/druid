@@ -142,6 +142,16 @@ describe Druid::Elements::Element do
       element.inspect
     end
 
+    it "should know if an element is focused" do
+      expect(we).to receive(:focused?).and_return(true)
+      expect(element).to be_focused
+    end
+
+    it "should know if an element is not focuesd" do
+      expect(we).to receive(:focused?).and_return(false)
+      expect(element).to_not be_focused
+    end
+
     it "should be able to fire event" do
       expect(we).to receive(:fire_event).with('onclick')
       element.fire_event('onclick')
