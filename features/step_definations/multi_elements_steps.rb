@@ -551,3 +551,7 @@ end
 Then(/^the text for i (\d+) should be "([^"]*)"$/) do |i_num, text|
   expect(@elements[i_num.to_i - 1].text).to eql text
 end
+
+When(/^I select all check boxes using no identifier$/) do
+  @elements = @page.checkbox_elements
+end
