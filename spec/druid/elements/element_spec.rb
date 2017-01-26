@@ -157,6 +157,18 @@ describe Druid::Elements::Element do
       element.focus
     end
 
+    it "should check if the element is visible" do
+      expect(we).to receive(:visible?).and_return(false)
+      expect(we).to receive(:visible?).and_return(true)
+      expect(element.check_visible).to be true
+    end
+
+    it "should check if the element exists" do
+      expect(we).to receive(:exist?).and_return(false)
+      expect(we).to receive(:exist?).and_return(true)
+      expect(element.check_exist).to be true
+    end
+
     it "should know if the element is disabled" do
       expect(we).to receive(:enabled?).and_return(false)
       expect(element).to be_disabled

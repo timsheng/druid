@@ -5,6 +5,7 @@
   * clean up frame and iframe nesting
   * Update travis.yml
   * Added numerous missing element types
+  * Added two new methods that check without throwing exception
 === 2017-01-25
 * Enhancements
   * Added list_items method to UnorderedList to get an array of children.
