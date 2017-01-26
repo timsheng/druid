@@ -158,7 +158,7 @@ module Druid
   # Returns the text of the current page
   #
   def text
-    root.text
+    driver.text
   end
 
   #
@@ -208,7 +208,7 @@ module Druid
   # @param block the block to execute. It should return true when successful.
   #
   def wait_until(timeout = Druid.default_page_wait, message = nil, &block)
-    driver.wait_until(timeout, message, &block)
+    driver.wait_until(timeout: timeout, message: message, &block)
   end
 
   #
