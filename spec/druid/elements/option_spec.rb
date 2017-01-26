@@ -8,3 +8,14 @@ describe Druid::Elements::Option do
     end
   end
 end
+
+describe "interacting with the option" do
+  let(:we) { double 'we' }
+  let(:element) { Druid::Elements::Option.new(we) }
+
+  it "should know if it is selected" do
+    expect(we).to receive(:selected?).and_return true
+    expect(element.selected?).to be true
+  end
+
+end

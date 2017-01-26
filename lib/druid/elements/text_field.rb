@@ -14,7 +14,7 @@ module Druid
       end
 
       def append text
-        element.send_keys text
+        element.append text
       end
     end
 

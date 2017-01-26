@@ -29,7 +29,7 @@ describe Druid::Elements::TextField do
     end
 
     it "should append text" do
-      expect(element).to receive(:send_keys).with('abc')
+      expect(element).to receive(:append).with('abc')
       text_field.append('abc')
     end
   end

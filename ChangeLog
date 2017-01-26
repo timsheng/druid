@@ -8,6 +8,12 @@
   * Added two new methods that check without throwing exception
   * Update to use watir 6 instead of watir-webdriver
   * Added focused? method on element
+  * Added the following methods to Element
+    - outer_html
+    - inner_html
+    - stale?
+  * Added the selected? method to Option
+  * Added the append method to TextArea
 === 2017-01-25
 * Enhancements
   * Added list_items method to UnorderedList to get an array of children.

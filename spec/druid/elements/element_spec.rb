@@ -238,5 +238,20 @@ describe Druid::Elements::Element do
       allow(we).to receive(:size).and_return({'width' => 30, 'height' => 20})
       expect(element.centre['x']).to be > element.location['x']
     end
+
+    it "should return the outer html" do
+      expect(we).to receive(:outer_html).and_return("<div>blah</div>")
+      element.outer_html
+    end
+
+    it "should return the inner html" do
+      expect(we).to receive(:inner_html).and_return("blah")
+      element.inner_html
+    end
+
+    it "should know if it is stale" do
+      expect(we).to receive(:stale?).and_return(false)
+      expect(element.stale?).to be false
+    end
   end
 end
