@@ -137,7 +137,7 @@ module Druid
     # @param block that contains the calls to elements that exist inside the frame.
     #
     def in_frame(identifier, frame=nil, &block)
-      frame = [] if frame.nil?
+      frame = frame.nil? ? [] : frame.dup
       frame << {frame: identifier}
       block.call(frame)
     end
@@ -159,7 +159,7 @@ module Druid
     # @param block that contains the calls to elements that exist inside the frame.
     #
     def in_iframe(identifier, frame=nil, &block)
-      frame = [] if frame.nil?
+      frame = frame.nil? ? [] : frame.dup
       frame << {iframe: identifier}
       block.call(frame)
     end
