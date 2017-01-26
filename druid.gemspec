@@ -26,4 +26,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec", ">= 3.4.0"
   s.add_development_dependency "cucumber", ">= 1.3.20"
   s.add_development_dependency "rack", ">= 1.0"
+  s.add_development_dependency "coveralls", "~> 0.8.1"
 end

@@ -21,7 +21,6 @@ Feature: Text Fields
     | name      |
     | xpath     |
     | index     |
-    | text      |
     | title     |
     | label     |
     | css       |
