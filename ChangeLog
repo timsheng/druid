@@ -7,6 +7,7 @@
   * Added numerous missing element types
   * Added two new methods that check without throwing exception
   * Update to use watir 6 instead of watir-webdriver
+  * Added focused? method on element
 === 2017-01-25
 * Enhancements
   * Added list_items method to UnorderedList to get an array of children.
