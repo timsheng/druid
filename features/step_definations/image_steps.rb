@@ -25,3 +25,11 @@ end
 Then(/^I should see that the image exists$/) do
   expect(@page.image_id?).to be true
 end
+
+When(/^I get the image element load status$/) do
+  @status = @page.image_id_loaded?
+end
+
+Then(/^I should see that the image loaded$/) do
+  expect(@status).to be true
+end

@@ -5,8 +5,7 @@ module Druid
     @@driver = false
     def self.get_browser
       if !@@driver
-        target = ENV['BROWSER']
-        target = 'firefox_local' unless target
+        target = ENV['BROWSER'] || 'local_chrome'
 
         if is_remote?(target)
           require File.dirname(__FILE__) + "/targets/#{target}"
@@ -35,7 +34,8 @@ module Druid
                            :url => url,
                            :desired_capabilities => desired_capabilities )
       else
-        Watir::Browser.new :firefox
+        browser = target.gsub('local_', '').to_sym
+        Watir::Browser.new browser, :http_client => client
       end
     end
 

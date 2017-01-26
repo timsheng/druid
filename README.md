@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/timsheng/druid.png)](https://travis-ci.org/timsheng)
 
 
-A simple gem that assists in creating flexible page objects for testing browser based applications. The goal is to facilitate creating abstraction layers in your tests to decouple the tests from the item they are testing and to provide a simple interface to the elements on a page.  It works with watir-webdriver
+A simple gem that assists in creating flexible page objects for testing browser based applications. The goal is to facilitate creating abstraction layers in your tests to decouple the tests from the item they are testing and to provide a simple interface to the elements on a page.  It works with watir
 
 ### Defining your page object
 
@@ -58,7 +58,7 @@ login_page.login_with 'cheezy', 'secret'
 ````
 
 ### Creating your druid
-druid supports [watir-webdriver](https://github.com/jarib/watir-webdriver)
+druid supports [watir](https://github.com/watir/watir)
 The page object can be create like this:
 
 ````ruby

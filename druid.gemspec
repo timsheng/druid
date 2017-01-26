@@ -13,15 +13,17 @@ Gem::Specification.new do |s|
   s.summary = %q{Druid DSL for browser testing}
   s.description = %q{Druid DSL that works with Watir}
   s.license = 'MIT'
-  s.rubyforge_project = "druid"
+  s.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(pkg|spec|features|coverage)/})}
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f)}
   s.require_paths = ["lib"]
 
-  s.add_dependency "watir-webdriver", ">= 0.9.1"
+  s.add_dependency "watir", "~> 6.0"
   s.add_dependency "page_navigation", ">= 0.10"
-  s.add_development_dependency "rspec", ">= 3.4.0"
-  s.add_development_dependency "cucumber", ">= 1.3.20"
+  s.add_dependency "net-http-persistent", "~> 2.9.4"
+
+  s.add_development_dependency "rspec", ">= 3.0.0"
+  s.add_development_dependency "cucumber", ">= 2.0.0"
   s.add_development_dependency "rack", ">= 1.0"
 end

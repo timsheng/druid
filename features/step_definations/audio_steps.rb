@@ -18,10 +18,6 @@ Then(/^I should know that the audio is paused$/) do
   expect(@element).to be_paused
 end
 
-Then(/^I should know that the duration is greater than (\d+) seconds$/) do |duration|
-  expect(@element.duration).to be > duration.to_f
-end
-
 Then(/^I should know that its volume is (\d+)$/) do |volume|
   expect(@element.volume).to eql volume.to_i
 end

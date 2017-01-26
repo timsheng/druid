@@ -137,7 +137,7 @@ module Druid
     # @param block that contains the calls to elements that exist inside the frame.
     #
     def in_frame(identifier, frame=nil, &block)
-      frame = [] if frame.nil?
+      frame = frame.nil? ? [] : frame.dup
       frame << {frame: identifier}
       block.call(frame)
     end
@@ -159,7 +159,7 @@ module Druid
     # @param block that contains the calls to elements that exist inside the frame.
     #
     def in_iframe(identifier, frame=nil, &block)
-      frame = [] if frame.nil?
+      frame = frame.nil? ? [] : frame.dup
       frame << {iframe: identifier}
       block.call(frame)
     end
@@ -556,7 +556,7 @@ module Druid
     #
     # @example
     #   image(:logo, :id => 'logo')
-    #   # will generate 'logo_element' and 'logo?' methods
+    #   # will generate 'logo_element', 'logo_loaded?' and 'logo?' methods
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a image. You can use a multiple parameters
@@ -573,6 +573,10 @@ module Druid
     #
     def image(name, identifier={:index => 0}, &block)
       standard_methods(name, identifier, 'image_for', &block)
+      define_method("#{name}_loaded?") do
+        return image_loaded_for identifier.clone unless block_given?
+        self.send("#{name}_element").loaded?
+      end
     end
     alias_method :img, :image
 
@@ -1122,6 +1126,34 @@ module Druid
         self.send("#{name}_element").text
       end
     end
+
+    #
+    # adds three methods - one to retrieve the text of a i element, another to
+    # retrieve a b element, and another to check for it's existence.
+    #
+    # @example
+    #   i(:italic, :id => 'title')
+    #   # will generate 'italic', 'italic_element', 'italic?' methods
+    #
+    # @param [Symbol] the name used for the generated methods
+    # @param [Hash] identifier how we find a i, You can use a multiple parameters
+    #   by combining of any of the following except xpath. The valid keys are:
+    #   * :class
+    #   * :css
+    #   * :id
+    #   * :index
+    #   * :name
+    #   * :xpath
+    # @param optional block to be invoked when element method is called
+    #
+    def i(name, identifier={:index => 0}, &block)
+      standard_methods(name, identifier, 'i_for', &block)
+      define_method(name) do
+        return i_text_for identifier.clone unless block_given?
+        self.send("#{name}_element").text
+      end
+    end
+    alias_method :icon, :i
 
     #
     # adds two methods - one to retrieve a svg, and another to check

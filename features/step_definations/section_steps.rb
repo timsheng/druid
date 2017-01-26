@@ -260,3 +260,12 @@ Then(/^I will find all sections with that value$/) do
     expect(element).to match(/\w+/)
   end
 end
+
+When(/^I have a page section$/) do
+  @section = @page.container
+end
+
+Then(/^methods called on the section are passed to the root if missing$/) do
+  expect { @section.visible? }.not_to raise_error
+  expect(@section.visible?).to be true
+end

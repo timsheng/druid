@@ -41,3 +41,7 @@ Feature: Image
     Then I should see that the image exists
     And the image should be "106" pixels wide
     And the image should be "106" pixels tall
+
+  Scenario: Check an image loaded
+    When I get the image element load status
+    Then I should see that the image loaded

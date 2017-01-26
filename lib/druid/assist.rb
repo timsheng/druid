@@ -184,6 +184,13 @@ module Druid
       find_elements("images(identifier)", Elements::Image, identifier)
     end
 
+    #
+    # method to retrieve load status of an image element
+    #
+    def image_loaded_for(identifier)
+      process_call("image(identifier).loaded?", Elements::Image, identifier) 
+    end
+
     def form_for identifier
       find_element("form(identifier)", Elements::Form, identifier)
     end
@@ -526,6 +533,9 @@ module Druid
       process_call("b(identifier).text", Elements::Bold, identifier, nil, 'b')
     end
 
+    #
+    # method to retrieve the b element
+    #
     def b_for(identifier)
       find_element("b(identifier)", Elements::Bold, identifier, 'b')
     end
@@ -535,6 +545,27 @@ module Druid
     #
     def bs_for(identifier)
       find_elements("bs(identifier)", Elements::Bold, identifier, 'b')
+    end
+
+    #
+    # method to retrieve the text for a i
+    #
+    def i_text_for(identifier)
+      process_call("i(identifier).text", Elements::Italic, identifier, nil, 'i')
+    end
+
+    #
+    # method to retrieve the i element
+    #
+    def i_for(identifier)
+      find_element("i(identifier)", Elements::Italic, identifier, 'i')
+    end
+
+    #
+    # method to retrieve all i elements
+    #
+    def is_for(identifier)
+      find_elements("is(identifier)", Elements::Italic, identifier, 'i')
     end
 
     #
@@ -548,7 +579,7 @@ module Druid
     # method to return a collection of Druids rooted at elements
     #
     def pages_for(identifier, section_class)
-      SectionCollection.new(find_pages(identifier, section_class))
+      SectionCollection[*find_pages(identifier, section_class)]
     end
 
     private

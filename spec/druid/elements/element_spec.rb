@@ -157,6 +157,18 @@ describe Druid::Elements::Element do
       element.focus
     end
 
+    it "should check if the element is visible" do
+      expect(we).to receive(:visible?).and_return(false)
+      expect(we).to receive(:visible?).and_return(true)
+      expect(element.check_visible).to be true
+    end
+
+    it "should check if the element exists" do
+      expect(we).to receive(:exist?).and_return(false)
+      expect(we).to receive(:exist?).and_return(true)
+      expect(element.check_exist).to be true
+    end
+
     it "should know if the element is disabled" do
       expect(we).to receive(:enabled?).and_return(false)
       expect(element).to be_disabled
@@ -171,6 +183,55 @@ describe Druid::Elements::Element do
       expect(we).to receive(:wd).and_return(we)
       expect(we).to receive(:location_once_scrolled_into_view)
       element.scroll_into_view
+    end
+
+    it "should know its location" do
+      expect(we).to receive(:wd).and_return(we)
+      expect(we).to receive(:location)
+      element.location
+    end
+
+    it "should know its size" do
+      expect(we).to receive(:wd).and_return(we)
+      expect(we).to receive(:size)
+      element.size
+    end
+
+
+    it "should have a height" do
+      expect(we).to receive(:wd).and_return(we)
+      expect(we).to receive(:size).and_return({'width' => 30, 'height' => 20})
+      expect(element.height).to eql 20
+    end
+
+    it "should have a width" do
+      expect(we).to receive(:wd).and_return(we)
+      expect(we).to receive(:size).and_return({'width' => 30, 'height' => 20})
+      expect(element.width).to eql 30
+    end
+
+    it "should have a centre" do
+      allow(we).to receive(:wd).and_return(we)
+      allow(we).to receive(:location).and_return({'y' => 80, 'x' => 40})
+      allow(we).to receive(:size).and_return({'width' => 30, 'height' => 20})
+      expect(element.centre).to include(
+        'y' => 90,
+        'x' => 55
+      )
+    end
+
+    it "should have a centre greater than y position" do
+      allow(we).to receive(:wd).and_return(we)
+      allow(we).to receive(:location).and_return({'y' => 80, 'x' => 40})
+      allow(we).to receive(:size).and_return({'width' => 30, 'height' => 20})
+      expect(element.centre['y']).to be > element.location['y']
+    end
+
+    it "should have a centre greater than x position" do
+      allow(we).to receive(:wd).and_return(we)
+      allow(we).to receive(:location).and_return({'y' => 80, 'x' => 40})
+      allow(we).to receive(:size).and_return({'width' => 30, 'height' => 20})
+      expect(element.centre['x']).to be > element.location['x']
     end
   end
 end
