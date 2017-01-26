@@ -147,7 +147,7 @@ describe Druid do
       end
 
       it "should wait until a block returns true" do
-        expect(driver).to receive(:wait_until).with(5, "too long")
+        expect(driver).to receive(:wait_until).with(timeout: 5, message: "too long")
         druid.wait_until(5, "too long")
       end
 
@@ -284,7 +284,7 @@ describe Druid do
 
       it "should use the overriden timeout value when set" do
         Druid.default_page_wait = 10
-        expect(driver).to receive(:wait_until).with(10, nil)
+        expect(driver).to receive(:wait_until).with(timeout: 10, message: nil)
         druid.wait_until
       end
 

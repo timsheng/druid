@@ -255,7 +255,7 @@ module Druid
       # timing out
       #
       def when_present(timeout=Druid.default_element_wait)
-        element.wait_until_present(timeout)
+        element.wait_until(timeout: timeout, message: "Element not present in #{timeout} seconds", &:present?)
         self
       end
 
@@ -266,7 +266,7 @@ module Druid
       # timing out
       #
       def when_not_present(timeout=Druid.default_element_wait)
-        element.wait_while_present(timeout)
+        element.wait_while(timeout: timeout, message: "Element still present after #{timeout} seconds", &:present?)
       end
 
       #
@@ -275,9 +275,7 @@ module Druid
       # @param [Interger] (default to:5) seconds to wait before timing out
       #
       def when_visible(timeout=Druid.default_element_wait)
-        Watir::Wait.until(timeout, "Element was not visible in #{timeout} seconds") do
-          visible?
-        end
+        element.wait_until(timeout: timeout, message: "Element not visible in #{timeout} seconds", &:visible?)
         self
       end
 
@@ -287,9 +285,7 @@ module Druid
       # @param [Integer] (default to:5) seconds to wait before timing out
       #
       def when_not_visible(timeout=Druid.default_element_wait)
-        Watir::Wait.while(timeout, "Element still visible after #{timeout} seconds") do
-          visible?
-        end
+        element.wait_while(timeout: timeout, message: "Element still visible after #{timeout} seconds", &:visible?)
         self
       end
 
@@ -299,7 +295,7 @@ module Druid
       # @param [Integer] (default to:5) seconds to wait before timing out
       #
       def wait_until(timeout=Druid.default_element_wait, message=nil, &block)
-        Watir::Wait.until(timeout, message, &block)
+        Watir::Wait.until(timeout: timeout, message: message, &block)
       end
 
 
