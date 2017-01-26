@@ -16,12 +16,12 @@ describe Druid::Elements::Canvas do
     let(:canvas) { Druid::Elements::Canvas.new(element) }
 
     it "should knwo its width" do
-      expect(element).to receive(:attribute_value).with(:width).and_return("400")
+      expect(canvas).to receive(:size).and_return('width' => 400)
       expect(canvas.width).to eql 400
     end
 
     it "should know its height" do
-      expect(element).to receive(:attribute_value).with(:height).and_return("100")
+      expect(canvas).to receive(:size).and_return('height' => 100)
       expect(canvas.height).to eql 100
     end
   end
