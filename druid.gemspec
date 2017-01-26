@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary = %q{Druid DSL for browser testing}
   s.description = %q{Druid DSL that works with Watir}
   s.license = 'MIT'
-  s.rubyforge_project = "druid"
+  s.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(pkg|spec|features|coverage)/})}
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f)}
