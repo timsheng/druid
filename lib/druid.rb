@@ -158,7 +158,7 @@ module Druid
   # Returns the text of the current page
   #
   def text
-    root.text
+    driver.text
   end
 
   #
