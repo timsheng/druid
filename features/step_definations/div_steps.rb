@@ -3,7 +3,7 @@ When(/^I get the text from the div$/) do
 end
 
 Then(/^the text should be "(.*?)"$/) do |expected_text|
-  expect(@text).to eql expected_text
+  expect(@text.tr("\n", ' ')).to eql expected_text
 end
 
 When(/^I locate the div by "(.*?)"$/) do |how|
