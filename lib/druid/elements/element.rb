@@ -227,6 +227,18 @@ module Druid
         element.hover
       end
 
+      def check_visible(timeout=Druid.default_element_wait)
+        timed_loop(timeout) do |element|
+          element.visible?
+        end
+      end
+
+      def check_exist(timeout=Druid.default_element_wait)
+        timed_loop(timeout) do |element|
+          element.exist?
+        end
+      end
+
       #
       # Returns parent element of current element.
       def parent
@@ -406,6 +418,17 @@ module Druid
         {}
       end
 
+      private
+
+      def timed_loop(timeout)
+        end_time = Time.now + timeout
+        until Time.now > end_time
+          result = yield(self)
+          return result if result
+          sleep 0.5
+        end
+        false
+      end
     end
   end
 end
