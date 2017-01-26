@@ -572,7 +572,7 @@ module Druid
     # method to return a collection of Druids rooted at elements
     #
     def pages_for(identifier, section_class)
-      SectionCollection.new(find_pages(identifier, section_class))
+      SectionCollection[*find_pages(identifier, section_class)]
     end
 
     private
