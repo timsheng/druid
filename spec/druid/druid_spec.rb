@@ -70,7 +70,7 @@ describe Druid do
     end
   end
 
-  context "when created with a watir-webdriver browser" do
+  context "when created with a watir browser" do
     it "should include the Druid module" do
       expect(druid).to be_kind_of Druid
     end

@@ -1,4 +1,4 @@
-require 'watir-webdriver'
+require 'watir'
 require 'druid/accessors'
 require 'druid/assist'
 require 'druid/page_factory'
@@ -8,7 +8,7 @@ require 'druid/page_populator'
 require 'druid/section_collection'
 require 'druid/javascript_framework_facade'
 
-# require 'watir-webdriver/extensions/alerts'
+# require 'watir/extensions/alerts'
 #
 # Module that when included adds functionality to a page object.  This module
 # will add numerous class and instance methods that you use to define and
