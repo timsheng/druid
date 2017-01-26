@@ -184,6 +184,13 @@ module Druid
       find_elements("images(identifier)", Elements::Image, identifier)
     end
 
+    #
+    # method to retrieve load status of an image element
+    #
+    def image_loaded_for(identifier)
+      process_call("image(identifier).loaded?", Elements::Image, identifier) 
+    end
+
     def form_for identifier
       find_element("form(identifier)", Elements::Form, identifier)
     end

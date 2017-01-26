@@ -556,7 +556,7 @@ module Druid
     #
     # @example
     #   image(:logo, :id => 'logo')
-    #   # will generate 'logo_element' and 'logo?' methods
+    #   # will generate 'logo_element', 'logo_loaded?' and 'logo?' methods
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a image. You can use a multiple parameters
@@ -573,6 +573,10 @@ module Druid
     #
     def image(name, identifier={:index => 0}, &block)
       standard_methods(name, identifier, 'image_for', &block)
+      define_method("#{name}_loaded?") do
+        return image_loaded_for identifier.clone unless block_given?
+        self.send("#{name}_element").loaded?
+      end
     end
     alias_method :img, :image
 
