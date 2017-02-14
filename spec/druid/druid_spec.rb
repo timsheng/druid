@@ -202,6 +202,11 @@ describe Druid do
         druid.refresh
       end
 
+      it "should wait document load completely" do
+        expect(driver).to receive(:wait)
+        druid.wait
+      end
+
       it "should know how to go back" do
         expect(driver).to receive(:back)
         druid.back
