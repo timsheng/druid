@@ -183,6 +183,18 @@ module Druid
   end
 
   #
+  # Waits until readyState of document is complete
+  #
+  # @example
+  #   @page.wait
+  #
+  # @param [Integer] timeout
+  #
+  def wait(timeout = 5)
+    driver.wait(timeout = 5)
+  end
+
+  #
   # Go back to the previous page
   #
   def back

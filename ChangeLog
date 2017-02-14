@@ -1,4 +1,7 @@
-===Version 1.2.1/ 2017-01-26
+=== 2017/02-14
+* Enhancements
+  * Added wait method to page class(wait document readystate as complete)
+=== Version 1.2.1/ 2017-01-26
 * Enhancements
   * Added array methods to section collections
   * Added ability to call style method with no parameters
