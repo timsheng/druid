@@ -19,69 +19,9 @@ module Druid
       end
 
       #
-      # Get the text for the element
-      #
-      # @return [String]
-      #
-      def text
-        element.text
-      end
-
-      def exist?
-        element.exist?
-      end
-
-      def enabled?
-        element.enabled?
-      end
-
-      #
       # return true if the element is not enabled
       def disabled?
         not enabled?
-      end
-
-      def visible?
-        element.visible?
-      end
-
-      #
-      # return true if the element is stale(no longer attached to the DOM)
-      #
-      def stale?
-        element.stale?
-      end
-
-      #
-      # Returns the html for the element
-      #
-      # @return [String]
-      #
-      def html
-        element.html
-      end
-
-      #
-      # Returns the inner html for the element
-      #
-      def outer_html
-        element.outer_html
-      end
-
-      #
-      # Returns the inner html for the element
-      #
-      def inner_html
-        element.inner_html
-      end
-
-      #
-      # Get the value of this element
-      #
-      # @return [String]
-      #
-      def value
-        element.value
       end
 
       #
@@ -90,15 +30,6 @@ module Druid
       #
       def ==(other)
         other.is_a? self.class and element == other.element
-      end
-
-      #
-      # Get the tag name of this element
-      #
-      # @return [String]
-      #
-      def tag_name
-        element.tag_name
       end
 
       #
@@ -117,90 +48,8 @@ module Druid
         element.class_name
       end
 
-      #
-      # Click this element
-      #
-      def click
-        element.click
-      end
-
-      #
-      # get the value of the given CSS property
-      #
-      def style(property = nil)
-        element.style property
-      end
-
       def inspect
         element.inspect
-      end
-
-      #
-      # Send keystrokes to this element
-      #
-      # @param [String, Symbol, Array]
-      #
-      # Examples:
-      #
-      #  element.send_keys "foo"                    #=> value: 'foo'
-      #  element.send_keys "tet", :arrow_left, "s"  #=> value: 'test'
-      #  element.send_keys [:control, 'a'], :space  #=> value: ' '
-      #
-      def send_keys(*args)
-        element.send_keys(*args)
-      end
-
-      #
-      # clear the contents of the element
-      #
-      def clear
-        element.clear
-      end
-
-      #
-      # double click this element
-      #
-      def double_click
-        element.double_click
-      end
-
-      #
-      # right click this element
-      #
-      def right_click
-        element.right_click
-      end
-
-      #
-      # Fire the provided event on the current element
-      #
-      def fire_event(event_name)
-        element.fire_event(event_name)
-      end
-
-      def focus
-        element.focus
-      end
-
-      #
-      # return true if an element is focused
-      #
-      def focused?
-        element.focused?
-      end
-
-      #
-      # Select the provided text
-      #
-      def select_text text
-        element.select_text text
-      end
-
-      #
-      # get the id of element
-      #
-      def id
-        attribute(:id)
       end
 
       #
@@ -243,19 +92,6 @@ module Druid
       #
       def centre
         { 'y' => (location['y'] + (size['height']/2)), 'x' => (location['x'] + (size['width']/2)) }
-      end
-      #
-      # Flash the element by temporarily changing the background color
-      #
-      def flash
-        element.flash
-      end
-
-      #
-      # hover over the element
-      #
-      def hover
-        element.hover
       end
 
       def check_visible(timeout=Druid.default_element_wait)
