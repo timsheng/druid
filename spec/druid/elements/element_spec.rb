@@ -137,19 +137,14 @@ describe Druid::Elements::Element do
       expect(element.style('class')).to eql "tim"
     end
 
-    it "should inspect element" do
-      expect(we).to receive(:inspect)
-      element.inspect
-    end
-
     it "should know if an element is focused" do
       expect(we).to receive(:focused?).and_return(true)
-      expect(element).to be_focused
+      expect(element.focused?).to be true
     end
 
     it "should know if an element is not focuesd" do
       expect(we).to receive(:focused?).and_return(false)
-      expect(element).to_not be_focused
+      expect(element.focused?).to_not be true
     end
 
     it "should be able to fire event" do

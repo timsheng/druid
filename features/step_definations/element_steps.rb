@@ -29,7 +29,7 @@ Then(/^I should know its' text includes "(.*?)"$/) do |text|
 end
 
 Then(/^I should know it is not visible$/) do
-  expect(@element).not_to be_visible
+  expect(@element.visible?).to be false
 end
 
 When(/^I clear the text field$/) do
@@ -140,7 +140,7 @@ When(/^I scroll the heading element into view$/) do
 end
 
 Then(/^the heading element should be visible$/) do
-  expect(@element).to be_visible
+  expect(@element.visible?).to be true
 end
 
 When(/^I retrieve a div using data\-entity$/) do
