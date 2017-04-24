@@ -2,13 +2,6 @@ module Druid
   module Elements
     class Link < Element
 
-      #
-      # return the href fot the link
-      #
-      def href
-        element.href
-      end
-
       protected
 
       def self.finders

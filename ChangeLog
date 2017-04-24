@@ -1,3 +1,6 @@
+=== 2017-04-24
+* Removed all direct delegateds. Now relies on method_missing to call Watir methods.
+  * You may have to change RSpec matchers to use method instead of predicate.
 === Version 1.2.2/ 2017/02-14
 * Enhancements
   * Added wait method to page class(wait document readystate as complete)
@@ -10,13 +13,6 @@
   * Added numerous missing element types
   * Added two new methods that check without throwing exception
   * Update to use watir 6 instead of watir-webdriver
-  * Added focused? method on element
-  * Added the following methods to Element
-    - outer_html
-    - inner_html
-    - stale?
-  * Added the selected? method to Option
-  * Added the append method to TextArea
 === 2017-01-25
 * Enhancements
   * Added list_items method to UnorderedList to get an array of children.
