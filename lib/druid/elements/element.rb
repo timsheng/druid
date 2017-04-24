@@ -326,7 +326,7 @@ module Druid
       # @param [Integer] (default to:5) seconds to wait before timing out
       #
       def wait_until(timeout=Druid.default_element_wait, message=nil, &block)
-        Watir::Wait.until(timeout: timeout, message: message, &block)
+        element.wait_until(timeout: timeout, message: message, &block)
       end
 
 

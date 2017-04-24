@@ -108,7 +108,7 @@ describe Druid::Elements::Element do
     end
 
     it "should be able to block until a user define event fires true" do
-      expect(Watir::Wait).to receive(:until).with(timeout: 10, message: "Element blah")
+      expect(we).to receive(:wait_until).with(timeout: 10, message: "Element blah")
       element.wait_until(10, "Element blah") {true}
     end
 

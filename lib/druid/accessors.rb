@@ -212,16 +212,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a text_field. You can use a multiple parameters
-    #   by combining of any of the following except xpath. The valid values are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    #   * :text
-    #   * :title
-    #   * :label
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def text_field(name, identifier={:index => 0}, &block)
@@ -249,15 +239,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a checkbox. You can use a multiple parameters
-    #   by combining of any of the following except xpath.  The valid values are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    #   * :value
-    #   * :label
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def checkbox(name, identifier={:index => 0}, &block)
@@ -289,14 +270,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a select_list.  You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid values are:
-    #   :class
-    #   :id
-    #   :index
-    #   :name
-    #   :xpath
-    #   :label
-    #   :css
     # @param optional block to be invoked when element method is called
     #
     def select_list(name, identifier={:index => 0}, &block)
@@ -329,15 +302,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a radio_button. You can use a multiple parameters
-    #   by combining of any of the following except xpath.  The valid values are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    #   * :value
-    #   * :label
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def radio_button(name, identifier={:index => 0}, &block)
@@ -385,16 +349,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a button. You can use a multiple parameters
-    #   by combining of any of the following except xpath. The valid values are:
-    #   :class
-    #   :id
-    #   :index
-    #   :name
-    #   :text
-    #   :xpath
-    #   :src
-    #   :alt
-    #   :css
     # @param optional block to be invoked when element method is called
     #
     def button(name, identifier={:index => 0}, &block)
@@ -415,16 +369,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a div. You can use a multiple parameters
-    #   by combining of any of the following except xpath. The valid values are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :xpath
-    #   * :name
-    #   * :text
-    #   * :value
-    #   * :title
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def div(name, identifier={:index => 0}, &block)
@@ -446,13 +390,6 @@ module Druid
     #
     # @param the name used for the generated methods
     # @param identifier how we find a table. You can use a multiple parameters
-    #   by combining of any of the following except xpath. The valid values are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :xpath
-    #   * :name
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def table(name, identifier={:index => 0}, &block)
@@ -474,14 +411,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a cell. You can use a multiple parameters
-    #   by combining of any of the following except xpath.  The valid values are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :xpath
-    #   * :name
-    #   * :text
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def cell(name, identifier={:index => 0}, &block)
@@ -504,13 +433,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a cell. You can use a multiple parameters
-    #   by combining of any of the following except xpath. The valid keys are:
-    #   * :class
-    #   * :css
-    #   * :id
-    #   * :index
-    #   * :text
-    #   * :xpath
     # @param optional block to be invoked when element method is called
     #
     def row(name, identifier={:index => 0}, &block)
@@ -531,15 +453,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a span. You can use a multiple parameters
-    #   by combining of any of the following except xpath.  The valid values are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :xpath
-    #   * :name
-    #   * :text
-    #   * :title
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def span(name, identifier={:index => 0}, &block)
@@ -560,15 +473,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a image. You can use a multiple parameters
-    #   by combining of any of the following except xpath. The valid values are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    #   * :alt
-    #   * :src
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def image(name, identifier={:index => 0}, &block)
@@ -590,14 +494,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a form. You can use a multiple parameters
-    #   by combining of any of the following except xpath.  The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :xpath
-    #   * :name
-    #   * :action
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def form(name, identifier={:index => 0}, &block)
@@ -615,15 +511,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a hidden field. You can use a multiple parameters
-    #   by combining of any of the following except xpath.  The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :text
-    #   * :xpath
-    #   * :value
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def hidden_field(name, identifier={:index => 0}, &block)
@@ -646,14 +533,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a list item. You can use a multiple parameters
-    #   by combining of any of the following except xpath. The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :xpath
-    #   * :name
-    #   * :text
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def list_item(name, identifier={:index => 0}, &block)
@@ -676,13 +555,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find an ordered list. You can use a multiple parameters
-    #   by combining of any of the following except xpath. The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :xpath
-    #   * :name
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def ordered_list(name, identifier={:index => 0}, &block)
@@ -706,14 +578,6 @@ module Druid
     #
     # @param  [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a text area. You can use a multiple parameters
-    #   by combining of any of the following except xpath.  The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    #   * :label
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def text_area(name, identifier={:index => 0}, &block)
@@ -739,13 +603,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find an unordered list. You can use a multiple parameters
-    #   by combining of any of the following except xpath.  The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :xpath
-    #   * :name
-    #   * :css
     # @param optional block to be invoked when element method is called
     def unordered_list(name, identifier={:index => 0}, &block)
       standard_methods(name, identifier, 'unordered_list_for', &block)
@@ -766,13 +623,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a H1.  You can use a multiple paramaters
-    #   by combining of any of the following except xpath.  The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def h1(name, identifier={:index => 0}, &block)
@@ -793,13 +643,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a H2.  You can use a multiple paramaters
-    #   by combining of any of the following except xpath.  The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def h2(name, identifier={:index => 0}, &block)
@@ -820,13 +663,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a H3.  You can use a multiple paramaters
-    #   by combining of any of the following except xpath.  The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def h3(name, identifier={:index => 0}, &block)
@@ -847,13 +683,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a H4.  You can use a multiple paramaters
-    #   by combining of any of the following except xpath.  The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def h4(name, identifier={:index => 0}, &block)
@@ -874,13 +703,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a H5.  You can use a multiple paramaters
-    #   by combining of any of the following except xpath.  The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def h5(name, identifier={:index => 0}, &block)
@@ -901,13 +723,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a H6.  You can use a multiple paramaters
-    #   by combining of any of the following except xpath.  The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def h6(name, identifier={:index => 0}, &block)
@@ -928,13 +743,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a paragraph.  You can use a multiple paramaters
-    #   by combining of any of the following except xpath.  The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def paragraph(name, identifier={:index => 0}, &block)
@@ -956,15 +764,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a file_field.  You can use a multiple paramaters
-    #   by combining of any of the following except xpath.  The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :title
-    #   * :xpath
-    #   * :label
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def file_field(name, identifier={:index => 0}, &block)
@@ -985,14 +784,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a label. You can use a multiple parameters
-    #  by combining of any of the following except xpath. The valid keys are:
-    #  * :class
-    #  * :id
-    #  * :index
-    #  * :name
-    #  * :text
-    #  * :xpath
-    #  * :css
     # @param optional block to be invoked when element method is called
     #
     def label(name, identifier={:index => 0}, &block)
@@ -1013,14 +804,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find an area. You can use a multiple parameters
-    #   by combining of any of the following except xpath. The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    #   * :text
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def area(name, identifier={:index => 0}, &block)
@@ -1041,13 +824,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a canvas. You can use a multiple parameters
-    #   by combining of any of the following except xpath.  The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def canvas(name, identifier={:index => 0}, &block)
@@ -1064,13 +840,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find an audio element. You can use a multiple parameters
-    #   by combining of any of the following except xpath. The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    #   * :css
     # @param optional block to be invoked when element method is called
     #
     def audio(name, identifier={:index => 0}, &block)
@@ -1087,13 +856,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a video element. You can use a multiple parameters
-    #   by combining of any of the following except xpath.  The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    #   * css
     # @param optional block to be invoked when element method is called
     #
     def video(name, identifier={:index => 0}, &block)
@@ -1110,13 +872,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a b, You can use a multiple parameters
-    #   by combining of any of the following except xpath. The valid keys are:
-    #   * :class
-    #   * :css
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
     # @param optional block to be invoked when element method is called
     #
     def b(name, identifier={:index => 0}, &block)
@@ -1137,13 +892,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a i, You can use a multiple parameters
-    #   by combining of any of the following except xpath. The valid keys are:
-    #   * :class
-    #   * :css
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
     # @param optional block to be invoked when element method is called
     #
     def i(name, identifier={:index => 0}, &block)
@@ -1165,13 +913,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find a svg. You can use a multiple parameters
-    #   by combining of any of the following except xpath. The valid keys are:
-    #   * :class
-    #   * :css
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
     # @param optional block to be invoked when element method is called
     #
     def svg(name, identifier={:index => 0}, &block)
@@ -1188,13 +929,6 @@ module Druid
     #
     # @param [Symbol] the name used for the generated methods
     # @param [Hash] identifier how we find an element. You can use a multiple parameters
-    # by combining of any of the following except xpath. The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :css
-    #   * :index
-    #   * :name
-    #   * :xpath
     # @param optional block to be invoked when element method is called
     #
     def element(name, tag=:element, identifier={:index => 0}, &block)
@@ -1229,13 +963,6 @@ module Druid
     # @param [Symbol] the name used for the generated methods
     # @param [Symbol] the name of the tag for the element
     # @param [Hash] identifier how we find an element. You can use a multiple parameters
-    #   by combining of any of the following except xpath. The valid keys are:
-    #   * :class
-    #   * :id
-    #   * :index
-    #   * :css
-    #   * :name
-    #   * :xpath
     # @param optional block to be invoked when element method is called
     #
     def elements(name, tag=:element, identifier={:index => 0}, &block)
@@ -1274,14 +1001,7 @@ module Druid
     # @param [Symbol] the name used for the generated methods
     # @param [Class] the class to instantiate for the element
     # @param [Hash] identifier how we find an element. You can use multiple parameters
-    #   by combining of any of the following except xpath. The valid keys are:
-    #   * :class
-    #   * :css
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    #
+
     def page_section(name, section_class, identifier)
       define_method(name) do
         page_for(identifier, section_class)
@@ -1298,14 +1018,7 @@ module Druid
     # @param [Symbol] the name used for the generated method
     # @param [Class] the class to instantiate for each element
     # @param [Hash] identifier how we find an element. You can use a multiple parameters
-    #   by combining of any of the following except xpath. The valid keys are:
-    #   * :class
-    #   * :css
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
-    #
+
     def page_sections(name, section_class, identifier)
       define_method(name) do
         pages_for(identifier, section_class)
@@ -1323,13 +1036,6 @@ module Druid
     # @param [Symbol] the name used for the generated methods
     # @param [Symbol] the name of the tag for the element
     # @param [Hash] identifier how we find an element.  You can use a multiple paramaters
-    #   by combining of any of the following except xpath.  The valid keys are:
-    #   * :class
-    #   * :css
-    #   * :id
-    #   * :index
-    #   * :name
-    #   * :xpath
     # @param optional block to be invoked when element method is called
     #
     LocatorGenerator::BASIC_ELEMENTS.each do |tag|
