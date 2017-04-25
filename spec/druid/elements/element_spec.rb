@@ -93,16 +93,19 @@ describe Druid::Elements::Element do
     end
 
     it "should be able to block until it is visible" do
+      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
       expect(we).to receive(:wait_until).with(timeout: 10, message: "Element not visible in 10 seconds")
       element.when_visible(10)
     end
 
     it "should return the element when it is visible" do
+      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
       expect(we).to receive(:wait_until).with(timeout: 10, message: "Element not visible in 10 seconds")
       expect(element.when_visible(10)).to eq element
     end
 
     it "should be able to block until it is not visible" do
+      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
       expect(we).to receive(:wait_while).with(timeout: 10, message: "Element still visible after 10 seconds")
       element.when_not_visible(10)
     end
