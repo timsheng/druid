@@ -18,7 +18,6 @@ Feature: List item
     | class     |
     | xpath     |
     | index     |
-    | name      |
     | text      |
     | css       |
 
@@ -30,7 +29,6 @@ Feature: List item
     Examples:
     | param1  | param2  |
     | class   | index   |
-    | name    | index   |
 
   @locator
   Scenario: Finding a list item dynamically

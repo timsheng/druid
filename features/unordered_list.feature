@@ -21,7 +21,6 @@ Feature: Unordered list
     | class     |
     | xpath     |
     | index     |
-    | name      |
     | css       |
 
   @multi
@@ -33,8 +32,6 @@ Feature: Unordered list
     Examples:
     | param1  | param2  |
     | class   | index   |
-    | name    | index   |
-    | class   | name    |
 
   @locator
   Scenario: Finding a unordered list dynamically

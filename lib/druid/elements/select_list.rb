@@ -2,10 +2,6 @@ module Druid
   module Elements
     class SelectList < Element
 
-      def self.finders
-        super + [:value, :text, :label]
-      end
-
       def [](idx)
         options[idx]
       end

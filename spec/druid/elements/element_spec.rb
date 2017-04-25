@@ -11,16 +11,6 @@ describe Druid::Elements::Element do
     end
   end
 
-  context "when building the identifiers" do
-    it "should build xpath when finding elements by name were not supported" do
-      ['table', 'span', 'div', 'td', 'li', 'ol', 'ul'].each do |tag|
-        how = {:tag_name => tag, :name => 'blah'}
-        result = Druid::Elements::Element.identifier_for how
-        expect(result[:xpath]).to eql ".//#{tag}[@name='blah']"
-      end
-    end
-  end
-
   context "on a druid" do
     it "should know when it is visible" do
       expect(we).to receive(:visible?).and_return(true)

@@ -2,10 +2,6 @@ module Druid
   module Elements
     class Button < Element
 
-      def self.finders
-        super + [:value, :text, :src, :alt, :css]
-      end
-
     end
 
     Druid::Elements.type_to_class[:submit] = Druid::Elements::Button

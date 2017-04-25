@@ -2,9 +2,6 @@ module Druid
   module Elements
     class TextArea < Element
 
-      def self.finders
-        super + [:label]
-      end
       #
       # Set the value of the TextArea
       #

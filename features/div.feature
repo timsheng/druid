@@ -20,7 +20,6 @@ Feature: Div
     | class     |
     | xpath     |
     | index     |
-    | name      |
     | text      |
     | title     |
     | css       |
@@ -38,7 +37,6 @@ Feature: Div
     Examples:
     | param1  | param2  |
     | class   | index   |
-    | name    | index   |
 
   @locator
   Scenario: Finding a div dynamically
