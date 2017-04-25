@@ -142,6 +142,7 @@ module Druid
       # @param [Interger] (default to:5) seconds to wait before timing out
       #
       def when_visible(timeout=Druid.default_element_wait)
+        when_present(timeout)
         element.wait_until(timeout: timeout, message: "Element not visible in #{timeout} seconds", &:visible?)
         self
       end
@@ -152,6 +153,7 @@ module Druid
       # @param [Integer] (default to:5) seconds to wait before timing out
       #
       def when_not_visible(timeout=Druid.default_element_wait)
+        when_present(timeout)
         element.wait_while(timeout: timeout, message: "Element still visible after #{timeout} seconds", &:visible?)
         self
       end
