@@ -20,9 +20,10 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.add_dependency "watir", "~> 6.0"
   s.add_dependency "page_navigation", ">= 0.10"
-  s.add_dependency "net-http-persistent", "~> 3.0"
 
   s.add_development_dependency "rspec", ">= 3.0.0"
   s.add_development_dependency "cucumber", ">= 2.0.0"
   s.add_development_dependency "rack", ">= 1.0"
+  s.add_development_dependency "net-http-persistent", "~> 3.0"
+
 end
