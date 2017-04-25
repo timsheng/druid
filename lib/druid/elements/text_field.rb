@@ -2,10 +2,6 @@ module Druid
   module Elements
     class TextField < Element
 
-      def self.finders
-        super + [:text, :title, :label]
-      end
-
       #
       # Set the value of the TextField
       #

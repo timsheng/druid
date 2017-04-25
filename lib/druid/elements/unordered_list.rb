@@ -2,10 +2,6 @@ module Druid
   module Elements
     class UnOrderedList < Element
 
-      def self.finders
-        [:class, :id, :index, :xpath]
-      end
-
       def [](idx)
         Druid::Elements::ListItem.new(children[idx])
       end

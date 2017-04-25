@@ -4,8 +4,9 @@
 === Version 1.2.2/ 2017/02-14
 * Enhancements
   * Added wait method to page class(wait document readystate as complete)
-  * when_visible and when_not_visible now wait for element to be present before checking
-  * populate_page_with can populate select_list using values
+  * When_visible and when_not_visible now wait for element to be present before checking
+  * Populate_page_with can populate select_list using values
+  * Remove all custom locator mappings
 === Version 1.2.1/ 2017-01-26
 * Enhancements
   * Added array methods to section collections

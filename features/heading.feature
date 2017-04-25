@@ -26,7 +26,6 @@ Feature: Headings
      | search_by |
      | id        |
      | class     |
-     | name      |
      | xpath     |
      | index     |
      | css       |
@@ -39,7 +38,6 @@ Feature: Headings
      Examples:
      | param1  | param2  |
      | class   | index   |
-     | name    | index   |
 
    @locator
    Scenario: Finding a h1 dynamically
@@ -54,7 +52,6 @@ Feature: Headings
      | search_by |
      | id        |
      | class     |
-     | name      |
      | xpath     |
      | index     |
      | css       |
@@ -67,7 +64,6 @@ Feature: Headings
      Examples:
      | param1  | param2  |
      | class   | index   |
-     | name    | index   |
 
    @locator
    Scenario: Finding a h2 dynamically
@@ -82,7 +78,6 @@ Feature: Headings
      | search_by |
      | id        |
      | class     |
-     | name      |
      | xpath     |
      | index     |
      | css       |
@@ -95,7 +90,6 @@ Feature: Headings
      Examples:
      | param1  | param2  |
      | class   | index   |
-     | name    | index   |
 
    @locator
    Scenario: Finding a h3 dynamically
@@ -111,7 +105,6 @@ Feature: Headings
      | search_by |
      | id        |
      | class     |
-     | name      |
      | xpath     |
      | index     |
      | css       |
@@ -124,7 +117,6 @@ Feature: Headings
      Examples:
      | param1  | param2  |
      | class   | index   |
-     | name    | index   |
 
 
    @locator
@@ -140,7 +132,6 @@ Feature: Headings
      | search_by |
      | id        |
      | class     |
-     | name      |
      | xpath     |
      | index     |
      | css       |
@@ -159,7 +150,6 @@ Feature: Headings
      | search_by |
      | id        |
      | class     |
-     | name      |
      | xpath     |
      | index     |
      | css       |
