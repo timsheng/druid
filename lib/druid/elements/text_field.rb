@@ -2,10 +2,6 @@ module Druid
   module Elements
     class TextField < Element
 
-      def self.finders
-        super + [:text, :title, :label]
-      end
-
       #
       # Set the value of the TextField
       #
@@ -13,9 +9,6 @@ module Druid
         element.set(new_value)
       end
 
-      def append text
-        element.append text
-      end
     end
 
     Druid::Elements.type_to_class[:text] = Druid::Elements::TextField

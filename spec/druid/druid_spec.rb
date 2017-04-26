@@ -85,35 +85,15 @@ describe Druid do
   end
 
   context "when sent a missing method" do
-    it "should not respond to it if the @root_element doesn't exist" do
-      expect(nil).to respond_to :to_i
-      expect(druid.instance_variable_get(:@root_element)).to be nil
-      expect(druid).not_to respond_to :to_i
-      expect { druid.to_i }.to raise_error NoMethodError
-    end
 
     it "should respond to it if the @root_element exists and responds" do
-      expect(druid.instance_variable_get(:@root_element)).to be nil
       expect(druid).not_to respond_to :bar
       expect(druid).not_to respond_to :baz
-      class Foo
-        def bar
-          :bar_called
-        end
-
-        private
-
-        def baz
-        end
-      end
+      class Foo; def bar; :bar_called; end; private; def baz; end; end
       druid.instance_variable_set(:@root_element, Foo.new)
-
       expect(druid).to respond_to :bar
       expect(druid).not_to respond_to :baz
       expect(druid.bar).to eq :bar_called
-      expect { druid.baz }.to raise_error NoMethodError
-      expect(druid.respond_to?(:baz, true)).to be false
-      expect { druid.send(:baz) }.to raise_error NoMethodError
     end
   end
 

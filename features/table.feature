@@ -61,7 +61,6 @@ Feature: Table
     | class     |
     | xpath     |
     | index     |
-    | name      |
     | css       |
 
   Scenario: Retrieve the data from a table
@@ -80,7 +79,6 @@ Feature: Table
     Examples:
     | param1  | param2  |
     | class   | index   |
-    | name    | index   |
 
   @locator
   Scenario: Finding a table dynamically

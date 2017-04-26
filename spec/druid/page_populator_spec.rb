@@ -44,9 +44,11 @@ describe Druid::PagePopulator do
   end
 
   it "should set a value in a select list" do
-    expect(druid).to receive(:sa=).with('value')
-    expect(druid).to receive(:is_enabled?).and_return(true)
-    druid.populate_page_with('sa' => 'value')
+    list = double('sl')
+    expect(druid).to receive(:sl_element).and_return(list)
+    expect(list).to receive(:options).and_return(['value'])
+    expect(list).to receive(:select).with('value')
+    druid.populate_page_with('sl' => 'value')
   end
 
   it "should set a value in a file field" do

@@ -1,9 +1,6 @@
 module Druid
   module Elements
     class FileField < Element
-      def self.finders
-        super + [:title, :label]
-      end
 
       #
       # Set the value of the FileField

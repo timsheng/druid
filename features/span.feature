@@ -18,7 +18,6 @@ Feature: Span
     | class     |
     | xpath     |
     | index     |
-    | name      |
     | text      |
     | title     |
     | css       |
@@ -36,7 +35,6 @@ Feature: Span
     Examples:
     | param1  | param2  |
     | class   | index   |
-    | name    | index   |
 
   @locator
   Scenario: Finding a span dynamically

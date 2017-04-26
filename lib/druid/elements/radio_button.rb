@@ -2,9 +2,6 @@ module Druid
   module Elements
     class RadioButton < Element
 
-      def self.finders
-        super + [:value, :label]
-      end
       #
       # Select the RadioButton
       #

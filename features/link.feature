@@ -22,8 +22,6 @@ Feature: Links
     | name      |
     | text      |
     | xpath     |
-    | link      |
-    | link_text |
     | css       |
     | title     |
 
