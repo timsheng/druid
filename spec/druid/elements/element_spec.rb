@@ -11,16 +11,6 @@ describe Druid::Elements::Element do
     end
   end
 
-  context "when building the identifiers" do
-    it "should build xpath when finding elements by name were not supported" do
-      ['table', 'span', 'div', 'td', 'li', 'ol', 'ul'].each do |tag|
-        how = {:tag_name => tag, :name => 'blah'}
-        result = Druid::Elements::Element.identifier_for how
-        expect(result[:xpath]).to eql ".//#{tag}[@name='blah']"
-      end
-    end
-  end
-
   context "on a druid" do
     it "should know when it is visible" do
       expect(we).to receive(:visible?).and_return(true)
@@ -93,22 +83,25 @@ describe Druid::Elements::Element do
     end
 
     it "should be able to block until it is visible" do
+      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
       expect(we).to receive(:wait_until).with(timeout: 10, message: "Element not visible in 10 seconds")
       element.when_visible(10)
     end
 
     it "should return the element when it is visible" do
+      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
       expect(we).to receive(:wait_until).with(timeout: 10, message: "Element not visible in 10 seconds")
       expect(element.when_visible(10)).to eq element
     end
 
     it "should be able to block until it is not visible" do
+      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
       expect(we).to receive(:wait_while).with(timeout: 10, message: "Element still visible after 10 seconds")
       element.when_not_visible(10)
     end
 
     it "should be able to block until a user define event fires true" do
-      expect(Watir::Wait).to receive(:until).with(timeout: 10, message: "Element blah")
+      expect(we).to receive(:wait_until).with(timeout: 10, message: "Element blah")
       element.wait_until(10, "Element blah") {true}
     end
 
@@ -137,19 +130,14 @@ describe Druid::Elements::Element do
       expect(element.style('class')).to eql "tim"
     end
 
-    it "should inspect element" do
-      expect(we).to receive(:inspect)
-      element.inspect
-    end
-
     it "should know if an element is focused" do
       expect(we).to receive(:focused?).and_return(true)
-      expect(element).to be_focused
+      expect(element.focused?).to be true
     end
 
     it "should know if an element is not focuesd" do
       expect(we).to receive(:focused?).and_return(false)
-      expect(element).to_not be_focused
+      expect(element.focused?).to_not be true
     end
 
     it "should be able to fire event" do

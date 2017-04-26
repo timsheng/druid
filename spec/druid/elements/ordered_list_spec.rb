@@ -2,15 +2,6 @@ require 'spec_helper'
 require 'druid/elements'
 
 describe Druid::Elements::OrderedList do
-  describe "when mapping how to find an element" do
-    it "should map watir types to same" do
-      [:class, :id, :index, :xpath].each do |t|
-        identifier = Druid::Elements::OrderedList.identifier_for t => 'value'
-        expect(identifier.keys.first).to eql t
-      end
-    end
-  end
-
   describe "interface" do
     let(:element) { double 'element' }
     let(:ol) { Druid::Elements::OrderedList.new(element) }

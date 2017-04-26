@@ -188,7 +188,7 @@ module Druid
     # method to retrieve load status of an image element
     #
     def image_loaded_for(identifier)
-      process_call("image(identifier).loaded?", Elements::Image, identifier) 
+      process_call("image(identifier).loaded?", Elements::Image, identifier)
     end
 
     def form_for identifier
@@ -619,16 +619,8 @@ module Druid
       value
     end
 
-    def add_tagname_if_needed identifier, tag
-      return identifier if identifier.length < 2 and not identifier[:name]
-      identifier[:tag_name] = tag if identifier[:name]
-      identifier
-    end
-
     def parse_identifiers(identifier, element, tag_name=nil)
       frame_identifiers = identifier.delete(:frame)
-      identifier = add_tagname_if_needed identifier, tag_name if tag_name
-      identifier = element.identifier_for identifier
       return identifier, frame_identifiers
     end
 

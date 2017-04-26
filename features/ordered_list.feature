@@ -21,7 +21,6 @@ Feature: Ordered list
     | class     |
     | xpath     |
     | index     |
-    | name      |
     | css       |
 
   @multi
@@ -33,7 +32,6 @@ Feature: Ordered list
     Examples:
     | param1  | param2  |
     | class   | index   |
-    | name    | index   |
 
   @locator
   Scenario: Finding a ordered list dynamically

@@ -44,11 +44,7 @@ module Druid
   # extend Forwardable
 
   def method_missing(method, *args, &block)
-    if @root_element && @root_element.respond_to?(method)
-      @root_element.send(method, *args, &block)
-    else
-      super
-    end
+    @root_element.send(method, *args, &block)
   end
 
   def respond_to_missing?(method, include_all = false)

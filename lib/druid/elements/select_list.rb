@@ -2,31 +2,12 @@ module Druid
   module Elements
     class SelectList < Element
 
-      def self.finders
-        super + [:value, :text, :label]
-      end
-
       def [](idx)
         options[idx]
       end
 
       def options
         element.options.map { |e| Druid::Elements::Option.new(e)}
-      end
-
-      #
-      # Select a value from the list
-      #
-      def select(value)
-        element.select(value)
-      end
-
-      #
-      # Select the options whose value attribute matches the Given
-      # string
-      #
-      def select_value(value)
-        element.select_value(value)
       end
 
       #
@@ -51,13 +32,6 @@ module Druid
         element.include? value
       end
 
-      #
-      # Returns true if any of the selected options' text or label match the given value.
-      # @param [String, Regexp] value A value
-      # @return [Boolean]
-      def selected? value
-        element.selected? value
-      end
     end
 
     Druid::Elements.tag_to_class[:select] = Druid::Elements::SelectList

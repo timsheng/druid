@@ -18,7 +18,6 @@ Feature: Table Cell
     | class     |
     | xpath     |
     | index     |
-    | name      |
     | text      |
     | css       |
 
@@ -35,7 +34,6 @@ Feature: Table Cell
     Examples:
     | param1  | param2  |
     | class   | index   |
-    | name    | index   |
 
   @locator
   Scenario: Finding a table cell dynamically

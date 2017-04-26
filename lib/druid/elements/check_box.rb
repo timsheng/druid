@@ -2,10 +2,6 @@ module Druid
   module Elements
     class CheckBox < Element
 
-      def self.finders
-        super + [:value, :label]
-      end
-
       #
       # Check the checkbox
       #
