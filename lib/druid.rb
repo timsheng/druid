@@ -371,7 +371,7 @@ module Druid
   end
 
   #
-  # Handles cookies
+  # Handle cookies
   #
   # @return [Watir::Cookies]
   #
