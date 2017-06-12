@@ -371,10 +371,12 @@ module Druid
   end
 
   #
-  # Clear the cookies from the browser
+  # Handle cookies
   #
-  def clear_cookies
-    driver.cookies.clear
+  # @return [Watir::Cookies]
+  #
+  def cookies
+    driver.cookies
   end
 
   #
