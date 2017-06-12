@@ -1,3 +1,5 @@
+=== 2017-06-12
+* Add cookies method to druid
 === 2017-04-24
 * Removed all direct delegateds. Now relies on method_missing to call Watir methods.
   * You may have to change RSpec matchers to use method instead of predicate.
