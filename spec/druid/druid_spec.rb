@@ -256,10 +256,9 @@ describe Druid do
         druid.modal_dialog {}
       end
 
-      it "should know how to clear all of the cookies from the browser" do
-        expect(driver).to receive(:cookies).and_return(driver)
-        expect(driver).to receive(:clear)
-        druid.clear_cookies
+      it "should know how to handle cookies" do
+        expect(driver).to receive(:cookies).and_return([])
+        druid.cookies
       end
 
       it "should be able to save a screenshot" do
