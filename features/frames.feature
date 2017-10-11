@@ -70,3 +70,7 @@ Scenario: Accessing elements within the frame using multiple identifiers
   Given I am on the iframe elements page
   When I type "page-object" into the text field for frame 2 using "multiple identifiers"
   Then I should verify "page-object" is in the text field for frame 2 using "multiple identifiers"
+
+Scenario: Frames in sections
+  Given I am on the frame section page
+  Then I should be able to access an element in the frame in the section repeatedly

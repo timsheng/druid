@@ -620,8 +620,9 @@ module Druid
     end
 
     def parse_identifiers(identifier, element, tag_name=nil)
-      frame_identifiers = identifier.delete(:frame)
-      return identifier, frame_identifiers
+      new_identifiers = identifier.dup
+      frame_identifiers = new_identifiers.delete(:frame)
+      return new_identifiers, frame_identifiers
     end
 
     def nested_frames(frame_identifiers)
@@ -644,7 +645,7 @@ module Druid
     end
 
     def switch_to_default_content(frame_identifiers)
-      driver.wd.switch_to.default_content unless frame_identifiers.nil?
+      driver.browser.wd.switch_to.default_content unless frame_identifiers.nil?
     end
   end
 end
