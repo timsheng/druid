@@ -57,6 +57,41 @@ class IFramePage
   end
 end
 
+class FrameSectionPageSection
+  include Druid
+
+  paragraph :p_in_section
+
+  in_iframe(id: 'three') do |frame|
+    link :success, id: 'four', frame: frame
+  end
+
+end
+
+class FrameSectionPage
+  include Druid
+
+  in_frame(id: 'two') do |frame|
+    page_section :frame_section, FrameSectionPageSection, tag_name: 'body', frame: frame
+    paragraph :p_on_page, frame: frame
+  end
+
+end
+
+Given(/^I am on the frame section page$/) do
+  @page = FrameSectionPage.new(@driver)
+  @page.navigate_to(UrlHelper.nested_frame_elements)
+end
+
+Then(/^I should be able to access an element in the frame in the section repeatedly$/) do
+  expect(@page.p_on_page_element).to be_visible
+  expect(@page.frame_section.p_in_section_element).to be_visible
+  expect(@page.frame_section.success_element).to be_visible
+  expect(@page.frame_section.success_element.text).to eq "this link should open the page success page"
+  @page.frame_section.success
+  expect(@page.text.strip).to eq 'Success'
+end
+
 Given(/^I am on the frame elements page$/) do
   @page = FramePage.new(@driver)
   @page.navigate_to(UrlHelper.frame_elements)
