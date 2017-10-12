@@ -85,3 +85,7 @@ end
 Then(/^the selected option should have a value of "([^"]*)"$/) do |value|
   expect(@page.select_list_id_element.selected_values[0]).to eql value
 end
+
+Then(/^cleared multiple select list should return nil for value$/) do
+  expect(@page.select_list_multiple).to be nil
+end

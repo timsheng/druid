@@ -63,7 +63,7 @@ module Druid
     end
 
     def select_list_value_for identifier
-      process_call("select_list(identifier).options.find {|o| o.selected?}.text", Elements::SelectList, identifier)
+      process_call("select_list(identifier).text", Elements::SelectList, identifier)
     end
 
     def select_list_for identifier
