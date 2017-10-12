@@ -32,23 +32,10 @@ module Druid
       end
 
       #
-      # Get the value of the given attribute of the element
-      # @param [String]
-      # @return [String, nil]
+      # retrieve the value of specified attribute
       #
-      def attribute(attribute_name)
-        element.attribute_value attribute_name
-      end
-
-      #
-      # retrieve the class name for an element
-      #
-      def class_name
-        element.class_name
-      end
-
-      def inspect
-        element.inspect
+      def attribute(*args)
+        attribute_value(*args)
       end
 
       #
@@ -94,15 +81,13 @@ module Druid
       end
 
       def check_visible(timeout=Druid.default_element_wait)
-        timed_loop(timeout) do |element|
-          element.visible?
-        end
+        wait_until(timeout: timeout, message: "Element not visible in #{timeout} seconds", &:present?)
       end
+      alias_method :when_present, :check_visible
+      alias_method :when_visible, :check_visible
 
       def check_exist(timeout=Druid.default_element_wait)
-        timed_loop(timeout) do |element|
-          element.exist?
-        end
+        wait_until(timeout: timeout, &:exist?)
       end
 
       #
@@ -115,35 +100,13 @@ module Druid
       end
 
       #
-      # Waits until the element is present
-      #
-      # @param [Integer] (defaults to: 5) seconds to wait before
-      # timing out
-      #
-      def when_present(timeout=Druid.default_element_wait)
-        element.wait_until(timeout: timeout, message: "Element not present in #{timeout} seconds", &:present?)
-        self
-      end
-
-      #
       # Waits until the element is not present
       #
       # @param [Integer] (defaults to: 5) seconds to wait before
       # timing out
       #
       def when_not_present(timeout=Druid.default_element_wait)
-        element.wait_while(timeout: timeout, message: "Element still present after #{timeout} seconds", &:present?)
-      end
-
-      #
-      # Waits until the element is visible
-      #
-      # @param [Interger] (default to:5) seconds to wait before timing out
-      #
-      def when_visible(timeout=Druid.default_element_wait)
-        when_present(timeout)
-        element.wait_until(timeout: timeout, message: "Element not visible in #{timeout} seconds", &:visible?)
-        self
+        element.wait_while_present(timeout: timeout)
       end
 
       #
@@ -154,16 +117,6 @@ module Druid
       def when_not_visible(timeout=Druid.default_element_wait)
         when_present(timeout)
         element.wait_while(timeout: timeout, message: "Element still visible after #{timeout} seconds", &:visible?)
-        self
-      end
-
-      #
-      # Waits until the block returns true
-      #
-      # @param [Integer] (default to:5) seconds to wait before timing out
-      #
-      def wait_until(timeout=Druid.default_element_wait, message=nil, &block)
-        element.wait_until(timeout: timeout, message: message, &block)
       end
 
       # @private
@@ -177,17 +130,6 @@ module Druid
         element.respond_to?(m) || super
       end
 
-      private
-
-      def timed_loop(timeout)
-        end_time = Time.now + timeout
-        until Time.now > end_time
-          result = yield(self)
-          return result if result
-          sleep 0.5
-        end
-        false
-      end
     end
   end
 end

@@ -66,19 +66,25 @@ describe Druid::Elements::Element do
       element.click
     end
 
-    it "should be able to block until it is present" do
-      expect(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
-      element.when_present(10)
+    it "should check if the element is visible" do
+      msg = "Element not visible in 5 seconds"
+      expect(we).to receive(:wait_until).with(timeout: 5, message: msg).and_return(element)
+      expect(element.check_visible).to be_truthy
     end
 
-    it "should return the element when it is present" do
-      expect(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
-      expect(element.when_present(10)).to eq element
+    it "should check if the element exists" do
+      expect(we).to receive(:wait_until).with(timeout: 5).and_return(element)
+      expect(element.check_exist).to be_truthy
+    end
+
+    it "should be able to block until it is present" do
+      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not visible in 10 seconds")
+      element.when_present(10)
     end
 
     it "should use the overriden wait when set" do
       Druid.default_element_wait = 20
-      expect(we).to receive(:wait_until).with(timeout: 20, message: "Element not present in 20 seconds")
+      allow(we).to receive(:wait_until).with(timeout: 20, message: "Element not visible in 20 seconds")
       element.when_present
     end
 
@@ -88,20 +94,14 @@ describe Druid::Elements::Element do
       element.when_visible(10)
     end
 
-    it "should return the element when it is visible" do
-      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
-      expect(we).to receive(:wait_until).with(timeout: 10, message: "Element not visible in 10 seconds")
-      expect(element.when_visible(10)).to eq element
-    end
-
     it "should be able to block until it is not visible" do
-      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
+      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not visible in 10 seconds")
       expect(we).to receive(:wait_while).with(timeout: 10, message: "Element still visible after 10 seconds")
       element.when_not_visible(10)
     end
 
     it "should be able to block until a user define event fires true" do
-      expect(we).to receive(:wait_until).with(timeout: 10, message: "Element blah")
+      allow(we).to receive(:wait_until).with(10, "Element blah")
       element.wait_until(10, "Element blah") {true}
     end
 
@@ -148,18 +148,6 @@ describe Druid::Elements::Element do
     it "should be able to focus element" do
       expect(we).to receive(:focus)
       element.focus
-    end
-
-    it "should check if the element is visible" do
-      expect(we).to receive(:visible?).and_return(false)
-      expect(we).to receive(:visible?).and_return(true)
-      expect(element.check_visible).to be true
-    end
-
-    it "should check if the element exists" do
-      expect(we).to receive(:exist?).and_return(false)
-      expect(we).to receive(:exist?).and_return(true)
-      expect(element.check_exist).to be true
     end
 
     it "should know if the element is disabled" do

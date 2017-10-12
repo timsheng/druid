@@ -63,7 +63,9 @@ module Druid
     end
 
     def select_list_value_for identifier
-      process_call("select_list(identifier).text", Elements::SelectList, identifier)
+      options = process_call("select_list(identifier).selected_options", Elements::SelectList, identifier)
+      return nil if options.empty?
+      options.first.text
     end
 
     def select_list_for identifier
