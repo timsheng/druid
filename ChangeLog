@@ -1,3 +1,8 @@
+=== 2017-10-12
+* Enhancements
+  * Fix bug in integration of frames and sections
+  * delegate select list text method directly to watir
+  * optimize the way to generate a array of symbol
 === 2017-06-12
 * Add cookies method to druid
 === 2017-04-24
