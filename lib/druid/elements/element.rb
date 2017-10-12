@@ -1,4 +1,3 @@
-require 'watir/extensions/select_text'
 require 'druid/nested_elements'
 require 'druid/assist'
 module Druid
@@ -172,6 +171,10 @@ module Druid
       def method_missing(*args, &block)
         m = args.shift
         element.send m, *args, &block
+      end
+
+      def respond_to_missing?(m,*args)
+        element.respond_to?(m) || super
       end
 
       private
