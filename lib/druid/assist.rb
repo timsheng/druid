@@ -635,7 +635,7 @@ module Druid
         identifier = frame.values.first.map do |key, value|
           if value.is_a?(Regexp)
             ":#{key} => #{value.inspect}"
-          elsif value.to_a? Integer
+          elsif value.is_a? Integer
             ":#{key} => #{value}"
           else
             ":#{key} => '#{value}'"
