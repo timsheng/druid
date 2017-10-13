@@ -244,11 +244,6 @@ Feature: Elements
     When I retrieve a button element
     Then I should know its id is "button_id"
 
-  Scenario: Scrolling so an element is visible
-    When I retrieve a heading element
-    And I scroll the heading element into view
-    Then the heading element should be visible
-
   Scenario: Expanding how we find elemnts to include non-stardard locators
     When I retrieve a div using data-entity
     Then I should know it exists

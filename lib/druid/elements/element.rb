@@ -31,55 +31,6 @@ module Druid
         other.is_a? self.class and element == other.element
       end
 
-      #
-      # retrieve the value of specified attribute
-      #
-      def attribute(*args)
-        attribute_value(*args)
-      end
-
-      #
-      # Scroll until the element is viewable
-      #
-      def scroll_into_view
-        element.wd.location_once_scrolled_into_view
-      end
-
-      #
-      # location of element (x,y)
-      #
-      def location
-        element.wd.location
-      end
-
-      #
-      # size of element (width, height)
-      #
-      def size
-        element.wd.size
-      end
-
-      #
-      # Get width of element
-      #
-      def width
-        size['width']
-      end
-
-      #
-      # Get height of element
-      #
-      def height
-        size['height']
-      end
-
-      #
-      # Get centre coordinates of element
-      #
-      def centre
-        { 'y' => (location['y'] + (size['height']/2)), 'x' => (location['x'] + (size['width']/2)) }
-      end
-
       def check_visible(timeout=Druid.default_element_wait)
         wait_until(timeout: timeout, message: "Element not visible in #{timeout} seconds", &:present?)
       end
