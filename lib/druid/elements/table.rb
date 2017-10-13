@@ -7,24 +7,27 @@ module Druid
       # will be matched with the text from any column. The text can be
       # a substring of the full column text.
       #
-      # @return [Druid::Elements::Table]
+      # @return [Druid::Elements::TableRow]
       #
-      def [](idx)
-        idx = find_index_by_title(idx) if idx.kind_of?(String)
-        return nil unless idx
-        Druid::Elements::TableRow.new(element[idx])
+      def [](what)
+        idx = find_index(what)
+        idx && row_items[idx]
       end
+
       #
       # Returns the number of rows in the table.
       #
       def rows
-        element.rows.size
+        row_items.size
       end
 
-      def each
-        for index in 1..self.rows do
-          yield self[index-1]
-        end
+      #
+      # iterator that yields with a Druid::Elements::TableRow
+      #
+      # @return [Druid::Elements::TableRow]
+      #
+      def each(&block)
+        row_items.each(&block)
       end
 
       #
@@ -45,18 +48,23 @@ module Druid
         self[-1]
       end
 
-      #
-      # return the table as hashes
-      #
-      def hashes
-        element.hashes
-      end
-
       private
 
-      def find_index_by_title(row_title)
-        element.rows.find_index do |row|
-          row.cells.any? { |col| col.text.include? row_title}
+      def row_items
+        meth = stragegy == :descendants ? :trs : :rows
+        @row_items ||= element.send(meth).map do |obj|
+          Druid::Elements::TableRow.new(obj)
+        end
+      end
+
+      def stragegy
+        :children
+      end
+
+      def find_index(what)
+        return what if what.is_a? Integer
+        row_items.find_index do |row|
+          row.cell(text: /#{what}/).exist?
         end
       end
 

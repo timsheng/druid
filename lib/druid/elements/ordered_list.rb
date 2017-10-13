@@ -4,35 +4,24 @@ module Druid
       attr_accessor :li_element
 
       def [](idx)
-        Druid::Elements::ListItem.new(children[idx])
+        list_items[idx]
       end
 
       def items
-        children.size
+        list_items.size
       end
 
-      def each
-        for index in 1..self.items do
-          yield self[index-1]
-        end
+      def each(&block)
+        list_items.each(&block)
       end
 
+      #
+      # Return Array of ListItem objects that are children of the OrderedList
+      #
       def list_items
-        children.collect do |obj|
+        @list_items ||= children(tag_name: 'li').map do |obj|
           Druid::Elements::ListItem.new(obj)
         end
-      end
-
-      protected
-
-      def child_xpath
-        "./child::li"
-      end
-
-      private
-
-      def children
-        element.ols(:xpath => child_xpath)
       end
 
     end
