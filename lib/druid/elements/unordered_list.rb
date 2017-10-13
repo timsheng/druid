@@ -2,41 +2,30 @@ module Druid
   module Elements
     class UnOrderedList < Element
 
+      #
+      # @return [Druid::Elements::ListItem]
+      #
       def [](idx)
-        Druid::Elements::ListItem.new(children[idx])
+        list_items[idx]
       end
 
       def items
-        children.size
+        list_items.size
       end
 
-      def each
-        for index in 1..self.items do
-          yield self[index-1]
-        end
+      def each(&block)
+        list_items.each(&block)
       end
 
       #
-      # return the ListItem objects that are children of the
-      # UnOrderedList
+      # Return Array of ListItem objects that are children of the UnorderedList
       #
       def list_items
-        children.collect do |obj|
+        @list_items ||= children(tag_name: 'li').map do |obj|
           Druid::Elements::ListItem.new(obj)
         end
       end
 
-      protected
-
-      def child_xpath
-        "./child::li"
-      end
-
-      private
-
-      def children
-        element.uls(:xpath => child_xpath)
-      end
     end
 
     Druid::Elements.tag_to_class[:ul] = Druid::Elements::UnOrderedList

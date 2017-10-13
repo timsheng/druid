@@ -8,34 +8,38 @@ module Druid
       # is zero based. If the index provided is a String then it
       # will be matched with the text from the columns in the first row.
       #
-      def [](idx)
-        idx = find_index_by_title(idx) if idx.kind_of?(String)
-        return nil unless idx && columns >= idx + 1
-        Druid::Elements::TableCell.new(element[idx])
-      end
-      #
-      # Returns the number of rows in the table.
-      #
-      def columns
-        element.cells.size
+      def [](what)
+        idx = find_index(what)
+        idx && cell_items[idx]
       end
 
-      def each
-        for index in 1..self.columns do
-          yield self[index-1]
-        end
+      #
+      # Returns the number of colums in the table
+      #
+      def columns
+        cell_items.size
+      end
+
+      #
+      # iterator that yields with a Druid::Elements::TableCell
+      #
+      def each(&block)
+        cell_items.each(&block)
       end
 
       private
 
-      def find_index_by_title(title)
-        table = element.parent
-        table = table.parent if table.tag_name == 'tbody'
-        if table.instance_of? Watir::HTMLElement
-          table = table.to_subtype
+      def cell_items
+        @cell_items ||= element.cells.map do |obj|
+          Druid::Elements::TableCell.new(obj)
         end
-        first_row = table[0]
-        first_row.cells.find_index { |column| column.text.include? title}
+      end
+
+      def find_index(what)
+        return what if what.is_a? Integer
+        parent(tag_name: 'table').headers.find_index do |header|
+          header.text.include? what
+        end
       end
 
     end

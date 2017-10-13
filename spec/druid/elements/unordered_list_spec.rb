@@ -6,26 +6,26 @@ describe Druid::Elements::UnOrderedList do
     let(:element) { double 'element' }
     let(:ul) { Druid::Elements::UnOrderedList.new(element) }
 
-    it "should return a list item when indexed" do
-      allow(element).to receive(:uls).and_return(element)
-      expect(element).to receive(:[])
-      ul[1]
-    end
-
-    it "should know how many items it contains" do
-      allow(element).to receive(:uls).and_return([element])
-      expect(ul.items).to eql 1
-    end
-
-    it "should know how to iterate over the items" do
-      expect(ul).to receive(:items).and_return(3)
-      allow(ul).to receive(:[])
-      count = 0
-      ul.each do
-        count += 1
+    context "for sub method" do
+      before(:each) do
+        allow(element).to receive(:children).and_return(Array.new(2, Watir::LI))
       end
-      expect(count).to eql 3
+
+      it "should return a list item when indexed" do
+        expect(ul[1]).to be_instance_of Druid::Elements::ListItem
+      end
+
+      it "should know how many items it contains" do
+        expect(ul.items).to eql 2
+      end
+
+      it "should know how to iterate over the items" do
+        count = 0
+        ul.each { count += 1 }
+        expect(count).to eql 2
+      end
     end
+
 
     it "should register with tag_name :ul" do
       expect(Druid::Elements.element_class_for(:ul)).to be Druid::Elements::UnOrderedList

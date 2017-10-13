@@ -6,11 +6,6 @@ describe Druid::Elements::TextField do
     let(:element) { double 'element' }
     let(:text_field) { Druid::Elements::TextField.new(element) }
 
-    it "should set its' value" do
-      expect(element).to receive(:set).with('test')
-      text_field.value = 'test'
-    end
-
     it "should register with type :text" do
       expect(Druid::Elements.element_class_for(:input, :text)).to be Druid::Elements::TextField
     end

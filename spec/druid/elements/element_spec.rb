@@ -56,52 +56,57 @@ describe Druid::Elements::Element do
       expect(element.value).to eql 'value'
     end
 
-    it "should know how to retrieve the value of an attribute" do
-      expect(we).to receive(:attribute_value).with('class').and_return('tim')
-      expect(element.attribute('class')).to eql 'tim'
-    end
-
     it "should be clickable" do
       expect(we).to receive(:click)
       element.click
     end
 
     it "should check if the element is visible" do
-      msg = "Element not visible in 5 seconds"
-      expect(we).to receive(:wait_until).with(timeout: 5, message: msg).and_return(element)
-      expect(element.check_visible).to be_truthy
+      expect(we).to receive(:visible?).and_return(false)
+      expect(we).to receive(:visible?).and_return(true)
+      expect(element.check_visible).to be true
     end
 
     it "should check if the element exists" do
-      expect(we).to receive(:wait_until).with(timeout: 5).and_return(element)
-      expect(element.check_exist).to be_truthy
+      expect(we).to receive(:exists?).and_return(false)
+      expect(we).to receive(:exists?).and_return(true)
+      expect(element.check_exist).to be true
     end
 
     it "should be able to block until it is present" do
-      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not visible in 10 seconds")
+      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
       element.when_present(10)
+    end
+
+    it "should return the element when it is present" do
+      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
+      new_element = element.when_present(10)
+      expect(new_element).to eql element
     end
 
     it "should use the overriden wait when set" do
       Druid.default_element_wait = 20
-      allow(we).to receive(:wait_until).with(timeout: 20, message: "Element not visible in 20 seconds")
+      allow(we).to receive(:wait_until).with(timeout: 20, message: "Element not present in 20 seconds")
       element.when_present
     end
 
     it "should be able to block until it is visible" do
       allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
-      expect(we).to receive(:wait_until).with(timeout: 10, message: "Element not visible in 10 seconds")
-      element.when_visible(10)
+      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not visible in 10 seconds")
+      allow(we).to receive(:displayed?).and_return(true)
+      new_element = element.when_visible(10)
+      expect(new_element).to eql element
     end
 
     it "should be able to block until it is not visible" do
-      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not visible in 10 seconds")
-      expect(we).to receive(:wait_while).with(timeout: 10, message: "Element still visible after 10 seconds")
+      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
+      allow(we).to receive(:wait_while).with(timeout: 10, message: "Element still visible after 10 seconds")
+      allow(we).to receive(:displayed?).and_return(false)
       element.when_not_visible(10)
     end
 
     it "should be able to block until a user define event fires true" do
-      allow(we).to receive(:wait_until).with(10, "Element blah")
+      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element blah")
       element.wait_until(10, "Element blah") {true}
     end
 
@@ -158,61 +163,6 @@ describe Druid::Elements::Element do
     it "should be able to flash element" do
       expect(we).to receive(:flash)
       element.flash
-    end
-
-    it "should scroll into view" do
-      expect(we).to receive(:wd).and_return(we)
-      expect(we).to receive(:location_once_scrolled_into_view)
-      element.scroll_into_view
-    end
-
-    it "should know its location" do
-      expect(we).to receive(:wd).and_return(we)
-      expect(we).to receive(:location)
-      element.location
-    end
-
-    it "should know its size" do
-      expect(we).to receive(:wd).and_return(we)
-      expect(we).to receive(:size)
-      element.size
-    end
-
-
-    it "should have a height" do
-      expect(we).to receive(:wd).and_return(we)
-      expect(we).to receive(:size).and_return({'width' => 30, 'height' => 20})
-      expect(element.height).to eql 20
-    end
-
-    it "should have a width" do
-      expect(we).to receive(:wd).and_return(we)
-      expect(we).to receive(:size).and_return({'width' => 30, 'height' => 20})
-      expect(element.width).to eql 30
-    end
-
-    it "should have a centre" do
-      allow(we).to receive(:wd).and_return(we)
-      allow(we).to receive(:location).and_return({'y' => 80, 'x' => 40})
-      allow(we).to receive(:size).and_return({'width' => 30, 'height' => 20})
-      expect(element.centre).to include(
-        'y' => 90,
-        'x' => 55
-      )
-    end
-
-    it "should have a centre greater than y position" do
-      allow(we).to receive(:wd).and_return(we)
-      allow(we).to receive(:location).and_return({'y' => 80, 'x' => 40})
-      allow(we).to receive(:size).and_return({'width' => 30, 'height' => 20})
-      expect(element.centre['y']).to be > element.location['y']
-    end
-
-    it "should have a centre greater than x position" do
-      allow(we).to receive(:wd).and_return(we)
-      allow(we).to receive(:location).and_return({'y' => 80, 'x' => 40})
-      allow(we).to receive(:size).and_return({'width' => 30, 'height' => 20})
-      expect(element.centre['x']).to be > element.location['x']
     end
 
     it "should return the outer html" do
