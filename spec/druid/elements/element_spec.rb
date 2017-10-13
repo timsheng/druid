@@ -62,41 +62,51 @@ describe Druid::Elements::Element do
     end
 
     it "should check if the element is visible" do
-      msg = "Element not visible in 5 seconds"
-      expect(we).to receive(:wait_until).with(timeout: 5, message: msg).and_return(element)
-      expect(element.check_visible).to be_truthy
+      expect(we).to receive(:visible?).and_return(false)
+      expect(we).to receive(:visible?).and_return(true)
+      expect(element.check_visible).to be true
     end
 
     it "should check if the element exists" do
-      expect(we).to receive(:wait_until).with(timeout: 5).and_return(element)
-      expect(element.check_exist).to be_truthy
+      expect(we).to receive(:exists?).and_return(false)
+      expect(we).to receive(:exists?).and_return(true)
+      expect(element.check_exist).to be true
     end
 
     it "should be able to block until it is present" do
-      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not visible in 10 seconds")
+      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
       element.when_present(10)
+    end
+
+    it "should return the element when it is present" do
+      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
+      new_element = element.when_present(10)
+      expect(new_element).to eql element
     end
 
     it "should use the overriden wait when set" do
       Druid.default_element_wait = 20
-      allow(we).to receive(:wait_until).with(timeout: 20, message: "Element not visible in 20 seconds")
+      allow(we).to receive(:wait_until).with(timeout: 20, message: "Element not present in 20 seconds")
       element.when_present
     end
 
     it "should be able to block until it is visible" do
       allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
-      expect(we).to receive(:wait_until).with(timeout: 10, message: "Element not visible in 10 seconds")
-      element.when_visible(10)
+      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not visible in 10 seconds")
+      allow(we).to receive(:displayed?).and_return(true)
+      new_element = element.when_visible(10)
+      expect(new_element).to eql element
     end
 
     it "should be able to block until it is not visible" do
-      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not visible in 10 seconds")
-      expect(we).to receive(:wait_while).with(timeout: 10, message: "Element still visible after 10 seconds")
+      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
+      allow(we).to receive(:wait_while).with(timeout: 10, message: "Element still visible after 10 seconds")
+      allow(we).to receive(:displayed?).and_return(false)
       element.when_not_visible(10)
     end
 
     it "should be able to block until a user define event fires true" do
-      allow(we).to receive(:wait_until).with(10, "Element blah")
+      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element blah")
       element.wait_until(10, "Element blah") {true}
     end
 
