@@ -25,5 +25,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "cucumber", "~> 2.0"
   s.add_development_dependency "rack", ">= 1.0"
   s.add_development_dependency "net-http-persistent", "~> 3.0"
+  s.add_development_dependency "webdrivers"
 
 end
