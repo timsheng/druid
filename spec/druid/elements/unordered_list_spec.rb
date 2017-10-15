@@ -2,13 +2,20 @@ require 'spec_helper'
 require 'druid/elements'
 
 describe Druid::Elements::UnOrderedList do
+  let(:ul) { Druid::Elements::UnOrderedList.new(ul_element) }
+
   describe "interface" do
-    let(:element) { double 'element' }
-    let(:ul) { Druid::Elements::UnOrderedList.new(element) }
+    let(:ul_element) { double('ul_element').as_null_object }
+    let(:li_element) { double('li_element').as_null_object }
+
+    it "should register with tag_name :ul" do
+      expect(Druid::Elements.element_class_for(:ul)).to be Druid::Elements::UnOrderedList
+    end
 
     context "for sub method" do
       before(:each) do
-        allow(element).to receive(:children).and_return(Array.new(2, Watir::LI))
+        allow(ul_element).to receive(:children).and_return([li_element, li_element])
+        allow(li_element).to receive(:tag_name).and_return(:li)
       end
 
       it "should return a list item when indexed" do
@@ -27,8 +34,6 @@ describe Druid::Elements::UnOrderedList do
     end
 
 
-    it "should register with tag_name :ul" do
-      expect(Druid::Elements.element_class_for(:ul)).to be Druid::Elements::UnOrderedList
-    end
+
   end
 end

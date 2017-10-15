@@ -1,3 +1,13 @@
+=== 2017-10-15
+* Enhancements
+  * Added the preceding_sibling method to Element
+  * Added the following_sibling method to Element
+  * Added the siblings method to Element
+  * Added the children method to Element
+  * Added the preceding_siblings method to Element
+  * Added the following_siblings method to Element
+* Fixes
+  * Fixed issue that occurred when things were moved around in Watir 6.8
 === 2017-10-12
 * Enhancements
   * Fix bug in integration of frames and sections

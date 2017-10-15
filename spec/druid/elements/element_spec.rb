@@ -180,4 +180,65 @@ describe Druid::Elements::Element do
       expect(element.stale?).to be false
     end
   end
+
+  context 'walking the dom' do
+    let(:found) { double('found').as_null_object }
+
+    before do
+      allow(found).to receive(:tag_name).and_return(:span)
+    end
+
+    it 'should find the parent object' do
+      expect(we).to receive(:parent).and_return(found)
+      object = element.parent
+      expect(object).to be_a(Druid::Elements::Span)
+      expect(object.tag_name).to eql :span
+    end
+
+    it 'should find the proceeding sibling' do
+      expect(we).to receive(:preceding_sibling).and_return(found)
+      object = element.preceding_sibling
+      expect(object).to be_a(Druid::Elements::Span)
+      expect(object.tag_name).to eql :span
+    end
+
+    it 'should find the following sibling' do
+      expect(we).to receive(:following_sibling).and_return(found)
+      object = element.following_sibling
+      expect(object).to be_a(Druid::Elements::Span)
+      expect(object.tag_name).to eql :span
+    end
+
+    it 'should find all of its siblings' do
+      expect(we).to receive(:siblings).and_return([found, found])
+      results = element.siblings
+      expect(results.size).to eql 2
+      expect(results[0]).to be_a(Druid::Elements::Span)
+      expect(results[1]).to be_a(Druid::Elements::Span)
+    end
+
+    it 'should find all of its children' do
+      expect(we).to receive(:children).and_return([found, found])
+      results = element.children
+      expect(results.size).to eql 2
+      expect(results[0]).to be_a(Druid::Elements::Span)
+      expect(results[1]).to be_a(Druid::Elements::Span)
+    end
+
+    it 'should find all of the preceding siblings' do
+      expect(we).to receive(:preceding_siblings).and_return([found, found])
+      results = element.preceding_siblings
+      expect(results.size).to eql 2
+      expect(results[0]).to be_a(Druid::Elements::Span)
+      expect(results[1]).to be_a(Druid::Elements::Span)
+    end
+
+    it 'should find all of the following siblings' do
+      expect(we).to receive(:following_siblings).and_return([found, found])
+      results = element.following_siblings
+      expect(results.size).to eql 2
+      expect(results[0]).to be_a(Druid::Elements::Span)
+      expect(results[1]).to be_a(Druid::Elements::Span)
+    end
+  end
 end

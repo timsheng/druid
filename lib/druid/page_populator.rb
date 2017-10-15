@@ -58,9 +58,7 @@ module Druid
     end
 
     def populate_select_list(key, value)
-      select_element = self.send("#{key}_element")
-      return select_element.select(value) if select_element.include?(value)
-      select_element.select_value(value)
+      self.send "#{key}=", value
     end
 
     def is_text?(key)
