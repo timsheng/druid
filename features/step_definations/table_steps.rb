@@ -88,3 +88,7 @@ end
 Then(/^the table should be like the expected one$/) do |expected_table|
   expect(expected_table.diff!@element.hashes).to be_nil
 end
+
+When(/^I retrieve a table element with regex characters$/) do
+  @element = @page.table_with_regex_element
+end
