@@ -111,3 +111,17 @@ Feature: Table
     And the data for row "rice |" should be "Price |" and "$69.99"
     And the data for row "$420.99" should be "Price1 |" and "$420.99"
     And the data for row "$420" should be "Price1 |" and "$420.99"
+
+  Scenario: Retrieving column values using header string
+    When I ask for the column values for "Header"
+    Then I should receive:
+      | values  |
+      | Data2   |
+      | Data4   |
+
+  Scenario: Retrieving column values using a column number
+    When I ask for the column values for column 1
+    Then I should receive:
+      | values  |
+      | Data2   |
+      | Data4   |
