@@ -104,3 +104,10 @@ Feature: Table
       | Table | Header  |
       | Data1 | Data2   |
       | Data3 | Data4   |
+
+  Scenario: Get rows by text with special chars
+    When I retrieve a table element with regex characters
+    Then the data for row "Price1 |" should be "Price1 |" and "$420.99"
+    And the data for row "rice |" should be "Price |" and "$69.99"
+    And the data for row "$420.99" should be "Price1 |" and "$420.99"
+    And the data for row "$420" should be "Price1 |" and "$420.99"

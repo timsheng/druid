@@ -52,9 +52,59 @@ module Druid
       #
       def parent(opt = {})
         parent = element.parent(opt)
-        type = element.type if parent.tag_name.to_sym == :input
-        cls = Druid::Elements.element_class_for(parent.tag_name, type)
-        cls.new(parent.to_subtype)
+        druid_wrapper(parent)
+      end
+
+      #
+      # Return the element that exists at the same level of the DOM
+      # immediately prior to this element
+      #
+      def preceding_sibling(opt = {})
+        sibling = element.preceding_sibling(opt)
+        druid_wrapper(sibling)
+      end
+
+      #
+      # Return the element that exists at the same level of the DOM
+      # immediately after this element
+      #
+      def following_sibling(opt={})
+        sibling = element.following_sibling(opt)
+        druid_wrapper(sibling)
+      end
+
+      #
+      # Return all elements that are direct children of this element's parent
+      #
+      def siblings(opt={})
+        siblings = element.siblings(opt)
+        siblings.collect {|sibling| druid_wrapper(sibling)}
+      end
+
+      #
+      # Return all elements that are children of this element
+      #
+      def children(opt={})
+        children = element.children(opt)
+        children.collect {|child| druid_wrapper(child)}
+      end
+
+      #
+      # Return all elements that exist at the same level of the DOM
+      # immediately prior to this element
+      #
+      def preceding_siblings(opt={})
+        siblings = element.preceding_siblings(opt)
+        siblings.collect {|sibling| druid_wrapper(sibling)}
+      end
+
+      #
+      # Return all elements that exist at the same level of the DOM
+      # immediately after this element
+      #
+      def following_siblings(opt={})
+        siblings = element.following_siblings(opt)
+        siblings.collect {|sibling| druid_wrapper(sibling)}
       end
 
       #
@@ -122,6 +172,14 @@ module Druid
 
       def respond_to_missing?(m,*args)
         element.respond_to?(m) || super
+      end
+
+      protected
+
+      def druid_wrapper(object)
+        type = element.type if object.tag_name.to_sym == :input
+        cls = Druid::Elements.element_class_for(object.tag_name, type)
+        cls.new(object.to_subtype)
       end
 
       private
