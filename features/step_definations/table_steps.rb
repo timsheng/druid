@@ -92,3 +92,18 @@ end
 When(/^I retrieve a table element with regex characters$/) do
   @element = @page.table_with_regex_element
 end
+
+When(/^I ask for the column values for "([^"]*)"$/) do |header|
+  @values = @page.table_id_element.column_values(header)
+end
+
+Then(/^I should receive:$/) do |table|
+  expect(@values.size).to eql 2
+  table.hashes.each do |hsh|
+    expect(@values).to include hsh['values']
+  end
+end
+
+When(/^I ask for the column values for column (\d+)$/) do |index|
+  @values = @page.table_id_element.column_values(index.to_i)
+end
