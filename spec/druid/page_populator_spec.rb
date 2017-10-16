@@ -1,5 +1,11 @@
 require 'spec_helper'
 
+class Section
+  include Druid
+
+  text_field(:stf, id: 'id')
+end
+
 class DruidPagePopulator
   include Druid
 
@@ -10,6 +16,7 @@ class DruidPagePopulator
   radio_button(:rb, :id => 'id')
   file_field(:ff, :id => 'id')
   radio_button_group(:rbg, :id => 'id')
+  page_section(:section, Section, id: 'foo')
 end
 
 describe Druid::PagePopulator do
@@ -119,4 +126,30 @@ describe Druid::PagePopulator do
     druid.populate_page_with('rb' => true)
   end
 
+  context "when using a nested for a section" do
+    let(:section) { double('section') }
+
+    before do
+      allow(druid).to receive(:section).and_return section
+    end
+
+    it "should populate a page section when the value is a hash and it exists" do
+      expect(section).to receive(:stf=).with('value')
+      expect(druid).to receive(:is_enabled?).and_return(true)
+      druid.populate_page_with('section' => {'stf' => 'value'})
+    end
+
+    it "should not set a value in a text field if it is not found on the page" do
+      expect(section).not_to receive(:text_field)
+      druid.populate_page_with('section' => {'coffee' => 'value'})
+    end
+
+    it "should not populate a text field when it is disabled" do
+      expect(section).not_to receive(:stf=)
+      expect(section).to receive(:stf_element).twice.and_return(driver)
+      expect(driver).to receive(:enabled?).and_return(false)
+      expect(driver).to receive(:tag_name).and_return('input')
+      druid.populate_page_with('section' => {'stf' => true})
+    end
+  end
 end

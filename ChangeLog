@@ -1,6 +1,7 @@
 === 2017-10-16
 * Enhancements
   * Added the ability to get the values of a table column
+  * Added the ability to populate sections with a nested entry from data_magic
 === 2017-10-15
 * Enhancements
   * Added the preceding_sibling method to Element
