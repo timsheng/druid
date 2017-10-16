@@ -1,4 +1,4 @@
-=== 2017-10-16
+=== Version 1.2.5/ 2017-10-16
 * Enhancements
   * Added the ability to get the values of a table column
   * Added the ability to populate sections with a nested entry from data_magic
@@ -17,9 +17,9 @@
   * Fix bug in integration of frames and sections
   * delegate select list text method directly to watir
   * optimize the way to generate a array of symbol
-=== 2017-06-12
+=== Version 1.2.4/ 2017-06-12
 * Add cookies method to druid
-=== 2017-04-24
+=== Version 1.2.3/ 2017-04-24
 * Removed all direct delegateds. Now relies on method_missing to call Watir methods.
   * You may have to change RSpec matchers to use method instead of predicate.
 === Version 1.2.2/ 2017/02-14
