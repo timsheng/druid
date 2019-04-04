@@ -23,6 +23,15 @@ describe Druid::PagePopulator do
   let(:driver) { mock_driver }
   let(:druid) { DruidPagePopulator.new(driver) }
 
+  it "should accept any object that can be converted to a Hash" do
+    os = OpenStruct.new('tf' => 'value', 'sl' => 'value')
+    expect(druid).to receive(:tf=).with('value')
+    expect(druid).to receive(:sl=).with('value')
+
+    allow(druid).to receive(:is_enabled?).and_return(true)
+    druid.populate_page_with(os)
+  end
+
   it "should set a value in a text field" do
     expect(druid).to receive(:tf=).with('value')
     expect(druid).to receive(:is_enabled?).and_return(true)
@@ -137,6 +146,15 @@ describe Druid::PagePopulator do
       expect(section).to receive(:stf=).with('value')
       expect(druid).to receive(:is_enabled?).and_return(true)
       druid.populate_page_with('section' => {'stf' => 'value'})
+    end
+
+    it "populate a page section when the value repsonds to #to_h and it exists" do
+      os = OpenStruct.new('tf' => 'value', 'sl' => 'value')
+      expect(section).to receive(:tf=).with('value')
+      expect(section).to receive(:sl=).with('value')
+
+      allow(druid).to receive(:is_enabled?).twice.and_return(true)
+      druid.populate_page_with('section' => os)
     end
 
     it "should not set a value in a text field if it is not found on the page" do
