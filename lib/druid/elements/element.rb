@@ -40,7 +40,7 @@ module Druid
 
       def check_visible(timeout=Druid.default_element_wait)
         timed_loop(timeout) do |element|
-          element.visible?
+          element.present?
         end
         # wait_until(timeout: timeout, message: "Element not visible in #{timeout} seconds", &:present?)
       end

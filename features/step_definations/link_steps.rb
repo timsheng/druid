@@ -21,7 +21,7 @@ Then(/^I should know it exists$/) do
 end
 
 Then(/^I should know it is visible$/) do
-  expect(@element.visible?).to be true
+  expect(@element.present?).to be true
 end
 
 When(/^I select a link labeled "(.*?)" and index "(.*?)"$/) do |label, index|

@@ -13,13 +13,13 @@ describe Druid::Elements::Element do
 
   context "on a druid" do
     it "should know when it is visible" do
-      expect(we).to receive(:visible?).and_return(true)
-      expect(element.visible?).to be true
+      expect(we).to receive(:present?).and_return(true)
+      expect(element.present?).to be true
     end
 
     it "should know when it is not visible" do
-      expect(we).to receive(:visible?).and_return(false)
-      expect(element.visible?).to be false
+      expect(we).to receive(:present?).and_return(false)
+      expect(element.present?).to be false
     end
 
     it "should know when it exists" do
@@ -62,8 +62,8 @@ describe Druid::Elements::Element do
     end
 
     it "should check if the element is visible" do
-      expect(we).to receive(:visible?).and_return(false)
-      expect(we).to receive(:visible?).and_return(true)
+      expect(we).to receive(:present?).and_return(false)
+      expect(we).to receive(:present?).and_return(true)
       expect(element.check_visible).to be true
     end
 
