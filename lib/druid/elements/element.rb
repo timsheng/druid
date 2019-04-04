@@ -23,6 +23,13 @@ module Druid
         not enabled?
       end
 
+      # 
+      # return true if the element exists and is visible
+      #
+      def present?
+        element.present?
+      end
+
       #
       # compare this element to another to determine if they are equal
       # @return [Boolean]

@@ -67,6 +67,14 @@ describe Druid::Elements::Element do
       expect(element.check_visible).to be true
     end
 
+    it "should check if the element is present" do
+      # simulate Active Support's Object#present? being included
+      allow_any_instance_of(Object).to receive(:present?)
+
+      expect(we).to receive(:present?)
+      element.present?
+    end
+
     it "should check if the element exists" do
       expect(we).to receive(:exists?).and_return(false)
       expect(we).to receive(:exists?).and_return(true)
