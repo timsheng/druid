@@ -106,7 +106,7 @@ describe Druid::Elements::Element do
     end
 
     it "should be able to block until it is not visible" do
-      allow(we).to receive(:wait_while).with(timeout: 10, message: "Element still visible after 10 seconds")
+      allow(we).to receive(:wait_while).with(timeout: 10, message: "Element still present in 10 seconds")
       allow(we).to receive(:displayed?).and_return(false)
       element.when_not_visible(10)
     end

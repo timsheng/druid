@@ -22,4 +22,5 @@ before_script:
   - sudo mv chromedriver /usr/local/bin
 script: bundle exec rake $RAKE_TASK
 env:
+  - RAKE_TASK=spec
   - RAKE_TASK=features:watir
