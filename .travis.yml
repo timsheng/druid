@@ -2,7 +2,10 @@ sudo: required
 dist: trusty
 rvm:
   - 2.2.5
+  - 2.2.7
+  - 2.3.4
   - 2.3.1
+  - 2.4.1
 cache: bundler
 before_script:
   - export CHROME_BIN=/usr/bin/google-chrome
@@ -19,4 +22,5 @@ before_script:
   - sudo mv chromedriver /usr/local/bin
 script: bundle exec rake $RAKE_TASK
 env:
+  - RAKE_TASK=spec
   - RAKE_TASK=features:watir

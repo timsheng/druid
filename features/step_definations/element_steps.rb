@@ -29,7 +29,7 @@ Then(/^I should know its' text includes "(.*?)"$/) do |text|
 end
 
 Then(/^I should know it is not visible$/) do
-  expect(@element.visible?).to be false
+  expect(@element.present?).to be false
 end
 
 When(/^I clear the text field$/) do
@@ -136,7 +136,7 @@ Then(/^I should know the html is "(.*)"$/) do |html|
 end
 
 Then(/^the heading element should be visible$/) do
-  expect(@element.visible?).to be true
+  expect(@element.present?).to be true
 end
 
 When(/^I retrieve a div using data\-entity$/) do

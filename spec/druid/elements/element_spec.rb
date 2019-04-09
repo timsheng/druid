@@ -13,13 +13,13 @@ describe Druid::Elements::Element do
 
   context "on a druid" do
     it "should know when it is visible" do
-      expect(we).to receive(:visible?).and_return(true)
-      expect(element.visible?).to be true
+      expect(we).to receive(:present?).and_return(true)
+      expect(element.present?).to be true
     end
 
     it "should know when it is not visible" do
-      expect(we).to receive(:visible?).and_return(false)
-      expect(element.visible?).to be false
+      expect(we).to receive(:present?).and_return(false)
+      expect(element.present?).to be false
     end
 
     it "should know when it exists" do
@@ -62,9 +62,17 @@ describe Druid::Elements::Element do
     end
 
     it "should check if the element is visible" do
-      expect(we).to receive(:visible?).and_return(false)
-      expect(we).to receive(:visible?).and_return(true)
+      expect(we).to receive(:present?).and_return(false)
+      expect(we).to receive(:present?).and_return(true)
       expect(element.check_visible).to be true
+    end
+
+    it "should check if the element is present" do
+      # simulate Active Support's Object#present? being included
+      allow_any_instance_of(Object).to receive(:present?)
+
+      expect(we).to receive(:present?)
+      element.present?
     end
 
     it "should check if the element exists" do
@@ -92,15 +100,13 @@ describe Druid::Elements::Element do
 
     it "should be able to block until it is visible" do
       allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
-      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not visible in 10 seconds")
       allow(we).to receive(:displayed?).and_return(true)
       new_element = element.when_visible(10)
       expect(new_element).to eql element
     end
 
     it "should be able to block until it is not visible" do
-      allow(we).to receive(:wait_until).with(timeout: 10, message: "Element not present in 10 seconds")
-      allow(we).to receive(:wait_while).with(timeout: 10, message: "Element still visible after 10 seconds")
+      allow(we).to receive(:wait_while).with(timeout: 10, message: "Element still present in 10 seconds")
       allow(we).to receive(:displayed?).and_return(false)
       element.when_not_visible(10)
     end

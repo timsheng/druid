@@ -26,7 +26,7 @@ end
 
 Then(/^I should be able to wait until a block returns true$/) do
   @element.wait_until do
-    @element.visible?
+    @element.present?
   end
 end
 

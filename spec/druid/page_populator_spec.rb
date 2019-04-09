@@ -47,7 +47,7 @@ describe Druid::PagePopulator do
     expect(druid).not_to receive(:tf=)
     expect(druid).to receive(:tf_element).twice.and_return(driver)
     expect(driver).to receive(:enabled?).and_return(true)
-    expect(driver).to receive(:visible?).and_return(false)
+    expect(driver).to receive(:present?).and_return(false)
     expect(driver).to receive(:tag_name).and_return('input')
     druid.populate_page_with('tf' => true)
   end
@@ -105,7 +105,7 @@ describe Druid::PagePopulator do
     expect(druid).not_to receive(:check_cb)
     expect(druid).to receive(:cb_element).twice.and_return(driver)
     expect(driver).to receive(:enabled?).and_return(true)
-    expect(driver).to receive(:visible?).and_return(false)
+    expect(driver).to receive(:present?).and_return(false)
     expect(driver).to receive(:tag_name).and_return('input')
     druid.populate_page_with('cb' => true)
   end
@@ -130,7 +130,7 @@ describe Druid::PagePopulator do
     expect(druid).not_to receive(:select_rb)
     expect(druid).to receive(:rb_element).twice.and_return(driver)
     expect(driver).to receive(:enabled?).and_return(true)
-    expect(driver).to receive(:visible?).and_return(false)
+    expect(driver).to receive(:present?).and_return(false)
     expect(driver).to receive(:tag_name).and_return('input')
     druid.populate_page_with('rb' => true)
   end

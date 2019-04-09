@@ -35,7 +35,6 @@ Feature: Elements
     And I should know its' tag name is "a"
     And I should know the attribute "readonly" is false
     And I should know the attribute "href" includes "success.html"
-    And I should know its' value is ""
     And I should be able to click it
 
   Scenario: Button element methods
@@ -65,7 +64,6 @@ Feature: Elements
     Then I should know it exists
     And I should know it is visible
     And I should know its' text is "page-object rocks!"
-    And I should know its' value is ""
     And I should know it is equal to itself
     And I should know its' tag name is "div"
     And I should know the attribute "readonly" is false
@@ -97,7 +95,6 @@ Feature: Elements
     When I retrieve a table element
     Then I should know it is visible
     Then I should know it exists
-    And I should know its' value is ""
     And I should know its' text includes "Data1"
     And I should know it is equal to itself
     And I should know its' tag name is "table"
@@ -108,7 +105,6 @@ Feature: Elements
     When I retrieve table cell
     Then I should know it exists
     And I should know it is visible
-    Then I should know its' value is ""
     And I should know its' text includes "Data4"
     And I should know it is equal to itself
     And I should know its' tag name is "td"
@@ -129,7 +125,6 @@ Feature: Elements
   Scenario: Image element methods
     When I get the image element
     Then I should know it exists
-    Then I should know its' value is ""
     And I should know it is visible
     And I should know its' text includes ""
     And I should know it is equal to itself
@@ -155,7 +150,6 @@ Feature: Elements
     And I should know it is equal to itself
     And I should know its' tag name is "form"
     And I should know the attribute "readonly" is false
-    And I should know its' value is ""
 
   Scenario: Text Area element methods
     When I retrieve the text area
