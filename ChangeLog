@@ -1,6 +1,6 @@
 === Version 1.2.6/ 2019-04-09
 * Enhancements
-  * populate_page_with will work with anything that can be converted to a Hash (Thanks Titus Fortner)
+  * populate_page_with will work with anything that can be converted to a Hash
 * Fixes
   * Fixed present? when using with ActiveSupport
   * Fixed issues with when_visible and when_not_visible
