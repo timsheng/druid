@@ -1,11 +1,12 @@
 require 'rubygems'
 require 'rack'
+require 'rackup'
 require 'webrick'
 
 class SampleApp
 
   def self.start(host, port)
-    Rack::Handler::WEBrick.run new,
+    Rackup::Handler::WEBrick.run new,
                                :Host => host,
                                :Port => port,
                                :Logger => ::WEBrick::Log.new(RUBY_PLATFORM =~ /mswin|mingw/ ? 'NUL:' : '/dev/null'),
@@ -13,7 +14,7 @@ class SampleApp
   end
 
   def initialize
-    @public = Rack::File.new(File.expand_path("../public", __FILE__))
+    @public = File.expand_path("../public", __FILE__)
   end
 
   def call(env)

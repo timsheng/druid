@@ -3,13 +3,12 @@ $:.push File.expand_path("../lib", __FILE__)
 require "druid/version"
 
 Gem::Specification.new do |s|
-  s.name = "druid-ts"
+  s.name = "druid-s"
   s.platform = Gem::Platform::RUBY
   s.version = Druid::VERSION
-  s.date = '2016-11-15'
-  s.authors = ["Tim Sheng"]
-  s.email = ["278570038@qq.com"]
-  s.homepage = "http://github.com/timsheng/druid"
+  s.date = '2034-01-16'
+  s.authors = ["Amber Yuan"]
+  s.homepage = "https://github.com/amber-yuan/druid-s"
   s.summary = %q{Druid DSL for browser testing}
   s.description = %q{Druid DSL that works with Watir}
   s.license = 'MIT'
@@ -18,12 +17,13 @@ Gem::Specification.new do |s|
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f)}
   s.require_paths = ["lib"]
-  s.add_dependency "watir", "~> 6.8"
+  s.add_dependency "watir", "~> 7.3.0"
   s.add_dependency "page_navigation", ">= 0.10"
 
-  s.add_development_dependency "rspec", "~> 3.0"
-  s.add_development_dependency "cucumber", "~> 2.0"
-  s.add_development_dependency "rack", ">= 1.0"
-  s.add_development_dependency "net-http-persistent", "~> 3.0"
+  s.add_development_dependency "rspec", "~> 3.10"
+  s.add_development_dependency "cucumber", "~> 9.0"
+  s.add_development_dependency "rack", ">= 3.0"
+  s.add_development_dependency "rackup", ">= 2.1"
+  s.add_development_dependency "net-http-persistent", "~> 4.0"
 
 end

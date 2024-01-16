@@ -1,4 +1,4 @@
-require 'selenium/webdriver/remote/http/persistent'
+require 'selenium/webdriver/remote/http/default'
 
 module Druid
   module PersistantBrowser
@@ -40,7 +40,7 @@ module Druid
     end
 
     def self.client
-      Selenium::WebDriver::Remote::Http::Persistent.new
+      Selenium::WebDriver::Remote::Http::Default.new
     end
 
     def self.capabilities(browser, version, platform, name)
