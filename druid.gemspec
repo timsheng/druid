@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name = "druid-s"
   s.platform = Gem::Platform::RUBY
   s.version = Druid::VERSION
-  s.date = '2034-01-16'
+  s.date = '2024-01-16'
   s.authors = ["Amber Yuan"]
   s.homepage = "https://github.com/amber-yuan/druid-s"
   s.summary = %q{Druid DSL for browser testing}
